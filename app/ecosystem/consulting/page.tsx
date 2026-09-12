@@ -3,6 +3,7 @@ import type { Metadata } from "next"
 import { ArmHero } from "@/components/arm-hero"
 import { SectionHeading } from "@/components/section-heading"
 import { FeatureList } from "@/components/feature-list"
+import { BookingWidget } from "@/components/booking-widget"
 import { CtaBanner } from "@/components/cta-banner"
 import { Reveal } from "@/components/reveal"
 import { ARMS, CONSULTING_MODULES } from "@/lib/content"
@@ -16,7 +17,7 @@ const arm = ARMS.find((a) => a.slug === "consulting")!
 export default function ConsultingPage() {
   return (
     <>
-      <ArmHero arm={arm} ctaHref="/contact" />
+      <ArmHero arm={arm} ctaHref="#book" />
 
       <section className="section">
         <Reveal>
@@ -31,27 +32,24 @@ export default function ConsultingPage() {
         </div>
       </section>
 
-      <section className="section">
-        <Reveal className="rounded-2xl border border-hairline bg-surface-card p-10">
+      <section id="book" className="section scroll-mt-20">
+        <Reveal>
           <SectionHeading
             eyebrow="Booking"
             title="Request a discovery call"
+            description="Pick a time that works for you — we'll use the call to scope a custom professional development proposal, coaching cohort, or staff workshop."
           />
-          <p className="mt-4 max-w-2xl text-sm text-body">
-            School leaders can request a discovery call to scope a custom
-            professional development proposal, coaching cohort, or staff
-            workshop. Reach out through the contact form and specify
-            &quot;Consulting &amp; professional development&quot; — a
-            scheduling link will follow.
-          </p>
         </Reveal>
+        <div className="mt-10">
+          <BookingWidget />
+        </div>
       </section>
 
       <CtaBanner
         eyebrow="Partner With Us"
         title="Ready to bring this to your school or district?"
         description="Book a consultation and we'll build a proposal around your staff's actual needs."
-        primary={{ label: "Book a Consultation", href: "/contact" }}
+        primary={{ label: "Book a Consultation", href: "#book" }}
       />
     </>
   )

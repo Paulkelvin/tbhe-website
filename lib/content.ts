@@ -8,6 +8,10 @@ export const SITE = {
     "TBHE is an ecosystem of educational consulting, special education advocacy through Mission 139, and thought leadership for the educator community.",
 } as const
 
+// Placeholder — replace with the real Cal.com username/event-type slug
+// once the discovery-call event type is created (e.g. "jane-doe/discovery-call").
+export const DISCOVERY_CALL_CAL_LINK = "tbhe/discovery-call"
+
 export const NAV_LINKS = [
   { label: "Home", href: "/" },
   { label: "About", href: "/about" },
