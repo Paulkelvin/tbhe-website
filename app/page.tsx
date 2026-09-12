@@ -1,5 +1,6 @@
 import Link from "next/link"
 import Image from "next/image"
+import { FileText } from "@phosphor-icons/react/dist/ssr"
 
 import { Hero } from "@/components/hero"
 import { ArmCard } from "@/components/arm-card"
@@ -60,20 +61,31 @@ export default function HomePage() {
       </section>
 
       <section className="section">
-        <Reveal className="rounded-2xl border border-hairline bg-surface-card p-10">
-          <Badge className="w-fit">{FEATURED_RESOURCE.kind}</Badge>
-          <h3 className="mt-5 text-2xl font-semibold text-ink">
-            {FEATURED_RESOURCE.title}
-          </h3>
-          <p className="mt-3 max-w-2xl text-sm text-body">
-            {FEATURED_RESOURCE.description}
-          </p>
-          <Link
-            href="/resources"
-            className="mt-5 inline-block text-sm font-medium text-primary transition-colors hover:underline"
-          >
-            {FEATURED_RESOURCE.cta} &rarr;
-          </Link>
+        <Reveal className="grid gap-8 rounded-2xl border border-hairline bg-surface-card p-10 md:grid-cols-[1fr_auto] md:items-center">
+          <div>
+            <Badge className="w-fit">{FEATURED_RESOURCE.kind}</Badge>
+            <h3 className="mt-5 text-2xl font-semibold text-ink">
+              {FEATURED_RESOURCE.title}
+            </h3>
+            <p className="mt-3 max-w-2xl text-sm text-body">
+              {FEATURED_RESOURCE.description}
+            </p>
+            <Link
+              href="/resources"
+              className="mt-5 inline-block text-sm font-medium text-primary transition-colors hover:underline"
+            >
+              {FEATURED_RESOURCE.cta} &rarr;
+            </Link>
+          </div>
+
+          {/* Swap for a real cover image (portrait, ~4:5) once the white paper is designed. */}
+          <div className="relative mx-auto h-48 w-36 shrink-0 sm:h-56 sm:w-40">
+            <div className="absolute inset-0 translate-x-3 translate-y-3 rounded-xl bg-arm-consulting/10" />
+            <div className="absolute inset-0 translate-x-1.5 translate-y-1.5 rounded-xl bg-arm-consulting/20" />
+            <div className="absolute inset-0 flex items-center justify-center rounded-xl bg-primary text-primary-foreground shadow-lg">
+              <FileText size={40} weight="light" />
+            </div>
+          </div>
         </Reveal>
       </section>
 
