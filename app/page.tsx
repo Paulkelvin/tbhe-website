@@ -23,11 +23,13 @@ export default function HomePage() {
       <section className="section">
         <Reveal>
           <StatGrid stats={IMPACT_STATS} />
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-x-8 gap-y-2 text-sm text-muted-ink">
+          <div className="mt-8 flex flex-col items-center gap-4">
             <span className="eyebrow">School Partners</span>
-            {SCHOOL_PARTNERS.map((partner) => (
-              <span key={partner}>{partner}</span>
-            ))}
+            <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-3 text-sm text-muted-ink">
+              {SCHOOL_PARTNERS.map((partner) => (
+                <span key={partner}>{partner}</span>
+              ))}
+            </div>
           </div>
         </Reveal>
       </section>
