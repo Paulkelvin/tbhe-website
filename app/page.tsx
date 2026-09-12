@@ -24,7 +24,7 @@ export default function HomePage() {
       <section className="section">
         <Reveal>
           <StatGrid stats={IMPACT_STATS} />
-          <div className="mt-8 flex flex-col items-center gap-4">
+          <div className="mt-8 flex flex-col items-center gap-8">
             <span className="eyebrow">School Partners</span>
             <div className="flex flex-wrap items-center justify-center gap-x-12 gap-y-6">
               {SCHOOL_PARTNERS.map((partner) => (
@@ -34,7 +34,7 @@ export default function HomePage() {
                   alt={partner.name}
                   width={partner.width}
                   height={partner.height}
-                  className="h-9 w-auto grayscale opacity-70 transition-all duration-300 hover:grayscale-0 hover:opacity-100"
+                  className="h-9 w-auto transition-transform duration-300 hover:scale-105"
                 />
               ))}
             </div>
