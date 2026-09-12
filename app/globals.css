@@ -1,0 +1,135 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@theme inline {
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
+
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --color-foreground: var(--foreground);
+  --color-background: var(--background);
+
+  --color-canvas: var(--canvas);
+  --color-canvas-soft: var(--canvas-soft);
+  --color-surface-card: var(--surface-card);
+  --color-surface-strong: var(--surface-strong);
+
+  --color-hairline: var(--hairline);
+  --color-hairline-soft: var(--hairline-soft);
+  --color-hairline-strong: var(--hairline-strong);
+
+  --color-ink: var(--ink);
+  --color-body: var(--body);
+  --color-body-strong: var(--body-strong);
+  --color-muted-ink: var(--muted-ink);
+  --color-muted-soft: var(--muted-soft);
+  --color-on-primary: var(--on-primary);
+
+  --color-primary-active: var(--primary-active);
+
+  --color-arm-consulting: var(--arm-consulting);
+  --color-arm-mission: var(--arm-mission);
+  --color-arm-media: var(--arm-media);
+
+  --color-success: var(--success);
+  --color-error: var(--error);
+
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-2xl: 20px;
+  --radius-3xl: 24px;
+  --radius-pill: 9999px;
+
+  --section-padding: 96px;
+}
+
+:root {
+  /* Brand accent: plum, used for the Consulting arm + primary CTAs */
+  --primary: #5b2a73;
+  --primary-foreground: #ffffff;
+  --primary-active: #45204f;
+  --on-primary: #ffffff;
+
+  /* Surfaces: warm cream canvas, never pure white */
+  --canvas: #faf7f1;
+  --canvas-soft: #f5efe3;
+  --surface-card: #ffffff;
+  --surface-strong: #eae1d0;
+
+  --hairline: #e6ddca;
+  --hairline-soft: #efe8d9;
+  --hairline-strong: #d6c9ac;
+
+  --ink: #251827;
+  --body: #5c525c;
+  --body-strong: #251827;
+  --muted-ink: #85798a;
+  --muted-soft: #ada2ab;
+
+  /* One accent per ecosystem arm */
+  --arm-consulting: #5b2a73;
+  --arm-mission: #2f8f5b;
+  --arm-media: #c4862c;
+
+  --success: #1f8a65;
+  --error: #cf2d3f;
+
+  --background: var(--canvas);
+  --foreground: var(--ink);
+  --card: var(--surface-card);
+  --card-foreground: var(--ink);
+  --popover: var(--surface-card);
+  --popover-foreground: var(--ink);
+  --secondary: var(--surface-strong);
+  --secondary-foreground: var(--ink);
+  --muted: var(--canvas-soft);
+  --muted-foreground: var(--body);
+  --accent: var(--hairline-soft);
+  --accent-foreground: var(--ink);
+  --destructive: var(--error);
+  --border: var(--hairline);
+  --input: var(--hairline);
+  --ring: var(--hairline-strong);
+
+  --radius: 0.75rem;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@layer utilities {
+  .section {
+    @apply mx-auto w-full max-w-6xl px-6 py-(--section-padding) sm:px-8;
+  }
+  .eyebrow {
+    @apply text-xs font-semibold tracking-[0.18em] text-muted-ink uppercase;
+  }
+  .form-input {
+    @apply w-full rounded-lg border border-hairline-strong bg-canvas px-3.5 py-2.5 text-sm text-ink placeholder:text-muted-soft focus:outline-none focus-visible:ring-[3px] focus-visible:ring-ring/50;
+  }
+}
