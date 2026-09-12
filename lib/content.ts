@@ -184,6 +184,12 @@ export const MISSION_139_PROGRAMS = [
   },
 ] as const
 
+export const KEYNOTE_TOPICS = [
+  "Diversity as Divine Design",
+  "Teacher Burnout vs. Systemic Change",
+  "Something else / custom topic",
+] as const
+
 export const MEDIA_OFFERINGS = [
   {
     title: "Research & White Papers",
