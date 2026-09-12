@@ -53,36 +53,48 @@ export function SiteHeader() {
         </button>
       </div>
 
-      <AnimatePresence initial={false}>
+      <AnimatePresence>
         {open ? (
-          <motion.div
-            key="mobile-nav"
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.3, ease: EASE }}
-            className="overflow-hidden border-t border-hairline bg-canvas md:hidden"
-          >
-            <nav className="flex flex-col gap-1 px-6 py-4">
-              {NAV_LINKS.map((link) => (
+          <>
+            <motion.div
+              key="mobile-nav-backdrop"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.25, ease: EASE }}
+              className="fixed inset-x-0 top-16 bottom-0 z-40 bg-ink/30 md:hidden"
+              onClick={() => setOpen(false)}
+              aria-hidden
+            />
+            <motion.div
+              key="mobile-nav"
+              initial={{ opacity: 0, y: -8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -8 }}
+              transition={{ duration: 0.25, ease: EASE }}
+              className="absolute inset-x-0 top-full z-50 border-t border-hairline bg-canvas shadow-lg md:hidden"
+            >
+              <nav className="flex flex-col gap-1 px-6 py-4">
+                {NAV_LINKS.map((link) => (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    onClick={() => setOpen(false)}
+                    className="rounded-md px-2 py-2 text-sm text-body transition-colors duration-200 hover:bg-canvas-soft hover:text-ink"
+                  >
+                    {link.label}
+                  </Link>
+                ))}
                 <Link
-                  key={link.href}
-                  href={link.href}
+                  href="/contact"
                   onClick={() => setOpen(false)}
-                  className="rounded-md px-2 py-2 text-sm text-body transition-colors duration-200 hover:bg-canvas-soft hover:text-ink"
+                  className="mt-2 rounded-full bg-primary px-4 py-2 text-center text-sm font-medium text-primary-foreground transition-opacity duration-200 hover:opacity-90"
                 >
-                  {link.label}
+                  Get in Touch
                 </Link>
-              ))}
-              <Link
-                href="/contact"
-                onClick={() => setOpen(false)}
-                className="mt-2 rounded-full bg-primary px-4 py-2 text-center text-sm font-medium text-primary-foreground transition-opacity duration-200 hover:opacity-90"
-              >
-                Get in Touch
-              </Link>
-            </nav>
-          </motion.div>
+              </nav>
+            </motion.div>
+          </>
         ) : null}
       </AnimatePresence>
     </header>
