@@ -1,4 +1,5 @@
 import Link from "next/link"
+import Image from "next/image"
 
 import { Hero } from "@/components/hero"
 import { ArmCard } from "@/components/arm-card"
@@ -25,9 +26,16 @@ export default function HomePage() {
           <StatGrid stats={IMPACT_STATS} />
           <div className="mt-8 flex flex-col items-center gap-4">
             <span className="eyebrow">School Partners</span>
-            <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-3 text-sm text-muted-ink">
+            <div className="flex flex-wrap items-center justify-center gap-x-12 gap-y-6">
               {SCHOOL_PARTNERS.map((partner) => (
-                <span key={partner}>{partner}</span>
+                <Image
+                  key={partner.name}
+                  src={partner.logo}
+                  alt={partner.name}
+                  width={partner.width}
+                  height={partner.height}
+                  className="h-9 w-auto grayscale opacity-70 transition-all duration-300 hover:grayscale-0 hover:opacity-100"
+                />
               ))}
             </div>
           </div>

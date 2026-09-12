@@ -116,8 +116,18 @@ export const IMPACT_STATS = [
 ] as const
 
 export const SCHOOL_PARTNERS = [
-  "Cedar Tree DC",
-  "St. Martin's Lutheran School",
+  {
+    name: "Cedar Tree Academy",
+    logo: "/logos/cedar-tree-academy.png",
+    width: 2048,
+    height: 497,
+  },
+  {
+    name: "Saint Martin's Lutheran School of Annapolis",
+    logo: "/logos/saint-martins-lutheran.png",
+    width: 463,
+    height: 145,
+  },
 ] as const
 
 export const FEATURED_RESOURCE = {
