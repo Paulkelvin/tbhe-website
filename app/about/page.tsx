@@ -3,6 +3,7 @@ import type { Metadata } from "next"
 import { PageHero } from "@/components/page-hero"
 import { SectionHeading } from "@/components/section-heading"
 import { CtaBanner } from "@/components/cta-banner"
+import { Reveal } from "@/components/reveal"
 
 export const metadata: Metadata = {
   title: "About — The Beautifully Human Educator",
@@ -18,7 +19,7 @@ export default function AboutPage() {
       />
 
       <section className="section grid gap-16 md:grid-cols-2">
-        <div>
+        <Reveal>
           <SectionHeading eyebrow="Founder Story" title="From the classroom to the ecosystem" />
           <p className="mt-5 text-base text-body">
             Years spent teaching across K-8 and high school revealed the same
@@ -28,8 +29,8 @@ export default function AboutPage() {
             thought leadership. TBHE was built to respond to all three, at
             once, without pretending they're separate problems.
           </p>
-        </div>
-        <div>
+        </Reveal>
+        <Reveal delay={0.1}>
           <SectionHeading eyebrow="Mission" title="Fearfully and wonderfully made" />
           <p className="mt-5 text-base text-body">
             Mission 139 takes its name from Psalm 139:14 — a reminder that
@@ -38,16 +39,18 @@ export default function AboutPage() {
             nonprofit, and the public speaking under one roof: educators
             deserve support, and so do the families they serve.
           </p>
-        </div>
+        </Reveal>
       </section>
 
       <section className="section">
-        <SectionHeading eyebrow="Advisory Board" title="Guided by people who know the work" />
-        <p className="mt-5 max-w-2xl text-base text-body">
-          TBHE is advised by educators, special education advocates, and
-          nonprofit leaders committed to keeping every arm of this ecosystem
-          accountable to the families and schools it serves.
-        </p>
+        <Reveal>
+          <SectionHeading eyebrow="Advisory Board" title="Guided by people who know the work" />
+          <p className="mt-5 max-w-2xl text-base text-body">
+            TBHE is advised by educators, special education advocates, and
+            nonprofit leaders committed to keeping every arm of this ecosystem
+            accountable to the families and schools it serves.
+          </p>
+        </Reveal>
       </section>
 
       <CtaBanner

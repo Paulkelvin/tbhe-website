@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 
 import { PageHero } from "@/components/page-hero"
 import { ArmCard } from "@/components/arm-card"
+import { Reveal } from "@/components/reveal"
 import { ARMS } from "@/lib/content"
 
 export const metadata: Metadata = {
@@ -19,8 +20,10 @@ export default function EcosystemPage() {
 
       <section className="section">
         <div className="grid gap-6 md:grid-cols-3">
-          {ARMS.map((arm) => (
-            <ArmCard key={arm.slug} arm={arm} />
+          {ARMS.map((arm, index) => (
+            <Reveal key={arm.slug} delay={index * 0.1} className="h-full">
+              <ArmCard arm={arm} />
+            </Reveal>
           ))}
         </div>
       </section>

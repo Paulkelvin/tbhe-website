@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 
 import { PageHero } from "@/components/page-hero"
 import { ContactForm } from "@/components/contact-form"
+import { Reveal } from "@/components/reveal"
 
 export const metadata: Metadata = {
   title: "Contact — The Beautifully Human Educator",
@@ -17,7 +18,9 @@ export default function ContactPage() {
       />
 
       <section className="mx-auto w-full max-w-2xl px-6 py-(--section-padding) sm:px-8">
-        <ContactForm />
+        <Reveal>
+          <ContactForm />
+        </Reveal>
       </section>
     </>
   )

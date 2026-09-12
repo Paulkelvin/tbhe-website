@@ -4,6 +4,7 @@ import { ArmHero } from "@/components/arm-hero"
 import { SectionHeading } from "@/components/section-heading"
 import { FeatureList } from "@/components/feature-list"
 import { CtaBanner } from "@/components/cta-banner"
+import { Reveal } from "@/components/reveal"
 import { ARMS, CONSULTING_MODULES } from "@/lib/content"
 
 export const metadata: Metadata = {
@@ -18,18 +19,20 @@ export default function ConsultingPage() {
       <ArmHero arm={arm} ctaHref="/contact" />
 
       <section className="section">
-        <SectionHeading
-          eyebrow="Professional Development"
-          title="Modules built for real schools"
-          description="Workshops, coaching cohorts, and curriculum support designed around DEI, retention, inclusion, and emotional intelligence in coaching."
-        />
+        <Reveal>
+          <SectionHeading
+            eyebrow="Professional Development"
+            title="Modules built for real schools"
+            description="Workshops, coaching cohorts, and curriculum support designed around DEI, retention, inclusion, and emotional intelligence in coaching."
+          />
+        </Reveal>
         <div className="mt-10">
           <FeatureList items={CONSULTING_MODULES} />
         </div>
       </section>
 
       <section className="section">
-        <div className="rounded-2xl border border-hairline bg-surface-card p-10">
+        <Reveal className="rounded-2xl border border-hairline bg-surface-card p-10">
           <SectionHeading
             eyebrow="Booking"
             title="Request a discovery call"
@@ -41,7 +44,7 @@ export default function ConsultingPage() {
             &quot;Consulting &amp; professional development&quot; — a
             scheduling link will follow.
           </p>
-        </div>
+        </Reveal>
       </section>
 
       <CtaBanner

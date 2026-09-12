@@ -4,6 +4,7 @@ import { ArmHero } from "@/components/arm-hero"
 import { SectionHeading } from "@/components/section-heading"
 import { FeatureList } from "@/components/feature-list"
 import { CtaBanner } from "@/components/cta-banner"
+import { Reveal } from "@/components/reveal"
 import { ARMS, MEDIA_OFFERINGS } from "@/lib/content"
 
 export const metadata: Metadata = {
@@ -18,11 +19,13 @@ export default function MediaPage() {
       <ArmHero arm={arm} ctaHref="/contact" />
 
       <section className="section">
-        <SectionHeading
-          eyebrow="Speaking Topics"
-          title="Keynotes that don't play it safe"
-          description={'Including "Diversity as Divine Design" and "Teacher Burnout vs. Systemic Change" — built for conferences, districts, and educator communities.'}
-        />
+        <Reveal>
+          <SectionHeading
+            eyebrow="Speaking Topics"
+            title="Keynotes that don't play it safe"
+            description={'Including "Diversity as Divine Design" and "Teacher Burnout vs. Systemic Change" — built for conferences, districts, and educator communities.'}
+          />
+        </Reveal>
         <div className="mt-10">
           <FeatureList items={MEDIA_OFFERINGS} />
         </div>

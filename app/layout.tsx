@@ -5,6 +5,7 @@ import "./globals.css"
 import { cn } from "@/lib/utils"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
+import { PageTransition } from "@/components/page-transition"
 import { SITE } from "@/lib/content"
 
 const fontSans = Geist({ subsets: ["latin"], variable: "--font-sans" })
@@ -32,7 +33,9 @@ export default function RootLayout({ children }: RootLayoutProps) {
     >
       <body className="flex min-h-screen flex-col">
         <SiteHeader />
-        <main className="flex-1">{children}</main>
+        <main className="flex-1">
+          <PageTransition>{children}</PageTransition>
+        </main>
         <SiteFooter />
       </body>
     </html>

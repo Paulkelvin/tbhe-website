@@ -4,6 +4,7 @@ import { ArmHero } from "@/components/arm-hero"
 import { SectionHeading } from "@/components/section-heading"
 import { FeatureList } from "@/components/feature-list"
 import { CtaBanner } from "@/components/cta-banner"
+import { Reveal } from "@/components/reveal"
 import { ARMS, MISSION_139_PROGRAMS } from "@/lib/content"
 
 export const metadata: Metadata = {
@@ -18,7 +19,7 @@ export default function Mission139Page() {
       <ArmHero arm={arm} ctaHref="/contact" />
 
       <section className="section">
-        <div className="rounded-2xl border border-arm-mission/30 bg-arm-mission/5 p-8">
+        <Reveal className="rounded-2xl border border-arm-mission/30 bg-arm-mission/5 p-8">
           <p className="eyebrow text-arm-mission">Psalm 139:14</p>
           <p className="mt-3 max-w-2xl text-base text-body">
             &quot;I praise you because I am fearfully and wonderfully
@@ -26,15 +27,17 @@ export default function Mission139Page() {
             neurodivergent child deserves to be met with that same regard —
             in their IEP meeting, in their classroom, and at home.
           </p>
-        </div>
+        </Reveal>
       </section>
 
       <section className="section">
-        <SectionHeading
-          eyebrow="Programs"
-          title="Advocacy and aid, side by side"
-          description="Financial support and representation so families never have to choose between the two."
-        />
+        <Reveal>
+          <SectionHeading
+            eyebrow="Programs"
+            title="Advocacy and aid, side by side"
+            description="Financial support and representation so families never have to choose between the two."
+          />
+        </Reveal>
         <div className="mt-10">
           <FeatureList items={MISSION_139_PROGRAMS} />
         </div>

@@ -10,7 +10,7 @@ export function ArmCard({ arm }: { arm: Arm }) {
   return (
     <Link
       href={`/ecosystem/${arm.slug}`}
-      className="group flex flex-col justify-between rounded-2xl border border-hairline bg-surface-card p-8 transition-colors hover:border-hairline-strong"
+      className="group flex h-full flex-col justify-between rounded-2xl border border-hairline bg-surface-card p-8 transition-all duration-300 ease-out hover:-translate-y-1 hover:border-hairline-strong hover:shadow-[0_16px_40px_-16px_rgba(37,24,39,0.18)]"
     >
       <div>
         <span
