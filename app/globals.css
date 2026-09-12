@@ -124,7 +124,7 @@
 
 @layer utilities {
   .section {
-    @apply mx-auto w-full max-w-6xl px-6 py-(--section-padding) sm:px-8;
+    @apply mx-auto w-full max-w-6xl px-6 py-14 sm:px-8 sm:py-20 lg:py-(--section-padding);
   }
   .eyebrow {
     @apply text-xs font-semibold tracking-[0.18em] text-muted-ink uppercase;
