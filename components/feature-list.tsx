@@ -16,6 +16,8 @@ import {
   Scales,
 } from "@phosphor-icons/react/dist/ssr"
 
+import { ARM_COLOR_CLASS, type Arm } from "@/lib/content"
+
 const EASE = [0.4, 0, 0.2, 1] as const
 
 const ICONS: Record<string, React.ComponentType<IconProps>> = {
@@ -34,7 +36,7 @@ const ICONS: Record<string, React.ComponentType<IconProps>> = {
 
 const container: Variants = {
   hidden: {},
-  show: { transition: { staggerChildren: 0.1 } },
+  show: { transition: { staggerChildren: 0.15 } },
 }
 
 const item: Variants = {
@@ -42,51 +44,87 @@ const item: Variants = {
   show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: EASE } },
 }
 
+type Entry = { icon?: string; title: string; description: string }
+
+function IconBadge({
+  icon,
+  size,
+  textClass,
+  bgClass,
+}: {
+  icon?: string
+  size: number
+  textClass: string
+  bgClass: string
+}) {
+  const Icon = icon ? ICONS[icon] : undefined
+  if (!Icon) return null
+  return (
+    <div
+      className={`flex shrink-0 items-center justify-center rounded-full ${bgClass} ${textClass}`}
+      style={{ width: size, height: size }}
+    >
+      <Icon size={Math.round(size * 0.5)} weight="duotone" />
+    </div>
+  )
+}
+
 export function FeatureList({
   items,
+  accent = "consulting",
 }: {
-  items: readonly { icon?: string; title: string; description: string }[]
+  items: readonly Entry[]
+  accent?: Arm["color"]
 }) {
   const reduced = useReducedMotion()
+  const colors = ARM_COLOR_CLASS[accent]
+  const [anchor, ...rest] = items
 
-  const card = (entry: { icon?: string; title: string; description: string }) => {
-    const Icon = entry.icon ? ICONS[entry.icon] : undefined
-    return (
-      <div className="rounded-2xl border border-hairline bg-surface-card p-6 transition-shadow duration-300 hover:shadow-[0_16px_40px_-20px_rgba(37,24,39,0.2)]">
-        {Icon ? (
-          <div className="mb-4 flex size-10 items-center justify-center rounded-full bg-primary/10 text-primary">
-            <Icon size={20} weight="duotone" />
+  const anchorTile = (
+    <div className={`flex h-full flex-col justify-center rounded-2xl p-8 ${colors.softBg}`}>
+      <IconBadge icon={anchor.icon} size={48} textClass={colors.text} bgClass="bg-surface-card" />
+      <h3 className="mt-5 text-xl font-semibold text-ink">{anchor.title}</h3>
+      <p className="mt-3 text-sm text-body">{anchor.description}</p>
+    </div>
+  )
+
+  const rowList = (
+    <div className="divide-y divide-hairline md:self-center">
+      {rest.map((entry) => (
+        <div key={entry.title} className="flex gap-4 py-5 first:pt-0 last:pb-0">
+          <IconBadge icon={entry.icon} size={40} textClass={colors.text} bgClass={colors.softBg} />
+          <div>
+            <h3 className="text-base font-semibold text-ink">{entry.title}</h3>
+            <p className="mt-1 text-sm text-body">{entry.description}</p>
           </div>
-        ) : null}
-        <h3 className="text-base font-semibold text-ink">{entry.title}</h3>
-        <p className="mt-2 text-sm text-body">{entry.description}</p>
-      </div>
-    )
-  }
+        </div>
+      ))}
+    </div>
+  )
 
   if (reduced) {
     return (
-      <div className="grid gap-6 sm:grid-cols-2">
-        {items.map((entry) => (
-          <div key={entry.title}>{card(entry)}</div>
-        ))}
+      <div className="grid gap-8 md:grid-cols-12 md:items-stretch">
+        <div className="md:col-span-7">{anchorTile}</div>
+        <div className="md:col-span-5">{rowList}</div>
       </div>
     )
   }
 
   return (
     <motion.div
-      className="grid gap-6 sm:grid-cols-2"
+      className="grid gap-8 md:grid-cols-12 md:items-stretch"
       variants={container}
       initial="hidden"
       whileInView="show"
       viewport={{ once: true, margin: "-80px" }}
     >
-      {items.map((entry) => (
-        <motion.div key={entry.title} variants={item}>
-          {card(entry)}
-        </motion.div>
-      ))}
+      <motion.div variants={item} className="md:col-span-7">
+        {anchorTile}
+      </motion.div>
+      <motion.div variants={item} className="md:col-span-5">
+        {rowList}
+      </motion.div>
     </motion.div>
   )
 }

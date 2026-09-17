@@ -28,7 +28,7 @@ export default function MediaPage() {
           />
         </Reveal>
         <div className="mt-10">
-          <FeatureList items={MEDIA_OFFERINGS} />
+          <FeatureList items={MEDIA_OFFERINGS} accent={arm.color} />
         </div>
       </section>
 

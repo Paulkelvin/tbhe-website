@@ -28,7 +28,7 @@ export default function ConsultingPage() {
           />
         </Reveal>
         <div className="mt-10">
-          <FeatureList items={CONSULTING_MODULES} />
+          <FeatureList items={CONSULTING_MODULES} accent={arm.color} />
         </div>
       </section>
 

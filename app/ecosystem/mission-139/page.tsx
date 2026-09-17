@@ -49,7 +49,7 @@ export default function Mission139Page() {
           />
         </Reveal>
         <div className="mt-10">
-          <FeatureList items={MISSION_139_PROGRAMS} />
+          <FeatureList items={MISSION_139_PROGRAMS} accent={arm.color} />
         </div>
       </section>
 
