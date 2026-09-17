@@ -27,7 +27,7 @@ export default function Mission139Page() {
             weight="fill"
             className="mx-auto text-arm-mission/25"
           />
-          <p className="mt-2 text-2xl font-medium text-ink italic sm:text-3xl">
+          <p className="font-display mt-2 text-2xl font-medium text-ink italic sm:text-3xl">
             &quot;I praise you because I am fearfully and wonderfully
             made.&quot;
           </p>

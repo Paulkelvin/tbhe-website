@@ -4,7 +4,7 @@
 
 @theme inline {
   --font-sans: var(--font-sans);
-  --font-mono: var(--font-mono);
+  --font-display: var(--font-display);
 
   --color-ring: var(--ring);
   --color-input: var(--input);
@@ -128,6 +128,9 @@
   }
   .eyebrow {
     @apply text-xs font-semibold tracking-[0.18em] text-muted-ink uppercase;
+  }
+  .font-display {
+    font-family: var(--font-display);
   }
   .form-input {
     @apply w-full rounded-lg border border-hairline-strong bg-canvas px-3.5 py-2.5 text-sm text-ink placeholder:text-muted-soft focus:outline-none focus-visible:ring-[3px] focus-visible:ring-ring/50;

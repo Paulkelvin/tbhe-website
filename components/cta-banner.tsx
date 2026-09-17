@@ -35,7 +35,7 @@ export function CtaBanner({
         <p className="text-xs font-semibold tracking-[0.18em] text-canvas/60 uppercase">
           {eyebrow}
         </p>
-        <h2 className="text-3xl font-semibold tracking-tight text-canvas sm:text-4xl">
+        <h2 className="font-display text-3xl font-semibold tracking-tight text-canvas sm:text-4xl">
           {title}
         </h2>
         <p className="max-w-xl text-base text-canvas/75">{description}</p>

@@ -33,7 +33,7 @@ export function ArmHero({
         >
           {arm.kicker}
         </span>
-        <h1 className="mt-5 text-4xl font-semibold tracking-tight text-ink sm:text-5xl">
+        <h1 className="font-display mt-5 text-4xl font-semibold tracking-tight text-ink sm:text-5xl">
           {arm.name}
         </h1>
         <p className="mx-auto mt-5 max-w-2xl text-base text-body sm:text-lg">

@@ -1,5 +1,5 @@
 import type { Metadata } from "next"
-import { Geist, Geist_Mono } from "next/font/google"
+import { Fraunces, Libre_Franklin } from "next/font/google"
 
 import "./globals.css"
 import { cn } from "@/lib/utils"
@@ -8,8 +8,13 @@ import { SiteFooter } from "@/components/site-footer"
 import { PageTransition } from "@/components/page-transition"
 import { SITE } from "@/lib/content"
 
-const fontSans = Geist({ subsets: ["latin"], variable: "--font-sans" })
-const fontMono = Geist_Mono({ subsets: ["latin"], variable: "--font-mono" })
+const fontSans = Libre_Franklin({ subsets: ["latin"], variable: "--font-sans" })
+const fontDisplay = Fraunces({
+  subsets: ["latin"],
+  variable: "--font-display",
+  weight: ["500", "600"],
+  style: ["normal", "italic"],
+})
 
 export const metadata: Metadata = {
   title: `${SITE.name} (${SITE.shortName})`,
@@ -28,7 +33,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
       className={cn(
         "font-sans antialiased",
         fontSans.variable,
-        fontMono.variable
+        fontDisplay.variable
       )}
     >
       <body className="flex min-h-screen flex-col">

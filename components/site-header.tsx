@@ -18,7 +18,7 @@ export function SiteHeader() {
   return (
     <header className="sticky top-0 z-50 border-b border-hairline bg-canvas/90 backdrop-blur">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6 sm:px-8">
-        <Link href="/" className="text-sm font-semibold tracking-tight text-ink">
+        <Link href="/" className="font-display text-base font-semibold tracking-tight text-ink">
           {SITE.shortName}
         </Link>
 

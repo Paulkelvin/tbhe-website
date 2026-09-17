@@ -68,7 +68,7 @@ export function Hero() {
       <div className="relative mx-auto grid max-w-[1440px] gap-10 px-6 pt-16 sm:px-10 lg:grid-cols-[1fr_1.05fr] lg:items-stretch lg:gap-8 lg:min-h-[640px] lg:px-16 lg:pt-0 xl:px-20">
         <div className="flex flex-col justify-center text-center lg:text-left">
           <p className="eyebrow">{SITE.name}</p>
-          <h1 className="mt-5 text-4xl font-semibold tracking-tight text-primary sm:text-6xl">
+          <h1 className="font-display mt-5 text-4xl font-semibold tracking-tight text-primary sm:text-6xl">
             {SITE.taglineLead}
           </h1>
           <p className="mt-2 text-xl font-medium text-body-strong sm:text-2xl">
