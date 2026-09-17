@@ -14,15 +14,7 @@ export function Hero() {
 
   return (
     <section className="relative overflow-hidden border-b border-hairline bg-canvas-soft">
-      {/* Designed background: crisp shapes, not blurred gradients. */}
-      <div
-        aria-hidden
-        className="absolute -left-16 -top-16 size-72 rounded-full border-2 border-arm-consulting/40 sm:size-80"
-      />
-      <div
-        aria-hidden
-        className="absolute -right-10 top-10 size-40 rounded-full border-2 border-arm-mission/40"
-      />
+      {/* Designed background: irregular overlapping shapes + crisp line accents. */}
       <div
         aria-hidden
         className="absolute bottom-10 left-8 h-28 w-28 opacity-70 sm:h-36 sm:w-36"
@@ -75,7 +67,21 @@ export function Hero() {
           </div>
         </div>
 
-        <div className="relative mx-auto aspect-[906/1046] w-full max-w-[380px] sm:max-w-[440px] lg:h-full lg:max-w-[520px]">
+        <div className="relative mx-auto aspect-[906/1046] w-full max-w-[400px] sm:max-w-[470px] lg:h-full lg:max-w-[600px]">
+          <div
+            aria-hidden
+            className="absolute -right-6 top-[6%] h-2/5 w-3/5 bg-arm-consulting/12"
+            style={{ borderRadius: "42% 58% 70% 30% / 45% 45% 55% 55%" }}
+          />
+          <div
+            aria-hidden
+            className="absolute -right-10 top-[22%] h-1/3 w-1/2 bg-arm-media/18"
+            style={{ borderRadius: "60% 40% 35% 65% / 55% 60% 40% 45%" }}
+          />
+          <div
+            aria-hidden
+            className="absolute -right-6 top-2 size-24 rounded-full border-2 border-arm-mission/40 sm:size-28"
+          />
           <div
             aria-hidden
             className="absolute left-[52%] top-[17%] size-32 -translate-x-1/2 -translate-y-1/2 rounded-full border-[8px] border-arm-media sm:size-40 lg:size-48"
@@ -100,7 +106,7 @@ export function Hero() {
             </div>
           </div>
 
-          <div className="absolute right-[0%] top-[36%] flex items-center gap-2 rounded-full bg-surface-card px-4 py-2 shadow-xl">
+          <div className="absolute right-[2%] top-[54%] flex items-center gap-2 rounded-full bg-surface-card px-4 py-2 shadow-xl">
             <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-arm-mission text-white">
               <UsersThree size={18} weight="fill" />
             </span>
