@@ -19,27 +19,32 @@ export default function EventsPage() {
       />
 
       <section className="section">
-        <div className="grid gap-6">
-          {EVENTS.map((event, index) => (
-            <Reveal key={event.title} delay={index * 0.08}>
-              <div className="flex flex-col gap-3 rounded-2xl border border-hairline bg-surface-card p-6 transition-shadow duration-300 hover:shadow-[0_16px_40px_-20px_rgba(37,24,39,0.2)] sm:flex-row sm:items-start sm:justify-between">
-                <div>
-                  <Badge variant="secondary" className="w-fit">
-                    {event.type}
-                  </Badge>
-                  <h3 className="mt-3 text-base font-semibold text-ink">
-                    {event.title}
-                  </h3>
-                  <p className="mt-2 max-w-xl text-sm text-body">
-                    {event.description}
-                  </p>
-                </div>
-                <span className="shrink-0 text-sm font-medium text-primary">
+        <div className="relative mx-auto max-w-2xl">
+          <div
+            aria-hidden
+            className="absolute left-[15px] top-2 bottom-2 w-px bg-hairline-strong"
+          />
+          <div className="flex flex-col gap-10">
+            {EVENTS.map((event, index) => (
+              <Reveal key={event.title} delay={index * 0.08} className="relative pl-12">
+                <span className="absolute left-0 top-0 flex size-[31px] items-center justify-center rounded-full border-2 border-primary bg-canvas text-sm font-semibold text-primary">
+                  {index + 1}
+                </span>
+                <Badge variant="secondary" className="w-fit">
+                  {event.type}
+                </Badge>
+                <h3 className="mt-3 text-base font-semibold text-ink">
+                  {event.title}
+                </h3>
+                <p className="mt-2 max-w-xl text-sm text-body">
+                  {event.description}
+                </p>
+                <span className="mt-3 inline-block text-sm font-medium text-primary">
                   Learn more &rarr;
                 </span>
-              </div>
-            </Reveal>
-          ))}
+              </Reveal>
+            ))}
+          </div>
         </div>
       </section>
     </>

@@ -19,18 +19,24 @@ export default function ResourcesPage() {
       />
 
       <section className="section">
-        <div className="grid gap-6 sm:grid-cols-2">
+        <div className="mx-auto max-w-3xl divide-y divide-hairline border-y border-hairline">
           {RESOURCES.map((resource, index) => (
-            <Reveal key={resource.title} delay={(index % 2) * 0.1} className="h-full">
-              <div className="flex h-full flex-col gap-3 rounded-2xl border border-hairline bg-surface-card p-6 transition-shadow duration-300 hover:shadow-[0_16px_40px_-20px_rgba(37,24,39,0.2)]">
-                <Badge variant="secondary" className="w-fit">
-                  {resource.kind}
-                </Badge>
-                <h3 className="text-base font-semibold text-ink">
-                  {resource.title}
-                </h3>
-                <p className="text-sm text-body">{resource.description}</p>
-                <span className="mt-1 text-sm font-medium text-primary">
+            <Reveal key={resource.title} delay={index * 0.06}>
+              <div className="flex flex-col gap-3 py-6 sm:flex-row sm:items-center sm:justify-between sm:gap-6">
+                <div className="flex flex-col gap-2 sm:flex-row sm:items-baseline sm:gap-5">
+                  <Badge variant="secondary" className="w-fit shrink-0">
+                    {resource.kind}
+                  </Badge>
+                  <div>
+                    <h3 className="text-base font-semibold text-ink">
+                      {resource.title}
+                    </h3>
+                    <p className="mt-1 max-w-xl text-sm text-body">
+                      {resource.description}
+                    </p>
+                  </div>
+                </div>
+                <span className="shrink-0 text-sm font-medium text-primary sm:pl-4">
                   Download &rarr;
                 </span>
               </div>
