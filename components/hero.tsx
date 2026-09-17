@@ -14,7 +14,46 @@ export function Hero() {
 
   return (
     <section className="relative overflow-hidden border-b border-hairline bg-canvas-soft">
-      {/* Designed background: irregular overlapping shapes + crisp line accents. */}
+      {/* Designed background: scattered line-art shapes, echoing the reference's
+          layered hexagons/wave strokes rather than solid gradient blobs. */}
+      <svg
+        aria-hidden
+        className="pointer-events-none absolute inset-0 hidden h-full w-full sm:block"
+        viewBox="0 0 1440 720"
+        preserveAspectRatio="xMidYMid slice"
+        fill="none"
+      >
+        <polygon
+          points="90,40 170,40 210,110 170,180 90,180 50,110"
+          stroke="var(--arm-consulting)"
+          strokeWidth="2"
+          opacity="0.18"
+        />
+        <path
+          d="M420 60 Q 480 15 540 60 T 660 60 T 780 60"
+          stroke="var(--arm-media)"
+          strokeWidth="2"
+          opacity="0.28"
+        />
+        <polygon
+          points="1180,60 1260,60 1300,130 1260,200 1180,200 1140,130"
+          stroke="var(--arm-mission)"
+          strokeWidth="2"
+          opacity="0.18"
+        />
+        <polygon
+          points="150,540 210,540 240,595 210,650 150,650 120,595"
+          stroke="var(--arm-consulting)"
+          strokeWidth="2"
+          opacity="0.15"
+        />
+        <path
+          d="M1000 630 Q 1060 580 1120 630 T 1240 630"
+          stroke="var(--arm-mission)"
+          strokeWidth="2"
+          opacity="0.2"
+        />
+      </svg>
       <div
         aria-hidden
         className="absolute bottom-10 left-8 h-28 w-28 opacity-70 sm:h-36 sm:w-36"
@@ -24,9 +63,7 @@ export function Hero() {
           backgroundSize: "18px 18px",
         }}
       />
-      <div aria-hidden className="absolute left-[38%] top-12 size-3 rounded-full bg-arm-media" />
       <div aria-hidden className="absolute bottom-[6%] left-[3%] size-4 rounded-full bg-arm-mission" />
-      <div aria-hidden className="absolute right-[6%] bottom-16 size-5 rounded-full bg-arm-consulting" />
 
       <div className="relative mx-auto grid max-w-[1440px] gap-10 px-6 pt-16 sm:px-10 lg:grid-cols-[1fr_1.05fr] lg:items-stretch lg:gap-8 lg:min-h-[640px] lg:px-16 lg:pt-0 xl:px-20">
         <div className="flex flex-col justify-center text-center lg:text-left">
@@ -68,23 +105,10 @@ export function Hero() {
         </div>
 
         <div className="relative mx-auto aspect-[906/1046] w-full max-w-[400px] sm:max-w-[470px] lg:h-full lg:max-w-[600px]">
+          {/* Thin halo ring behind her head, like the reference's single blue ring. */}
           <div
             aria-hidden
-            className="absolute -right-6 top-[6%] h-2/5 w-3/5 bg-arm-consulting/12"
-            style={{ borderRadius: "42% 58% 70% 30% / 45% 45% 55% 55%" }}
-          />
-          <div
-            aria-hidden
-            className="absolute -right-10 top-[22%] h-1/3 w-1/2 bg-arm-media/18"
-            style={{ borderRadius: "60% 40% 35% 65% / 55% 60% 40% 45%" }}
-          />
-          <div
-            aria-hidden
-            className="absolute -right-6 top-2 size-24 rounded-full border-2 border-arm-mission/40 sm:size-28"
-          />
-          <div
-            aria-hidden
-            className="absolute left-[52%] top-[17%] size-32 -translate-x-1/2 -translate-y-1/2 rounded-full border-[8px] border-arm-media sm:size-40 lg:size-48"
+            className="absolute left-[52%] top-[17%] size-32 -translate-x-1/2 -translate-y-1/2 rounded-full border-[3px] border-arm-consulting/45 sm:size-40 lg:size-48"
           />
 
           <Image
