@@ -15,6 +15,10 @@ export function ArtDefs() {
           <feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="3" result="noise" />
           <feDisplacementMap in="SourceGraphic" in2="noise" scale="10" />
         </filter>
+        <filter id="paper-roughen-torn" x="-30%" y="-30%" width="160%" height="160%">
+          <feTurbulence type="fractalNoise" baseFrequency="0.028" numOctaves="3" seed="9" result="noise" />
+          <feDisplacementMap in="SourceGraphic" in2="noise" scale="24" />
+        </filter>
         <filter id="sketch-wobble" x="-30%" y="-30%" width="160%" height="160%">
           <feTurbulence type="turbulence" baseFrequency="0.035" numOctaves="2" seed="5" result="noise" />
           <feDisplacementMap in="SourceGraphic" in2="noise" scale="3.5" />
@@ -50,7 +54,7 @@ export function OrganicBlob({
   className?: string
   color: string
   variant?: 0 | 1
-  filterId?: "paper-roughen-1" | "paper-roughen-2"
+  filterId?: "paper-roughen-1" | "paper-roughen-2" | "paper-roughen-torn"
   rotate?: number
 }) {
   return (

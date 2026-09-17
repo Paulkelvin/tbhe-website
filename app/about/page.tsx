@@ -6,7 +6,7 @@ import { PageHero } from "@/components/page-hero"
 import { SectionHeading } from "@/components/section-heading"
 import { CtaBanner } from "@/components/cta-banner"
 import { Reveal } from "@/components/reveal"
-import { ArtDefs, OrganicBlob } from "@/components/organic-art"
+import { ArtDefs, HandDrawnStroke, OrganicBlob } from "@/components/organic-art"
 
 export const metadata: Metadata = {
   title: "About — The Beautifully Human Educator",
@@ -21,14 +21,23 @@ export default function AboutPage() {
       <ArtDefs />
 
       <PageHero
+        className="overflow-hidden"
         eyebrow="About"
         title="A founder's path across K-8, high school, and advocacy"
         description="The Beautifully Human Educator exists because one educator's classroom experience turned into a mission for every classroom."
+        decoration={
+          <OrganicBlob
+            color="var(--primary)"
+            variant={1}
+            filterId="paper-roughen-1"
+            rotate={-6}
+            className="top-[-20%] left-[-14%] h-[150%] w-[38%] opacity-[0.07]"
+          />
+        }
       />
 
-      {/* Founder Story — an asymmetric composition where the collage bleeds
-          past the normal content width rather than sitting in a framed
-          image block. */}
+      {/* Founder Story — the collage sits close beside the text as one
+          composition, not a disconnected second half of the page. */}
       <section className="relative overflow-hidden py-20 sm:py-24 lg:py-32">
         <div className="mx-auto max-w-6xl px-6 sm:px-8">
           <Reveal className="relative z-10 lg:max-w-md">
@@ -43,29 +52,40 @@ export default function AboutPage() {
             </p>
           </Reveal>
 
-          {/* Mobile/tablet: the collage sits below the text, bleeding past
-              the page's own right gutter rather than being boxed in. */}
-          <div className="relative mt-10 -mr-6 h-[300px] w-[calc(100%+1.5rem)] sm:-mr-8 sm:h-[380px] sm:w-[calc(100%+2rem)] lg:hidden">
+          {/* Mobile/tablet: centered beneath the text with comfortable
+              cream margin on both sides — not stretched, not boxed. */}
+          <div className="relative mx-auto mt-10 h-[280px] w-[85%] sm:h-[340px] sm:w-[75%] lg:hidden">
             <Image
               src="/images/about-collage.png"
               alt={COLLAGE_ALT}
               fill
-              sizes="100vw"
-              className="object-contain object-left"
+              sizes="85vw"
+              className="object-contain"
             />
           </div>
         </div>
 
-        {/* Desktop: the collage occupies the space beside the text and
-            bleeds past the container — and past the viewport edge — rather
-            than resolving into a tidy rectangle. */}
-        <div className="pointer-events-none absolute top-1/2 right-[-5vw] hidden h-[92%] w-[60vw] -translate-y-1/2 lg:block">
+        {/* A fine, hand-drawn line loosely tying the text to the collage —
+            not an arrow, just a sense that they belong to one composition. */}
+        <HandDrawnStroke
+          className="pointer-events-none absolute top-[54%] left-[35%] hidden h-16 w-[14%] lg:block"
+          d="M2,8 C22,0 42,30 66,12 C80,3 90,16 98,26"
+          color="var(--primary)"
+          strokeWidth={1.3}
+          viewBox="0 0 100 40"
+        />
+
+        {/* Desktop: smaller and pulled inward from the previous pass, so it
+            reads as arranged near the text rather than filling a separate
+            right half. */}
+        <div className="pointer-events-none absolute top-1/2 right-[5vw] hidden h-[74%] w-[42vw] -translate-y-1/2 lg:block">
           <Image
             src="/images/about-collage.png"
             alt={COLLAGE_ALT}
             fill
-            sizes="60vw"
-            className="object-contain object-right"
+            sizes="42vw"
+            className="object-contain"
+            style={{ objectPosition: "30% 50%" }}
           />
         </div>
       </section>
@@ -75,10 +95,10 @@ export default function AboutPage() {
       <section className="section relative overflow-hidden bg-arm-mission/5">
         <OrganicBlob
           color="var(--arm-mission)"
-          variant={0}
-          filterId="paper-roughen-2"
-          rotate={8}
-          className="top-[-18%] right-[4%] h-[70%] w-[34%] opacity-[0.12]"
+          variant={1}
+          filterId="paper-roughen-torn"
+          rotate={-10}
+          className="top-[-22%] right-[2%] h-[68%] w-[36%] opacity-[0.09]"
         />
         <Reveal className="relative mx-auto max-w-2xl text-center">
           <SectionHeading eyebrow="Mission" title="Fearfully and wonderfully made" />
@@ -94,18 +114,47 @@ export default function AboutPage() {
             &quot;I praise you because I am fearfully and wonderfully
             made.&quot;
           </p>
-          <p className="eyebrow mt-3 text-arm-mission-ink">Psalm 139:14</p>
+          <div className="relative mt-3 inline-block">
+            <p className="eyebrow text-arm-mission-ink">Psalm 139:14</p>
+            <HandDrawnStroke
+              className="pointer-events-none absolute -bottom-1.5 left-0 h-2 w-full"
+              d="M2,4 C20,1 45,7 70,3 C82,1 92,5 98,2"
+              color="var(--arm-media)"
+              strokeWidth={1.2}
+              viewBox="0 0 100 8"
+            />
+          </div>
         </Reveal>
       </section>
 
+      {/* Advisory Board — an editorial margin-note layout (label at left,
+          copy at right of a top rule) so the page doesn't repeat the same
+          centered/left-aligned rhythm a third time. */}
       <section className="section">
-        <Reveal>
-          <SectionHeading eyebrow="Advisory Board" title="Guided by people who know the work" />
-          <p className="mt-5 max-w-2xl text-base text-body">
-            TBHE is advised by educators, special education advocates, and
-            nonprofit leaders committed to keeping every arm of this ecosystem
-            accountable to the families and schools it serves.
-          </p>
+        <Reveal className="mx-auto max-w-4xl">
+          <div className="relative border-t border-hairline-strong pt-10">
+            <HandDrawnStroke
+              className="pointer-events-none absolute -top-1 left-0 h-3 w-16"
+              d="M2,5 C15,1 30,8 45,3"
+              color="var(--primary)"
+              strokeWidth={1.4}
+              viewBox="0 0 48 10"
+            />
+            <div className="grid gap-4 md:grid-cols-[200px_1fr] md:gap-10">
+              <p className="eyebrow">Advisory Board</p>
+              <div>
+                <h2 className="font-display text-3xl font-semibold text-ink sm:text-4xl">
+                  Guided by people who know the work
+                </h2>
+                <p className="mt-4 max-w-xl text-base text-body">
+                  TBHE is advised by educators, special education advocates,
+                  and nonprofit leaders committed to keeping every arm of
+                  this ecosystem accountable to the families and schools it
+                  serves.
+                </p>
+              </div>
+            </div>
+          </div>
         </Reveal>
       </section>
 
