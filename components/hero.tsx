@@ -2,12 +2,11 @@ import Link from "next/link"
 import Image from "next/image"
 import {
   ChalkboardTeacher,
-  CheckCircle,
   UsersThree,
 } from "@phosphor-icons/react/dist/ssr"
 
 import { Button } from "@/components/ui/button"
-import { HERO_TRUST_MARKERS, IMPACT_STATS, SITE } from "@/lib/content"
+import { IMPACT_STATS, SITE } from "@/lib/content"
 
 export function Hero() {
   const [workshopsStat, familiesStat] = IMPACT_STATS
@@ -75,18 +74,6 @@ export function Hero() {
           <p className="mx-auto mt-5 max-w-md text-sm text-body lg:mx-0">
             {SITE.description}
           </p>
-
-          <ul className="mx-auto mt-5 flex max-w-md flex-wrap justify-center gap-x-5 gap-y-2 lg:mx-0 lg:justify-start">
-            {HERO_TRUST_MARKERS.map((marker) => (
-              <li
-                key={marker}
-                className="flex items-center gap-1.5 text-xs font-medium text-muted-ink"
-              >
-                <CheckCircle size={16} weight="fill" className="text-arm-mission" />
-                {marker}
-              </li>
-            ))}
-          </ul>
 
           <div className="mt-8 flex flex-wrap justify-center gap-3 lg:justify-start">
             <Button asChild size="lg">
