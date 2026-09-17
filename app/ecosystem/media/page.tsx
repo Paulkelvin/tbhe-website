@@ -28,7 +28,12 @@ export default function MediaPage() {
           />
         </Reveal>
         <div className="mt-10">
-          <FeatureList items={MEDIA_OFFERINGS} accent={arm.color} />
+          <FeatureList
+            items={MEDIA_OFFERINGS}
+            accent={arm.color}
+            anchorImage="/images/media-anchor.jpg"
+            anchorImageAlt="A researcher writing a white paper at a desk"
+          />
         </div>
       </section>
 

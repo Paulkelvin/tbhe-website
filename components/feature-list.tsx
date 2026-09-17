@@ -1,5 +1,6 @@
 "use client"
 
+import Image from "next/image"
 import { motion, useReducedMotion, type Variants } from "motion/react"
 import type { IconProps } from "@phosphor-icons/react"
 import {
@@ -72,19 +73,42 @@ function IconBadge({
 export function FeatureList({
   items,
   accent = "consulting",
+  anchorImage,
+  anchorImageAlt,
 }: {
   items: readonly Entry[]
   accent?: Arm["color"]
+  anchorImage?: string
+  anchorImageAlt?: string
 }) {
   const reduced = useReducedMotion()
   const colors = ARM_COLOR_CLASS[accent]
   const [anchor, ...rest] = items
 
   const anchorTile = (
-    <div className={`flex h-full flex-col justify-center rounded-2xl p-8 ${colors.softBg}`}>
-      <IconBadge icon={anchor.icon} size={48} textClass={colors.text} bgClass="bg-surface-card" />
-      <h3 className="mt-5 text-xl font-semibold text-ink">{anchor.title}</h3>
-      <p className="mt-3 text-sm text-body">{anchor.description}</p>
+    <div className={`flex h-full flex-col overflow-hidden rounded-2xl ${colors.softBg}`}>
+      {anchorImage ? (
+        <div className="relative aspect-[4/3] w-full">
+          <Image
+            src={anchorImage}
+            alt={anchorImageAlt ?? ""}
+            fill
+            sizes="(max-width: 768px) 100vw, 500px"
+            className="object-cover"
+          />
+        </div>
+      ) : null}
+      <div
+        className={`flex flex-1 flex-col p-8 ${anchorImage ? "" : "justify-center"}`}
+      >
+        {!anchorImage ? (
+          <IconBadge icon={anchor.icon} size={48} textClass={colors.text} bgClass="bg-surface-card" />
+        ) : null}
+        <h3 className={anchorImage ? "text-xl font-semibold text-ink" : "mt-5 text-xl font-semibold text-ink"}>
+          {anchor.title}
+        </h3>
+        <p className="mt-3 text-sm text-body">{anchor.description}</p>
+      </div>
     </div>
   )
 

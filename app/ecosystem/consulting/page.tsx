@@ -28,7 +28,12 @@ export default function ConsultingPage() {
           />
         </Reveal>
         <div className="mt-10">
-          <FeatureList items={CONSULTING_MODULES} accent={arm.color} />
+          <FeatureList
+            items={CONSULTING_MODULES}
+            accent={arm.color}
+            anchorImage="/images/consulting-anchor.jpg"
+            anchorImageAlt="A group of educators in a professional development workshop discussion"
+          />
         </div>
       </section>
 

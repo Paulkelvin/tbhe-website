@@ -49,7 +49,12 @@ export default function Mission139Page() {
           />
         </Reveal>
         <div className="mt-10">
-          <FeatureList items={MISSION_139_PROGRAMS} accent={arm.color} />
+          <FeatureList
+            items={MISSION_139_PROGRAMS}
+            accent={arm.color}
+            anchorImage="/images/mission-anchor.jpg"
+            anchorImageAlt="A family advocate reviewing paperwork with a parent and child"
+          />
         </div>
       </section>
 
