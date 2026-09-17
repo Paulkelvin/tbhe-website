@@ -3,7 +3,6 @@ import { ArrowUpRight } from "@phosphor-icons/react/dist/ssr"
 
 import { cn } from "@/lib/utils"
 import { Reveal } from "@/components/reveal"
-import { DecorativeBlob } from "@/components/decorative-blob"
 import { ARM_COLOR_CLASS, ARMS, type ArmSlug } from "@/lib/content"
 
 const AUDIENCE_COPY: Record<ArmSlug, { audience: string; description: string }> = {
@@ -35,8 +34,37 @@ export function ThreeWayCta() {
           backgroundSize: "22px 22px",
         }}
       />
-      <DecorativeBlob className="-left-20 top-1/2 size-72 -translate-y-1/2 bg-arm-media/25" />
-      <DecorativeBlob className="-right-20 -bottom-20 size-64 bg-arm-consulting/30" />
+      {/* An oversized, near-invisible echo of the Ecosystem section's
+          branching motif — closure, not decoration. */}
+      <svg
+        aria-hidden
+        className="pointer-events-none absolute inset-0 h-full w-full"
+        viewBox="0 0 100 60"
+        preserveAspectRatio="xMidYMid slice"
+        fill="none"
+      >
+        <path
+          d="M50,0 C50,20 14,22 12,50"
+          stroke="var(--arm-media)"
+          strokeWidth="0.4"
+          opacity="0.16"
+          filter="url(#sketch-wobble)"
+        />
+        <path
+          d="M50,0 C49,24 51,30 50,60"
+          stroke="var(--arm-media)"
+          strokeWidth="0.4"
+          opacity="0.16"
+          filter="url(#sketch-wobble)"
+        />
+        <path
+          d="M50,0 C50,20 86,22 88,50"
+          stroke="var(--arm-media)"
+          strokeWidth="0.4"
+          opacity="0.16"
+          filter="url(#sketch-wobble)"
+        />
+      </svg>
 
       <Reveal className="relative mx-auto max-w-5xl px-6 py-20 text-center sm:px-8">
         <p className="text-xs font-semibold tracking-[0.18em] text-canvas/60 uppercase">

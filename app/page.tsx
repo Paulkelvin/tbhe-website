@@ -9,7 +9,7 @@ import { StatGrid } from "@/components/stat-grid"
 import { SectionHeading } from "@/components/section-heading"
 import { NewsletterForm } from "@/components/newsletter-form"
 import { Reveal } from "@/components/reveal"
-import { DecorativeBlob } from "@/components/decorative-blob"
+import { PaperSheet } from "@/components/organic-art"
 import { IMPACT_STATS, SCHOOL_PARTNERS } from "@/lib/content"
 
 export default function HomePage() {
@@ -54,8 +54,16 @@ export default function HomePage() {
       <FeaturedResource />
 
       <section className="relative overflow-hidden bg-gradient-to-br from-arm-consulting/10 via-canvas-soft to-arm-media/10 py-14 sm:py-20 lg:py-(--section-padding)">
-        <DecorativeBlob className="-right-16 -top-16 size-64 bg-arm-consulting/15" />
-        <DecorativeBlob className="-bottom-16 -left-16 size-64 bg-arm-media/15" />
+        <PaperSheet
+          color="var(--arm-consulting)"
+          rotate={-8}
+          className="-top-10 -right-10 h-56 w-44 opacity-[0.07] sm:h-72 sm:w-56"
+        />
+        <PaperSheet
+          color="var(--arm-media)"
+          rotate={6}
+          className="-bottom-14 -left-8 h-48 w-36 opacity-[0.08] sm:h-64 sm:w-48"
+        />
         <div className="relative mx-auto max-w-6xl px-6 sm:px-8">
           <Reveal className="mx-auto flex max-w-2xl flex-col items-center gap-5 text-center">
             <SectionHeading

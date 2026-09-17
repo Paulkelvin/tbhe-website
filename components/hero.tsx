@@ -2,60 +2,24 @@ import Link from "next/link"
 import Image from "next/image"
 
 import { Button } from "@/components/ui/button"
+import { ArtDefs, HandDrawnStroke, OrganicBlob } from "@/components/organic-art"
 import { SITE } from "@/lib/content"
 
 export function Hero() {
   return (
     <section className="relative overflow-hidden border-b border-hairline bg-canvas-soft">
-      {/* Designed background: scattered line-art shapes, echoing the reference's
-          layered hexagons/wave strokes rather than solid gradient blobs. */}
-      <svg
-        aria-hidden
-        className="pointer-events-none absolute inset-0 hidden h-full w-full sm:block"
-        viewBox="0 0 1440 720"
-        preserveAspectRatio="xMidYMid slice"
-        fill="none"
-      >
-        <polygon
-          points="90,40 170,40 210,110 170,180 90,180 50,110"
-          stroke="var(--arm-consulting)"
-          strokeWidth="2"
-          opacity="0.18"
-        />
-        <path
-          d="M420 60 Q 480 15 540 60 T 660 60 T 780 60"
-          stroke="var(--arm-media)"
-          strokeWidth="2"
-          opacity="0.28"
-        />
-        <polygon
-          points="1180,60 1260,60 1300,130 1260,200 1180,200 1140,130"
-          stroke="var(--arm-mission)"
-          strokeWidth="2"
-          opacity="0.18"
-        />
-        <polygon
-          points="150,540 210,540 240,595 210,650 150,650 120,595"
-          stroke="var(--arm-consulting)"
-          strokeWidth="2"
-          opacity="0.15"
-        />
-        <path
-          d="M1000 630 Q 1060 580 1120 630 T 1240 630"
-          stroke="var(--arm-mission)"
-          strokeWidth="2"
-          opacity="0.2"
-        />
-      </svg>
-      <div
-        aria-hidden
-        className="absolute bottom-10 left-8 h-28 w-28 opacity-70 sm:h-36 sm:w-36"
-        style={{
-          backgroundImage:
-            "radial-gradient(rgba(196,134,44,0.55) 2.5px, transparent 2.5px)",
-          backgroundSize: "18px 18px",
-        }}
+      <ArtDefs />
+
+      {/* A hand-drawn stroke loosely connecting the supporting line to the
+          founder/books, only where the two-column layout exists. */}
+      <HandDrawnStroke
+        className="pointer-events-none absolute top-[42%] left-[38%] hidden h-24 w-[18%] lg:block"
+        d="M2,40 C20,10 45,55 70,25 C82,12 92,20 98,4"
+        color="var(--primary)"
+        strokeWidth={1.4}
+        viewBox="0 0 100 60"
       />
+
       <div className="relative mx-auto grid max-w-[1440px] gap-10 px-6 pt-16 sm:px-10 lg:grid-cols-[1fr_1.05fr] lg:items-stretch lg:gap-8 lg:min-h-[640px] lg:px-16 lg:pt-0 xl:px-20">
         <div className="flex flex-col justify-center text-center lg:text-left">
           <p className="eyebrow">{SITE.name}</p>
@@ -84,6 +48,22 @@ export function Hero() {
         </div>
 
         <div className="relative mx-auto aspect-[906/1046] w-full max-w-[400px] sm:max-w-[470px] lg:h-full lg:max-w-[600px]">
+          {/* Warm-gold painted form behind the raised hand and books. */}
+          <OrganicBlob
+            color="var(--arm-media)"
+            variant={0}
+            rotate={-8}
+            className="top-[-4%] left-[-6%] h-[42%] w-[52%] opacity-[0.22]"
+          />
+          {/* Pale sage form near her open-hand gesture, lower right. */}
+          <OrganicBlob
+            color="var(--arm-mission)"
+            variant={1}
+            filterId="paper-roughen-2"
+            rotate={12}
+            className="top-[46%] right-[-8%] h-[34%] w-[40%] opacity-[0.14]"
+          />
+
           {/* Thin halo ring behind her head, like the reference's single blue ring. */}
           <div
             aria-hidden
