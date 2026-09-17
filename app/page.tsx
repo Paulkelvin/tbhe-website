@@ -34,7 +34,7 @@ export default function HomePage() {
           <div className="mt-10">
             <StatGrid stats={IMPACT_STATS} />
           </div>
-          <div className="mt-8 flex flex-col items-center gap-8">
+          <div className="mt-16 flex flex-col items-center gap-8">
             <span className="eyebrow">School Partners</span>
             <div className="flex flex-wrap items-center justify-center gap-x-12 gap-y-6">
               {SCHOOL_PARTNERS.map((partner) => (

@@ -8,7 +8,7 @@ export function StatGrid({
       {stats.map((stat) => (
         <div
           key={stat.label}
-          className="flex flex-col items-center justify-center gap-2 rounded-2xl bg-canvas-soft px-6 py-8 text-center"
+          className="flex flex-col items-center justify-center gap-2 rounded-2xl bg-canvas-soft px-3 py-8 text-center"
         >
           <dt className="sr-only">{stat.label}</dt>
           <dd className="font-display text-3xl font-semibold text-primary sm:text-4xl">
