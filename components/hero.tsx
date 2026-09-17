@@ -63,8 +63,6 @@ export function Hero() {
           backgroundSize: "18px 18px",
         }}
       />
-      <div aria-hidden className="absolute bottom-[6%] left-[3%] size-4 rounded-full bg-arm-mission" />
-
       <div className="relative mx-auto grid max-w-[1440px] gap-10 px-6 pt-16 sm:px-10 lg:grid-cols-[1fr_1.05fr] lg:items-stretch lg:gap-8 lg:min-h-[640px] lg:px-16 lg:pt-0 xl:px-20">
         <div className="flex flex-col justify-center text-center lg:text-left">
           <p className="eyebrow">{SITE.name}</p>

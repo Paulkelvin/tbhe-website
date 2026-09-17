@@ -24,7 +24,10 @@ export default function HomePage() {
 
       <section className="section">
         <Reveal>
-          <StatGrid stats={IMPACT_STATS} />
+          <p className="eyebrow text-center">Our Impact</p>
+          <div className="mt-6">
+            <StatGrid stats={IMPACT_STATS} />
+          </div>
           <div className="mt-8 flex flex-col items-center gap-8">
             <span className="eyebrow">School Partners</span>
             <div className="flex flex-wrap items-center justify-center gap-x-12 gap-y-6">
@@ -61,7 +64,13 @@ export default function HomePage() {
       </section>
 
       <section className="section">
-        <Reveal className="relative overflow-hidden rounded-2xl border border-hairline bg-surface-card md:min-h-[340px]">
+        <Reveal>
+          <p className="eyebrow">Featured Resource</p>
+        </Reveal>
+        <Reveal
+          delay={0.05}
+          className="relative mt-6 overflow-hidden rounded-2xl border border-hairline bg-surface-card md:min-h-[340px]"
+        >
           {/* Mobile: full-width image band above the text, sharp edge. */}
           <div className="relative h-56 w-full md:hidden">
             <Image
