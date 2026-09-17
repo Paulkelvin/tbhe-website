@@ -23,9 +23,15 @@ export default function HomePage() {
       <Hero />
 
       <section className="section">
-        <Reveal>
-          <p className="eyebrow text-center">Our Impact</p>
-          <div className="mt-6">
+        <Reveal className="mx-auto flex max-w-2xl flex-col items-center text-center">
+          <SectionHeading
+            eyebrow="Our Impact"
+            title="The numbers behind the mission"
+            description="A snapshot of what TBHE has delivered across consulting, advocacy, and community programming so far."
+          />
+        </Reveal>
+        <Reveal delay={0.05}>
+          <div className="mt-10">
             <StatGrid stats={IMPACT_STATS} />
           </div>
           <div className="mt-8 flex flex-col items-center gap-8">
