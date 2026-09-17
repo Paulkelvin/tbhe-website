@@ -1,16 +1,15 @@
-import Link from "next/link"
 import Image from "next/image"
 
 import { Hero } from "@/components/hero"
 import { EcosystemOverview } from "@/components/ecosystem-overview"
+import { FeaturedResource } from "@/components/featured-resource"
 import { StatGrid } from "@/components/stat-grid"
 import { SectionHeading } from "@/components/section-heading"
 import { CtaBanner } from "@/components/cta-banner"
 import { NewsletterForm } from "@/components/newsletter-form"
 import { Reveal } from "@/components/reveal"
 import { DecorativeBlob } from "@/components/decorative-blob"
-import { Badge } from "@/components/ui/badge"
-import { FEATURED_RESOURCE, IMPACT_STATS, SCHOOL_PARTNERS } from "@/lib/content"
+import { IMPACT_STATS, SCHOOL_PARTNERS } from "@/lib/content"
 
 export default function HomePage() {
   return (
@@ -49,62 +48,7 @@ export default function HomePage() {
 
       <EcosystemOverview />
 
-      <section className="section">
-        <Reveal>
-          <p className="eyebrow">Featured Resource</p>
-        </Reveal>
-        <Reveal
-          delay={0.05}
-          className="relative mt-6 overflow-hidden rounded-2xl border border-hairline bg-surface-card md:min-h-[340px]"
-        >
-          {/* Mobile: full-width image band above the text, sharp edge. */}
-          <div className="relative h-56 w-full md:hidden">
-            <Image
-              src="/images/chess-knight.png"
-              alt="A carved wooden chess knight in dramatic light, symbolizing strategic thinking"
-              fill
-              sizes="100vw"
-              className="object-cover"
-            />
-          </div>
-
-          <div className="relative z-10 flex flex-col gap-1 p-8 sm:p-10 md:max-w-[52%] md:justify-center md:py-10">
-            <Badge className="w-fit">{FEATURED_RESOURCE.kind}</Badge>
-            <h3 className="font-display mt-4 text-2xl font-semibold text-ink">
-              {FEATURED_RESOURCE.title}
-            </h3>
-            <p className="mt-3 max-w-2xl text-sm text-body">
-              {FEATURED_RESOURCE.description}
-            </p>
-            <Link
-              href="/resources"
-              className="mt-5 inline-block w-fit text-sm font-medium text-primary transition-colors hover:underline"
-            >
-              {FEATURED_RESOURCE.cta} &rarr;
-            </Link>
-          </div>
-
-          {/* Desktop: full-height image bleeding in from the right. A mask fades the image's
-              own pixels to transparent (rather than an overlay tint), so it dissolves cleanly
-              into the card's white background near the middle instead of looking muddy. */}
-          <div
-            className="absolute inset-y-0 right-0 hidden w-[50%] md:block"
-            style={{
-              maskImage: "linear-gradient(to right, transparent 0%, black 38%)",
-              WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 38%)",
-            }}
-          >
-            <Image
-              src="/images/chess-knight.png"
-              alt="A carved wooden chess knight in dramatic light, symbolizing strategic thinking"
-              fill
-              sizes="50vw"
-              className="object-cover"
-              style={{ objectPosition: "70% center" }}
-            />
-          </div>
-        </Reveal>
-      </section>
+      <FeaturedResource />
 
       <section className="relative overflow-hidden bg-gradient-to-br from-arm-consulting/10 via-canvas-soft to-arm-media/10 py-14 sm:py-20 lg:py-(--section-padding)">
         <DecorativeBlob className="-right-16 -top-16 size-64 bg-arm-consulting/15" />
