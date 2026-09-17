@@ -56,8 +56,8 @@ export function ArmCard({ arm, index }: { arm: Arm; index?: number }) {
           {arm.kicker}
         </span>
 
-        <h3 className="font-display mt-4 text-xl font-semibold text-ink">{arm.name}</h3>
-        <p className="mt-3 text-sm text-body">{arm.summary}</p>
+        <h3 className="font-display mt-4 text-xl font-semibold text-ink lg:text-2xl">{arm.name}</h3>
+        <p className="mt-3 text-sm text-body lg:text-base">{arm.summary}</p>
       </div>
 
       <div

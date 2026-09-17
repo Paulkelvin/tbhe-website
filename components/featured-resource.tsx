@@ -19,7 +19,7 @@ function Headline({ className }: { className?: string }) {
 
 function ResourceMeta() {
   return (
-    <p className="text-[11px] font-semibold tracking-[0.16em] text-arm-media uppercase">
+    <p className="text-[11px] font-semibold tracking-[0.16em] text-arm-media-ink uppercase">
       Featured {FEATURED_RESOURCE.kind}
     </p>
   )

@@ -1,16 +1,10 @@
 import Link from "next/link"
 import Image from "next/image"
-import {
-  ChalkboardTeacher,
-  UsersThree,
-} from "@phosphor-icons/react/dist/ssr"
 
 import { Button } from "@/components/ui/button"
-import { IMPACT_STATS, SITE } from "@/lib/content"
+import { SITE } from "@/lib/content"
 
 export function Hero() {
-  const [workshopsStat, familiesStat] = IMPACT_STATS
-
   return (
     <section className="relative overflow-hidden border-b border-hairline bg-canvas-soft">
       {/* Designed background: scattered line-art shapes, echoing the reference's
@@ -104,26 +98,6 @@ export function Hero() {
             sizes="(max-width: 640px) 380px, (max-width: 1024px) 440px, 520px"
             className="object-contain object-bottom"
           />
-
-          <div className="absolute left-[0%] top-[6%] flex items-center gap-2 rounded-full bg-surface-card px-4 py-2 shadow-xl">
-            <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-primary text-white">
-              <ChalkboardTeacher size={18} weight="fill" />
-            </span>
-            <div className="leading-tight">
-              <p className="text-sm font-semibold text-ink">{workshopsStat.value}</p>
-              <p className="text-[11px] text-muted-ink">{workshopsStat.label}</p>
-            </div>
-          </div>
-
-          <div className="absolute right-[2%] top-[54%] flex items-center gap-2 rounded-full bg-surface-card px-4 py-2 shadow-xl">
-            <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-arm-mission text-white">
-              <UsersThree size={18} weight="fill" />
-            </span>
-            <div className="leading-tight">
-              <p className="text-sm font-semibold text-ink">{familiesStat.value}</p>
-              <p className="text-[11px] text-muted-ink">{familiesStat.label}</p>
-            </div>
-          </div>
         </div>
       </div>
     </section>

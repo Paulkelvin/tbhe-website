@@ -101,13 +101,13 @@ export const ARM_COLOR_CLASS: Record<
     softBg: "bg-arm-consulting/10",
   },
   mission: {
-    text: "text-arm-mission",
+    text: "text-arm-mission-ink",
     bg: "bg-arm-mission",
     border: "border-arm-mission",
     softBg: "bg-arm-mission/10",
   },
   media: {
-    text: "text-arm-media",
+    text: "text-arm-media-ink",
     bg: "bg-arm-media",
     border: "border-arm-media",
     softBg: "bg-arm-media/10",
@@ -276,9 +276,9 @@ export const FOOTER_COLUMNS = [
   {
     title: "The Ecosystem",
     links: [
-      ["Consulting & PD", "/ecosystem/consulting"],
+      ["Educational Consulting & Coaching", "/ecosystem/consulting"],
       ["Mission 139", "/ecosystem/mission-139"],
-      ["Media & Keynotes", "/ecosystem/media"],
+      ["Media & Publishing", "/ecosystem/media"],
     ],
   },
   {

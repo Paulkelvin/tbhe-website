@@ -46,6 +46,8 @@
   --color-arm-consulting: var(--arm-consulting);
   --color-arm-mission: var(--arm-mission);
   --color-arm-media: var(--arm-media);
+  --color-arm-mission-ink: var(--arm-mission-ink);
+  --color-arm-media-ink: var(--arm-media-ink);
 
   --color-success: var(--success);
   --color-error: var(--error);
@@ -82,13 +84,19 @@
   --ink: #251827;
   --body: #5c525c;
   --body-strong: #251827;
-  --muted-ink: #85798a;
+  --muted-ink: #7a6e7e;
   --muted-soft: #ada2ab;
 
   /* One accent per ecosystem arm */
   --arm-consulting: #5b2a73;
   --arm-mission: #2f8f5b;
   --arm-media: #c4862c;
+
+  /* Darker text-safe variants of the mission/media accents — the bright
+     brand tones above read fine as fills/icons but fall short of WCAG AA
+     contrast at small text sizes, so labels and links use these instead. */
+  --arm-mission-ink: #2a8152;
+  --arm-media-ink: #996822;
 
   --success: #1f8a65;
   --error: #cf2d3f;

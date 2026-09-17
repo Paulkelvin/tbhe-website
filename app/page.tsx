@@ -2,10 +2,11 @@ import Image from "next/image"
 
 import { Hero } from "@/components/hero"
 import { EcosystemOverview } from "@/components/ecosystem-overview"
+import { TestimonialSection } from "@/components/testimonial-section"
 import { FeaturedResource } from "@/components/featured-resource"
+import { ThreeWayCta } from "@/components/three-way-cta"
 import { StatGrid } from "@/components/stat-grid"
 import { SectionHeading } from "@/components/section-heading"
-import { CtaBanner } from "@/components/cta-banner"
 import { NewsletterForm } from "@/components/newsletter-form"
 import { Reveal } from "@/components/reveal"
 import { DecorativeBlob } from "@/components/decorative-blob"
@@ -15,6 +16,8 @@ export default function HomePage() {
   return (
     <>
       <Hero />
+
+      <EcosystemOverview />
 
       <section className="section">
         <Reveal className="mx-auto flex max-w-2xl flex-col items-center text-center">
@@ -28,7 +31,7 @@ export default function HomePage() {
           <div className="mt-10">
             <StatGrid stats={IMPACT_STATS} />
           </div>
-          <div className="mt-16 flex flex-col items-center gap-8">
+          <div className="mt-12 flex flex-col items-center gap-8">
             <span className="eyebrow">School Partners</span>
             <div className="flex flex-wrap items-center justify-center gap-x-12 gap-y-6">
               {SCHOOL_PARTNERS.map((partner) => (
@@ -46,7 +49,7 @@ export default function HomePage() {
         </Reveal>
       </section>
 
-      <EcosystemOverview />
+      <TestimonialSection />
 
       <FeaturedResource />
 
@@ -65,13 +68,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <CtaBanner
-        eyebrow="Get Involved"
-        title="Where does your story fit into this ecosystem?"
-        description="Whether you lead a school, need advocacy for your family, or want to book a speaker — there's a place for you here."
-        primary={{ label: "Contact Us", href: "/contact" }}
-        secondary={{ label: "View Events", href: "/events" }}
-      />
+      <ThreeWayCta />
     </>
   )
 }

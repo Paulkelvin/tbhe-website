@@ -31,7 +31,7 @@ export default function Mission139Page() {
             &quot;I praise you because I am fearfully and wonderfully
             made.&quot;
           </p>
-          <p className="eyebrow mt-4 text-arm-mission">Psalm 139:14</p>
+          <p className="eyebrow mt-4 text-arm-mission-ink">Psalm 139:14</p>
           <p className="mx-auto mt-5 max-w-xl text-base text-body">
             Mission 139 is built on the belief that every neurodivergent
             child deserves to be met with that same regard — in their IEP
