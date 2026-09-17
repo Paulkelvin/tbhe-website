@@ -1,6 +1,5 @@
 import Link from "next/link"
 import Image from "next/image"
-import { FileText } from "@phosphor-icons/react/dist/ssr"
 
 import { Hero } from "@/components/hero"
 import { ArmCard } from "@/components/arm-card"
@@ -79,12 +78,17 @@ export default function HomePage() {
             </Link>
           </div>
 
-          {/* Swap for a real cover image (portrait, ~4:5) once the white paper is designed. */}
           <div className="relative mx-auto h-48 w-36 shrink-0 sm:h-56 sm:w-40">
             <div className="absolute inset-0 translate-x-3 translate-y-3 rounded-xl bg-arm-consulting/10" />
             <div className="absolute inset-0 translate-x-1.5 translate-y-1.5 rounded-xl bg-arm-consulting/20" />
-            <div className="absolute inset-0 flex items-center justify-center rounded-xl bg-primary text-primary-foreground shadow-lg">
-              <FileText size={40} weight="light" />
+            <div className="absolute inset-0 overflow-hidden rounded-xl shadow-lg">
+              <Image
+                src="/images/chess-knight.png"
+                alt="A carved wooden chess knight in dramatic light, symbolizing strategic thinking"
+                fill
+                sizes="160px"
+                className="object-cover"
+              />
             </div>
           </div>
         </Reveal>
