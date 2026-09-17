@@ -61,10 +61,22 @@ export default function HomePage() {
       </section>
 
       <section className="section">
-        <Reveal className="grid gap-8 rounded-2xl border border-hairline bg-surface-card p-10 md:grid-cols-[1fr_auto] md:items-center">
-          <div>
+        <Reveal className="relative overflow-hidden rounded-2xl border border-hairline bg-surface-card md:min-h-[340px]">
+          {/* Mobile: full-width image band above the text. */}
+          <div className="relative h-56 w-full md:hidden">
+            <Image
+              src="/images/chess-knight.png"
+              alt="A carved wooden chess knight in dramatic light, symbolizing strategic thinking"
+              fill
+              sizes="100vw"
+              className="object-cover"
+            />
+            <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-surface-card to-transparent" />
+          </div>
+
+          <div className="relative z-10 flex flex-col gap-1 p-8 sm:p-10 md:max-w-[52%] md:justify-center md:py-10">
             <Badge className="w-fit">{FEATURED_RESOURCE.kind}</Badge>
-            <h3 className="mt-5 text-2xl font-semibold text-ink">
+            <h3 className="font-display mt-4 text-2xl font-semibold text-ink">
               {FEATURED_RESOURCE.title}
             </h3>
             <p className="mt-3 max-w-2xl text-sm text-body">
@@ -72,24 +84,22 @@ export default function HomePage() {
             </p>
             <Link
               href="/resources"
-              className="mt-5 inline-block text-sm font-medium text-primary transition-colors hover:underline"
+              className="mt-5 inline-block w-fit text-sm font-medium text-primary transition-colors hover:underline"
             >
               {FEATURED_RESOURCE.cta} &rarr;
             </Link>
           </div>
 
-          <div className="relative mx-auto h-48 w-36 shrink-0 sm:h-56 sm:w-40">
-            <div className="absolute inset-0 translate-x-3 translate-y-3 rounded-xl bg-arm-consulting/10" />
-            <div className="absolute inset-0 translate-x-1.5 translate-y-1.5 rounded-xl bg-arm-consulting/20" />
-            <div className="absolute inset-0 overflow-hidden rounded-xl shadow-lg">
-              <Image
-                src="/images/chess-knight.png"
-                alt="A carved wooden chess knight in dramatic light, symbolizing strategic thinking"
-                fill
-                sizes="160px"
-                className="object-cover"
-              />
-            </div>
+          {/* Desktop: full-height image bleeding in from the right, blending into the card near the middle. */}
+          <div className="absolute inset-y-0 right-0 hidden w-[58%] md:block">
+            <Image
+              src="/images/chess-knight.png"
+              alt="A carved wooden chess knight in dramatic light, symbolizing strategic thinking"
+              fill
+              sizes="58vw"
+              className="object-cover"
+            />
+            <div className="absolute inset-y-0 left-0 w-2/3 bg-gradient-to-r from-surface-card via-surface-card/70 to-transparent" />
           </div>
         </Reveal>
       </section>
