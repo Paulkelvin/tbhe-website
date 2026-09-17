@@ -24,16 +24,19 @@ export function Hero() {
       <DecorativeBlob className="-right-24 top-0 size-[26rem] bg-arm-media/35" />
       <DecorativeBlob className="bottom-[-8rem] left-1/4 size-80 bg-arm-mission/25" />
 
-      <div className="relative mx-auto grid max-w-6xl gap-10 px-6 pt-16 sm:px-8 lg:grid-cols-[1fr_1.05fr] lg:items-stretch lg:gap-8 lg:min-h-[640px] lg:pt-0">
+      <div className="relative mx-auto grid max-w-[1440px] gap-10 px-6 pt-16 sm:px-8 lg:grid-cols-[1fr_1.05fr] lg:items-stretch lg:gap-8 lg:min-h-[640px] lg:pt-0">
         <div className="flex flex-col justify-center text-center lg:text-left">
           <p className="eyebrow">{SITE.name}</p>
           <h1 className="mt-5 text-4xl font-semibold tracking-tight text-ink sm:text-6xl">
-            {SITE.tagline}
+            {SITE.taglineLead}
           </h1>
-          <p className="mx-auto mt-6 max-w-2xl text-base text-body sm:text-lg lg:mx-0">
+          <p className="mt-2 text-xl font-medium text-body-strong sm:text-2xl">
+            {SITE.taglineSub}
+          </p>
+          <p className="mx-auto mt-5 max-w-md text-sm text-body lg:mx-0">
             {SITE.description}
           </p>
-          <div className="mt-9 flex flex-wrap justify-center gap-3 lg:justify-start">
+          <div className="mt-8 flex flex-wrap justify-center gap-3 lg:justify-start">
             <Button asChild size="lg">
               <Link href="/ecosystem/consulting">Explore Consulting Services</Link>
             </Button>

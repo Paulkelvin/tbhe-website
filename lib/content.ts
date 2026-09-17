@@ -4,6 +4,8 @@ export const SITE = {
   name: "The Beautifully Human Educator",
   shortName: "TBHE",
   tagline: "Liberating educators. Advocating for neurodiverse learners.",
+  taglineLead: "Liberating educators.",
+  taglineSub: "Advocating for neurodiverse learners.",
   description:
     "TBHE is an ecosystem of educational consulting, special education advocacy through Mission 139, and thought leadership for the educator community.",
 } as const
