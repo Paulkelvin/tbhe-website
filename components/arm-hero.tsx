@@ -2,6 +2,7 @@ import Link from "next/link"
 
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
+import { DecorativeBlob } from "@/components/decorative-blob"
 import { ARM_COLOR_CLASS, type Arm } from "@/lib/content"
 
 export function ArmHero({
@@ -14,12 +15,19 @@ export function ArmHero({
   const colors = ARM_COLOR_CLASS[arm.color]
 
   return (
-    <section className="border-b border-hairline bg-canvas-soft">
-      <div className="mx-auto max-w-4xl px-6 py-20 text-center sm:px-8">
+    <section
+      className={cn(
+        "relative overflow-hidden border-b border-hairline",
+        colors.softBg
+      )}
+    >
+      <DecorativeBlob className={cn("-right-20 -top-20 size-72 opacity-30", colors.bg)} />
+      <DecorativeBlob className={cn("-bottom-24 -left-16 size-64 opacity-20", colors.bg)} />
+
+      <div className="relative mx-auto max-w-4xl px-6 py-20 text-center sm:px-8">
         <span
           className={cn(
-            "inline-flex rounded-full px-3 py-1 text-xs font-semibold tracking-wide",
-            colors.softBg,
+            "inline-flex rounded-full bg-surface-card px-3 py-1 text-xs font-semibold tracking-wide",
             colors.text
           )}
         >

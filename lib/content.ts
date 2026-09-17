@@ -144,21 +144,25 @@ export const FEATURED_RESOURCE = {
 
 export const CONSULTING_MODULES = [
   {
+    icon: "HandHeart",
     title: "DEI & Cultural Competency PD",
     description:
       "Whole-staff workshops (45+ educators) on implicit bias, cultural competency, and building inclusive school culture.",
   },
   {
+    icon: "Plant",
     title: "Early-Career Teacher Retention",
     description:
       "Coaching cohorts and onboarding support designed to keep new teachers in the classroom and growing.",
   },
   {
+    icon: "PuzzlePiece",
     title: "Inclusionary Practices & Curriculum",
     description:
       "Exemplar curriculum design and inclusionary teaching practices for special and general education classrooms alike.",
   },
   {
+    icon: "Handshake",
     title: "Hip2Hip Instructional Coaching",
     description:
       "One-on-one and small-group instructional coaching paired with leadership mentorship for school teams.",
@@ -167,21 +171,25 @@ export const CONSULTING_MODULES = [
 
 export const MISSION_139_PROGRAMS = [
   {
+    icon: "HandCoins",
     title: "Family Assistance & Scholarships",
     description:
       "Grants for psychological evaluations, therapy, and tutoring so cost is never the reason a child goes without support.",
   },
   {
+    icon: "Scales",
     title: "Advocacy & IEP/504 Representation",
     description:
       "Consultation and representation for district meetings and IEP/504 planning across the DMV region.",
   },
   {
+    icon: "BookOpenText",
     title: "Parent Empowerment Toolkits",
     description:
       "Plain-language resources that help families understand their rights and advocate with confidence.",
   },
   {
+    icon: "Gift",
     title: "Donor & Corporate Sponsorship",
     description:
       "Tax-deductible giving with tiered corporate sponsorship options, all directly funding family aid.",
@@ -196,16 +204,19 @@ export const KEYNOTE_TOPICS = [
 
 export const MEDIA_OFFERINGS = [
   {
+    icon: "FileText",
     title: "Research & White Papers",
     description:
       "A growing library of published research and IP-protection resources for educators, free to download.",
   },
   {
+    icon: "Microphone",
     title: "Speaker Bureau",
     description:
       'Keynote topics include "Diversity as Divine Design" and "Teacher Burnout vs. Systemic Change," booked for conferences and district events.',
   },
   {
+    icon: "CalendarBlank",
     title: '"Disrupt & Connect" Events',
     description:
       "Live community networking events, webinars, and workshop series for the wider educator community.",

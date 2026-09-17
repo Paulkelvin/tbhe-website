@@ -9,6 +9,7 @@ import { SectionHeading } from "@/components/section-heading"
 import { CtaBanner } from "@/components/cta-banner"
 import { NewsletterForm } from "@/components/newsletter-form"
 import { Reveal } from "@/components/reveal"
+import { DecorativeBlob } from "@/components/decorative-blob"
 import { Badge } from "@/components/ui/badge"
 import {
   ARMS,
@@ -89,15 +90,19 @@ export default function HomePage() {
         </Reveal>
       </section>
 
-      <section className="section">
-        <Reveal className="flex flex-col items-center gap-5 rounded-2xl border border-hairline bg-canvas-soft p-10 text-center">
-          <SectionHeading
-            eyebrow="Stay Connected"
-            title="The Beautifully Human Educator Newsletter"
-            description="Research, resources, and updates from all three arms — straight to your inbox."
-          />
-          <NewsletterForm />
-        </Reveal>
+      <section className="relative overflow-hidden bg-gradient-to-br from-arm-consulting/10 via-canvas-soft to-arm-media/10 py-14 sm:py-20 lg:py-(--section-padding)">
+        <DecorativeBlob className="-right-16 -top-16 size-64 bg-arm-consulting/15" />
+        <DecorativeBlob className="-bottom-16 -left-16 size-64 bg-arm-media/15" />
+        <div className="relative mx-auto max-w-6xl px-6 sm:px-8">
+          <Reveal className="mx-auto flex max-w-2xl flex-col items-center gap-5 text-center">
+            <SectionHeading
+              eyebrow="Stay Connected"
+              title="The Beautifully Human Educator Newsletter"
+              description="Research, resources, and updates from all three arms — straight to your inbox."
+            />
+            <NewsletterForm />
+          </Reveal>
+        </div>
       </section>
 
       <CtaBanner

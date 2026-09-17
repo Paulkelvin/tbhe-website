@@ -2,6 +2,7 @@ import Link from "next/link"
 
 import { Button } from "@/components/ui/button"
 import { Reveal } from "@/components/reveal"
+import { DecorativeBlob } from "@/components/decorative-blob"
 
 export function CtaBanner({
   eyebrow,
@@ -17,8 +18,20 @@ export function CtaBanner({
   secondary?: { label: string; href: string }
 }) {
   return (
-    <section className="border-t border-hairline bg-ink">
-      <Reveal className="mx-auto flex max-w-4xl flex-col items-center gap-6 px-6 py-20 text-center sm:px-8">
+    <section className="relative overflow-hidden border-t border-hairline bg-ink">
+      <div
+        aria-hidden
+        className="absolute inset-0 opacity-[0.06]"
+        style={{
+          backgroundImage:
+            "radial-gradient(circle, white 1px, transparent 1px)",
+          backgroundSize: "22px 22px",
+        }}
+      />
+      <DecorativeBlob className="-left-20 top-1/2 size-72 -translate-y-1/2 bg-arm-media/25" />
+      <DecorativeBlob className="-right-20 -bottom-20 size-64 bg-arm-consulting/30" />
+
+      <Reveal className="relative mx-auto flex max-w-4xl flex-col items-center gap-6 px-6 py-20 text-center sm:px-8">
         <p className="text-xs font-semibold tracking-[0.18em] text-canvas/60 uppercase">
           {eyebrow}
         </p>

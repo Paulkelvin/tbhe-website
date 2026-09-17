@@ -1,5 +1,7 @@
 import type { Metadata } from "next"
 
+import { Quotes } from "@phosphor-icons/react/dist/ssr"
+
 import { ArmHero } from "@/components/arm-hero"
 import { SectionHeading } from "@/components/section-heading"
 import { FeatureList } from "@/components/feature-list"
@@ -19,13 +21,21 @@ export default function Mission139Page() {
       <ArmHero arm={arm} ctaHref="/contact" />
 
       <section className="section">
-        <Reveal className="rounded-2xl border border-arm-mission/30 bg-arm-mission/5 p-8">
-          <p className="eyebrow text-arm-mission">Psalm 139:14</p>
-          <p className="mt-3 max-w-2xl text-base text-body">
+        <Reveal className="mx-auto max-w-3xl text-center">
+          <Quotes
+            size={56}
+            weight="fill"
+            className="mx-auto text-arm-mission/25"
+          />
+          <p className="mt-2 text-2xl font-medium text-ink italic sm:text-3xl">
             &quot;I praise you because I am fearfully and wonderfully
-            made.&quot; Mission 139 is built on the belief that every
-            neurodivergent child deserves to be met with that same regard —
-            in their IEP meeting, in their classroom, and at home.
+            made.&quot;
+          </p>
+          <p className="eyebrow mt-4 text-arm-mission">Psalm 139:14</p>
+          <p className="mx-auto mt-5 max-w-xl text-base text-body">
+            Mission 139 is built on the belief that every neurodivergent
+            child deserves to be met with that same regard — in their IEP
+            meeting, in their classroom, and at home.
           </p>
         </Reveal>
       </section>
