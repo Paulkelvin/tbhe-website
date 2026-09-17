@@ -1,5 +1,6 @@
 import Link from "next/link"
-import { ChalkboardTeacher, PersonSimple, UsersThree } from "@phosphor-icons/react/dist/ssr"
+import Image from "next/image"
+import { ChalkboardTeacher, UsersThree } from "@phosphor-icons/react/dist/ssr"
 
 import { Button } from "@/components/ui/button"
 import { DecorativeBlob } from "@/components/decorative-blob"
@@ -14,7 +15,7 @@ export function Hero() {
       <DecorativeBlob className="-right-16 top-10 size-72 bg-arm-media/25" />
       <DecorativeBlob className="bottom-[-6rem] left-1/3 size-64 bg-arm-mission/15" />
 
-      <div className="relative mx-auto grid max-w-6xl items-center gap-16 px-6 py-20 sm:px-8 lg:grid-cols-[1.05fr_0.95fr] lg:py-28">
+      <div className="relative mx-auto grid max-w-6xl items-center gap-12 px-6 py-20 sm:px-8 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16 lg:py-28">
         <div className="text-center lg:text-left">
           <p className="eyebrow">{SITE.name}</p>
           <h1 className="mt-5 text-4xl font-semibold tracking-tight text-ink sm:text-6xl">
@@ -33,17 +34,22 @@ export function Hero() {
           </div>
         </div>
 
-        {/* Swap this whole block for a real cutout photo of the founder once one exists. */}
-        <div className="relative mx-auto flex h-[380px] w-full max-w-sm items-end justify-center sm:h-[440px]">
+        <div className="relative mx-auto flex h-[360px] w-full max-w-sm items-end justify-center sm:h-[440px]">
           <div
             aria-hidden
-            className="absolute left-1/2 top-6 size-56 -translate-x-1/2 rounded-full border-4 border-arm-media/40"
+            className="absolute left-1/2 top-2 size-52 -translate-x-1/2 rounded-full border-4 border-arm-media/40 sm:top-4 sm:size-60"
           />
-          <div className="relative flex h-[88%] w-[78%] items-center justify-center rounded-[3rem] bg-gradient-to-b from-primary to-primary-active text-primary-foreground shadow-[0_30px_60px_-20px_rgba(37,24,39,0.35)]">
-            <PersonSimple size={140} weight="thin" />
-          </div>
 
-          <div className="absolute -left-4 top-10 flex items-center gap-2 rounded-full bg-surface-card px-4 py-2 shadow-lg sm:-left-8">
+          <Image
+            src="/images/founder-hero.png"
+            alt="Founder of The Beautifully Human Educator"
+            width={848}
+            height={949}
+            priority
+            className="relative h-full w-auto object-contain object-bottom drop-shadow-[0_30px_45px_rgba(37,24,39,0.25)]"
+          />
+
+          <div className="absolute -left-4 top-8 flex items-center gap-2 rounded-full bg-surface-card px-4 py-2 shadow-lg sm:-left-8 sm:top-12">
             <ChalkboardTeacher size={20} weight="duotone" className="text-primary" />
             <div className="leading-tight">
               <p className="text-sm font-semibold text-ink">{workshopsStat.value}</p>
@@ -51,7 +57,7 @@ export function Hero() {
             </div>
           </div>
 
-          <div className="absolute -right-4 bottom-10 flex items-center gap-2 rounded-full bg-surface-card px-4 py-2 shadow-lg sm:-right-8">
+          <div className="absolute -right-4 bottom-16 flex items-center gap-2 rounded-full bg-surface-card px-4 py-2 shadow-lg sm:-right-8 sm:bottom-24">
             <UsersThree size={20} weight="duotone" className="text-arm-mission" />
             <div className="leading-tight">
               <p className="text-sm font-semibold text-ink">{familiesStat.value}</p>
