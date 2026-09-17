@@ -1,9 +1,6 @@
-import { cn } from "@/lib/utils"
 import { ArmCard } from "@/components/arm-card"
 import { Reveal } from "@/components/reveal"
-import { ARM_COLOR_CLASS, ARMS } from "@/lib/content"
-
-const NODE_POSITIONS = [16.6667, 50, 83.3333]
+import { ARMS } from "@/lib/content"
 
 export function EcosystemOverview() {
   return (
@@ -23,91 +20,55 @@ export function EcosystemOverview() {
         </p>
       </Reveal>
 
-      {/* Desktop: one origin branching into three arms, echoed by the numbered
-          nodes that sit right on the seam between the graphic and the cards. */}
+      {/* Desktop: a single delicate origin branching into three thin paths,
+          a quiet editorial mark rather than a flowchart. */}
       <div className="hidden md:block">
-        <div aria-hidden className="relative mt-10 h-20 w-full">
+        <div aria-hidden className="relative mx-auto mt-14 h-16 w-full max-w-3xl">
           <svg
-            viewBox="0 0 100 40"
+            viewBox="0 0 100 32"
             preserveAspectRatio="none"
             className="h-full w-full"
             fill="none"
           >
             <path
-              d="M50,4 C50,18 16.6667,18 16.6667,34"
+              d="M50,2 C50,14 16.6667,14 16.6667,30"
               stroke="var(--arm-consulting)"
-              strokeWidth="0.6"
-              opacity="0.45"
+              strokeWidth="0.35"
+              opacity="0.35"
             />
             <path
-              d="M50,4 L50,34"
+              d="M50,2 L50,30"
               stroke="var(--arm-mission)"
-              strokeWidth="0.6"
-              opacity="0.45"
+              strokeWidth="0.35"
+              opacity="0.35"
             />
             <path
-              d="M50,4 C50,18 83.3333,18 83.3333,34"
+              d="M50,2 C50,14 83.3333,14 83.3333,30"
               stroke="var(--arm-media)"
-              strokeWidth="0.6"
-              opacity="0.45"
+              strokeWidth="0.35"
+              opacity="0.35"
             />
-            <circle cx="50" cy="4" r="2.4" className="fill-primary" />
+            <circle cx="50" cy="2" r="1.4" className="fill-primary" opacity="0.7" />
           </svg>
-          <div className="pointer-events-none absolute inset-x-0 bottom-0">
-            {ARMS.map((arm, index) => {
-              const colors = ARM_COLOR_CLASS[arm.color]
-              return (
-                <span
-                  key={arm.slug}
-                  style={{ left: `${NODE_POSITIONS[index]}%` }}
-                  className={cn(
-                    "absolute flex size-8 -translate-x-1/2 translate-y-1/2 items-center justify-center rounded-full text-[11px] font-semibold shadow-[0_0_0_4px_var(--canvas)]",
-                    colors.softBg,
-                    colors.text
-                  )}
-                >
-                  {String(index + 1).padStart(2, "0")}
-                </span>
-              )
-            })}
-          </div>
         </div>
 
-        <div className="mt-6 grid gap-6 md:grid-cols-3">
+        <div className="mt-10 grid gap-6 md:grid-cols-3">
           {ARMS.map((arm, index) => (
             <Reveal key={arm.slug} delay={index * 0.1} className="h-full">
-              <ArmCard arm={arm} index={index} />
+              <ArmCard arm={arm} />
             </Reveal>
           ))}
         </div>
       </div>
 
-      {/* Mobile: a single connecting line threads down through numbered nodes
-          into each arm, leading the eye from Arm 01 to Arm 03. */}
-      <div className="relative mt-10 md:hidden">
-        <div
-          aria-hidden
-          className="absolute top-7 bottom-7 left-7 w-px -translate-x-1/2 bg-hairline-strong"
-        />
-        <div className="flex flex-col gap-8">
-          {ARMS.map((arm, index) => {
-            const colors = ARM_COLOR_CLASS[arm.color]
-            return (
-              <Reveal key={arm.slug} delay={index * 0.08} className="relative pl-16">
-                <span
-                  className={cn(
-                    "absolute top-0 left-0 flex size-14 items-center justify-center rounded-full text-sm font-semibold",
-                    colors.softBg,
-                    colors.text
-                  )}
-                >
-                  {String(index + 1).padStart(2, "0")}
-                </span>
-                <ArmCard arm={arm} index={index} />
-              </Reveal>
-            )
-          })}
-        </div>
+      {/* Mobile: a clean, full-width vertical stack — the connection comes
+          from consistent rhythm, not a separate timeline column. */}
+      <div className="mt-10 flex flex-col gap-6 md:hidden">
+        {ARMS.map((arm, index) => (
+          <Reveal key={arm.slug} delay={index * 0.08}>
+            <ArmCard arm={arm} />
+          </Reveal>
+        ))}
       </div>
     </section>
   )

@@ -15,38 +15,24 @@ const ARM_ICON: Record<Arm["color"], typeof GraduationCap> = {
   media: Microphone,
 }
 
-export function ArmCard({ arm, index }: { arm: Arm; index?: number }) {
+export function ArmCard({ arm }: { arm: Arm }) {
   const colors = ARM_COLOR_CLASS[arm.color]
   const Icon = ARM_ICON[arm.color]
-  const number = typeof index === "number" ? String(index + 1).padStart(2, "0") : null
 
   return (
     <Link
       href={`/ecosystem/${arm.slug}`}
-      className="group relative flex h-full flex-col justify-between overflow-hidden rounded-2xl border border-hairline bg-surface-card p-6 pt-8 transition-all duration-300 ease-out hover:-translate-y-1 hover:border-hairline-strong hover:shadow-[0_16px_40px_-16px_rgba(37,24,39,0.18)] sm:p-8 sm:pt-9"
+      className="group flex h-full flex-col justify-between rounded-2xl border border-hairline bg-surface-card p-6 transition-all duration-300 ease-out hover:-translate-y-1 hover:border-hairline-strong hover:shadow-[0_16px_40px_-16px_rgba(37,24,39,0.18)] sm:p-8"
     >
-      <span aria-hidden className={cn("absolute inset-x-0 top-0 h-1", colors.bg)} />
-      {number ? (
-        <span
-          aria-hidden
-          className={cn(
-            "font-display pointer-events-none absolute -top-3 right-2 text-8xl leading-none font-semibold opacity-[0.07]",
-            colors.text
-          )}
-        >
-          {number}
-        </span>
-      ) : null}
-
       <div>
         <div
           className={cn(
-            "flex size-12 items-center justify-center rounded-full",
+            "flex size-10 items-center justify-center rounded-full",
             colors.softBg,
             colors.text
           )}
         >
-          <Icon size={24} weight="duotone" />
+          <Icon size={20} weight="duotone" />
         </div>
 
         <span
