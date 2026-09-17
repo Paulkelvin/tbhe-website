@@ -1,6 +1,7 @@
+import { cn } from "@/lib/utils"
 import { ArmCard } from "@/components/arm-card"
 import { Reveal } from "@/components/reveal"
-import { ARMS } from "@/lib/content"
+import { ARM_COLOR_CLASS, ARMS } from "@/lib/content"
 
 export function EcosystemOverview() {
   return (
@@ -55,20 +56,42 @@ export function EcosystemOverview() {
         <div className="mt-10 grid gap-6 md:grid-cols-3">
           {ARMS.map((arm, index) => (
             <Reveal key={arm.slug} delay={index * 0.1} className="h-full">
-              <ArmCard arm={arm} />
+              <ArmCard arm={arm} index={index} />
             </Reveal>
           ))}
         </div>
       </div>
 
-      {/* Mobile: a clean, full-width vertical stack — the connection comes
-          from consistent rhythm, not a separate timeline column. */}
-      <div className="mt-10 flex flex-col gap-6 md:hidden">
-        {ARMS.map((arm, index) => (
-          <Reveal key={arm.slug} delay={index * 0.08}>
-            <ArmCard arm={arm} />
-          </Reveal>
-        ))}
+      {/* Mobile: a quiet vertical "stem" runs behind the cards — hidden where
+          a card's own background covers it, visible again in the gaps — with
+          a small node marking where each arm meets it. The line itself
+          fades through each arm's accent color top to bottom. */}
+      <div className="relative mt-10 md:hidden">
+        <div
+          aria-hidden
+          className="absolute top-0 bottom-0 left-11 w-px opacity-40"
+          style={{
+            background:
+              "linear-gradient(to bottom, var(--arm-consulting), var(--arm-mission), var(--arm-media))",
+          }}
+        />
+        <div className="flex flex-col gap-6">
+          {ARMS.map((arm, index) => {
+            const colors = ARM_COLOR_CLASS[arm.color]
+            return (
+              <Reveal key={arm.slug} delay={index * 0.08} className="relative">
+                <span
+                  aria-hidden
+                  className={cn(
+                    "absolute -top-1 left-11 size-2.5 -translate-x-1/2 rounded-full shadow-[0_0_0_5px_var(--canvas)]",
+                    colors.bg
+                  )}
+                />
+                <ArmCard arm={arm} index={index} />
+              </Reveal>
+            )
+          })}
+        </div>
       </div>
     </section>
   )
