@@ -24,7 +24,7 @@ export function Hero() {
       <DecorativeBlob className="-right-24 top-0 size-[26rem] bg-arm-media/35" />
       <DecorativeBlob className="bottom-[-8rem] left-1/4 size-80 bg-arm-mission/25" />
 
-      <div className="relative mx-auto grid max-w-[1440px] gap-10 px-6 pt-16 sm:px-8 lg:grid-cols-[1fr_1.05fr] lg:items-stretch lg:gap-8 lg:min-h-[640px] lg:pt-0">
+      <div className="relative mx-auto grid max-w-[1440px] gap-10 px-6 pt-16 sm:px-10 lg:grid-cols-[1fr_1.05fr] lg:items-stretch lg:gap-8 lg:min-h-[640px] lg:px-16 lg:pt-0 xl:px-20">
         <div className="flex flex-col justify-center text-center lg:text-left">
           <p className="eyebrow">{SITE.name}</p>
           <h1 className="mt-5 text-4xl font-semibold tracking-tight text-ink sm:text-6xl">
