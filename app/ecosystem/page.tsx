@@ -22,7 +22,7 @@ export default function EcosystemPage() {
         <div className="grid gap-6 md:grid-cols-3">
           {ARMS.map((arm, index) => (
             <Reveal key={arm.slug} delay={index * 0.1} className="h-full">
-              <ArmCard arm={arm} />
+              <ArmCard arm={arm} index={index} />
             </Reveal>
           ))}
         </div>

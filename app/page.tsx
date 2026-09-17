@@ -2,7 +2,7 @@ import Link from "next/link"
 import Image from "next/image"
 
 import { Hero } from "@/components/hero"
-import { ArmCard } from "@/components/arm-card"
+import { EcosystemOverview } from "@/components/ecosystem-overview"
 import { StatGrid } from "@/components/stat-grid"
 import { SectionHeading } from "@/components/section-heading"
 import { CtaBanner } from "@/components/cta-banner"
@@ -10,12 +10,7 @@ import { NewsletterForm } from "@/components/newsletter-form"
 import { Reveal } from "@/components/reveal"
 import { DecorativeBlob } from "@/components/decorative-blob"
 import { Badge } from "@/components/ui/badge"
-import {
-  ARMS,
-  FEATURED_RESOURCE,
-  IMPACT_STATS,
-  SCHOOL_PARTNERS,
-} from "@/lib/content"
+import { FEATURED_RESOURCE, IMPACT_STATS, SCHOOL_PARTNERS } from "@/lib/content"
 
 export default function HomePage() {
   return (
@@ -52,22 +47,7 @@ export default function HomePage() {
         </Reveal>
       </section>
 
-      <section className="section">
-        <Reveal>
-          <SectionHeading
-            eyebrow="One Founder, Three Arms"
-            title="The TBHE Ecosystem"
-            description="Educational consulting, special education advocacy, and thought leadership — three distinct paths built on one mission."
-          />
-        </Reveal>
-        <div className="mt-12 grid gap-6 md:grid-cols-3">
-          {ARMS.map((arm, index) => (
-            <Reveal key={arm.slug} delay={index * 0.1} className="h-full">
-              <ArmCard arm={arm} />
-            </Reveal>
-          ))}
-        </div>
-      </section>
+      <EcosystemOverview />
 
       <section className="section">
         <Reveal>
