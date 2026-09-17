@@ -62,7 +62,7 @@ export default function HomePage() {
 
       <section className="section">
         <Reveal className="relative overflow-hidden rounded-2xl border border-hairline bg-surface-card md:min-h-[340px]">
-          {/* Mobile: full-width image band above the text. */}
+          {/* Mobile: full-width image band above the text, sharp edge. */}
           <div className="relative h-56 w-full md:hidden">
             <Image
               src="/images/chess-knight.png"
@@ -71,7 +71,6 @@ export default function HomePage() {
               sizes="100vw"
               className="object-cover"
             />
-            <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-surface-card to-transparent" />
           </div>
 
           <div className="relative z-10 flex flex-col gap-1 p-8 sm:p-10 md:max-w-[52%] md:justify-center md:py-10">
@@ -90,16 +89,24 @@ export default function HomePage() {
             </Link>
           </div>
 
-          {/* Desktop: full-height image bleeding in from the right, blending into the card near the middle. */}
-          <div className="absolute inset-y-0 right-0 hidden w-[58%] md:block">
+          {/* Desktop: full-height image bleeding in from the right. A mask fades the image's
+              own pixels to transparent (rather than an overlay tint), so it dissolves cleanly
+              into the card's white background near the middle instead of looking muddy. */}
+          <div
+            className="absolute inset-y-0 right-0 hidden w-[50%] md:block"
+            style={{
+              maskImage: "linear-gradient(to right, transparent 0%, black 38%)",
+              WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 38%)",
+            }}
+          >
             <Image
               src="/images/chess-knight.png"
               alt="A carved wooden chess knight in dramatic light, symbolizing strategic thinking"
               fill
-              sizes="58vw"
+              sizes="50vw"
               className="object-cover"
+              style={{ objectPosition: "70% center" }}
             />
-            <div className="absolute inset-y-0 left-0 w-2/3 bg-gradient-to-r from-surface-card via-surface-card/70 to-transparent" />
           </div>
         </Reveal>
       </section>
