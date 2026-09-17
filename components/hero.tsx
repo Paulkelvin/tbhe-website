@@ -46,10 +46,10 @@ export function Hero() {
           </div>
         </div>
 
-        <div className="relative mx-auto aspect-[880/1019] w-full max-w-[380px] sm:max-w-[483px] lg:aspect-auto lg:h-full lg:max-w-[520px]">
+        <div className="relative mx-auto aspect-[555/1018] w-full max-w-[300px] sm:max-w-[360px] lg:h-full lg:max-w-[420px]">
           <div
             aria-hidden
-            className="absolute left-[53%] top-[19%] size-40 -translate-x-1/2 -translate-y-1/2 rounded-full border-[6px] border-arm-media sm:size-56 lg:size-64"
+            className="absolute left-[43%] top-[18%] size-36 -translate-x-1/2 -translate-y-1/2 rounded-full border-[6px] border-arm-media sm:size-48 lg:size-56"
           />
 
           <Image
@@ -57,11 +57,11 @@ export function Hero() {
             alt="Founder of The Beautifully Human Educator"
             fill
             priority
-            sizes="(max-width: 640px) 380px, (max-width: 1024px) 483px, 520px"
+            sizes="(max-width: 640px) 300px, (max-width: 1024px) 360px, 420px"
             className="object-contain object-bottom"
           />
 
-          <div className="absolute left-[4%] top-[24%] flex items-center gap-2 rounded-full bg-surface-card px-4 py-2 shadow-xl">
+          <div className="absolute left-[2%] top-[24%] flex items-center gap-2 rounded-full bg-surface-card px-4 py-2 shadow-xl">
             <ChalkboardTeacher size={20} weight="duotone" className="text-primary" />
             <div className="leading-tight">
               <p className="text-sm font-semibold text-ink">{workshopsStat.value}</p>
@@ -69,7 +69,7 @@ export function Hero() {
             </div>
           </div>
 
-          <div className="absolute right-[2%] top-[56%] flex items-center gap-2 rounded-full bg-surface-card px-4 py-2 shadow-xl">
+          <div className="absolute right-[2%] top-[44%] flex items-center gap-2 rounded-full bg-surface-card px-4 py-2 shadow-xl">
             <UsersThree size={20} weight="duotone" className="text-arm-mission" />
             <div className="leading-tight">
               <p className="text-sm font-semibold text-ink">{familiesStat.value}</p>
