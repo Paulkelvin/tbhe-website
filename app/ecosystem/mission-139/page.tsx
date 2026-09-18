@@ -158,37 +158,37 @@ export default function Mission139Page() {
 
       {/* The Walk — a quiet moment before the final ask. The path itself
           (its Heard / Understood / Supported / Empowered waypoints already
-          drawn into the illustration) is the whole section, bleeding past
-          both edges rather than boxed as an infographic. */}
+          drawn into the illustration) is the whole section, sized so the
+          lettering is comfortably legible rather than purely decorative. */}
       <section className="overflow-hidden py-16 sm:py-20">
-        <div className="relative mx-auto hidden h-36 w-[112%] -translate-x-[5%] sm:h-44 lg:block">
+        <div className="relative mx-auto hidden aspect-[3/1] w-full max-w-4xl px-6 lg:block">
           <Image
             src="/images/mission-support-path.png"
             alt={PATH_FULL_ALT}
             fill
-            sizes="112vw"
+            sizes="900px"
             className="object-contain"
           />
         </div>
 
         {/* Mobile: two small fragments, not one long line down the page. */}
         <div className="flex items-center justify-center gap-8 px-6 lg:hidden">
-          <div className="relative h-16 w-32">
+          <div className="relative h-24 w-40">
             <Image
               src="/images/mission-support-path.png"
               alt={PATH_FULL_ALT}
               fill
-              sizes="128px"
+              sizes="160px"
               className="object-cover"
               style={{ objectPosition: "58% 40%" }}
             />
           </div>
-          <div className="relative h-20 w-24">
+          <div className="relative h-28 w-32">
             <Image
               src="/images/mission-support-path.png"
               alt=""
               fill
-              sizes="96px"
+              sizes="128px"
               className="object-cover"
               style={{ objectPosition: "97% 40%" }}
             />
