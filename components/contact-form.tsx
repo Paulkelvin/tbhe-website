@@ -36,10 +36,14 @@ export function ContactForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="grid gap-5 rounded-2xl border border-hairline bg-surface-card p-8"
+      className="grid gap-6 rounded-2xl border border-hairline bg-surface-card p-8 shadow-[0_30px_60px_-38px_rgba(37,24,39,0.3)] sm:p-9"
     >
       <div className="grid gap-5 sm:grid-cols-2">
-        <Field label="Full name" htmlFor="name">
+        <Field
+          label="Full name"
+          htmlFor="name"
+          hint="Start here."
+        >
           <input
             id="name"
             name="name"
@@ -95,15 +99,24 @@ export function ContactForm() {
 function Field({
   label,
   htmlFor,
+  hint,
   children,
 }: {
   label: string
   htmlFor: string
+  hint?: string
   children: React.ReactNode
 }) {
   return (
     <label htmlFor={htmlFor} className="grid gap-1.5 text-sm">
-      <span className="font-medium text-ink">{label}</span>
+      <span className="flex items-baseline gap-2">
+        <span className="font-medium text-ink">{label}</span>
+        {hint ? (
+          <span className="font-display text-sm text-primary/70 italic">
+            {hint}
+          </span>
+        ) : null}
+      </span>
       {children}
     </label>
   )
