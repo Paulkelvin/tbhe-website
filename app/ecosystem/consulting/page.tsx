@@ -1,11 +1,12 @@
 import type { Metadata } from "next"
+import Image from "next/image"
 
-import { ArmHero } from "@/components/arm-hero"
+import { ConsultingHero } from "@/components/consulting-hero"
 import { SectionHeading } from "@/components/section-heading"
-import { FeatureList } from "@/components/feature-list"
 import { BookingWidget } from "@/components/booking-widget"
 import { CtaBanner } from "@/components/cta-banner"
 import { Reveal } from "@/components/reveal"
+import { ArtDefs, HandDrawnStroke } from "@/components/organic-art"
 import { ARMS, CONSULTING_MODULES } from "@/lib/content"
 
 export const metadata: Metadata = {
@@ -13,40 +14,128 @@ export const metadata: Metadata = {
 }
 
 const arm = ARMS.find((a) => a.slug === "consulting")!
+const [, ...secondaryModules] = CONSULTING_MODULES
+
+const WORKSHOP_ALT =
+  "Workshop planning materials: a TBHE letterhead reading 'Stronger Schools, Brighter Futures,' an open workshop-plan notebook, a clipboard headed 'Professional Development — What's working?', sticky notes ('Listen, Learn, Lead'; 'Same Students, Brighter Possibilities'), a highlighter, glasses, and coffee"
 
 export default function ConsultingPage() {
   return (
     <>
-      <ArmHero arm={arm} ctaHref="#book" />
+      <ArtDefs />
 
-      <section className="section">
-        <Reveal>
-          <SectionHeading
-            eyebrow="Professional Development"
-            title="Modules built for real schools"
-            description="Workshops, coaching cohorts, and curriculum support designed around DEI, retention, inclusion, and emotional intelligence in coaching."
-          />
-        </Reveal>
-        <div className="mt-10">
-          <FeatureList
-            items={CONSULTING_MODULES}
-            accent={arm.color}
-            anchorImage="/images/consulting-anchor.jpg"
-            anchorImageAlt="A group of educators in a professional development workshop discussion"
+      <ConsultingHero arm={arm} ctaHref="#book" />
+
+      {/* Modules — the classroom photo stays the primary, unobstructed
+          photograph; the three offerings read as an editorial list rather
+          than boxed rows; the workshop-materials asset enters from the
+          section's top-right corner, cropped rather than shown in full. */}
+      <section className="relative overflow-hidden py-20 sm:py-24 lg:py-28">
+        <div className="mx-auto max-w-6xl px-6 sm:px-8">
+          <Reveal>
+            <SectionHeading
+              eyebrow="Professional Development"
+              title="Modules built for real schools"
+              description="Workshops, coaching cohorts, and curriculum support designed around DEI, retention, inclusion, and emotional intelligence in coaching."
+            />
+          </Reveal>
+
+          <div className="relative mt-14 grid gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
+            <Reveal delay={0.05} className="relative">
+              <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl">
+                <Image
+                  src="/images/consulting-anchor.jpg"
+                  alt="A group of educators in a professional development workshop discussion"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 55vw"
+                  className="object-cover"
+                />
+              </div>
+              {/* A single sticky note from the workshop materials overlaps
+                  the photo's outer edge — restrained, not a repeat of the
+                  full asset. */}
+              <div className="pointer-events-none absolute -right-5 -bottom-7 hidden h-24 w-32 sm:block">
+                <Image
+                  src="/images/consulting-workshop-materials.png"
+                  alt=""
+                  fill
+                  sizes="130px"
+                  className="object-cover"
+                  style={{ objectPosition: "16% 80%" }}
+                />
+              </div>
+            </Reveal>
+
+            <Reveal delay={0.1} className="flex flex-col gap-8 lg:pt-2">
+              {secondaryModules.map((mod) => (
+                <div key={mod.title}>
+                  <h3 className="font-display text-xl font-semibold text-ink">
+                    {mod.title}
+                  </h3>
+                  <HandDrawnStroke
+                    className="mt-1.5 h-2 w-12"
+                    d="M2,4 C12,1 24,6 38,3"
+                    color="var(--arm-consulting)"
+                    strokeWidth={1.6}
+                    viewBox="0 0 40 8"
+                  />
+                  <p className="mt-3 text-sm text-body">{mod.description}</p>
+                </div>
+              ))}
+            </Reveal>
+          </div>
+        </div>
+
+        <div className="pointer-events-none absolute top-[-3%] right-[-4vw] hidden h-[260px] w-[30vw] lg:block">
+          <Image
+            src="/images/consulting-workshop-materials.png"
+            alt={WORKSHOP_ALT}
+            fill
+            sizes="30vw"
+            className="object-cover"
+            style={{ objectPosition: "68% 25%" }}
           />
         </div>
       </section>
 
-      <section id="book" className="section scroll-mt-20">
-        <Reveal>
-          <SectionHeading
-            eyebrow="Booking"
-            title="Request a discovery call"
-            description="Pick a time that works for you — we'll use the call to scope a custom professional development proposal, coaching cohort, or staff workshop."
+      {/* Booking — an asymmetric sidebar gives the process context before
+          the scheduling embed, so the section feels designed rather than a
+          heading dropped above a blank rectangle. */}
+      <section id="book" className="section relative overflow-hidden scroll-mt-20">
+        <div className="grid gap-10 lg:grid-cols-[0.85fr_1.4fr] lg:items-start">
+          <Reveal>
+            <SectionHeading
+              eyebrow="Booking"
+              title="Request a discovery call"
+              description="Pick a time that works for you — we'll use the call to scope a custom professional development proposal, coaching cohort, or staff workshop."
+            />
+            <div className="mt-8 flex flex-col gap-2 text-sm font-medium text-ink">
+              {["Listen", "Assess", "Build", "Support"].map((step, index, arr) => (
+                <span key={step} className="flex items-center gap-2">
+                  {step}
+                  {index < arr.length - 1 ? (
+                    <span aria-hidden className="text-arm-consulting/40">
+                      ↓
+                    </span>
+                  ) : null}
+                </span>
+              ))}
+            </div>
+          </Reveal>
+          <Reveal delay={0.05}>
+            <BookingWidget />
+          </Reveal>
+        </div>
+
+        <div className="pointer-events-none absolute bottom-[-8%] left-[-3vw] hidden h-32 w-[16vw] lg:block">
+          <Image
+            src="/images/consulting-workshop-materials.png"
+            alt=""
+            fill
+            sizes="16vw"
+            className="object-cover"
+            style={{ objectPosition: "6% 60%" }}
           />
-        </Reveal>
-        <div className="mt-10">
-          <BookingWidget />
         </div>
       </section>
 
@@ -55,6 +144,24 @@ export default function ConsultingPage() {
         title="Ready to bring this to your school or district?"
         description="Book a consultation and we'll build a proposal around your staff's actual needs."
         primary={{ label: "Book a Consultation", href: "#book" }}
+        decoration={
+          <>
+            <HandDrawnStroke
+              className="pointer-events-none absolute top-[20%] left-[8%] hidden h-10 w-28 opacity-[0.14] lg:block"
+              d="M2,10 C20,2 40,16 58,8 C72,3 84,12 98,6"
+              color="var(--arm-media)"
+              strokeWidth={1.4}
+              viewBox="0 0 100 20"
+            />
+            <HandDrawnStroke
+              className="pointer-events-none absolute right-[10%] bottom-[24%] hidden h-8 w-24 opacity-[0.12] lg:block"
+              d="M2,6 C16,12 30,1 44,7 C56,12 68,3 80,8"
+              color="var(--arm-media)"
+              strokeWidth={1.4}
+              viewBox="0 0 82 14"
+            />
+          </>
+        }
       />
     </>
   )

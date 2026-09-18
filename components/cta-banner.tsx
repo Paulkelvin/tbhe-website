@@ -10,12 +10,14 @@ export function CtaBanner({
   description,
   primary,
   secondary,
+  decoration,
 }: {
   eyebrow: string
   title: string
   description: string
   primary: { label: string; href: string }
   secondary?: { label: string; href: string }
+  decoration?: React.ReactNode
 }) {
   return (
     <section className="relative overflow-hidden border-t border-hairline bg-ink">
@@ -30,6 +32,7 @@ export function CtaBanner({
       />
       <DecorativeBlob className="-left-20 top-1/2 size-72 -translate-y-1/2 bg-arm-media/25" />
       <DecorativeBlob className="-right-20 -bottom-20 size-64 bg-arm-consulting/30" />
+      {decoration}
 
       <Reveal className="relative mx-auto flex max-w-4xl flex-col items-center gap-6 px-6 py-20 text-center sm:px-8">
         <p className="text-xs font-semibold tracking-[0.18em] text-canvas/60 uppercase">
