@@ -27,18 +27,31 @@ export default function ResourcesPage() {
       <section className="section">
         <div className="mx-auto max-w-4xl">
           {/* A quiet masthead strip naming what's in the archive — browsing
-              cues, not a repeat of the list below. */}
-          <Reveal className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 border-y border-hairline py-4 text-center lg:justify-start">
-            {kinds.map((kind, index) => (
-              <span key={kind} className="flex items-center gap-5">
-                {index > 0 ? (
-                  <span aria-hidden className="h-1 w-1 rounded-full bg-hairline-strong" />
-                ) : null}
-                <span className="text-xs font-semibold tracking-[0.16em] text-muted-ink uppercase">
+              cues, not a repeat of the list below. A tidy 2-column grid on
+              mobile avoids an orphaned separator dot at the wrap point. */}
+          <Reveal className="border-y border-hairline py-4">
+            <div className="grid grid-cols-2 gap-x-4 gap-y-2.5 text-center sm:hidden">
+              {kinds.map((kind) => (
+                <span
+                  key={kind}
+                  className="text-xs font-semibold tracking-[0.16em] text-muted-ink uppercase"
+                >
                   {kind}s
                 </span>
-              </span>
-            ))}
+              ))}
+            </div>
+            <div className="hidden items-center justify-center gap-5 sm:flex lg:justify-start">
+              {kinds.map((kind, index) => (
+                <span key={kind} className="flex items-center gap-5">
+                  {index > 0 ? (
+                    <span aria-hidden className="h-1 w-1 rounded-full bg-hairline-strong" />
+                  ) : null}
+                  <span className="text-xs font-semibold tracking-[0.16em] text-muted-ink uppercase">
+                    {kind}s
+                  </span>
+                </span>
+              ))}
+            </div>
           </Reveal>
 
           {/* Featured — an open-spread treatment, not a card: a spine-like
