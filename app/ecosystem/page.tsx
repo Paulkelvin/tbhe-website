@@ -37,15 +37,9 @@ export default function EcosystemPage() {
 
         {/* 01 — Consulting */}
         <section className="relative overflow-hidden py-16 sm:py-20 lg:py-24">
-          <div className="mx-auto max-w-5xl px-6 pl-14 sm:px-8 sm:pl-8">
+          <div className="mx-auto max-w-6xl px-6 pl-14 sm:px-8 sm:pl-8">
             <div className="grid gap-8 lg:grid-cols-2 lg:items-center lg:gap-16">
               <Reveal className="relative">
-                <span
-                  aria-hidden
-                  className="font-display pointer-events-none absolute -top-10 -left-2 hidden text-[8rem] leading-none text-arm-consulting/[0.08] sm:block sm:text-[9rem]"
-                >
-                  01
-                </span>
                 <p
                   className={cn(
                     "relative text-[11px] font-semibold tracking-[0.2em] uppercase",
@@ -95,7 +89,7 @@ export default function EcosystemPage() {
 
         {/* 02 — Mission 139 (mirrored) */}
         <section className="relative overflow-hidden py-16 sm:py-20 lg:py-24">
-          <div className="mx-auto max-w-5xl px-6 pl-14 sm:px-8 sm:pl-8">
+          <div className="mx-auto max-w-6xl px-6 pl-14 sm:px-8 sm:pl-8">
             <div className="grid gap-8 lg:grid-cols-2 lg:items-center lg:gap-16">
               <Reveal delay={0.08} className="order-2 border-l-2 border-arm-mission/40 pl-6 lg:order-1">
                 <p className="text-[11px] font-semibold tracking-[0.16em] text-muted-ink uppercase">
@@ -109,12 +103,6 @@ export default function EcosystemPage() {
               </Reveal>
 
               <Reveal className="relative order-1 lg:order-2 lg:text-right">
-                <span
-                  aria-hidden
-                  className="font-display pointer-events-none absolute -top-10 -right-2 hidden text-[8rem] leading-none text-arm-mission/[0.08] sm:block sm:text-[9rem]"
-                >
-                  02
-                </span>
                 <p
                   className={cn(
                     "relative text-[11px] font-semibold tracking-[0.2em] uppercase",
@@ -151,15 +139,9 @@ export default function EcosystemPage() {
           </div>
         </section>
 
-        {/* 03 — Media & Publishing, with its own bold cropped-word mark */}
+        {/* 03 — Media & Publishing */}
         <section className="relative overflow-hidden py-16 sm:py-20 lg:py-24">
-          <span
-            aria-hidden
-            className="font-display pointer-events-none absolute top-[-1.5rem] right-[-0.5rem] hidden text-[9rem] leading-none tracking-tight text-arm-media/[0.1] sm:block lg:text-[11rem]"
-          >
-            MEDIA
-          </span>
-          <div className="mx-auto max-w-5xl px-6 pl-14 sm:px-8 sm:pl-8">
+          <div className="mx-auto max-w-6xl px-6 pl-14 sm:px-8 sm:pl-8">
             <div className="grid gap-8 lg:grid-cols-2 lg:items-center lg:gap-16">
               <Reveal className="relative">
                 <p
@@ -210,38 +192,75 @@ export default function EcosystemPage() {
         </section>
       </div>
 
-      {/* The signature moment — plum, sage, and gold overlapping into one
-          quiet wash, with the site's own tagline as the payoff. */}
-      <section className="relative min-h-[520px] overflow-hidden py-24 sm:min-h-[620px] sm:py-32">
-        <OrganicBlob
-          color="var(--arm-consulting)"
-          variant={0}
-          filterId="paper-roughen-torn"
-          rotate={-8}
-          className="top-[8%] left-[16%] h-[85%] w-[50%] opacity-[0.22] mix-blend-multiply"
-        />
-        <OrganicBlob
-          color="var(--arm-mission)"
-          variant={1}
-          filterId="paper-roughen-torn"
-          rotate={10}
-          className="top-[4%] right-[16%] h-[82%] w-[48%] opacity-[0.22] mix-blend-multiply"
-        />
-        <OrganicBlob
-          color="var(--arm-media)"
-          variant={0}
-          filterId="paper-roughen-torn"
-          rotate={16}
-          className="top-[18%] left-[32%] h-[70%] w-[44%] opacity-[0.22] mix-blend-multiply"
-        />
+      {/* The signature moment — completion of the ribbon system introduced
+          in the hero. Mobile keeps the simpler overlapping wash; desktop
+          resolves the three ribbons into one fully merged form. */}
+      <section className="relative min-h-[480px] overflow-hidden py-20 sm:min-h-[560px] sm:py-28 lg:min-h-0 lg:py-0">
+        <div className="lg:hidden">
+          <OrganicBlob
+            color="var(--arm-consulting)"
+            variant={0}
+            filterId="paper-roughen-torn"
+            rotate={-8}
+            className="top-[8%] left-[16%] h-[85%] w-[50%] opacity-[0.22] mix-blend-multiply"
+          />
+          <OrganicBlob
+            color="var(--arm-mission)"
+            variant={1}
+            filterId="paper-roughen-torn"
+            rotate={10}
+            className="top-[4%] right-[16%] h-[82%] w-[48%] opacity-[0.22] mix-blend-multiply"
+          />
+          <OrganicBlob
+            color="var(--arm-media)"
+            variant={0}
+            filterId="paper-roughen-torn"
+            rotate={16}
+            className="top-[18%] left-[32%] h-[70%] w-[44%] opacity-[0.22] mix-blend-multiply"
+          />
+        </div>
 
-        <Reveal className="relative mx-auto max-w-2xl px-6 text-center sm:px-8">
-          <p className="text-[11px] font-semibold tracking-[0.2em] text-muted-ink uppercase">
-            TBHE
-          </p>
-          <p className="font-display mt-4 text-2xl font-medium text-ink italic sm:text-3xl">
-            {SITE.tagline}
-          </p>
+        {/* Desktop: the three ribbons return, fully merged this time. */}
+        <div className="relative hidden aspect-[1440/440] w-full lg:block">
+          <svg
+            viewBox="0 0 1440 440"
+            preserveAspectRatio="xMidYMid slice"
+            className="absolute inset-0 h-full w-full"
+            aria-hidden
+          >
+            <path
+              d="M0,140 C300,160 520,190 660,205 L680,245 C540,230 300,200 0,300 Z"
+              fill="var(--arm-consulting)"
+              opacity="0.55"
+              filter="url(#paper-roughen-torn)"
+              style={{ mixBlendMode: "multiply" }}
+            />
+            <path
+              d="M1440,140 C1140,160 920,190 780,205 L760,245 C900,230 1140,200 1440,300 Z"
+              fill="var(--arm-mission)"
+              opacity="0.55"
+              filter="url(#paper-roughen-torn)"
+              style={{ mixBlendMode: "multiply" }}
+            />
+            <path
+              d="M660,440 C670,360 685,280 700,220 L740,220 C755,280 770,360 780,440 Z"
+              fill="var(--arm-media)"
+              opacity="0.55"
+              filter="url(#paper-roughen-torn)"
+              style={{ mixBlendMode: "multiply" }}
+            />
+          </svg>
+        </div>
+
+        <Reveal className="relative mx-auto max-w-2xl px-6 text-center sm:px-8 lg:absolute lg:inset-0 lg:flex lg:flex-col lg:items-center lg:justify-center">
+          <div className="lg:rounded-full lg:bg-canvas/85 lg:px-12 lg:py-8 lg:backdrop-blur-[2px]">
+            <p className="text-[11px] font-semibold tracking-[0.2em] text-muted-ink uppercase">
+              TBHE
+            </p>
+            <p className="font-display mt-4 text-2xl font-medium text-ink italic sm:text-3xl lg:mt-3">
+              {SITE.tagline}
+            </p>
+          </div>
         </Reveal>
       </section>
 
