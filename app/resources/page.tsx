@@ -1,47 +1,90 @@
 import type { Metadata } from "next"
 
-import { PageHero } from "@/components/page-hero"
+import { ResourceHero } from "@/components/resource-hero"
 import { Reveal } from "@/components/reveal"
-import { Badge } from "@/components/ui/badge"
-import { RESOURCES } from "@/lib/content"
+import { FEATURED_RESOURCE, RESOURCES } from "@/lib/content"
 
 export const metadata: Metadata = {
   title: "Resource Center — The Beautifully Human Educator",
 }
 
+const secondaryResources = RESOURCES.filter(
+  (r) => r.title !== FEATURED_RESOURCE.title
+)
+const kinds = Array.from(new Set(RESOURCES.map((r) => r.kind)))
+
+function actionLabel(kind: string) {
+  if (kind === "Webinar Recording") return "Watch"
+  if (kind === "Article") return "Read"
+  return "Download"
+}
+
 export default function ResourcesPage() {
   return (
     <>
-      <PageHero
-        eyebrow="Resource Center"
-        title="White papers, toolkits, and recordings"
-        description="Research and resources from across the ecosystem — free to read, download, and share."
-      />
+      <ResourceHero />
 
       <section className="section">
-        <div className="mx-auto max-w-3xl divide-y divide-hairline border-y border-hairline">
-          {RESOURCES.map((resource, index) => (
-            <Reveal key={resource.title} delay={index * 0.06}>
-              <div className="flex flex-col gap-3 py-6 sm:flex-row sm:items-center sm:justify-between sm:gap-6">
-                <div className="flex flex-col gap-2 sm:flex-row sm:items-baseline sm:gap-5">
-                  <Badge variant="secondary" className="w-fit shrink-0">
-                    {resource.kind}
-                  </Badge>
-                  <div>
-                    <h3 className="text-base font-semibold text-ink">
-                      {resource.title}
-                    </h3>
-                    <p className="mt-1 max-w-xl text-sm text-body">
-                      {resource.description}
-                    </p>
-                  </div>
-                </div>
-                <span className="shrink-0 text-sm font-medium text-primary sm:pl-4">
-                  Download &rarr;
+        <div className="mx-auto max-w-4xl">
+          {/* A quiet masthead strip naming what's in the archive — browsing
+              cues, not a repeat of the list below. */}
+          <Reveal className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 border-y border-hairline py-4 text-center lg:justify-start">
+            {kinds.map((kind, index) => (
+              <span key={kind} className="flex items-center gap-5">
+                {index > 0 ? (
+                  <span aria-hidden className="h-1 w-1 rounded-full bg-hairline-strong" />
+                ) : null}
+                <span className="text-xs font-semibold tracking-[0.16em] text-muted-ink uppercase">
+                  {kind}s
                 </span>
-              </div>
-            </Reveal>
-          ))}
+              </span>
+            ))}
+          </Reveal>
+
+          {/* Featured — an open-spread treatment, not a card: a spine-like
+              rule instead of a bounding box. */}
+          <Reveal className="relative mt-14 border-l-2 border-primary/70 pl-6 sm:mt-16 sm:pl-10">
+            <p className="text-[11px] font-semibold tracking-[0.18em] text-primary uppercase">
+              Featured &middot; {FEATURED_RESOURCE.kind}
+            </p>
+            <h2 className="font-display mt-3 max-w-2xl text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
+              {FEATURED_RESOURCE.title}
+            </h2>
+            <p className="mt-4 max-w-xl text-base text-body">
+              {FEATURED_RESOURCE.description}
+            </p>
+            <span className="group mt-6 inline-flex w-fit items-center gap-1.5 text-sm font-semibold text-primary">
+              <span className="border-b border-primary/40 pb-0.5">
+                {FEATURED_RESOURCE.cta}
+              </span>
+              <span aria-hidden>&rarr;</span>
+            </span>
+          </Reveal>
+
+          {/* The rest of the archive — a contents-page rhythm: kind and
+              title read as one line, excerpt beneath, thin rules between. */}
+          <div className="mt-16 divide-y divide-hairline border-t border-hairline sm:mt-20">
+            {secondaryResources.map((resource, index) => (
+              <Reveal
+                key={resource.title}
+                delay={index * 0.06}
+                className="flex flex-col gap-3 py-7 sm:flex-row sm:items-baseline sm:justify-between sm:gap-8"
+              >
+                <div className="sm:max-w-xl">
+                  <p className="text-[11px] font-semibold tracking-[0.16em] text-muted-ink uppercase">
+                    {resource.kind}
+                  </p>
+                  <h3 className="font-display mt-1.5 text-xl font-semibold text-ink">
+                    {resource.title}
+                  </h3>
+                  <p className="mt-2 text-sm text-body">{resource.description}</p>
+                </div>
+                <span className="shrink-0 text-sm font-semibold text-primary sm:pl-4">
+                  {actionLabel(resource.kind)} &rarr;
+                </span>
+              </Reveal>
+            ))}
+          </div>
         </div>
       </section>
     </>
