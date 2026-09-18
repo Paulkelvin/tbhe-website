@@ -96,7 +96,7 @@ export function EcosystemOverview() {
           a card's own background covers it, visible again in the gaps — with
           a small node marking where each arm meets it. One faint organic
           form peeks from behind the middle card, kept restrained. */}
-      <div className="relative mt-10 md:hidden">
+      <div className="relative mt-10 overflow-hidden md:hidden">
         <div
           aria-hidden
           className="absolute top-0 bottom-0 left-11 w-px opacity-40"
