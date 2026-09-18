@@ -3,6 +3,7 @@ import Link from "next/link"
 
 import { EventsHero } from "@/components/events-hero"
 import { Reveal } from "@/components/reveal"
+import { Button } from "@/components/ui/button"
 import { EVENTS } from "@/lib/content"
 
 export const metadata: Metadata = {
@@ -83,23 +84,31 @@ export default function EventsPage() {
             </div>
           </div>
 
-          {/* Continue — an invitation, not a hard sales close. */}
-          <Reveal className="mt-16 flex flex-col items-center gap-3 border-t border-hairline pt-10 text-center sm:mt-20">
-            <p className="max-w-md text-base text-body">
-              Want to bring Disrupt &amp; Connect, a workshop, or a webinar to
-              your school or district?
-            </p>
-            <Link
-              href="/contact"
-              className="group inline-flex items-center gap-1.5 text-sm font-semibold text-primary"
+          {/* Continue — a compact, quiet close, not another major section.
+              The oversized ampersand is the one creative detail, cropped
+              from Disrupt & Connect's own name rather than invented. */}
+          <Reveal className="relative mt-16 overflow-hidden border-t border-hairline pt-9 pb-1 sm:mt-20 sm:pt-10">
+            <span
+              aria-hidden
+              className="font-display pointer-events-none absolute -top-8 right-0 select-none text-[8rem] leading-none text-arm-media/[0.14] sm:-top-11 sm:text-[10rem]"
             >
-              <span className="border-b border-primary/40 pb-0.5 transition-colors group-hover:border-primary">
-                Get in touch
-              </span>
-              <span className="transition-transform group-hover:translate-x-0.5">
-                &rarr;
-              </span>
-            </Link>
+              &amp;
+            </span>
+
+            <div className="relative flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between sm:gap-10">
+              <div className="max-w-sm">
+                <h2 className="font-display text-2xl font-semibold tracking-tight text-ink sm:text-3xl">
+                  Bring Disrupt &amp; Connect to your community.
+                </h2>
+                <p className="mt-2.5 text-sm text-body sm:text-base">
+                  Want to bring Disrupt &amp; Connect, a workshop, or a
+                  webinar to your school or district?
+                </p>
+              </div>
+              <Button asChild size="lg" className="w-fit shrink-0">
+                <Link href="/contact">Get in touch</Link>
+              </Button>
+            </div>
           </Reveal>
         </div>
       </section>
