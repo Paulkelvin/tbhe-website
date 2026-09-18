@@ -43,7 +43,7 @@ export default function MediaPage() {
             className="object-cover"
             style={{ objectPosition: "62% 25%" }}
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-ink/85 via-ink/10 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-ink/95 from-0% via-ink/80 via-55% to-transparent to-95%" />
           <div className="absolute inset-x-0 bottom-0">
             <div className="mx-auto max-w-6xl px-6 pb-10 sm:px-8 sm:pb-14">
               <p className="text-xs font-semibold tracking-[0.2em] text-arm-media uppercase">
