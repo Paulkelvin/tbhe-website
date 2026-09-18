@@ -16,9 +16,6 @@ export const metadata: Metadata = {
 const arm = ARMS.find((a) => a.slug === "consulting")!
 const [, ...secondaryModules] = CONSULTING_MODULES
 
-const WORKSHOP_ALT =
-  "Workshop planning materials: a TBHE letterhead reading 'Stronger Schools, Brighter Futures,' an open workshop-plan notebook, a clipboard headed 'Professional Development — What's working?', sticky notes ('Listen, Learn, Lead'; 'Same Students, Brighter Possibilities'), a highlighter, glasses, and coffee"
-
 export default function ConsultingPage() {
   return (
     <>
@@ -28,8 +25,7 @@ export default function ConsultingPage() {
 
       {/* Modules — the classroom photo stays the primary, unobstructed
           photograph; the three offerings read as an editorial list rather
-          than boxed rows; the workshop-materials asset enters from the
-          section's top-right corner, cropped rather than shown in full. */}
+          than boxed rows. */}
       <section className="relative overflow-hidden py-20 sm:py-24 lg:py-28">
         <div className="mx-auto max-w-6xl px-6 sm:px-8">
           <Reveal>
@@ -85,17 +81,6 @@ export default function ConsultingPage() {
             </Reveal>
           </div>
         </div>
-
-        <div className="pointer-events-none absolute top-[-3%] right-[-4vw] hidden h-[260px] w-[30vw] lg:block">
-          <Image
-            src="/images/consulting-workshop-materials.png"
-            alt={WORKSHOP_ALT}
-            fill
-            sizes="30vw"
-            className="object-cover"
-            style={{ objectPosition: "68% 25%" }}
-          />
-        </div>
       </section>
 
       {/* Booking — an asymmetric sidebar gives the process context before
@@ -125,17 +110,6 @@ export default function ConsultingPage() {
           <Reveal delay={0.05}>
             <BookingWidget />
           </Reveal>
-        </div>
-
-        <div className="pointer-events-none absolute bottom-[-8%] left-[-3vw] hidden h-32 w-[16vw] lg:block">
-          <Image
-            src="/images/consulting-workshop-materials.png"
-            alt=""
-            fill
-            sizes="16vw"
-            className="object-cover"
-            style={{ objectPosition: "6% 60%" }}
-          />
         </div>
       </section>
 
