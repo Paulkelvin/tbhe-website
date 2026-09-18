@@ -16,6 +16,25 @@ export const metadata: Metadata = {
 const arm = ARMS.find((a) => a.slug === "consulting")!
 const [, ...secondaryModules] = CONSULTING_MODULES
 
+const BOOKING_PROCESS_STEPS = [
+  {
+    title: "Listen",
+    description: "A conversation about what's actually happening in your classrooms and buildings.",
+  },
+  {
+    title: "Assess",
+    description: "We look at your goals, staff needs, and current professional development landscape.",
+  },
+  {
+    title: "Build",
+    description: "A proposal — workshops, a coaching cohort, or curriculum support — built around your team.",
+  },
+  {
+    title: "Support",
+    description: "Ongoing coaching and check-ins so the work sticks after the training ends.",
+  },
+]
+
 export default function ConsultingPage() {
   return (
     <>
@@ -94,16 +113,24 @@ export default function ConsultingPage() {
               title="Request a discovery call"
               description="Pick a time that works for you — we'll use the call to scope a custom professional development proposal, coaching cohort, or staff workshop."
             />
-            <div className="mt-8 flex flex-col gap-2 text-sm font-medium text-ink">
-              {["Listen", "Assess", "Build", "Support"].map((step, index, arr) => (
-                <span key={step} className="flex items-center gap-2">
-                  {step}
-                  {index < arr.length - 1 ? (
-                    <span aria-hidden className="text-arm-consulting/40">
-                      ↓
+            <div className="mt-10 flex flex-col">
+              {BOOKING_PROCESS_STEPS.map((step, index, arr) => (
+                <div key={step.title} className="flex gap-4">
+                  <div className="flex flex-col items-center">
+                    <span className="flex size-7 shrink-0 items-center justify-center rounded-full border border-arm-consulting/30 text-xs font-semibold text-arm-consulting">
+                      {index + 1}
                     </span>
-                  ) : null}
-                </span>
+                    {index < arr.length - 1 ? (
+                      <span aria-hidden className="my-1 w-px flex-1 bg-arm-consulting/20" />
+                    ) : null}
+                  </div>
+                  <div className={index < arr.length - 1 ? "pb-6" : ""}>
+                    <h3 className="font-display text-base font-semibold text-ink">
+                      {step.title}
+                    </h3>
+                    <p className="mt-1 text-sm text-body">{step.description}</p>
+                  </div>
+                </div>
               ))}
             </div>
           </Reveal>
