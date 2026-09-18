@@ -23,7 +23,7 @@ const mixerEvent = EVENTS.find(
 )!
 
 const KEYNOTE_PHOTO_ALT =
-  "A speaker in a cream suit addresses a conference audience from the stage, with 'Ideas for a Fairer Education Tomorrow' displayed behind her"
+  "A speaker in a cream suit addresses a conference audience from the stage, gesturing mid-sentence with a microphone in hand"
 
 export default function MediaPage() {
   return (
@@ -41,7 +41,7 @@ export default function MediaPage() {
             fill
             sizes="100vw"
             className="object-cover"
-            style={{ objectPosition: "center 26%" }}
+            style={{ objectPosition: "62% 25%" }}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-ink/85 via-ink/10 to-transparent" />
           <div className="absolute inset-x-0 bottom-0">
