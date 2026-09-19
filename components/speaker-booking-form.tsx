@@ -7,10 +7,29 @@ import { KEYNOTE_TOPICS } from "@/lib/content"
 
 export function SpeakerBookingForm() {
   const [submitted, setSubmitted] = useState(false)
+  const [submitting, setSubmitting] = useState(false)
+  const [error, setError] = useState(false)
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
-    setSubmitted(true)
+    setSubmitting(true)
+    setError(false)
+
+    const data = Object.fromEntries(new FormData(event.currentTarget))
+
+    try {
+      const response = await fetch("/api/speaker-booking", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      })
+      if (!response.ok) throw new Error("Request failed")
+      setSubmitted(true)
+    } catch {
+      setError(true)
+    } finally {
+      setSubmitting(false)
+    }
   }
 
   if (submitted) {
@@ -92,8 +111,20 @@ export function SpeakerBookingForm() {
         />
       </Field>
 
-      <Button type="submit" size="lg" className="justify-self-start">
-        Request booking
+      {error ? (
+        <p className="text-sm text-red-700">
+          Something went wrong sending your request. Please try again, or
+          email us directly.
+        </p>
+      ) : null}
+
+      <Button
+        type="submit"
+        size="lg"
+        disabled={submitting}
+        className="justify-self-start"
+      >
+        {submitting ? "Sending…" : "Request booking"}
       </Button>
     </form>
   )
