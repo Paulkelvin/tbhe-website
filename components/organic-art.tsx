@@ -69,6 +69,43 @@ export function OrganicBlob({
   )
 }
 
+// The same irregular torn-paper silhouette as OrganicBlob, but stroked
+// rather than filled — a thin painted outline for layering (e.g. a path
+// that reads as sitting in front of a photo without ever creating a solid
+// shape that would compete with it).
+export function OrganicOutline({
+  className,
+  color,
+  variant = 0,
+  filterId = "paper-roughen-1",
+  rotate = 0,
+  strokeWidth = 1.5,
+}: {
+  className?: string
+  color: string
+  variant?: 0 | 1
+  filterId?: "paper-roughen-1" | "paper-roughen-2" | "paper-roughen-torn"
+  rotate?: number
+  strokeWidth?: number
+}) {
+  return (
+    <svg
+      aria-hidden
+      className={cn("pointer-events-none absolute", className)}
+      viewBox="0 0 100 100"
+      style={{ transform: rotate ? `rotate(${rotate}deg)` : undefined }}
+    >
+      <path
+        d={BLOB_PATHS[variant]}
+        fill="none"
+        stroke={color}
+        strokeWidth={strokeWidth}
+        filter={`url(#${filterId})`}
+      />
+    </svg>
+  )
+}
+
 // A single hand-drawn-feeling stroke — a slightly wobbled line/underline/
 // connector, never a perfectly smooth vector curve.
 export function HandDrawnStroke({
