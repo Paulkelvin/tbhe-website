@@ -143,4 +143,25 @@
   .form-input {
     @apply w-full rounded-lg border border-hairline-strong bg-canvas px-3.5 py-2.5 text-sm text-ink placeholder:text-muted-soft focus:outline-none focus-visible:ring-[3px] focus-visible:ring-ring/50;
   }
+  .prose-legal {
+    @apply text-base text-body;
+  }
+  .prose-legal h2 {
+    @apply font-display mt-10 mb-3 text-xl font-semibold text-ink first:mt-0;
+  }
+  .prose-legal p {
+    @apply my-4 leading-relaxed;
+  }
+  .prose-legal ul {
+    @apply my-4 list-disc space-y-2 pl-5;
+  }
+  .prose-legal li {
+    @apply leading-relaxed;
+  }
+  .prose-legal a {
+    @apply text-primary underline underline-offset-2 hover:text-primary-active;
+  }
+  .prose-legal strong {
+    @apply font-semibold text-ink;
+  }
 }

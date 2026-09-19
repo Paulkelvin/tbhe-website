@@ -33,11 +33,21 @@ export function SiteFooter() {
       </div>
 
       <div className="border-t border-hairline">
-        <div className="mx-auto flex max-w-6xl flex-col gap-2 px-6 py-6 text-xs text-muted-ink sm:flex-row sm:items-center sm:justify-between sm:px-8">
-          <p>
-            &copy; {new Date().getFullYear()} {SITE.name}. All rights
-            reserved.
-          </p>
+        <div className="mx-auto flex max-w-6xl flex-col gap-3 px-6 py-6 text-xs text-muted-ink sm:flex-row sm:items-center sm:justify-between sm:px-8">
+          <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-4">
+            <p>
+              &copy; {new Date().getFullYear()} {SITE.name}. All rights
+              reserved.
+            </p>
+            <div className="flex items-center gap-4">
+              <Link href="/privacy" className="hover:text-ink">
+                Privacy Policy
+              </Link>
+              <Link href="/terms" className="hover:text-ink">
+                Terms of Service
+              </Link>
+            </div>
+          </div>
           <p>Mission 139 is a 501(c)(3) nonprofit organization.</p>
         </div>
       </div>
