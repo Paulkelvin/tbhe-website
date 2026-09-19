@@ -24,16 +24,16 @@ export function ContactHero() {
       <div className="mx-auto grid max-w-6xl gap-12 px-6 py-16 sm:px-8 lg:grid-cols-[0.85fr_1fr] lg:items-start lg:gap-16 lg:py-24">
         <div className="text-center lg:pt-3 lg:text-left">
           <p className="eyebrow text-primary">Contact</p>
-          <h1 className="font-display mt-4 text-4xl font-semibold tracking-tight text-ink sm:text-5xl">
+          <h1 className="text-h1 mt-4 text-ink">
             One inbox for consulting, advocacy, and media
           </h1>
-          <p className="mx-auto mt-5 max-w-md text-base text-body sm:text-lg lg:mx-0">
+          <p className="text-lead mx-auto mt-5 max-w-md text-body lg:mx-0">
             Tell us why you&apos;re reaching out and the right person on the
             TBHE team will follow up.
           </p>
 
           {/* Mobile: the three-arm detail simplifies to a single quiet line. */}
-          <p className="mt-8 text-xs font-semibold tracking-[0.16em] text-muted-ink uppercase lg:hidden">
+          <p className="eyebrow mt-8 text-muted-ink lg:hidden">
             Consulting &middot; Mission 139 &middot; Media &amp; Publishing
           </p>
         </div>

@@ -67,10 +67,10 @@ export function ThreeWayCta() {
       </svg>
 
       <Reveal className="relative mx-auto max-w-5xl px-6 py-20 text-center sm:px-8">
-        <p className="text-xs font-semibold tracking-[0.18em] text-canvas/60 uppercase">
+        <p className="eyebrow text-canvas/60">
           Get Involved
         </p>
-        <h2 className="font-display mt-3 text-3xl font-semibold tracking-tight text-canvas sm:text-4xl">
+        <h2 className="text-h2 mt-3 text-canvas">
           Which part of the ecosystem do you need?
         </h2>
 
@@ -86,10 +86,10 @@ export function ThreeWayCta() {
                   aria-hidden
                   className={cn("size-2.5 rounded-full", ARM_COLOR_CLASS[arm.color].bg)}
                 />
-                <p className="mt-3 text-xs font-semibold tracking-[0.14em] text-canvas/60 uppercase">
+                <p className="eyebrow mt-3 text-canvas/60">
                   {copy.audience}
                 </p>
-                <p className="mt-2 text-sm text-canvas/80">{copy.description}</p>
+                <p className="text-body-sm mt-2 text-canvas/80">{copy.description}</p>
                 <Link
                   href={`/ecosystem/${arm.slug}`}
                   className="group mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-canvas"

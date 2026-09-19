@@ -33,17 +33,17 @@ export default function EventsPage() {
               </span>
             ) : null}
 
-            <p className="relative text-[11px] font-semibold tracking-[0.2em] text-arm-media-ink uppercase">
+            <p className="eyebrow relative text-arm-media-ink">
               Disrupt &amp; Connect
             </p>
             <div className="relative mt-5 border-t border-dashed border-hairline-strong pt-5">
-              <p className="text-[11px] font-semibold tracking-[0.16em] text-muted-ink uppercase">
+              <p className="eyebrow text-muted-ink">
                 Featured Event &middot; {featuredEvent.type}
               </p>
-              <h2 className="font-display mt-3 max-w-xl text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
+              <h2 className="text-h2 mt-3 max-w-xl text-ink">
                 {featuredEvent.title}
               </h2>
-              <p className="mt-4 max-w-xl text-base text-body">
+              <p className="text-lead mt-4 max-w-xl text-body">
                 {featuredEvent.description}
               </p>
               <span className="mt-6 inline-flex w-fit items-center gap-1.5 text-sm font-semibold text-primary">
@@ -57,7 +57,7 @@ export default function EventsPage() {
 
           {/* Also on the programme — a quiet editorial list for the rest. */}
           <div className="mt-4">
-            <p className="border-t border-hairline pt-8 text-[11px] font-semibold tracking-[0.16em] text-muted-ink uppercase">
+            <p className="eyebrow border-t border-hairline pt-8 text-muted-ink">
               Also on the Programme
             </p>
             <div className="mt-2 divide-y divide-hairline">
@@ -68,13 +68,13 @@ export default function EventsPage() {
                   className="flex flex-col gap-3 py-7 sm:flex-row sm:items-baseline sm:justify-between sm:gap-8"
                 >
                   <div className="sm:max-w-xl">
-                    <p className="text-[11px] font-semibold tracking-[0.16em] text-muted-ink uppercase">
+                    <p className="eyebrow text-muted-ink">
                       {event.type}
                     </p>
-                    <h3 className="font-display mt-1.5 text-xl font-semibold text-ink">
+                    <h3 className="text-h3 mt-1.5 text-ink">
                       {event.title}
                     </h3>
-                    <p className="mt-2 text-sm text-body">{event.description}</p>
+                    <p className="text-body-sm mt-2 text-body">{event.description}</p>
                   </div>
                   <span className="shrink-0 text-sm font-semibold text-primary sm:pl-4">
                     Learn more &rarr;
@@ -97,10 +97,10 @@ export default function EventsPage() {
 
             <div className="relative flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between sm:gap-10">
               <div className="max-w-sm">
-                <h2 className="font-display text-2xl font-semibold tracking-tight text-ink sm:text-3xl">
+                <h2 className="text-h3 text-ink">
                   Bring Disrupt &amp; Connect to your community.
                 </h2>
-                <p className="mt-2.5 text-sm text-body sm:text-base">
+                <p className="text-body-sm mt-2.5 text-body">
                   Want to bring Disrupt &amp; Connect, a workshop, or a
                   webinar to your school or district?
                 </p>

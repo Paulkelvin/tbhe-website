@@ -35,8 +35,8 @@ export function SpeakerBookingForm() {
   if (submitted) {
     return (
       <div className="rounded-2xl border border-hairline bg-surface-card p-8 text-center">
-        <p className="text-lg font-semibold text-ink">Request received.</p>
-        <p className="mt-2 text-sm text-body">
+        <p className="text-h3 text-ink">Request received.</p>
+        <p className="text-body-sm mt-2 text-body">
           Thanks for the booking request — expect a reply with availability
           and next steps soon.
         </p>
@@ -112,7 +112,7 @@ export function SpeakerBookingForm() {
       </Field>
 
       {error ? (
-        <p className="text-sm text-red-700">
+        <p className="text-body-sm text-red-700">
           Something went wrong sending your request. Please try again, or
           email us directly.
         </p>
@@ -140,8 +140,8 @@ function Field({
   children: React.ReactNode
 }) {
   return (
-    <label htmlFor={htmlFor} className="grid gap-1.5 text-sm">
-      <span className="font-medium text-ink">{label}</span>
+    <label htmlFor={htmlFor} className="grid gap-1.5">
+      <span className="label text-ink">{label}</span>
       {children}
     </label>
   )

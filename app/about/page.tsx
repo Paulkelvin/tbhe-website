@@ -110,7 +110,7 @@ export default function AboutPage() {
             deserve support, and so do the families they serve.
           </p>
           <Quotes size={32} weight="fill" className="mx-auto mt-8 text-arm-mission/30" />
-          <p className="font-display mt-2 text-xl text-ink italic">
+          <p className="text-quote mt-2 text-ink">
             &quot;I praise you because I am fearfully and wonderfully
             made.&quot;
           </p>
@@ -143,10 +143,10 @@ export default function AboutPage() {
             <div className="grid gap-4 md:grid-cols-[200px_1fr] md:gap-10">
               <p className="eyebrow">Advisory Board</p>
               <div>
-                <h2 className="font-display text-3xl font-semibold text-ink sm:text-4xl">
+                <h2 className="text-h2 text-ink">
                   Guided by people who know the work
                 </h2>
-                <p className="mt-4 max-w-xl text-base text-body">
+                <p className="text-lead mt-4 max-w-xl text-body">
                   TBHE is advised by educators, special education advocates,
                   and nonprofit leaders committed to keeping every arm of
                   this ecosystem accountable to the families and schools it

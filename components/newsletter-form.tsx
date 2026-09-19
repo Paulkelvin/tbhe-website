@@ -33,7 +33,7 @@ export function NewsletterForm() {
 
   if (submitted) {
     return (
-      <p className="text-sm font-medium text-arm-mission-ink">
+      <p className="text-body-sm font-medium text-arm-mission-ink">
         You&apos;re on the list — thanks for subscribing.
       </p>
     )

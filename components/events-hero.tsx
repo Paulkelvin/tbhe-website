@@ -12,10 +12,10 @@ export function EventsHero() {
       <div className="mx-auto grid max-w-6xl gap-10 px-6 py-16 sm:px-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-center lg:gap-10 lg:py-20">
         <div className="relative z-10 text-center lg:text-left">
           <p className="eyebrow text-primary">Events</p>
-          <h1 className="font-display mt-4 text-4xl font-semibold tracking-tight text-ink sm:text-5xl">
+          <h1 className="text-h1 mt-4 text-ink">
             Workshops, webinars, and Disrupt &amp; Connect meetups
           </h1>
-          <p className="mx-auto mt-5 max-w-md text-base text-body sm:text-lg lg:mx-0">
+          <p className="text-lead mx-auto mt-5 max-w-md text-body lg:mx-0">
             Upcoming programming across all three arms of the ecosystem.
           </p>
         </div>

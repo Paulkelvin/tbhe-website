@@ -56,12 +56,12 @@ export default function Mission139Page() {
                 weight="fill"
                 className="mx-auto text-arm-mission/25 lg:mx-0"
               />
-              <p className="font-display mt-2 text-2xl font-medium text-ink italic sm:text-3xl">
+              <p className="text-quote mt-2 text-ink">
                 &quot;I praise you because I am fearfully and wonderfully
                 made.&quot;
               </p>
               <p className="eyebrow mt-4 text-arm-mission-ink">Psalm 139:14</p>
-              <p className="mx-auto mt-5 max-w-xl text-base text-body lg:mx-0">
+              <p className="text-lead mx-auto mt-5 max-w-xl text-body lg:mx-0">
                 Mission 139 is built on the belief that every neurodivergent
                 child deserves to be met with that same regard — in their
                 IEP meeting, in their classroom, and at home.
@@ -136,7 +136,7 @@ export default function Mission139Page() {
             <Reveal delay={0.1} className="flex flex-col gap-8">
               {MISSION_139_PROGRAMS.map((program) => (
                 <div key={program.title}>
-                  <h3 className="font-display text-xl font-semibold text-ink">
+                  <h3 className="text-h3 text-ink">
                     {program.title}
                   </h3>
                   <HandDrawnStroke
@@ -146,7 +146,7 @@ export default function Mission139Page() {
                     strokeWidth={1.6}
                     viewBox="0 0 40 8"
                   />
-                  <p className="mt-3 text-sm text-body">
+                  <p className="text-body-sm mt-3 text-body">
                     {program.description}
                   </p>
                 </div>

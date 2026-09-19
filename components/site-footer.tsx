@@ -7,10 +7,10 @@ export function SiteFooter() {
     <footer className="border-t border-hairline bg-canvas-soft">
       <div className="mx-auto grid max-w-6xl gap-10 px-6 py-16 sm:px-8 md:grid-cols-[1.4fr_1fr_1fr]">
         <div>
-          <p className="text-sm font-semibold tracking-tight text-ink">
+          <p className="font-display text-lg font-semibold tracking-tight text-ink">
             {SITE.name}
           </p>
-          <p className="mt-3 max-w-sm text-sm text-body">{SITE.tagline}</p>
+          <p className="text-body-sm mt-3 max-w-sm text-body">{SITE.tagline}</p>
         </div>
 
         {FOOTER_COLUMNS.map((col) => (

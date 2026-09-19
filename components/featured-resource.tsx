@@ -9,7 +9,7 @@ const titleTail = titleRest.join(": ")
 
 function Headline({ className }: { className?: string }) {
   return (
-    <h3 className={`font-display font-semibold text-ink ${className ?? ""}`}>
+    <h3 className={`text-h3 text-ink ${className ?? ""}`}>
       {titleLead}:
       <br />
       <span className="text-primary italic">{titleTail}</span>
@@ -19,7 +19,7 @@ function Headline({ className }: { className?: string }) {
 
 function ResourceMeta() {
   return (
-    <p className="text-[11px] font-semibold tracking-[0.16em] text-arm-media-ink uppercase">
+    <p className="eyebrow text-arm-media-ink">
       Featured {FEATURED_RESOURCE.kind}
     </p>
   )
@@ -43,10 +43,10 @@ export function FeaturedResource() {
   return (
     <section className="section">
       <Reveal className="mx-auto mb-10 max-w-xl text-center md:mb-14">
-        <p className="font-display text-sm font-semibold tracking-[0.25em] text-primary uppercase">
+        <p className="eyebrow text-primary">
           Insights &amp; Resources
         </p>
-        <p className="mt-3 text-base text-body">
+        <p className="text-lead mt-3 text-body">
           Research, frameworks, and field notes from across the ecosystem —
           starting with our latest white paper.
         </p>
@@ -69,8 +69,8 @@ export function FeaturedResource() {
 
         <div className="absolute top-10 left-0 w-[38%] rounded-2xl bg-surface-card p-8 shadow-[0_25px_60px_-32px_rgba(37,24,39,0.35)] lg:p-9">
           <ResourceMeta />
-          <Headline className="mt-3 text-[1.65rem] leading-[1.15] lg:text-3xl" />
-          <p className="mt-4 text-sm text-body">{FEATURED_RESOURCE.description}</p>
+          <Headline className="mt-3" />
+          <p className="text-body-sm mt-4 text-body">{FEATURED_RESOURCE.description}</p>
           <ResourceCta />
         </div>
       </Reveal>
@@ -91,8 +91,8 @@ export function FeaturedResource() {
 
         <div className="relative z-10 -mt-10 mx-4 rounded-2xl bg-surface-card p-6 shadow-[0_20px_45px_-28px_rgba(37,24,39,0.35)]">
           <ResourceMeta />
-          <Headline className="mt-3 text-2xl leading-[1.15]" />
-          <p className="mt-3 text-sm text-body">{FEATURED_RESOURCE.description}</p>
+          <Headline className="mt-3" />
+          <p className="text-body-sm mt-3 text-body">{FEATURED_RESOURCE.description}</p>
           <ResourceCta />
         </div>
       </Reveal>
@@ -100,7 +100,7 @@ export function FeaturedResource() {
       <Reveal delay={0.05} className="mt-8 text-center md:mt-6 md:text-left">
         <Link
           href="/resources"
-          className="text-sm font-medium text-muted-ink transition-colors hover:text-primary"
+          className="text-body-sm font-medium text-muted-ink transition-colors hover:text-primary"
         >
           Explore all resources &rarr;
         </Link>

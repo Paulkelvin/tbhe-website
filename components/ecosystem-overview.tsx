@@ -23,10 +23,10 @@ export function EcosystemOverview() {
           <p className="eyebrow">One Founder, Three Arms</p>
           <span aria-hidden className="h-px w-8 bg-hairline-strong" />
         </div>
-        <h2 className="font-display mt-4 text-4xl font-semibold tracking-tight text-ink sm:text-5xl">
+        <h2 className="text-h1 mt-4 text-ink">
           The TBHE <span className="text-primary italic">Ecosystem</span>
         </h2>
-        <p className="mt-4 max-w-xl text-base text-body">
+        <p className="text-lead mt-4 max-w-xl text-body">
           Educational consulting, special education advocacy, and thought
           leadership — three distinct paths built on one mission.
         </p>

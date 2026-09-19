@@ -1,5 +1,5 @@
 import type { Metadata } from "next"
-import { Fraunces, Libre_Franklin } from "next/font/google"
+import { Cormorant_Garamond, Manrope } from "next/font/google"
 
 import "./globals.css"
 import { cn } from "@/lib/utils"
@@ -8,8 +8,8 @@ import { SiteFooter } from "@/components/site-footer"
 import { PageTransition } from "@/components/page-transition"
 import { SITE } from "@/lib/content"
 
-const fontSans = Libre_Franklin({ subsets: ["latin"], variable: "--font-sans" })
-const fontDisplay = Fraunces({
+const fontSans = Manrope({ subsets: ["latin"], variable: "--font-sans" })
+const fontDisplay = Cormorant_Garamond({
   subsets: ["latin"],
   variable: "--font-display",
   weight: ["500", "600"],

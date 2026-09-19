@@ -42,19 +42,19 @@ export function MissionHero({ arm, ctaHref }: { arm: Arm; ctaHref: string }) {
       <div className="relative z-10 mx-auto max-w-3xl px-6 py-20 text-center sm:px-8 lg:py-28">
         <span
           className={cn(
-            "inline-flex rounded-full bg-surface-card px-3 py-1 text-xs font-semibold tracking-wide",
+            "label inline-flex rounded-full bg-surface-card px-3 py-1",
             colors.text
           )}
         >
           {arm.kicker}
         </span>
-        <h1 className="font-display mt-5 text-4xl font-semibold tracking-tight text-ink sm:text-5xl">
+        <h1 className="text-h1 mt-5 text-ink">
           {arm.name}
         </h1>
-        <p className="mx-auto mt-5 max-w-2xl text-base text-body sm:text-lg">
+        <p className="text-lead mx-auto mt-5 max-w-2xl text-body">
           {arm.summary}
         </p>
-        <p className="mx-auto mt-3 max-w-2xl text-sm text-muted-ink">
+        <p className="text-body-sm mx-auto mt-3 max-w-2xl text-muted-ink">
           For: {arm.audience}
         </p>
         <div className="mt-8">

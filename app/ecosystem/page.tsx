@@ -42,19 +42,19 @@ export default function EcosystemPage() {
               <Reveal className="relative">
                 <p
                   className={cn(
-                    "relative text-[11px] font-semibold tracking-[0.2em] uppercase",
+                    "eyebrow relative",
                     consultingColors.text
                   )}
                 >
                   {consulting.kicker}
                 </p>
-                <h2 className="font-display relative mt-3 text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
+                <h2 className="text-h2 relative mt-3 text-ink">
                   {consulting.name}
                 </h2>
-                <p className="relative mt-4 max-w-md text-base text-body">
+                <p className="text-lead relative mt-4 max-w-md text-body">
                   {consulting.summary}
                 </p>
-                <p className="relative mt-4 text-sm text-muted-ink">
+                <p className="text-body-sm relative mt-4 text-muted-ink">
                   Serves: {consulting.audience}
                 </p>
                 <Link
@@ -74,7 +74,7 @@ export default function EcosystemPage() {
               </Reveal>
 
               <Reveal delay={0.08} className="border-l-2 border-arm-consulting/40 pl-6">
-                <p className="text-[11px] font-semibold tracking-[0.16em] text-muted-ink uppercase">
+                <p className="eyebrow text-muted-ink">
                   What it does
                 </p>
                 <ul className="mt-3 flex flex-col gap-2.5 text-sm text-body">
@@ -92,7 +92,7 @@ export default function EcosystemPage() {
           <div className="mx-auto max-w-6xl px-6 pl-14 sm:px-8 sm:pl-8">
             <div className="grid gap-8 lg:grid-cols-2 lg:items-center lg:gap-16">
               <Reveal delay={0.08} className="order-2 border-l-2 border-arm-mission/40 pl-6 lg:order-1">
-                <p className="text-[11px] font-semibold tracking-[0.16em] text-muted-ink uppercase">
+                <p className="eyebrow text-muted-ink">
                   What it does
                 </p>
                 <ul className="mt-3 flex flex-col gap-2.5 text-sm text-body">
@@ -105,19 +105,19 @@ export default function EcosystemPage() {
               <Reveal className="relative order-1 lg:order-2 lg:text-right">
                 <p
                   className={cn(
-                    "relative text-[11px] font-semibold tracking-[0.2em] uppercase",
+                    "eyebrow relative",
                     missionColors.text
                   )}
                 >
                   {mission.kicker}
                 </p>
-                <h2 className="font-display relative mt-3 text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
+                <h2 className="text-h2 relative mt-3 text-ink">
                   {mission.name}
                 </h2>
-                <p className="relative mt-4 max-w-md text-base text-body lg:ml-auto">
+                <p className="text-lead relative mt-4 max-w-md text-body lg:ml-auto">
                   {mission.summary}
                 </p>
-                <p className="relative mt-4 text-sm text-muted-ink">
+                <p className="text-body-sm relative mt-4 text-muted-ink">
                   Serves: {mission.audience}
                 </p>
                 <Link
@@ -146,19 +146,19 @@ export default function EcosystemPage() {
               <Reveal className="relative">
                 <p
                   className={cn(
-                    "relative text-[11px] font-semibold tracking-[0.2em] uppercase",
+                    "eyebrow relative",
                     mediaColors.text
                   )}
                 >
                   {media.kicker}
                 </p>
-                <h2 className="font-display relative mt-3 text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
+                <h2 className="text-h2 relative mt-3 text-ink">
                   {media.name}
                 </h2>
-                <p className="relative mt-4 max-w-md text-base text-body">
+                <p className="text-lead relative mt-4 max-w-md text-body">
                   {media.summary}
                 </p>
-                <p className="relative mt-4 text-sm text-muted-ink">
+                <p className="text-body-sm relative mt-4 text-muted-ink">
                   Serves: {media.audience}
                 </p>
                 <Link
@@ -178,7 +178,7 @@ export default function EcosystemPage() {
               </Reveal>
 
               <Reveal delay={0.08} className="border-l-2 border-arm-media/40 pl-6">
-                <p className="text-[11px] font-semibold tracking-[0.16em] text-muted-ink uppercase">
+                <p className="eyebrow text-muted-ink">
                   What it does
                 </p>
                 <ul className="mt-3 flex flex-col gap-2.5 text-sm text-body">
@@ -254,10 +254,10 @@ export default function EcosystemPage() {
 
         <Reveal className="relative mx-auto max-w-2xl px-6 text-center sm:px-8 lg:absolute lg:inset-0 lg:flex lg:flex-col lg:items-center lg:justify-center">
           <div className="lg:rounded-full lg:bg-canvas/85 lg:px-12 lg:py-8 lg:backdrop-blur-[2px]">
-            <p className="text-[11px] font-semibold tracking-[0.2em] text-muted-ink uppercase">
+            <p className="eyebrow text-muted-ink">
               TBHE
             </p>
-            <p className="font-display mt-4 text-2xl font-medium text-ink italic sm:text-3xl lg:mt-3">
+            <p className="text-quote mt-4 text-ink lg:mt-3">
               {SITE.tagline}
             </p>
           </div>

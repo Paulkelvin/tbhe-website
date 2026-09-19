@@ -18,7 +18,7 @@ export function SiteHeader() {
   return (
     <header className="sticky top-0 z-50 border-b border-hairline bg-canvas/90 backdrop-blur">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6 sm:px-8">
-        <Link href="/" className="font-display text-base font-semibold tracking-tight text-ink">
+        <Link href="/" className="font-display text-lg font-semibold tracking-tight text-ink">
           {SITE.shortName}
         </Link>
 
@@ -88,7 +88,7 @@ export function SiteHeader() {
                 <Link
                   href="/contact"
                   onClick={() => setOpen(false)}
-                  className="mt-2 rounded-full bg-primary px-4 py-2 text-center text-sm font-medium text-primary-foreground transition-opacity duration-200 hover:opacity-90"
+                  className="mt-2 rounded-full bg-primary px-4 py-2 text-center text-sm font-semibold tracking-[0.01em] text-primary-foreground transition-opacity duration-200 hover:opacity-90"
                 >
                   Get in Touch
                 </Link>

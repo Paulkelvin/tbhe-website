@@ -37,13 +37,13 @@ export function Hero() {
           {/* Content */}
           <div className="relative z-20 flex flex-col justify-center py-4 text-center lg:py-24 lg:text-left">
             <p className="eyebrow">{SITE.name}</p>
-            <h1 className="font-display mt-5 text-5xl leading-[1.03] font-semibold tracking-tight text-primary sm:text-6xl lg:text-7xl">
+            <h1 className="text-display mt-5 text-primary">
               {SITE.taglineLead}
             </h1>
-            <p className="mt-2 text-xl font-medium text-body-strong sm:text-2xl">
+            <p className="text-h3 mt-2 text-body-strong">
               {SITE.taglineSub}
             </p>
-            <p className="mx-auto mt-5 max-w-md text-sm text-body lg:mx-0">
+            <p className="text-lead mx-auto mt-5 max-w-md text-body lg:mx-0">
               {SITE.description}
             </p>
 
@@ -128,7 +128,7 @@ export function Hero() {
               key={arm.slug}
               href={`/ecosystem/${arm.slug}`}
               className={cn(
-                "relative text-[11px] font-semibold tracking-[0.16em] uppercase transition-opacity hover:opacity-70 sm:text-xs",
+                "eyebrow relative transition-opacity hover:opacity-70",
                 "sm:before:absolute sm:before:top-1/2 sm:before:-left-5 sm:before:h-3 sm:before:w-px sm:before:-translate-y-1/2 sm:before:bg-hairline-strong sm:before:content-['']",
                 index === 0 && "sm:before:hidden",
                 ARM_COLOR_CLASS[arm.color].text

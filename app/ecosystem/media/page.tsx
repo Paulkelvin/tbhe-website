@@ -46,10 +46,10 @@ export default function MediaPage() {
           <div className="absolute inset-0 bg-gradient-to-t from-ink/95 from-0% via-ink/80 via-55% to-transparent to-95%" />
           <div className="absolute inset-x-0 bottom-0">
             <div className="mx-auto max-w-6xl px-6 pb-10 sm:px-8 sm:pb-14">
-              <p className="text-xs font-semibold tracking-[0.2em] text-arm-media uppercase">
+              <p className="eyebrow text-arm-media">
                 Speaking &amp; Events
               </p>
-              <h2 className="font-display mt-3 max-w-2xl text-3xl font-semibold tracking-tight text-canvas sm:text-5xl">
+              <h2 className="text-h1 mt-3 max-w-2xl text-canvas">
                 Keynotes that don&apos;t play it safe
               </h2>
             </div>
@@ -60,7 +60,7 @@ export default function MediaPage() {
           <div className="grid gap-12 lg:grid-cols-[1.3fr_1fr] lg:gap-16">
             <Reveal>
               <p className="eyebrow text-arm-media-ink">01 &mdash; Speaker Bureau</p>
-              <p className="mt-4 max-w-xl text-base text-body">
+              <p className="text-lead mt-4 max-w-xl text-body">
                 {MEDIA_OFFERINGS[1].description}
               </p>
               <div className="mt-8 divide-y divide-hairline border-t border-hairline">
@@ -69,7 +69,7 @@ export default function MediaPage() {
                     <span className="font-display text-sm text-muted-ink">
                       0{index + 1}
                     </span>
-                    <h3 className="font-display text-xl font-semibold text-ink sm:text-2xl">
+                    <h3 className="text-h3 text-ink">
                       {topic}
                     </h3>
                   </div>
@@ -79,17 +79,17 @@ export default function MediaPage() {
 
             <Reveal delay={0.05} className="lg:border-l lg:border-hairline lg:pl-16">
               <p className="eyebrow text-muted-ink">02 &mdash; Disrupt &amp; Connect</p>
-              <p className="mt-4 text-sm text-body">
+              <p className="text-body-sm mt-4 text-body">
                 {MEDIA_OFFERINGS[2].description}
               </p>
               <div className="mt-6 border-t border-hairline pt-6">
-                <p className="text-[11px] font-semibold tracking-[0.16em] text-arm-media-ink uppercase">
+                <p className="eyebrow text-arm-media-ink">
                   {mixerEvent.type}
                 </p>
-                <h3 className="font-display mt-2 text-lg font-semibold text-ink">
+                <h3 className="text-h3 mt-2 text-ink">
                   {mixerEvent.title}
                 </h3>
-                <p className="mt-2 text-sm text-body">{mixerEvent.description}</p>
+                <p className="text-body-sm mt-2 text-body">{mixerEvent.description}</p>
               </div>
               <Link
                 href="/events"
@@ -132,15 +132,15 @@ export default function MediaPage() {
         <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:items-start">
           <Reveal>
             <p className="eyebrow text-arm-media-ink">Booking</p>
-            <h2 className="font-display mt-3 text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
+            <h2 className="text-h2 mt-3 text-ink">
               Request a speaker booking
             </h2>
-            <p className="mt-4 max-w-sm text-base text-body">
+            <p className="text-lead mt-4 max-w-sm text-body">
               Share a few details about your event and we&apos;ll follow up
               with availability.
             </p>
             <div className="mt-8 flex flex-col gap-2 border-t border-hairline pt-6">
-              <p className="text-xs font-semibold tracking-[0.16em] text-muted-ink uppercase">
+              <p className="eyebrow text-muted-ink">
                 Available Topics
               </p>
               {speakingTopics.map((topic) => (

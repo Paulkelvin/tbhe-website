@@ -18,10 +18,10 @@ export function PublicationInterface() {
   return (
     <div className="relative mx-auto w-full max-w-xl">
       <div className="absolute -top-12 -right-4 w-40 rounded-md border border-hairline bg-surface-card p-4 shadow-[0_20px_45px_-28px_rgba(37,24,39,0.4)] sm:-top-16 sm:-right-9 sm:w-56 sm:p-5">
-        <p className="text-[9px] font-semibold tracking-[0.14em] text-arm-media-ink uppercase sm:text-[10px]">
+        <p className="eyebrow text-[9px] text-arm-media-ink sm:text-[10px]">
           {secondary.kind}
         </p>
-        <p className="font-display mt-1.5 text-xs leading-snug font-semibold text-ink sm:mt-2 sm:text-sm">
+        <p className="text-h3-alt mt-1.5 text-[0.7rem] leading-snug text-ink sm:mt-2 sm:text-xs">
           {secondary.title}
         </p>
       </div>
@@ -31,7 +31,7 @@ export function PublicationInterface() {
         className="absolute -bottom-5 -left-5 hidden h-28 w-8 items-center justify-center rounded-sm bg-primary sm:flex"
       >
         <span
-          className="text-[10px] font-semibold tracking-[0.16em] text-canvas uppercase"
+          className="eyebrow text-[10px] text-canvas"
           style={{ writingMode: "vertical-rl" }}
         >
           {spine.kind}
@@ -40,19 +40,19 @@ export function PublicationInterface() {
 
       <div className="relative rounded-lg border border-hairline bg-surface-card p-7 shadow-[0_35px_70px_-32px_rgba(37,24,39,0.45)] sm:p-10">
         <div className="flex items-center justify-between border-b border-hairline pb-4">
-          <p className="text-[11px] font-semibold tracking-[0.2em] text-muted-ink uppercase">
+          <p className="eyebrow text-muted-ink">
             Resource Center
           </p>
           <span aria-hidden className="h-1.5 w-1.5 rounded-full bg-arm-media" />
         </div>
 
-        <p className="mt-6 text-[11px] font-semibold tracking-[0.16em] text-arm-media-ink uppercase">
+        <p className="eyebrow mt-6 text-arm-media-ink">
           {FEATURED_RESOURCE.kind}
         </p>
-        <h3 className="font-display mt-3 text-2xl font-semibold text-ink sm:text-3xl">
+        <h3 className="text-h3 mt-3 text-ink">
           {FEATURED_RESOURCE.title}
         </h3>
-        <p className="mt-4 text-sm text-body">{FEATURED_RESOURCE.description}</p>
+        <p className="text-body-sm mt-4 text-body">{FEATURED_RESOURCE.description}</p>
 
         <Link
           href="/resources"

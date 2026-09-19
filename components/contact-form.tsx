@@ -43,8 +43,8 @@ export function ContactForm() {
   if (submitted) {
     return (
       <div className="rounded-2xl border border-hairline bg-surface-card p-8 text-center">
-        <p className="text-lg font-semibold text-ink">Thank you for reaching out.</p>
-        <p className="mt-2 text-sm text-body">
+        <p className="text-h3 text-ink">Thank you for reaching out.</p>
+        <p className="text-body-sm mt-2 text-body">
           Your message has been received. Someone from the TBHE team will
           follow up soon.
         </p>
@@ -109,7 +109,7 @@ export function ContactForm() {
       </Field>
 
       {error ? (
-        <p className="text-sm text-red-700">
+        <p className="text-body-sm text-red-700">
           Something went wrong sending your message. Please try again, or
           email us directly.
         </p>
@@ -139,11 +139,11 @@ function Field({
   children: React.ReactNode
 }) {
   return (
-    <label htmlFor={htmlFor} className="grid gap-1.5 text-sm">
+    <label htmlFor={htmlFor} className="grid gap-1.5">
       <span className="flex items-baseline gap-2">
-        <span className="font-medium text-ink">{label}</span>
+        <span className="label text-ink">{label}</span>
         {hint ? (
-          <span className="font-display text-sm text-primary/70 italic">
+          <span className="text-quote text-[0.9375rem] text-primary/70">
             {hint}
           </span>
         ) : null}

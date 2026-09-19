@@ -35,13 +35,13 @@ export function CtaBanner({
       {decoration}
 
       <Reveal className="relative mx-auto flex max-w-4xl flex-col items-center gap-6 px-6 py-20 text-center sm:px-8">
-        <p className="text-xs font-semibold tracking-[0.18em] text-canvas/60 uppercase">
+        <p className="eyebrow text-canvas/60">
           {eyebrow}
         </p>
-        <h2 className="font-display text-3xl font-semibold tracking-tight text-canvas sm:text-4xl">
+        <h2 className="text-h2 text-canvas">
           {title}
         </h2>
-        <p className="max-w-xl text-base text-canvas/75">{description}</p>
+        <p className="text-lead max-w-xl text-canvas/75">{description}</p>
         <div className="mt-2 flex flex-wrap justify-center gap-3">
           <Button asChild size="lg" className="duration-300 hover:-translate-y-0.5">
             <Link href={primary.href}>{primary.label}</Link>

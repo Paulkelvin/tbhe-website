@@ -84,7 +84,7 @@ export default function ConsultingPage() {
             <Reveal delay={0.1} className="flex flex-col gap-8 lg:pt-2">
               {secondaryModules.map((mod) => (
                 <div key={mod.title}>
-                  <h3 className="font-display text-xl font-semibold text-ink">
+                  <h3 className="text-h3 text-ink">
                     {mod.title}
                   </h3>
                   <HandDrawnStroke
@@ -94,7 +94,7 @@ export default function ConsultingPage() {
                     strokeWidth={1.6}
                     viewBox="0 0 40 8"
                   />
-                  <p className="mt-3 text-sm text-body">{mod.description}</p>
+                  <p className="text-body-sm mt-3 text-body">{mod.description}</p>
                 </div>
               ))}
             </Reveal>
@@ -125,10 +125,10 @@ export default function ConsultingPage() {
                     ) : null}
                   </div>
                   <div className={index < arr.length - 1 ? "pb-6" : ""}>
-                    <h3 className="font-display text-base font-semibold text-ink">
+                    <h3 className="text-h3-alt text-ink">
                       {step.title}
                     </h3>
-                    <p className="mt-1 text-sm text-body">{step.description}</p>
+                    <p className="text-body-sm mt-1 text-body">{step.description}</p>
                   </div>
                 </div>
               ))}

@@ -18,7 +18,7 @@ export function TestimonialSection() {
         <PaperGrain className="opacity-40 mix-blend-multiply" />
         <div className="relative">
           <Quotes size={36} weight="fill" className="mx-auto text-muted-soft" />
-          <p className="font-display mt-4 text-xl text-muted-ink italic">
+          <p className="text-quote mt-4 text-muted-ink">
             &quot;[Placeholder — add a real quote here. A specific outcome
             from a school leader, parent, or partner will land stronger than
             a general compliment.]&quot;

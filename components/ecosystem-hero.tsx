@@ -16,12 +16,12 @@ export function EcosystemHero() {
         <p className="eyebrow text-primary">The Ecosystem</p>
 
         {/* Mobile / tablet: the typographic lockup. */}
-        <div className="mt-5 leading-[0.95] lg:hidden">
-          <span className="font-display block text-5xl font-semibold tracking-tight text-ink sm:text-7xl">
+        <div className="mt-5 lg:hidden">
+          <span className="text-display block text-ink">
             Three Arms
           </span>
           <span className="mt-1 flex items-center justify-center gap-3 sm:gap-4">
-            <span className="font-display text-5xl font-semibold tracking-tight text-primary italic sm:text-7xl">
+            <span className="text-display text-primary italic">
               One Mission
             </span>
           </span>
@@ -32,7 +32,7 @@ export function EcosystemHero() {
           </span>
         </div>
 
-        <p className="mx-auto mt-8 max-w-xl text-base text-body sm:text-lg lg:mt-6">
+        <p className="text-lead mx-auto mt-8 max-w-xl text-body lg:mt-6">
           Consulting for schools, advocacy for families, and thought
           leadership for the field — each built to stand on its own and
           stronger together.
@@ -74,38 +74,38 @@ export function EcosystemHero() {
         </svg>
 
         <div className="absolute top-[9%] left-[6%] max-w-[15rem] text-left xl:left-[9%]">
-          <p className="text-[11px] font-semibold tracking-[0.2em] text-arm-consulting uppercase">
+          <p className="eyebrow text-arm-consulting">
             01
           </p>
-          <p className="font-display mt-1.5 text-xl font-semibold text-ink">
+          <p className="text-h3 mt-1.5 text-ink">
             {consulting.name}
           </p>
         </div>
 
         <div className="absolute top-[9%] right-[6%] max-w-[15rem] text-right xl:right-[9%]">
-          <p className="text-[11px] font-semibold tracking-[0.2em] text-arm-mission-ink uppercase">
+          <p className="eyebrow text-arm-mission-ink">
             02
           </p>
-          <p className="font-display mt-1.5 text-xl font-semibold text-ink">
+          <p className="text-h3 mt-1.5 text-ink">
             {mission.name}
           </p>
         </div>
 
         <div className="absolute bottom-[7%] left-1/2 max-w-[15rem] -translate-x-1/2 text-center">
-          <p className="text-[11px] font-semibold tracking-[0.2em] text-arm-media-ink uppercase">
+          <p className="eyebrow text-arm-media-ink">
             03
           </p>
-          <p className="font-display mt-1.5 text-xl font-semibold text-ink">
+          <p className="text-h3 mt-1.5 text-ink">
             {media.name}
           </p>
         </div>
 
         <div className="absolute top-[63%] left-1/2 -translate-x-1/2 -translate-y-1/2 text-center">
           <div className="rounded-full bg-canvas/85 px-10 py-7 backdrop-blur-[2px]">
-            <p className="text-[11px] font-semibold tracking-[0.22em] text-muted-ink uppercase">
+            <p className="eyebrow text-muted-ink">
               TBHE
             </p>
-            <p className="font-display mt-2 text-3xl font-semibold text-ink italic xl:text-4xl">
+            <p className="text-h2 mt-2 text-ink italic">
               One Mission
             </p>
           </div>

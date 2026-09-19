@@ -48,7 +48,7 @@ export function ArmCard({ arm, index }: { arm: Arm; index?: number }) {
 
         <span
           className={cn(
-            "mt-5 inline-flex rounded-full px-3 py-1 text-xs font-semibold tracking-wide",
+            "label mt-5 inline-flex rounded-full px-3 py-1",
             colors.softBg,
             colors.text
           )}
@@ -56,8 +56,8 @@ export function ArmCard({ arm, index }: { arm: Arm; index?: number }) {
           {arm.kicker}
         </span>
 
-        <h3 className="font-display mt-4 text-xl font-semibold text-ink lg:text-2xl">{arm.name}</h3>
-        <p className="mt-3 text-sm text-body lg:text-base">{arm.summary}</p>
+        <h3 className="text-h3 mt-4 text-ink">{arm.name}</h3>
+        <p className="text-body-sm mt-3 text-body">{arm.summary}</p>
       </div>
 
       <div

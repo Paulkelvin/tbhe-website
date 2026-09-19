@@ -34,7 +34,7 @@ export default function ResourcesPage() {
               {kinds.map((kind) => (
                 <span
                   key={kind}
-                  className="text-xs font-semibold tracking-[0.16em] text-muted-ink uppercase"
+                  className="eyebrow text-muted-ink"
                 >
                   {kind}s
                 </span>
@@ -46,7 +46,7 @@ export default function ResourcesPage() {
                   {index > 0 ? (
                     <span aria-hidden className="h-1 w-1 rounded-full bg-hairline-strong" />
                   ) : null}
-                  <span className="text-xs font-semibold tracking-[0.16em] text-muted-ink uppercase">
+                  <span className="eyebrow text-muted-ink">
                     {kind}s
                   </span>
                 </span>
@@ -57,13 +57,13 @@ export default function ResourcesPage() {
           {/* Featured — an open-spread treatment, not a card: a spine-like
               rule instead of a bounding box. */}
           <Reveal className="relative mt-14 border-l-2 border-primary/70 pl-6 sm:mt-16 sm:pl-10">
-            <p className="text-[11px] font-semibold tracking-[0.18em] text-primary uppercase">
+            <p className="eyebrow text-primary">
               Featured &middot; {FEATURED_RESOURCE.kind}
             </p>
-            <h2 className="font-display mt-3 max-w-2xl text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
+            <h2 className="text-h2 mt-3 max-w-2xl text-ink">
               {FEATURED_RESOURCE.title}
             </h2>
-            <p className="mt-4 max-w-xl text-base text-body">
+            <p className="text-lead mt-4 max-w-xl text-body">
               {FEATURED_RESOURCE.description}
             </p>
             <span className="group mt-6 inline-flex w-fit items-center gap-1.5 text-sm font-semibold text-primary">
@@ -84,13 +84,13 @@ export default function ResourcesPage() {
                 className="flex flex-col gap-3 py-7 sm:flex-row sm:items-baseline sm:justify-between sm:gap-8"
               >
                 <div className="sm:max-w-xl">
-                  <p className="text-[11px] font-semibold tracking-[0.16em] text-muted-ink uppercase">
+                  <p className="eyebrow text-muted-ink">
                     {resource.kind}
                   </p>
-                  <h3 className="font-display mt-1.5 text-xl font-semibold text-ink">
+                  <h3 className="text-h3 mt-1.5 text-ink">
                     {resource.title}
                   </h3>
-                  <p className="mt-2 text-sm text-body">{resource.description}</p>
+                  <p className="text-body-sm mt-2 text-body">{resource.description}</p>
                 </div>
                 <span className="shrink-0 text-sm font-semibold text-primary sm:pl-4">
                   {actionLabel(resource.kind)} &rarr;
