@@ -139,16 +139,6 @@ export default function MediaPage() {
               Share a few details about your event and we&apos;ll follow up
               with availability.
             </p>
-            <div className="mt-8 flex flex-col gap-2 border-t border-hairline pt-6">
-              <p className="eyebrow text-muted-ink">
-                Available Topics
-              </p>
-              {speakingTopics.map((topic) => (
-                <p key={topic} className="font-display text-base text-ink">
-                  {topic}
-                </p>
-              ))}
-            </div>
           </Reveal>
           <Reveal delay={0.05}>
             <SpeakerBookingForm />
