@@ -50,7 +50,7 @@ export function NewsletterForm() {
         required
         placeholder="you@school.org"
         aria-label="Email address"
-        className="w-full rounded-full border border-hairline-strong bg-surface-card px-4 py-2 text-sm text-ink placeholder:text-muted-soft focus:outline-none focus-visible:ring-[3px] focus-visible:ring-ring/50"
+        className="w-full rounded-full border border-hairline-strong bg-surface-card px-4 py-2 text-base text-ink placeholder:text-muted-soft focus:outline-none focus-visible:ring-[3px] focus-visible:ring-ring/50"
       />
       <Button type="submit" disabled={submitting} className="shrink-0">
         {submitting ? "Subscribing…" : "Subscribe"}

@@ -65,10 +65,11 @@
 }
 
 :root {
-  /* Brand accent: plum, used for the Consulting arm + primary CTAs */
-  --primary: #5b2a73;
+  /* Brand accent: the exact plum from the official TBHE logo, used for the
+     Consulting arm + primary CTAs. */
+  --primary: #763d8e;
   --primary-foreground: #ffffff;
-  --primary-active: #45204f;
+  --primary-active: #552c66;
   --on-primary: #ffffff;
 
   /* Surfaces: warm cream canvas, never pure white */
@@ -87,15 +88,16 @@
   --muted-ink: #7a6e7e;
   --muted-soft: #ada2ab;
 
-  /* One accent per ecosystem arm */
-  --arm-consulting: #5b2a73;
-  --arm-mission: #2f8f5b;
+  /* One accent per ecosystem arm. Consulting uses the exact logo plum;
+     Mission uses the exact logo green. */
+  --arm-consulting: #763d8e;
+  --arm-mission: #a4d15c;
   --arm-media: #c4862c;
 
   /* Darker text-safe variants of the mission/media accents — the bright
      brand tones above read fine as fills/icons but fall short of WCAG AA
      contrast at small text sizes, so labels and links use these instead. */
-  --arm-mission-ink: #2a8152;
+  --arm-mission-ink: #557521;
   --arm-media-ink: #996822;
 
   --success: #1f8a65;
@@ -240,8 +242,11 @@
   .font-display {
     font-family: var(--font-display);
   }
+  /* text-base (16px), not text-sm — iOS Safari auto-zooms the viewport on
+     focus for any input under 16px, which felt like the page "jumping" on
+     every field tap. */
   .form-input {
-    @apply w-full rounded-lg border border-hairline-strong bg-canvas px-3.5 py-2.5 text-sm text-ink placeholder:text-muted-soft focus:outline-none focus-visible:ring-[3px] focus-visible:ring-ring/50;
+    @apply w-full rounded-lg border border-hairline-strong bg-canvas px-3.5 py-2.5 text-base text-ink placeholder:text-muted-soft focus:outline-none focus-visible:ring-[3px] focus-visible:ring-ring/50;
   }
 
   /* Legal/long-form content — conservative sizing, but drawn from the same

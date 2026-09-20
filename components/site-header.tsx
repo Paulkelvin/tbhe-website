@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import Image from "next/image"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { List, X } from "@phosphor-icons/react"
@@ -18,8 +19,15 @@ export function SiteHeader() {
   return (
     <header className="sticky top-0 z-50 border-b border-hairline bg-canvas/90 backdrop-blur">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6 sm:px-8">
-        <Link href="/" className="font-display text-lg font-semibold tracking-tight text-ink">
-          {SITE.shortName}
+        <Link href="/" className="shrink-0">
+          <Image
+            src="/images/tbhe-logo.png"
+            alt={SITE.name}
+            width={972}
+            height={631}
+            priority
+            className="h-10 w-auto rounded-md sm:h-11"
+          />
         </Link>
 
         <nav className="hidden items-center gap-6 text-sm text-body md:flex">

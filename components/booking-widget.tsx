@@ -13,8 +13,8 @@ export function BookingWidget() {
       cal("ui", {
         theme: "light",
         cssVarsPerTheme: {
-          light: { "cal-brand": "#5b2a73" },
-          dark: { "cal-brand": "#5b2a73" },
+          light: { "cal-brand": "#763d8e" },
+          dark: { "cal-brand": "#763d8e" },
         },
         hideEventTypeDetails: false,
         layout: "month_view",
