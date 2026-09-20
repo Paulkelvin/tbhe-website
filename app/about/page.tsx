@@ -7,13 +7,13 @@ import { SectionHeading } from "@/components/section-heading"
 import { CtaBanner } from "@/components/cta-banner"
 import { Reveal } from "@/components/reveal"
 import { ArtDefs, HandDrawnStroke, OrganicBlob } from "@/components/organic-art"
+import { SITE } from "@/lib/content"
 
 export const metadata: Metadata = {
   title: "About — The Beautifully Human Educator",
 }
 
-const COLLAGE_ALT =
-  "A curated arrangement of education books (Special Education, Inclusive Classrooms, Education Leadership), an open notebook reading 'Educate, Advocate, Empower, Include, Change Lives,' a coffee mug reading 'A More Inclusive Tomorrow, Together,' handwritten notes, and a photo of books and plants — objects from the founder's classroom-to-ecosystem journey"
+const COLLAGE_ALT = `A curated arrangement of education books (Special Education, Inclusive Classrooms, Education Leadership), an open notebook reading 'Educate, Advocate, Empower, Include, Change Lives,' a coffee mug reading 'A More Inclusive Tomorrow, Together,' handwritten notes, and a photo of books and plants — objects from ${SITE.founderName}'s classroom-to-ecosystem journey`
 
 export default function AboutPage() {
   return (
@@ -43,12 +43,13 @@ export default function AboutPage() {
           <Reveal className="relative z-10 lg:max-w-md">
             <SectionHeading eyebrow="Founder Story" title="From the classroom to the ecosystem" />
             <p className="mt-5 text-base text-body">
-              Years spent teaching across K-8 and high school revealed the
-              same pattern again and again: early-career teachers burning
-              out, neurodivergent students falling through the cracks of
-              under-resourced systems, and a wider field starved for honest
-              thought leadership. TBHE was built to respond to all three, at
-              once, without pretending they&apos;re separate problems.
+              {SITE.founderName}&apos;s years teaching across K-8 and high
+              school revealed the same pattern again and again: early-career
+              teachers burning out, neurodivergent students falling through
+              the cracks of under-resourced systems, and a wider field
+              starved for honest thought leadership. TBHE was built to
+              respond to all three, at once, without pretending
+              they&apos;re separate problems.
             </p>
           </Reveal>
 
@@ -124,6 +125,53 @@ export default function AboutPage() {
               viewBox="0 0 100 8"
             />
           </div>
+        </Reveal>
+      </section>
+
+      {/* A Personal Note — a longer, personal endorsement rather than a
+          short client pull-quote, so it gets its own quiet card treatment
+          instead of the homepage testimonial's paper-clip styling. */}
+      <section className="section relative overflow-hidden">
+        <Reveal className="relative mx-auto max-w-2xl rounded-2xl border border-hairline bg-surface-card p-8 shadow-[0_18px_40px_-26px_rgba(37,24,39,0.15)] sm:p-12">
+          <p className="eyebrow text-center text-primary">A Personal Note</p>
+          <div className="mt-6 space-y-4 text-base text-body">
+            <p>
+              {SITE.name} is the standard of excellence when it comes to
+              educational leadership, professional development, and
+              supporting the diverse needs of students, families, and school
+              communities. {SITE.founderName} brings a rare combination of
+              expertise, authenticity, compassion, and vision that
+              immediately sets her apart.
+            </p>
+            <p>
+              Whether you are a teacher seeking growth, a school leader
+              striving to strengthen your culture, an organization looking
+              to create meaningful impact, or a parent advocating for the
+              best outcomes for your child, you can expect a transformative
+              experience. {SITE.founderName}&apos;s ability to connect
+              people, develop leaders, and champion students — especially
+              those with unique learning needs — is truly exceptional.
+            </p>
+            <p>
+              What makes {SITE.name} special is that the work never loses
+              sight of the people it serves. Every strategy, conversation,
+              and partnership is rooted in the belief that students,
+              families, and educators deserve to be seen, valued, and
+              empowered to succeed.
+            </p>
+            <p>
+              I wholeheartedly recommend {SITE.name} to schools, districts,
+              educational organizations, community leaders, and anyone
+              committed to creating better outcomes for children. If you are
+              looking for a trusted partner who delivers both excellence and
+              impact, this is the organization to choose. The difference
+              being made in the lives of students, parents, educators, and
+              leaders is both meaningful and lasting.
+            </p>
+          </div>
+          <p className="label mt-6 text-center text-muted-ink">
+            — Her husband
+          </p>
         </Reveal>
       </section>
 

@@ -6,8 +6,7 @@ import { ArtDefs, OrganicBlob, OrganicOutline } from "@/components/organic-art"
 import { cn } from "@/lib/utils"
 import { ARM_COLOR_CLASS, ARMS, SITE } from "@/lib/content"
 
-const FOUNDER_ALT =
-  "Founder of The Beautifully Human Educator, laughing and gesturing warmly in a green blazer"
+const FOUNDER_ALT = `${SITE.founderName}, founder of The Beautifully Human Educator, laughing and gesturing warmly in a green blazer`
 
 export function Hero() {
   return (

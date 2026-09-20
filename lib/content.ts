@@ -3,6 +3,7 @@
 export const SITE = {
   name: "The Beautifully Human Educator",
   shortName: "TBHE",
+  founderName: "Cyrkle Brent",
   tagline: "Liberating educators. Advocating for neurodiverse learners.",
   taglineLead: "Liberating educators.",
   taglineSub: "Advocating for neurodiverse learners.",
