@@ -7,6 +7,7 @@ import { SectionHeading } from "@/components/section-heading"
 import { CtaBanner } from "@/components/cta-banner"
 import { Reveal } from "@/components/reveal"
 import { ArtDefs, HandDrawnStroke, OrganicBlob } from "@/components/organic-art"
+import { ReadMore } from "@/components/read-more"
 import { SITE } from "@/lib/content"
 
 export const metadata: Metadata = {
@@ -134,44 +135,47 @@ export default function AboutPage() {
       <section className="section relative overflow-hidden">
         <Reveal className="relative mx-auto max-w-2xl rounded-2xl border border-hairline bg-surface-card p-8 shadow-[0_18px_40px_-26px_rgba(37,24,39,0.15)] sm:p-12">
           <p className="eyebrow text-center text-primary">A Personal Note</p>
-          <div className="mt-6 space-y-4 text-base text-body">
-            <p>
-              {SITE.name} is the standard of excellence when it comes to
-              educational leadership, professional development, and
-              supporting the diverse needs of students, families, and school
-              communities. {SITE.founderName} brings a rare combination of
-              expertise, authenticity, compassion, and vision that
-              immediately sets her apart.
-            </p>
-            <p>
-              Whether you are a teacher seeking growth, a school leader
-              striving to strengthen your culture, an organization looking
-              to create meaningful impact, or a parent advocating for the
-              best outcomes for your child, you can expect a transformative
-              experience. {SITE.founderName}&apos;s ability to connect
-              people, develop leaders, and champion students — especially
-              those with unique learning needs — is truly exceptional.
-            </p>
-            <p>
-              What makes {SITE.name} special is that the work never loses
-              sight of the people it serves. Every strategy, conversation,
-              and partnership is rooted in the belief that students,
-              families, and educators deserve to be seen, valued, and
-              empowered to succeed.
-            </p>
-            <p>
-              I wholeheartedly recommend {SITE.name} to schools, districts,
-              educational organizations, community leaders, and anyone
-              committed to creating better outcomes for children. If you are
-              looking for a trusted partner who delivers both excellence and
-              impact, this is the organization to choose. The difference
-              being made in the lives of students, parents, educators, and
-              leaders is both meaningful and lasting.
-            </p>
+          <div className="mt-6 flex flex-col items-start gap-4 text-base text-body">
+            <ReadMore>
+              {[
+                <p key="1">
+                  {SITE.name} is the standard of excellence when it comes to
+                  educational leadership, professional development, and
+                  supporting the diverse needs of students, families, and
+                  school communities. {SITE.founderName} brings a rare
+                  combination of expertise, authenticity, compassion, and
+                  vision that immediately sets her apart.
+                </p>,
+                <p key="2">
+                  Whether you are a teacher seeking growth, a school leader
+                  striving to strengthen your culture, an organization
+                  looking to create meaningful impact, or a parent
+                  advocating for the best outcomes for your child, you can
+                  expect a transformative experience.{" "}
+                  {SITE.founderName}&apos;s ability to connect people,
+                  develop leaders, and champion students — especially those
+                  with unique learning needs — is truly exceptional.
+                </p>,
+                <p key="3">
+                  What makes {SITE.name} special is that the work never
+                  loses sight of the people it serves. Every strategy,
+                  conversation, and partnership is rooted in the belief that
+                  students, families, and educators deserve to be seen,
+                  valued, and empowered to succeed.
+                </p>,
+                <p key="4">
+                  I wholeheartedly recommend {SITE.name} to schools,
+                  districts, educational organizations, community leaders,
+                  and anyone committed to creating better outcomes for
+                  children. If you are looking for a trusted partner who
+                  delivers both excellence and impact, this is the
+                  organization to choose. The difference being made in the
+                  lives of students, parents, educators, and leaders is both
+                  meaningful and lasting.
+                </p>,
+              ]}
+            </ReadMore>
           </div>
-          <p className="label mt-6 text-center text-muted-ink">
-            — Her husband
-          </p>
         </Reveal>
       </section>
 
