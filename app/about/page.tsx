@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   title: "About — The Beautifully Human Educator",
 }
 
-const COLLAGE_ALT = `A curated arrangement of education books (Special Education, Inclusive Classrooms, Education Leadership), an open notebook reading 'Educate, Advocate, Empower, Include, Change Lives,' a coffee mug reading 'A More Inclusive Tomorrow, Together,' handwritten notes, and a photo of books and plants — objects from ${SITE.founderName}'s classroom-to-ecosystem journey`
+const FOUNDER_PHOTO_ALT = `${SITE.founderName}, smiling, wearing glasses and a yellow blazer`
 
 export default function AboutPage() {
   return (
@@ -37,58 +37,47 @@ export default function AboutPage() {
         }
       />
 
-      {/* Founder Story — the collage sits close beside the text as one
-          composition, not a disconnected second half of the page. */}
+      {/* Founder Story — a real photo of her now, given a soft organic
+          mask (irregular rounded corners, no hard rectangle) rather than a
+          photo card, so it sits gently in the composition rather than
+          reading as a boxed headshot. */}
       <section className="relative overflow-hidden py-20 sm:py-24 lg:py-32">
         <div className="mx-auto max-w-6xl px-6 sm:px-8">
-          <Reveal className="relative z-10 lg:max-w-md">
-            <SectionHeading eyebrow="Founder Story" title="From the classroom to the ecosystem" />
-            <p className="mt-5 text-body">
-              {SITE.founderName}&apos;s years teaching across K-8 and high
-              school revealed the same pattern again and again: early-career
-              teachers burning out, neurodivergent students falling through
-              the cracks of under-resourced systems, and a wider field
-              starved for honest thought leadership. TBHE was built to
-              respond to all three, at once, without pretending
-              they&apos;re separate problems.
-            </p>
-          </Reveal>
+          <div className="grid gap-10 lg:grid-cols-[1fr_0.9fr] lg:items-center lg:gap-16">
+            <Reveal className="relative z-10">
+              <SectionHeading eyebrow="Founder Story" title="From the classroom to the ecosystem" />
+              <p className="mt-5 text-body">
+                {SITE.founderName}&apos;s years teaching across K-8 and high
+                school revealed the same pattern again and again: early-career
+                teachers burning out, neurodivergent students falling through
+                the cracks of under-resourced systems, and a wider field
+                starved for honest thought leadership. TBHE was built to
+                respond to all three, at once, without pretending
+                they&apos;re separate problems.
+              </p>
+            </Reveal>
 
-          {/* Mobile/tablet: centered beneath the text with comfortable
-              cream margin on both sides — not stretched, not boxed. */}
-          <div className="relative mx-auto mt-10 h-[280px] w-[85%] sm:h-[340px] sm:w-[75%] lg:hidden">
-            <Image
-              src="/images/about-collage.png"
-              alt={COLLAGE_ALT}
-              fill
-              sizes="85vw"
-              className="object-contain"
-            />
+            <Reveal delay={0.05} className="relative mx-auto w-[78%] sm:w-[60%] lg:mx-0 lg:w-full">
+              <div
+                className="relative aspect-[4/5] w-full -rotate-2 overflow-hidden shadow-[0_30px_60px_-30px_rgba(37,24,39,0.35)]"
+                style={{ borderRadius: "42% 58% 63% 37% / 47% 43% 57% 53%" }}
+              >
+                <Image
+                  src="/images/founder-headshot.jpg"
+                  alt={FOUNDER_PHOTO_ALT}
+                  fill
+                  sizes="(max-width: 1024px) 60vw, 32vw"
+                  className="object-cover"
+                />
+              </div>
+              <p className="text-h3 mt-6 text-center text-ink lg:text-left">
+                {SITE.founderName}
+              </p>
+              <p className="caption mt-1 text-center text-muted-ink lg:text-left">
+                {SITE.founderTitle}
+              </p>
+            </Reveal>
           </div>
-        </div>
-
-        {/* A fine, hand-drawn line loosely tying the text to the collage —
-            not an arrow, just a sense that they belong to one composition. */}
-        <HandDrawnStroke
-          className="pointer-events-none absolute top-[54%] left-[35%] hidden h-16 w-[14%] lg:block"
-          d="M2,8 C22,0 42,30 66,12 C80,3 90,16 98,26"
-          color="var(--primary)"
-          strokeWidth={1.3}
-          viewBox="0 0 100 40"
-        />
-
-        {/* Desktop: smaller and pulled inward from the previous pass, so it
-            reads as arranged near the text rather than filling a separate
-            right half. */}
-        <div className="pointer-events-none absolute top-1/2 right-[5vw] hidden h-[74%] w-[42vw] -translate-y-1/2 lg:block">
-          <Image
-            src="/images/about-collage.png"
-            alt={COLLAGE_ALT}
-            fill
-            sizes="42vw"
-            className="object-contain"
-            style={{ objectPosition: "30% 50%" }}
-          />
         </div>
       </section>
 
