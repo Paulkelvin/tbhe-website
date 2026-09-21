@@ -13,7 +13,7 @@ export function SiteFooter() {
             alt={SITE.name}
             width={972}
             height={631}
-            className="h-12 w-auto rounded-md"
+            className="h-12 w-auto"
           />
           <p className="text-body-sm mt-4 max-w-sm text-body">{SITE.tagline}</p>
         </div>
