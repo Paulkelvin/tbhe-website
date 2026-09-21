@@ -1,6 +1,5 @@
-import Link from "next/link"
-
 import { Button } from "@/components/ui/button"
+import { AnchorLink } from "@/components/anchor-link"
 import type { Arm } from "@/lib/content"
 
 // Page-specific hero for /ecosystem/media only — a masthead-like editorial
@@ -33,7 +32,7 @@ export function MediaHero({ arm, ctaHref }: { arm: Arm; ctaHref: string }) {
             <p className="text-body-sm mt-4 text-muted-ink">For: {arm.audience}</p>
             <div className="mt-8">
               <Button asChild size="lg">
-                <Link href={ctaHref}>{arm.cta}</Link>
+                <AnchorLink href={ctaHref}>{arm.cta}</AnchorLink>
               </Button>
             </div>
           </div>

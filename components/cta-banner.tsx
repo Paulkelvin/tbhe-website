@@ -1,6 +1,5 @@
-import Link from "next/link"
-
 import { Button } from "@/components/ui/button"
+import { AnchorLink } from "@/components/anchor-link"
 import { Reveal } from "@/components/reveal"
 import { DecorativeBlob } from "@/components/decorative-blob"
 
@@ -44,7 +43,7 @@ export function CtaBanner({
         <p className="text-lead max-w-xl text-canvas/75">{description}</p>
         <div className="mt-2 flex flex-wrap justify-center gap-3">
           <Button asChild size="lg" className="duration-300 hover:-translate-y-0.5">
-            <Link href={primary.href}>{primary.label}</Link>
+            <AnchorLink href={primary.href}>{primary.label}</AnchorLink>
           </Button>
           {secondary ? (
             <Button
@@ -53,7 +52,7 @@ export function CtaBanner({
               variant="outline"
               className="border-canvas/30 bg-transparent text-canvas duration-300 hover:-translate-y-0.5 hover:bg-canvas/10 hover:text-canvas"
             >
-              <Link href={secondary.href}>{secondary.label}</Link>
+              <AnchorLink href={secondary.href}>{secondary.label}</AnchorLink>
             </Button>
           ) : null}
         </div>

@@ -25,6 +25,9 @@ export type BookableService = {
   tagline: string
   duration?: string
   calLink: string
+  // Real photo for the service card — set once supplied; falls back to a
+  // plain icon treatment until then. See BookingServices for the fallback.
+  image?: string
 }
 
 export const BOOKABLE_SERVICES: readonly BookableService[] = [

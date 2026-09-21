@@ -1,8 +1,8 @@
-import Link from "next/link"
 import Image from "next/image"
 
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
+import { AnchorLink } from "@/components/anchor-link"
 import { OrganicBlob } from "@/components/organic-art"
 import { ARM_COLOR_CLASS, type Arm } from "@/lib/content"
 
@@ -46,7 +46,7 @@ export function ConsultingHero({ arm, ctaHref }: { arm: Arm; ctaHref: string }) 
           </p>
           <div className="mt-8 flex justify-center lg:justify-start">
             <Button asChild size="lg">
-              <Link href={ctaHref}>{arm.cta}</Link>
+              <AnchorLink href={ctaHref}>{arm.cta}</AnchorLink>
             </Button>
           </div>
         </div>
