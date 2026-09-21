@@ -25,9 +25,11 @@ export type BookableService = {
   tagline: string
   duration?: string
   calLink: string
-  // Real photo for the service card — set once supplied; falls back to a
-  // plain icon treatment until then. See BookingServices for the fallback.
+  // Real photo for the service card — falls back to a plain icon
+  // treatment when unset. See BookingServices for the fallback.
   image?: string
+  imageAlt?: string
+  imagePosition?: string
 }
 
 export const BOOKABLE_SERVICES: readonly BookableService[] = [
@@ -37,6 +39,9 @@ export const BOOKABLE_SERVICES: readonly BookableService[] = [
     tagline: "What's the 411?",
     duration: "45 min",
     calLink: DISCOVERY_CALL_CAL_LINK,
+    image: "/images/service-discovery-call.jpg",
+    imageAlt: "A smiling consultant on a video call with a notebook and coffee mug",
+    imagePosition: "50% 12%",
   },
   {
     key: "executive",
@@ -44,11 +49,17 @@ export const BOOKABLE_SERVICES: readonly BookableService[] = [
     tagline: "Step Your Game Up w/ Executive Coaching",
     duration: "1 hr",
     calLink: EXECUTIVE_COACHING_CAL_LINK,
+    image: "/images/service-executive-coaching.jpg",
+    imageAlt: "Two educators in a one-on-one coaching conversation",
+    imagePosition: "50% 18%",
   },
   {
     key: "classroom",
     title: "Curating an Inclusive Classroom",
     tagline: "Educating Across Lines of Difference",
+    image: "/images/service-inclusive-classroom.jpg",
+    imageAlt: "An educator leading a workshop at a whiteboard titled Inclusive Classrooms",
+    imagePosition: "50% 22%",
     calLink: INCLUSIVE_CLASSROOM_CAL_LINK,
   },
 ] as const

@@ -47,10 +47,11 @@ function ServiceCard({
         {service.image ? (
           <Image
             src={service.image}
-            alt=""
+            alt={service.imageAlt ?? ""}
             fill
             sizes="(max-width: 1024px) 100vw, 33vw"
             className="object-cover"
+            style={service.imagePosition ? { objectPosition: service.imagePosition } : undefined}
           />
         ) : (
           <div className="flex h-full w-full items-center justify-center">
