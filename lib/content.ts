@@ -12,9 +12,43 @@ export const SITE = {
     "TBHE is an ecosystem of educational consulting, special education advocacy through Mission 139, and thought leadership for the educator community.",
 } as const
 
-// Placeholder — replace with the real Cal.com username/event-type slug
-// once the discovery-call event type is created (e.g. "jane-doe/discovery-call").
+// Placeholders — replace each with the real Cal.com username/event-type
+// slug once confirmed (e.g. "cyrkle-brent/discovery-call"). These three
+// mirror the real event types already set up in Cal.com.
 export const DISCOVERY_CALL_CAL_LINK = "tbhe/discovery-call"
+export const EXECUTIVE_COACHING_CAL_LINK = "tbhe/executive-coaching"
+export const INCLUSIVE_CLASSROOM_CAL_LINK = "tbhe/curating-an-inclusive-classroom"
+
+export type BookableService = {
+  key: string
+  title: string
+  tagline: string
+  duration?: string
+  calLink: string
+}
+
+export const BOOKABLE_SERVICES: readonly BookableService[] = [
+  {
+    key: "discovery",
+    title: "Complimentary Discovery Call",
+    tagline: "What's the 411?",
+    duration: "45 min",
+    calLink: DISCOVERY_CALL_CAL_LINK,
+  },
+  {
+    key: "executive",
+    title: "Executive Coaching",
+    tagline: "Step Your Game Up w/ Executive Coaching",
+    duration: "1 hr",
+    calLink: EXECUTIVE_COACHING_CAL_LINK,
+  },
+  {
+    key: "classroom",
+    title: "Curating an Inclusive Classroom",
+    tagline: "Educating Across Lines of Difference",
+    calLink: INCLUSIVE_CLASSROOM_CAL_LINK,
+  },
+] as const
 
 export const NAV_LINKS = [
   { label: "Home", href: "/" },

@@ -6,7 +6,11 @@ import { CalendarBlank } from "@phosphor-icons/react/dist/ssr"
 
 import { DISCOVERY_CALL_CAL_LINK } from "@/lib/content"
 
-export function BookingWidget() {
+export function BookingWidget({
+  calLink = DISCOVERY_CALL_CAL_LINK,
+}: {
+  calLink?: string
+}) {
   useEffect(() => {
     ;(async () => {
       const cal = await getCalApi()
@@ -32,7 +36,8 @@ export function BookingWidget() {
         <p className="text-sm text-muted-ink">Loading available times…</p>
       </div>
       <Cal
-        calLink={DISCOVERY_CALL_CAL_LINK}
+        key={calLink}
+        calLink={calLink}
         style={{ width: "100%", height: "100%", minHeight: "700px" }}
         config={{ layout: "month_view", theme: "light" }}
       />

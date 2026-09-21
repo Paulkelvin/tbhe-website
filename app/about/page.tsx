@@ -58,16 +58,13 @@ export default function AboutPage() {
             </Reveal>
 
             <Reveal delay={0.05} className="relative mx-auto w-[78%] sm:w-[60%] lg:mx-0 lg:w-full">
-              <div
-                className="relative aspect-[4/5] w-full -rotate-2 overflow-hidden shadow-[0_30px_60px_-30px_rgba(37,24,39,0.35)]"
-                style={{ borderRadius: "42% 58% 63% 37% / 47% 43% 57% 53%" }}
-              >
+              <div className="relative aspect-[4/5] w-full -rotate-1 overflow-hidden rounded-[12%] shadow-[0_30px_60px_-30px_rgba(37,24,39,0.35)]">
                 <Image
                   src="/images/founder-headshot.jpg"
                   alt={FOUNDER_PHOTO_ALT}
                   fill
                   sizes="(max-width: 1024px) 60vw, 32vw"
-                  className="object-cover"
+                  className="object-cover object-top"
                 />
               </div>
               <p className="text-h3 mt-6 text-center text-ink lg:text-left">

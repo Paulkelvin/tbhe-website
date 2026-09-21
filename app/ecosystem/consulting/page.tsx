@@ -3,7 +3,7 @@ import Image from "next/image"
 
 import { ConsultingHero } from "@/components/consulting-hero"
 import { SectionHeading } from "@/components/section-heading"
-import { BookingWidget } from "@/components/booking-widget"
+import { BookingServices } from "@/components/booking-services"
 import { CtaBanner } from "@/components/cta-banner"
 import { Reveal } from "@/components/reveal"
 import { ArtDefs, HandDrawnStroke } from "@/components/organic-art"
@@ -110,8 +110,8 @@ export default function ConsultingPage() {
           <Reveal>
             <SectionHeading
               eyebrow="Booking"
-              title="Request a discovery call"
-              description="Pick a time that works for you — we'll use the call to scope a custom professional development proposal, coaching cohort, or staff workshop."
+              title="Choose how we start"
+              description="A free discovery call, 1:1 executive coaching, or a hands-on classroom workshop — pick what fits, and book a time directly."
             />
             <div className="mt-10 flex flex-col">
               {BOOKING_PROCESS_STEPS.map((step, index, arr) => (
@@ -135,7 +135,7 @@ export default function ConsultingPage() {
             </div>
           </Reveal>
           <Reveal delay={0.05}>
-            <BookingWidget />
+            <BookingServices />
           </Reveal>
         </div>
       </section>
