@@ -60,7 +60,7 @@ export default function MediaPage() {
           <div className="grid gap-12 lg:grid-cols-[1.3fr_1fr] lg:gap-16">
             <Reveal>
               <p className="eyebrow text-arm-media-ink">01 &mdash; Speaker Bureau</p>
-              <p className="text-lead mt-4 max-w-xl text-body">
+              <p className="text-body-sm mt-4 max-w-xl text-body">
                 {MEDIA_OFFERINGS[1].description}
               </p>
               <div className="mt-8 divide-y divide-hairline border-t border-hairline">

@@ -42,7 +42,7 @@ export function Hero() {
             <p className="text-h3 mt-2 text-body-strong">
               {SITE.taglineSub}
             </p>
-            <p className="text-lead mx-auto mt-5 max-w-md text-body lg:mx-0">
+            <p className="text-body-sm mx-auto mt-5 max-w-md text-body lg:mx-0">
               {SITE.description}
             </p>
 

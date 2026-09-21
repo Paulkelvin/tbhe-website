@@ -20,7 +20,7 @@ export function TestimonialSection() {
             stronger alignment across our leadership team, and practical
             steps we could actually put into action.&quot;
           </p>
-          <p className="label mt-4 text-muted-ink">
+          <p className="caption mt-4 text-muted-ink">
             Dr. Maya Richardson, School Principal
           </p>
         </div>

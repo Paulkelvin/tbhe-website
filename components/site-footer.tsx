@@ -38,7 +38,7 @@ export function SiteFooter() {
       </div>
 
       <div className="border-t border-hairline">
-        <div className="mx-auto flex max-w-6xl flex-col gap-3 px-6 py-6 text-xs text-muted-ink sm:flex-row sm:items-center sm:justify-between sm:px-8">
+        <div className="caption mx-auto flex max-w-6xl flex-col gap-3 px-6 py-6 text-muted-ink sm:flex-row sm:items-center sm:justify-between sm:px-8">
           <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-4">
             <p>
               &copy; {new Date().getFullYear()} {SITE.name}. All rights

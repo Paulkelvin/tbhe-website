@@ -43,7 +43,7 @@ export default function AboutPage() {
         <div className="mx-auto max-w-6xl px-6 sm:px-8">
           <Reveal className="relative z-10 lg:max-w-md">
             <SectionHeading eyebrow="Founder Story" title="From the classroom to the ecosystem" />
-            <p className="mt-5 text-base text-body">
+            <p className="mt-5 text-body">
               {SITE.founderName}&apos;s years teaching across K-8 and high
               school revealed the same pattern again and again: early-career
               teachers burning out, neurodivergent students falling through
@@ -104,7 +104,7 @@ export default function AboutPage() {
         />
         <Reveal className="relative mx-auto max-w-2xl text-center">
           <SectionHeading eyebrow="Mission" title="Fearfully and wonderfully made" />
-          <p className="mx-auto mt-5 max-w-xl text-base text-body">
+          <p className="mx-auto mt-5 max-w-xl text-body">
             Mission 139 takes its name from Psalm 139:14 — a reminder that
             every learner, including every neurodivergent child, is made
             with intention. That belief anchors the consulting practice, the
@@ -135,7 +135,7 @@ export default function AboutPage() {
       <section className="section relative overflow-hidden">
         <Reveal className="relative mx-auto max-w-2xl rounded-2xl border border-hairline bg-surface-card p-8 shadow-[0_18px_40px_-26px_rgba(37,24,39,0.15)] sm:p-12">
           <p className="eyebrow text-center text-primary">A Personal Note</p>
-          <div className="mt-6 flex flex-col items-start gap-4 text-base text-body">
+          <div className="mt-6 flex flex-col items-start gap-4 text-body">
             <ReadMore>
               {[
                 <p key="1">

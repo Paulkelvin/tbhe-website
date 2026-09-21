@@ -42,7 +42,7 @@ export function MissionHero({ arm, ctaHref }: { arm: Arm; ctaHref: string }) {
       <div className="relative z-10 mx-auto max-w-3xl px-6 py-20 text-center sm:px-8 lg:py-28">
         <span
           className={cn(
-            "label inline-flex rounded-full bg-surface-card px-3 py-1",
+            "caption inline-flex rounded-full bg-surface-card px-3 py-1",
             colors.text
           )}
         >

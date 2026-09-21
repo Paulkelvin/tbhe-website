@@ -29,7 +29,7 @@ export function ConsultingHero({ arm, ctaHref }: { arm: Arm; ctaHref: string }) 
         <div className="relative z-10 text-center lg:text-left">
           <span
             className={cn(
-              "label inline-flex rounded-full bg-surface-card px-3 py-1",
+              "caption inline-flex rounded-full bg-surface-card px-3 py-1",
               colors.text
             )}
           >

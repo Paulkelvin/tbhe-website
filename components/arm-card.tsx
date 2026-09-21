@@ -48,7 +48,7 @@ export function ArmCard({ arm, index }: { arm: Arm; index?: number }) {
 
         <span
           className={cn(
-            "label mt-5 inline-flex rounded-full px-3 py-1",
+            "caption mt-5 inline-flex rounded-full px-3 py-1",
             colors.softBg,
             colors.text
           )}

@@ -127,8 +127,12 @@
   * {
     @apply border-border outline-ring/50;
   }
+  /* Fluid 15px (mobile) -> 16px (desktop): a hair quieter on small screens,
+     where it sits closer to Body Small and needs to read as clearly
+     subordinate to the (also-shrinking) headings above it. */
   body {
-    @apply bg-background text-foreground text-base leading-[1.7];
+    @apply bg-background text-foreground leading-[1.7];
+    font-size: clamp(0.9375rem, 0.875rem + 0.3vw, 1rem);
   }
 }
 
@@ -160,20 +164,24 @@
     line-height: 1.08;
     letter-spacing: -0.01em;
   }
-  /* H1 — inner-page hero headings. */
+  /* H1 — inner-page hero headings. Floor lowered so Display and H1 stay
+     clearly separated on mobile instead of converging (Display holds at
+     ~44.5px there; H1 now sits around 33px, not ~36px). */
   .text-h1 {
     font-family: var(--font-display);
     font-weight: 600;
-    font-size: clamp(2.25rem, 1.9rem + 1.5vw, 3rem);
+    font-size: clamp(2rem, 1.5rem + 2.31vw, 3rem);
     line-height: 1.12;
     letter-spacing: -0.01em;
   }
-  /* H2 — section headings. */
+  /* H2 — section headings. Weight 500 (not 600) plus a smaller desktop
+     ceiling (~35px, was ~40px) so it reads as clearly subordinate to H1
+     through both size and weight, not size alone. */
   .text-h2 {
     font-family: var(--font-display);
-    font-weight: 600;
-    font-size: clamp(1.75rem, 1.5rem + 1.1vw, 2.5rem);
-    line-height: 1.18;
+    font-weight: 500;
+    font-size: clamp(1.625rem, 1.356rem + 1.1vw, 2.1875rem);
+    line-height: 1.22;
     letter-spacing: -0.005em;
   }
   /* H3 — editorial subheadings and card/article titles. */
@@ -202,11 +210,13 @@
     line-height: 1.45;
   }
   /* Lead/intro copy — the sentence or two beneath a heading that introduces
-     a hero or section. Larger and slightly heavier than body copy. */
+     a hero or section. Heavier than body copy, but dialed back from its
+     original size so it reads as support for a heading rather than a
+     second, competing statement. */
   .text-lead {
     font-family: var(--font-sans);
     font-weight: 500;
-    font-size: clamp(1.0625rem, 1rem + 0.3vw, 1.1875rem);
+    font-size: clamp(1rem, 0.875rem + 0.3vw, 1.125rem);
     line-height: 1.6;
   }
   /* Small body — secondary/supporting copy: card descriptions, list
@@ -221,21 +231,17 @@
   .eyebrow {
     @apply text-xs font-semibold tracking-[0.08em] text-muted-ink uppercase;
   }
-  /* Label — form labels, metadata pills/kickers, small non-uppercase UI
-     text that needs a touch more presence than caption copy. */
-  .label {
+  /* Metadata/Caption — the one quiet small-text tier: form labels, kicker
+     pills, photo captions, timestamps, fine print. Consolidated from what
+     used to be two near-identical tiers (Label at 13px/500 and an unused
+     Caption at 12px/400) into a single token everything small and quiet
+     should use, including footer legal text. Not pushed any smaller —
+     13px stays comfortably readable. */
+  .caption {
     font-family: var(--font-sans);
     font-weight: 500;
     font-size: 0.8125rem;
-    line-height: 1.4;
-  }
-  /* Caption/metadata — the smallest tier: photo captions, timestamps,
-     fine print. */
-  .caption {
-    font-family: var(--font-sans);
-    font-weight: 400;
-    font-size: 0.75rem;
-    line-height: 1.5;
+    line-height: 1.45;
     letter-spacing: 0.01em;
   }
 

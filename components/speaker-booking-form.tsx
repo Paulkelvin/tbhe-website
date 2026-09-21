@@ -141,7 +141,7 @@ function Field({
 }) {
   return (
     <label htmlFor={htmlFor} className="grid gap-1.5">
-      <span className="label text-ink">{label}</span>
+      <span className="caption text-ink">{label}</span>
       {children}
     </label>
   )
