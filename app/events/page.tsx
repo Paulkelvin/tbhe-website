@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button"
 import { EVENTS } from "@/lib/content"
 
 export const metadata: Metadata = {
-  title: "Events — The Beautifully Human Educator",
+  title: "Events | The Beautifully Human Educator",
 }
 
 export default function EventsPage() {

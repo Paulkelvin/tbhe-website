@@ -16,7 +16,7 @@ export function ResourceHero() {
             White papers, tools, and resources for the educator community
           </h1>
           <p className="text-lead mx-auto mt-5 max-w-md text-body lg:mx-0">
-            Research from across the ecosystem — free to read, download, and
+            Research from across the ecosystem, free to read, download, and
             share. New categories are added as the library grows.
           </p>
         </div>

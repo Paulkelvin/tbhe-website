@@ -11,7 +11,7 @@ import { ArtDefs, HandDrawnStroke } from "@/components/organic-art"
 import { ARMS, MISSION_139_PROGRAMS } from "@/lib/content"
 
 export const metadata: Metadata = {
-  title: "Mission 139 — The Beautifully Human Educator",
+  title: "Mission 139 | The Beautifully Human Educator",
 }
 
 const arm = ARMS.find((a) => a.slug === "mission-139")!
@@ -23,7 +23,7 @@ const FAMILY_ALT =
   "A mother helping her two children with schoolwork at a table, with hand-lettered notes nearby reading 'Every Child Belongs' and 'Support, Understand, Include, Empower'"
 
 const PATH_FULL_ALT =
-  "A hand-drawn vine tracing a path through four waypoints — Heard, Understood, Supported, Empowered — ending at an open door beneath a heart"
+  "A hand-drawn vine tracing a path through four waypoints (Heard, Understood, Supported, Empowered), ending at an open door beneath a heart"
 
 export default function Mission139Page() {
   return (
@@ -63,7 +63,7 @@ export default function Mission139Page() {
               <p className="eyebrow mt-4 text-arm-mission-ink">Psalm 139:14</p>
               <p className="text-lead mx-auto mt-5 max-w-xl text-body lg:mx-0">
                 Mission 139 is built on the belief that every neurodivergent
-                child deserves to be met with that same regard — in their
+                child deserves to be met with that same regard, in their
                 IEP meeting, in their classroom, and at home.
               </p>
             </Reveal>

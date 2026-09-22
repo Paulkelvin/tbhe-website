@@ -5,7 +5,7 @@ import { Reveal } from "@/components/reveal"
 import { FEATURED_RESOURCE, RESOURCE_CATEGORIES, RESOURCES } from "@/lib/content"
 
 export const metadata: Metadata = {
-  title: "Resource Center — The Beautifully Human Educator",
+  title: "Resource Center | The Beautifully Human Educator",
 }
 
 const secondaryResources = RESOURCES.filter(

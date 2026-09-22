@@ -5,7 +5,7 @@ import { PageHero } from "@/components/page-hero"
 import { SITE } from "@/lib/content"
 
 export const metadata: Metadata = {
-  title: "Privacy Policy — The Beautifully Human Educator",
+  title: "Privacy Policy | The Beautifully Human Educator",
 }
 
 export default function PrivacyPage() {
@@ -22,7 +22,7 @@ export default function PrivacyPage() {
             (&quot;{SITE.shortName},&quot; &quot;we,&quot; &quot;us&quot;)
             collects through thebeautifullyhumaneducator.com (the
             &quot;Site&quot;), how we use it, and the choices you have. It
-            covers all three arms of the ecosystem — Educational Consulting
+            covers all three arms of the ecosystem: Educational Consulting
             &amp; Coaching, Mission 139, and Media &amp; Publishing.
           </p>
 
@@ -30,33 +30,37 @@ export default function PrivacyPage() {
           <p>We collect information you choose to give us directly, through:</p>
           <ul>
             <li>
-              <strong>The Contact form</strong> — your name, email address,
+              <strong>The Contact form:</strong> your name, email address,
               organization (optional), the reason for reaching out, and your
               message.
             </li>
             <li>
-              <strong>The Speaker Booking form</strong> — your name, email
+              <strong>The Speaker Booking form:</strong> your name, email
               address, organization or event name, preferred event date,
               keynote topic, estimated audience size, and any additional
               details you provide.
             </li>
             <li>
-              <strong>Newsletter signup</strong> — your email address.
+              <strong>Newsletter signup:</strong> your email address.
             </li>
             <li>
-              <strong>Donations</strong> — if you donate to Mission 139, your
+              <strong>Donations:</strong> if you donate to Mission 139, your
               payment is handled entirely by Square, our payment processor.
               We do not receive or store your card number or other payment
               credentials; Square provides us with confirmation that a
               donation was made and the amount.
             </li>
             <li>
-              <strong>Scheduling a consultation</strong> — the Educational
-              Consulting &amp; Coaching booking calendar is powered by
-              Cal.com. Information you enter there (name, email, selected
-              time) is collected by Cal.com on our behalf, subject to{" "}
-              <a href="https://cal.com/privacy" target="_blank" rel="noreferrer">
-                Cal.com&apos;s own privacy policy
+              <strong>Scheduling a consultation:</strong> the booking
+              calendar is powered by Calendly. Information you enter there
+              (name, email, selected time) is collected by Calendly on our
+              behalf, subject to{" "}
+              <a
+                href="https://calendly.com/privacy"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Calendly&apos;s own privacy policy
               </a>
               .
             </li>
@@ -64,7 +68,7 @@ export default function PrivacyPage() {
           <p>
             We do not currently use analytics, advertising, or tracking
             cookies on this Site. Third-party services embedded on the Site
-            (Cal.com&apos;s scheduling widget, Square&apos;s checkout page)
+            (Calendly&apos;s scheduling widget, Square&apos;s checkout page)
             may set their own cookies under their own privacy policies,
             which we don&apos;t control.
           </p>
@@ -92,7 +96,7 @@ export default function PrivacyPage() {
             Form submissions are delivered to our team by email through
             Resend, our email delivery provider. Donation payments are
             processed by Square. Consultation scheduling is handled by
-            Cal.com. Each of these providers processes data under its own
+            Calendly. Each of these providers processes data under its own
             privacy policy and security practices.
           </p>
 
@@ -100,7 +104,7 @@ export default function PrivacyPage() {
           <p>
             Mission 139&apos;s advocacy and family assistance programs serve
             families of neurodivergent children, but the Site itself is
-            directed at parents, guardians, and adult professionals — we do
+            directed at parents, guardians, and adult professionals. We do
             not knowingly collect personal information directly from
             children under 13. If you believe a child has provided us with
             personal information, please contact us and we will delete it.

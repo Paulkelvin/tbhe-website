@@ -11,7 +11,7 @@ import { Reveal } from "@/components/reveal"
 import { ARMS, MEDIA_OFFERINGS } from "@/lib/content"
 
 export const metadata: Metadata = {
-  title: "Media & Publishing — The Beautifully Human Educator",
+  title: "Media & Publishing | The Beautifully Human Educator",
 }
 
 const arm = ARMS.find((a) => a.slug === "media")!
@@ -53,25 +53,25 @@ export default function MediaPage() {
         <div className="mx-auto max-w-6xl px-6 py-16 sm:px-8 sm:py-20">
           <div className="grid gap-12 lg:grid-cols-[1.3fr_1fr] lg:gap-16">
             <Reveal>
-              <p className="eyebrow text-arm-media-ink">01 &mdash; Speaker Bureau</p>
+              <p className="eyebrow text-arm-media-ink">01. Speaker Bureau</p>
               <p className="text-body-sm mt-4 max-w-xl text-body">
                 {MEDIA_OFFERINGS[1].description}
               </p>
               <p className="text-lead mt-8 max-w-xl border-t border-hairline pt-6 text-body">
-                No fixed topic list — tell us about your event below and
+                No fixed topic list. Tell us about your event below and
                 we&apos;ll tailor the session to your audience.
               </p>
             </Reveal>
 
             <Reveal delay={0.05} className="lg:border-l lg:border-hairline lg:pl-16">
-              <p className="eyebrow text-muted-ink">02 &mdash; Disrupt &amp; Connect</p>
+              <p className="eyebrow text-muted-ink">02. Disrupt &amp; Connect</p>
               <p className="text-body-sm mt-4 text-body">
                 {MEDIA_OFFERINGS[2].description}
               </p>
               <div className="mt-6 border-t border-hairline pt-6">
                 <p className="eyebrow text-arm-media-ink">Coming Soon</p>
                 <p className="text-body-sm mt-2 text-body">
-                  TBHE is rebranding — new events, learning opportunities,
+                  TBHE is rebranding, and new events, learning opportunities,
                   and community experiences are on the way. Check back for
                   updates.
                 </p>

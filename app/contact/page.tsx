@@ -8,7 +8,7 @@ import { OrganicBlob } from "@/components/organic-art"
 import { BUSINESS_CONTACT } from "@/lib/content"
 
 export const metadata: Metadata = {
-  title: "Contact — The Beautifully Human Educator",
+  title: "Contact | The Beautifully Human Educator",
 }
 
 export default function ContactPage() {
@@ -36,33 +36,40 @@ export default function ContactPage() {
           folding the form into the hero itself. */}
       <section className="section">
         <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:items-start">
-          <Reveal>
+          <Reveal className="min-w-0">
             <p className="eyebrow text-primary">Get in Touch</p>
             <h2 className="text-h2 mt-3 text-ink">Send us a message</h2>
             <p className="text-lead mt-4 max-w-sm text-body">
               Consulting, Mission 139, and media inquiries all land in the
-              same inbox — the right person on the TBHE team will follow up.
+              same inbox, and the right person on the TBHE team will follow
+              up.
             </p>
 
-            <div className="mt-8 flex flex-col gap-3 text-sm text-body">
+            <div className="mt-8 flex flex-col gap-4 text-sm text-body">
               <a
                 href={BUSINESS_CONTACT.phoneHref}
-                className="inline-flex items-center gap-2 transition-colors hover:text-ink"
+                className="group flex items-center gap-3 transition-colors hover:text-ink"
               >
-                <Phone size={16} className="shrink-0 text-primary" />
-                {BUSINESS_CONTACT.phone}
+                <span className="flex size-9 shrink-0 items-center justify-center rounded-full border border-hairline-strong text-primary transition-colors group-hover:border-primary">
+                  <Phone size={16} />
+                </span>
+                <span className="min-w-0 break-words">{BUSINESS_CONTACT.phone}</span>
               </a>
               <a
                 href={`mailto:${BUSINESS_CONTACT.email}`}
-                className="inline-flex items-center gap-2 transition-colors hover:text-ink"
+                className="group flex items-center gap-3 transition-colors hover:text-ink"
               >
-                <EnvelopeSimple size={16} className="shrink-0 text-primary" />
-                {BUSINESS_CONTACT.email}
+                <span className="flex size-9 shrink-0 items-center justify-center rounded-full border border-hairline-strong text-primary transition-colors group-hover:border-primary">
+                  <EnvelopeSimple size={16} />
+                </span>
+                <span className="min-w-0 break-words">{BUSINESS_CONTACT.email}</span>
               </a>
-              <span className="inline-flex items-center gap-2">
-                <MapPin size={16} className="shrink-0 text-primary" />
-                {BUSINESS_CONTACT.address}
-              </span>
+              <div className="flex items-center gap-3">
+                <span className="flex size-9 shrink-0 items-center justify-center rounded-full border border-hairline-strong text-primary">
+                  <MapPin size={16} />
+                </span>
+                <span className="min-w-0 break-words">{BUSINESS_CONTACT.address}</span>
+              </div>
             </div>
           </Reveal>
 

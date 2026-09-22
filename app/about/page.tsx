@@ -12,7 +12,7 @@ import { StatGrid } from "@/components/stat-grid"
 import { COACHING_TEAM, IMPACT_STATS, SCHOOLS_SERVED, SITE } from "@/lib/content"
 
 export const metadata: Metadata = {
-  title: "About — The Beautifully Human Educator",
+  title: "About | The Beautifully Human Educator",
 }
 
 const FOUNDER_PHOTO_ALT = `${SITE.founderName}, smiling, wearing glasses and a yellow blazer`
@@ -26,7 +26,7 @@ export default function AboutPage() {
         className="overflow-hidden"
         eyebrow="About"
         title="A career built on the conviction that education must stay human"
-        description="The Beautifully Human Educator and Mission 139 are two dimensions of one calling — the leadership, thought-leadership, and advocacy work of Cyrkle B. Brent, M.Ed."
+        description="The Beautifully Human Educator and Mission 139 are two dimensions of one calling: the leadership, thought-leadership, and advocacy work of Cyrkle B. Brent, M.Ed."
         decoration={
           <OrganicBlob
             color="var(--primary)"
@@ -50,14 +50,14 @@ export default function AboutPage() {
               <p className="mt-5 text-body">
                 For more than two decades, {SITE.founderName} has served
                 students, families, and school communities as a special
-                educator, instructional leader, and principal — work that
+                educator, instructional leader, and principal, work that
                 includes guiding a school to recognition as a 2022 National
                 Blue Ribbon School. But her work has never been defined by
                 titles or accolades. It has been shaped by one conviction:
                 education must remain human.
               </p>
               <p className="mt-4 text-body">
-                The Beautifully Human Educator grew from that conviction — a
+                The Beautifully Human Educator grew from that conviction: a
                 leadership and professional-learning platform built on the
                 belief that educators do their most meaningful work when
                 they lead with both excellence and humanity. Through
@@ -160,7 +160,7 @@ export default function AboutPage() {
         <Reveal className="relative mx-auto max-w-2xl text-center">
           <SectionHeading eyebrow="Mission" title="Fearfully and wonderfully made" />
           <p className="mx-auto mt-5 max-w-xl text-body">
-            Mission 139 takes its name from Psalm 139 — a reminder that
+            Mission 139 takes its name from Psalm 139, a reminder that
             every person is fearfully and wonderfully made. It was born from{" "}
             {SITE.founderName}&apos;s experience as both an educator and
             advocate, after witnessing too many children being
@@ -215,8 +215,8 @@ export default function AboutPage() {
                   advocating for the best outcomes for your child, you can
                   expect a transformative experience.{" "}
                   {SITE.founderName}&apos;s ability to connect people,
-                  develop leaders, and champion students — especially those
-                  with unique learning needs — is truly exceptional.
+                  develop leaders, and champion students, especially those
+                  with unique learning needs, is truly exceptional.
                 </p>,
                 <p key="3">
                   What makes {SITE.name} special is that the work never

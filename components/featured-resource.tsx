@@ -56,7 +56,7 @@ export function FeaturedResource() {
           Insights &amp; Resources
         </p>
         <p className="text-lead mt-3 text-body">
-          Research, frameworks, and field notes from across the ecosystem —
+          Research, frameworks, and field notes from across the ecosystem,
           starting with our latest white paper.
         </p>
       </Reveal>

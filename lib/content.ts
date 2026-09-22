@@ -22,11 +22,11 @@ export const BUSINESS_CONTACT = {
 } as const
 
 export const COACHING_TEAM = [
-  { name: "Yolanda Barber", role: "Head Coach — Principals & School Planning" },
-  { name: "Rossana Mahvi", role: "Head Coach — Literacy & Special Education" },
-  { name: "Kawan Jones", role: "Head Coach — Culture & Classroom Management" },
-  { name: "Kitrece Carr", role: "Instructional Coach — Math" },
-  { name: "Ashley Dominique", role: "Instructional Coach — ELA" },
+  { name: "Yolanda Barber", role: "Head Coach: Principals & School Planning" },
+  { name: "Rossana Mahvi", role: "Head Coach: Literacy & Special Education" },
+  { name: "Kawan Jones", role: "Head Coach: Culture & Classroom Management" },
+  { name: "Kitrece Carr", role: "Instructional Coach: Math" },
+  { name: "Ashley Dominique", role: "Instructional Coach: ELA" },
 ] as const
 
 export const SOCIAL_LINKS = {
@@ -214,7 +214,7 @@ export const IMPACT_STATS = [
 export const SCHOOLS_SERVED = [
   "St. Mary's High School of Annapolis",
   "Cedar Tree Academy",
-  "Citizens of the World Charter School — Los Angeles",
+  "Citizens of the World Charter School, Los Angeles",
 ] as const
 
 export const SCHOOL_PARTNERS = [

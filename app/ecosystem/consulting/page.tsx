@@ -10,7 +10,7 @@ import { ArtDefs, HandDrawnStroke } from "@/components/organic-art"
 import { ARMS, CONSULTING_MODULES } from "@/lib/content"
 
 export const metadata: Metadata = {
-  title: "Educational Consulting & Coaching — The Beautifully Human Educator",
+  title: "Educational Consulting & Coaching | The Beautifully Human Educator",
 }
 
 const arm = ARMS.find((a) => a.slug === "consulting")!
@@ -27,7 +27,7 @@ const BOOKING_PROCESS_STEPS = [
   },
   {
     title: "Build",
-    description: "A proposal — workshops, a coaching cohort, or curriculum support — built around your team.",
+    description: "A proposal (workshops, a coaching cohort, or curriculum support) built around your team.",
   },
   {
     title: "Support",

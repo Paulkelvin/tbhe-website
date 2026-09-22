@@ -36,7 +36,7 @@ export function SpeakerBookingForm() {
       <div className="rounded-2xl border border-hairline bg-surface-card p-8 text-center">
         <p className="text-h3 text-ink">Request received.</p>
         <p className="text-body-sm mt-2 text-body">
-          Thanks for the booking request — expect a reply with availability
+          Thanks for the booking request. Expect a reply with availability
           and next steps soon.
         </p>
       </div>

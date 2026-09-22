@@ -5,7 +5,7 @@ import { PageHero } from "@/components/page-hero"
 import { SITE } from "@/lib/content"
 
 export const metadata: Metadata = {
-  title: "Terms of Service — The Beautifully Human Educator",
+  title: "Terms of Service | The Beautifully Human Educator",
 }
 
 export default function TermsPage() {
@@ -21,7 +21,7 @@ export default function TermsPage() {
             These Terms of Service (&quot;Terms&quot;) govern your use of
             thebeautifullyhumaneducator.com (the &quot;Site&quot;), operated
             by {SITE.name} (&quot;{SITE.shortName},&quot; &quot;we,&quot;
-            &quot;us&quot;), across all three arms of the ecosystem —
+            &quot;us&quot;), across all three arms of the ecosystem:
             Educational Consulting &amp; Coaching, Mission 139, and Media
             &amp; Publishing. By using the Site, you agree to these Terms.
           </p>
@@ -33,9 +33,9 @@ export default function TermsPage() {
             &amp; Coaching); special education advocacy, family assistance
             grants, and IEP/504 support (Mission 139, a 501(c)(3) nonprofit
             organization); and research, keynotes, webinars, and community
-            events (Media &amp; Publishing). Specific engagements — a
+            events (Media &amp; Publishing). Specific engagements (a
             consulting scope of work, a family assistance award, a speaking
-            fee — are agreed separately once we follow up with you; nothing
+            fee) are agreed separately once we follow up with you; nothing
             on the Site itself is a binding offer of services.
           </p>
 
@@ -72,8 +72,8 @@ export default function TermsPage() {
 
           <h2>Intellectual property</h2>
           <p>
-            The Site&apos;s content — including text, published articles,
-            toolkits, and design — belongs to {SITE.shortName} or its
+            The Site&apos;s content, including text, published articles,
+            toolkits, and design, belongs to {SITE.shortName} or its
             licensors, unless otherwise noted. You
             may view and share it for personal, non-commercial purposes, but
             may not republish, sell, or otherwise use it commercially
@@ -82,7 +82,7 @@ export default function TermsPage() {
 
           <h2>Third-party services</h2>
           <p>
-            The Site uses Cal.com to schedule consultations and Square to
+            The Site uses Calendly to schedule consultations and Square to
             process donations. Your use of those embedded tools is also
             subject to their own terms of service, which we don&apos;t
             control.

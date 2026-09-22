@@ -69,7 +69,7 @@ export default function HomePage() {
             <SectionHeading
               eyebrow="Stay Connected"
               title="The Beautifully Human Educator Newsletter"
-              description="Research, resources, and updates from all three arms — straight to your inbox."
+              description="Research, resources, and updates from all three arms, straight to your inbox."
             />
             <NewsletterForm />
           </Reveal>

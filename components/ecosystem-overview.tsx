@@ -28,7 +28,7 @@ export function EcosystemOverview() {
         </h2>
         <p className="text-lead mt-4 max-w-xl text-body">
           Educational consulting, special education advocacy, and thought
-          leadership — three distinct paths built on one mission.
+          leadership: three distinct paths built on one mission.
         </p>
       </Reveal>
 

@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils"
 import { ARM_COLOR_CLASS, ARMS, SITE } from "@/lib/content"
 
 export const metadata: Metadata = {
-  title: "The Ecosystem — The Beautifully Human Educator",
+  title: "The Ecosystem | The Beautifully Human Educator",
 }
 
 const [consulting, mission, media] = ARMS

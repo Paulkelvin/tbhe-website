@@ -34,7 +34,7 @@ export function EcosystemHero() {
 
         <p className="text-lead mx-auto mt-8 max-w-xl text-body lg:mt-6">
           Consulting for schools, advocacy for families, and thought
-          leadership for the field — each built to stand on its own and
+          leadership for the field, each built to stand on its own and
           stronger together.
         </p>
       </div>

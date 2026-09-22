@@ -34,7 +34,7 @@ export function NewsletterForm() {
   if (submitted) {
     return (
       <p className="text-body-sm font-medium text-arm-mission-ink">
-        You&apos;re on the list — thanks for subscribing.
+        You&apos;re on the list, thanks for subscribing.
       </p>
     )
   }
@@ -57,7 +57,7 @@ export function NewsletterForm() {
       </Button>
       {error ? (
         <p className="text-sm text-red-700 sm:basis-full">
-          Something went wrong — please try again.
+          Something went wrong. Please try again.
         </p>
       ) : null}
     </form>
