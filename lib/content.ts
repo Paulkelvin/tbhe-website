@@ -42,8 +42,15 @@ export const MISSION_139_INSTAGRAM = "https://www.instagram.com/tbhe_mission_139
 export const CALENDLY_BOOKING_LINK =
   "https://calendly.com/cbrent-stmartinsonline/new-meeting"
 
+// Mirrors the real site's own grouping: "educator" services are directly
+// self-bookable on a calendar; "school" services are scoped engagements
+// the client quotes per school, so they route to a quote request instead
+// of a live calendar. See BookingServices.
+export type ServiceCategory = "educator" | "school"
+
 export type BookableService = {
   key: string
+  category: ServiceCategory
   title: string
   tagline: string
   duration?: string
@@ -58,6 +65,7 @@ export type BookableService = {
 export const BOOKABLE_SERVICES: readonly BookableService[] = [
   {
     key: "discovery",
+    category: "educator",
     title: "Complimentary Discovery Call",
     tagline: "What's the 411?",
     duration: "45 min",
@@ -68,6 +76,7 @@ export const BOOKABLE_SERVICES: readonly BookableService[] = [
   },
   {
     key: "executive",
+    category: "educator",
     title: "Executive Coaching",
     tagline: "Step Your Game Up w/ Executive Coaching",
     duration: "1 hr",
@@ -78,6 +87,7 @@ export const BOOKABLE_SERVICES: readonly BookableService[] = [
   },
   {
     key: "classroom",
+    category: "school",
     title: "Curating an Inclusive Classroom",
     tagline: "Educating Across Lines of Difference",
     image: "/images/service-inclusive-classroom.jpg",
@@ -87,6 +97,7 @@ export const BOOKABLE_SERVICES: readonly BookableService[] = [
   },
   {
     key: "professional-development",
+    category: "school",
     title: "Professional Development & Coaching",
     tagline: "Whole-Staff PD, Tailored to Your School",
     calLink: CALENDLY_BOOKING_LINK,

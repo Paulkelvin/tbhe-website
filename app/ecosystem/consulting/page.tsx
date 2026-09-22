@@ -111,7 +111,7 @@ export default function ConsultingPage() {
             <SectionHeading
               eyebrow="Booking"
               title="Choose how we start"
-              description="A free discovery call, 1:1 executive coaching, or a hands-on classroom workshop — pick what fits, and book a time directly."
+              description="A free discovery call and 1:1 executive coaching book directly on the calendar. School and district engagements start with a quote."
             />
             <div className="mt-10 flex flex-col">
               {BOOKING_PROCESS_STEPS.map((step, index, arr) => (
