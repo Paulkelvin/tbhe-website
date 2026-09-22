@@ -3,7 +3,7 @@
 export const SITE = {
   name: "The Beautifully Human Educator",
   shortName: "TBHE",
-  founderName: "Cyrkle Brent",
+  founderName: "Cyrkle B. Brent",
   founderCredential: "M.Ed.",
   founderTitle: "Founder & Chief Coach",
   founderSecondaryTitle: "Head of School & Principal, St. Martin's Lutheran School",
@@ -11,7 +11,7 @@ export const SITE = {
   taglineLead: "Be a Better Teacher.",
   taglineSub: "Transforming the landscape for underserved, under-resourced learners.",
   description:
-    "TBHE is an ecosystem of educational consulting, special education advocacy through Mission 139, and thought leadership for the educator community.",
+    "TBHE is a leadership and professional-learning platform for educators, paired with Mission 139, its advocacy arm for neurodivergent students and the families and schools that serve them.",
 } as const
 
 export const BUSINESS_CONTACT = {
@@ -196,10 +196,16 @@ export const ARM_COLOR_CLASS: Record<
 }
 
 export const IMPACT_STATS = [
-  { value: "45+", label: "Staff PD workshops delivered" },
-  { value: "139+", label: "Families served through Mission 139" },
-  { value: "3", label: "Operational arms, one mission" },
-  { value: "DMV", label: "Advocacy region for IEP/504 support" },
+  { value: "3", label: "School communities served" },
+  { value: "300+", label: "Students impacted" },
+  { value: "50–150", label: "Staff per engagement supported" },
+  { value: "2", label: "Specialized classrooms built" },
+] as const
+
+export const SCHOOLS_SERVED = [
+  "St. Mary's High School of Annapolis",
+  "Cedar Tree Academy",
+  "Citizens of the World Charter School — Los Angeles",
 ] as const
 
 export const SCHOOL_PARTNERS = [
@@ -217,13 +223,37 @@ export const SCHOOL_PARTNERS = [
   },
 ] as const
 
-export const FEATURED_RESOURCE = {
-  kind: "Article",
+// Categories the Resource Center is organized by. Most are empty for now —
+// each renders as a "coming soon" placeholder until real resources are
+// added, so the page doesn't need restructuring as the library grows.
+export const RESOURCE_CATEGORIES = [
+  "Articles & Thought Leadership",
+  "Downloadable Tools & Guides",
+  "Webinar & Workshop Recordings",
+  "For Families",
+  "For Educators & Leaders",
+  "Intellectual Property & Educator Protection",
+] as const
+
+export type ResourceCategory = (typeof RESOURCE_CATEGORIES)[number]
+
+export type Resource = {
+  kind: string
+  category: ResourceCategory
+  title: string
+  description: string
+  file: string
+}
+
+export const FEATURED_RESOURCE: Resource & { cta: string } = {
+  kind: "White Paper",
+  category: "Articles & Thought Leadership",
   title:
-    "The Dept of Ed Just Gutted Special Education Resources. Here's What That Means for Your Neurodivergent Child and How Mission 139 Can Help.",
+    'What the "Big Beautiful Bill" Actually Means for Your Neurodivergent Family',
   description:
-    "A look at recent federal cuts to special education resources, and how Mission 139 is stepping in for the families who need it most.",
-  cta: "Read the Article",
+    "A plain-language breakdown of a major piece of federal legislation and what it changes for neurodivergent students, families, and the safeguards they rely on.",
+  file: "/resources/big-beautiful-bill-white-paper.pdf",
+  cta: "Download the White Paper",
 } as const
 
 export const CONSULTING_MODULES = [
@@ -283,9 +313,9 @@ export const MISSION_139_PROGRAMS = [
 export const MEDIA_OFFERINGS = [
   {
     icon: "FileText",
-    title: "Research & Commentary",
+    title: "Research & White Papers",
     description:
-      "A growing library of research and commentary on policy affecting educators and neurodivergent students, free to read.",
+      "A growing library of research and white papers on policy affecting educators and neurodivergent students, free to download.",
   },
   {
     icon: "Microphone",
@@ -301,41 +331,32 @@ export const MEDIA_OFFERINGS = [
   },
 ] as const
 
-export const EVENTS = [
-  {
-    title: "Disrupt & Connect: Fall Networking Mixer",
-    type: "Community Event",
-    description:
-      "An in-person meetup for educators, advocates, and district partners to connect and share what's working.",
-  },
-  {
-    title: "Protect Your Peace & Intellectual Property",
-    type: "Webinar",
-    description:
-      "A live session on protecting your original curriculum and creative work as an educator.",
-  },
-  {
-    title: "DEI & Cultural Competency Workshop",
-    type: "Staff Workshop",
-    description:
-      "A full-day professional development session for school staff, booked directly through the Consulting arm.",
-  },
-] as const
+// No confirmed public events during the rebrand — the /events page shows a
+// "coming soon" state when this is empty. Add real events here once
+// scheduled.
+export const EVENTS: readonly {
+  title: string
+  type: string
+  description: string
+}[] = []
 
-export const RESOURCES = [
+export const RESOURCES: readonly Resource[] = [
   {
-    kind: "Article",
+    kind: "White Paper",
+    category: "Articles & Thought Leadership",
     title:
-      "The Dept of Ed Just Gutted Special Education Resources. Here's What That Means for Your Neurodivergent Child and How Mission 139 Can Help.",
+      'What the "Big Beautiful Bill" Actually Means for Your Neurodivergent Family',
     description:
-      "A look at recent federal cuts to special education resources, and how Mission 139 is stepping in for the families who need it most.",
+      "A plain-language breakdown of a major piece of federal legislation and what it changes for neurodivergent students, families, and the safeguards they rely on.",
+    file: "/resources/big-beautiful-bill-white-paper.pdf",
   },
   {
-    kind: "Article",
-    title:
-      "The Big, Beautiful Bill Is Here — But What Does It Actually Mean for Your Neurodivergent Child?",
+    kind: "White Paper",
+    category: "Articles & Thought Leadership",
+    title: "Creating Rigorous Classrooms for All Students",
     description:
-      "Breaking down a major piece of federal legislation and what it actually changes for neurodivergent students and their families.",
+      "Research-backed strategies for building inclusive rigor for neurodivergent learners, with real-world lesson examples across grade bands.",
+    file: "/resources/creating-rigorous-classrooms-for-all-students.pdf",
   },
 ] as const
 

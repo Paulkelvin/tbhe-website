@@ -10,9 +10,6 @@ export const metadata: Metadata = {
   title: "Events — The Beautifully Human Educator",
 }
 
-const [featuredEvent, ...otherEvents] = EVENTS
-const seasonMatch = featuredEvent.title.match(/\b(Spring|Summer|Fall|Winter)\b/)
-
 export default function EventsPage() {
   return (
     <>
@@ -20,69 +17,38 @@ export default function EventsPage() {
 
       <section className="section">
         <div className="mx-auto max-w-4xl">
-          {/* Featured — a tinted zone with a dashed "ticket stub" divider,
-              not a bordered card. The event's own season word (real text
-              from the title) becomes the oversized editorial mark. */}
-          <Reveal className="relative overflow-hidden bg-primary/[0.045] px-7 py-9 sm:px-10 sm:py-11">
-            {seasonMatch ? (
-              <span
-                aria-hidden
-                className="font-display pointer-events-none absolute top-2 right-4 select-none text-[6rem] leading-none tracking-tight text-arm-media/[0.12] uppercase sm:top-0 sm:text-[8rem]"
-              >
-                {seasonMatch[0]}
-              </span>
-            ) : null}
-
-            <p className="eyebrow relative text-arm-media-ink">
-              Disrupt &amp; Connect
-            </p>
-            <div className="relative mt-5 border-t border-dashed border-hairline-strong pt-5">
-              <p className="eyebrow text-muted-ink">
-                Featured Event &middot; {featuredEvent.type}
-              </p>
-              <h2 className="text-h2 mt-3 max-w-xl text-ink">
-                {featuredEvent.title}
+          {EVENTS.length === 0 ? (
+            <Reveal className="relative overflow-hidden bg-primary/[0.045] px-7 py-14 text-center sm:px-10 sm:py-16">
+              <p className="eyebrow text-arm-media-ink">Coming Soon</p>
+              <h2 className="text-h2 mx-auto mt-4 max-w-xl text-ink">
+                New events, learning opportunities, and community
+                experiences are coming soon.
               </h2>
-              <p className="text-lead mt-4 max-w-xl text-body">
-                {featuredEvent.description}
+              <p className="text-lead mx-auto mt-4 max-w-md text-body">
+                Check back for updates as TBHE completes its rebrand.
               </p>
-              <span className="mt-6 inline-flex w-fit items-center gap-1.5 text-sm font-semibold text-primary">
-                <span className="border-b border-primary/40 pb-0.5">
-                  Learn more
-                </span>
-                <span aria-hidden>&rarr;</span>
-              </span>
-            </div>
-          </Reveal>
-
-          {/* Also on the programme — a quiet editorial list for the rest. */}
-          <div className="mt-4">
-            <p className="eyebrow border-t border-hairline pt-8 text-muted-ink">
-              Also on the Programme
-            </p>
-            <div className="mt-2 divide-y divide-hairline">
-              {otherEvents.map((event, index) => (
+            </Reveal>
+          ) : (
+            <div className="divide-y divide-hairline border-t border-hairline">
+              {EVENTS.map((event, index) => (
                 <Reveal
                   key={event.title}
                   delay={index * 0.06}
                   className="flex flex-col gap-3 py-7 sm:flex-row sm:items-baseline sm:justify-between sm:gap-8"
                 >
                   <div className="sm:max-w-xl">
-                    <p className="eyebrow text-muted-ink">
-                      {event.type}
-                    </p>
+                    <p className="eyebrow text-muted-ink">{event.type}</p>
                     <h3 className="text-h3 mt-1.5 text-ink">
                       {event.title}
                     </h3>
-                    <p className="text-body-sm mt-2 text-body">{event.description}</p>
+                    <p className="text-body-sm mt-2 text-body">
+                      {event.description}
+                    </p>
                   </div>
-                  <span className="shrink-0 text-sm font-semibold text-primary sm:pl-4">
-                    Learn more &rarr;
-                  </span>
                 </Reveal>
               ))}
             </div>
-          </div>
+          )}
 
           {/* Continue — a compact, quiet close, not another major section.
               The oversized ampersand is the one creative detail, cropped

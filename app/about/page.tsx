@@ -8,7 +8,8 @@ import { CtaBanner } from "@/components/cta-banner"
 import { Reveal } from "@/components/reveal"
 import { ArtDefs, HandDrawnStroke, OrganicBlob } from "@/components/organic-art"
 import { ReadMore } from "@/components/read-more"
-import { COACHING_TEAM, SITE } from "@/lib/content"
+import { StatGrid } from "@/components/stat-grid"
+import { COACHING_TEAM, IMPACT_STATS, SCHOOLS_SERVED, SITE } from "@/lib/content"
 
 export const metadata: Metadata = {
   title: "About — The Beautifully Human Educator",
@@ -24,8 +25,8 @@ export default function AboutPage() {
       <PageHero
         className="overflow-hidden"
         eyebrow="About"
-        title="A founder's path across K-8, high school, and advocacy"
-        description="The Beautifully Human Educator exists because one educator's classroom experience turned into a mission for every classroom."
+        title="A career built on the conviction that education must stay human"
+        description="The Beautifully Human Educator and Mission 139 are two dimensions of one calling — the leadership, thought-leadership, and advocacy work of Cyrkle B. Brent, M.Ed."
         decoration={
           <OrganicBlob
             color="var(--primary)"
@@ -47,15 +48,23 @@ export default function AboutPage() {
             <Reveal className="relative z-10">
               <SectionHeading eyebrow="Founder Story" title="From the classroom to the ecosystem" />
               <p className="mt-5 text-body">
-                {SITE.founderName} built TBHE on the same pattern she saw
-                again and again across a career as an English teacher,
-                special education teacher, special education coordinator,
-                and award-winning principal in Maryland and DC: early-career
-                teachers burning out, neurodivergent students falling through
-                the cracks of under-resourced systems, and a wider field
-                starved for honest thought leadership. TBHE was built to
-                respond to all three, at once, without pretending
-                they&apos;re separate problems.
+                For more than two decades, {SITE.founderName} has served
+                students, families, and school communities as a special
+                educator, instructional leader, and principal — work that
+                includes guiding a school to recognition as a 2022 National
+                Blue Ribbon School. But her work has never been defined by
+                titles or accolades. It has been shaped by one conviction:
+                education must remain human.
+              </p>
+              <p className="mt-4 text-body">
+                The Beautifully Human Educator grew from that conviction — a
+                leadership and professional-learning platform built on the
+                belief that educators do their most meaningful work when
+                they lead with both excellence and humanity. Through
+                reflection, professional learning, thought leadership, and
+                practical tools, TBHE challenges educators to think deeply,
+                lead courageously, protect their creativity, and build
+                classrooms where both adults and children can thrive.
               </p>
               <p className="text-body-sm mt-4 text-muted-ink">
                 BS, Towson State University &middot; Master&apos;s, Notre
@@ -109,6 +118,35 @@ export default function AboutPage() {
         </Reveal>
       </section>
 
+      {/* Impact — real, client-provided metrics. Stat tiles reuse the
+          homepage's StatGrid so the two don't drift into different visual
+          languages for the same kind of data. */}
+      <section className="section pt-0">
+        <Reveal className="mx-auto max-w-5xl">
+          <SectionHeading
+            eyebrow="Impact"
+            title="From advocacy to execution"
+            description="Through TBHE and Mission 139, Cyrkle B. Brent, M.Ed. has helped school communities move from recognizing a need to building responsive systems that serve neurodivergent learners."
+          />
+          <div className="mt-10">
+            <StatGrid stats={IMPACT_STATS} />
+          </div>
+          <div className="mt-10 flex flex-col items-center gap-2 text-center">
+            <p className="eyebrow text-muted-ink">School Communities Served</p>
+            <p className="text-body-sm max-w-xl text-body">
+              {SCHOOLS_SERVED.join(" · ")}
+            </p>
+          </div>
+          <p className="text-body-sm mx-auto mt-8 max-w-2xl text-center text-body">
+            Our impact extends beyond offering recommendations. We help
+            families understand schools, equip educators to respond more
+            effectively, and support organizations in building sustainable
+            systems from the ground up — because meaningful inclusion
+            requires more than good intentions.
+          </p>
+        </Reveal>
+      </section>
+
       {/* Mission — deliberately quiet: no photography, just sage tone,
           one restrained organic form, and the Psalm 139:14 quotation. */}
       <section className="section relative overflow-hidden bg-arm-mission/5">
@@ -122,11 +160,13 @@ export default function AboutPage() {
         <Reveal className="relative mx-auto max-w-2xl text-center">
           <SectionHeading eyebrow="Mission" title="Fearfully and wonderfully made" />
           <p className="mx-auto mt-5 max-w-xl text-body">
-            Mission 139 takes its name from Psalm 139:14 — a reminder that
-            every learner, including every neurodivergent child, is made
-            with intention. That belief anchors the consulting practice, the
-            nonprofit, and the public speaking under one roof: educators
-            deserve support, and so do the families they serve.
+            Mission 139 takes its name from Psalm 139 — a reminder that
+            every person is fearfully and wonderfully made. It was born from{" "}
+            {SITE.founderName}&apos;s experience as both an educator and
+            advocate, after witnessing too many children being
+            misunderstood, underestimated, or expected to fit systems that
+            were never designed with their needs in mind. Difference is not
+            deficiency.
           </p>
           <Quotes size={32} weight="fill" className="mx-auto mt-8 text-arm-mission/30" />
           <p className="text-quote mt-2 text-ink">
@@ -143,6 +183,11 @@ export default function AboutPage() {
               viewBox="0 0 100 8"
             />
           </div>
+          <p className="text-body-sm mx-auto mt-8 max-w-xl text-body">
+            Together, TBHE and Mission 139 are two dimensions of one calling:
+            transforming education by honoring the humanity, brilliance, and
+            unique design of every person within it.
+          </p>
         </Reveal>
       </section>
 
@@ -196,9 +241,9 @@ export default function AboutPage() {
         </Reveal>
       </section>
 
-      {/* Advisory Board — an editorial margin-note layout (label at left,
-          copy at right of a top rule) so the page doesn't repeat the same
-          centered/left-aligned rhythm a third time. */}
+      {/* Advisory Board — pending as of the rebrand. Structured so it can
+          be swapped for a real member grid (same pattern as the Coaching
+          Team above) once board bios are finalized. */}
       <section className="section">
         <Reveal className="mx-auto max-w-4xl">
           <div className="relative border-t border-hairline-strong pt-10">
@@ -216,10 +261,9 @@ export default function AboutPage() {
                   Guided by people who know the work
                 </h2>
                 <p className="text-lead mt-4 max-w-xl text-body">
-                  TBHE is advised by educators, special education advocates,
-                  and nonprofit leaders committed to keeping every arm of
-                  this ecosystem accountable to the families and schools it
-                  serves.
+                  Our advisory board is being finalized as part of TBHE&apos;s
+                  rebrand. Updated board members and biographies will appear
+                  here soon.
                 </p>
               </div>
             </div>

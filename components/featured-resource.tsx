@@ -34,15 +34,17 @@ function ResourceMeta() {
 
 function ResourceCta() {
   return (
-    <Link
-      href="/resources"
+    <a
+      href={FEATURED_RESOURCE.file}
+      target="_blank"
+      rel="noreferrer"
       className="group mt-6 inline-flex w-fit items-center gap-1.5 text-sm font-semibold text-primary"
     >
       <span className="border-b border-primary/40 pb-0.5 transition-colors group-hover:border-primary">
         {FEATURED_RESOURCE.cta}
       </span>
       <span className="transition-transform group-hover:translate-x-0.5">&rarr;</span>
-    </Link>
+    </a>
   )
 }
 
@@ -55,7 +57,7 @@ export function FeaturedResource() {
         </p>
         <p className="text-lead mt-3 text-body">
           Research, frameworks, and field notes from across the ecosystem —
-          starting with our latest article.
+          starting with our latest white paper.
         </p>
       </Reveal>
 

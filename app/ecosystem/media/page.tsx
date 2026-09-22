@@ -8,16 +8,13 @@ import { PublicationInterface } from "@/components/publication-interface"
 import { SpeakerBookingForm } from "@/components/speaker-booking-form"
 import { CtaBanner } from "@/components/cta-banner"
 import { Reveal } from "@/components/reveal"
-import { ARMS, EVENTS, MEDIA_OFFERINGS } from "@/lib/content"
+import { ARMS, MEDIA_OFFERINGS } from "@/lib/content"
 
 export const metadata: Metadata = {
   title: "Media & Publishing — The Beautifully Human Educator",
 }
 
 const arm = ARMS.find((a) => a.slug === "media")!
-const mixerEvent = EVENTS.find(
-  (e) => e.title === "Disrupt & Connect: Fall Networking Mixer"
-)!
 
 const KEYNOTE_PHOTO_ALT =
   "A speaker in a cream suit addresses a conference audience from the stage, gesturing mid-sentence with a microphone in hand"
@@ -72,20 +69,19 @@ export default function MediaPage() {
                 {MEDIA_OFFERINGS[2].description}
               </p>
               <div className="mt-6 border-t border-hairline pt-6">
-                <p className="eyebrow text-arm-media-ink">
-                  {mixerEvent.type}
+                <p className="eyebrow text-arm-media-ink">Coming Soon</p>
+                <p className="text-body-sm mt-2 text-body">
+                  TBHE is rebranding — new events, learning opportunities,
+                  and community experiences are on the way. Check back for
+                  updates.
                 </p>
-                <h3 className="text-h3 mt-2 text-ink">
-                  {mixerEvent.title}
-                </h3>
-                <p className="text-body-sm mt-2 text-body">{mixerEvent.description}</p>
               </div>
               <Link
                 href="/events"
                 className="group mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-primary"
               >
                 <span className="border-b border-primary/40 pb-0.5 transition-colors group-hover:border-primary">
-                  See upcoming events
+                  See the Events page
                 </span>
                 <span className="transition-transform group-hover:translate-x-0.5">
                   &rarr;
@@ -103,7 +99,7 @@ export default function MediaPage() {
           <div className="grid gap-16 lg:grid-cols-[0.85fr_1fr] lg:items-center">
             <Reveal>
               <SectionHeading
-                eyebrow="Research & Commentary"
+                eyebrow="Research & White Papers"
                 title="A growing body of published work"
                 description={MEDIA_OFFERINGS[0].description}
               />
@@ -138,8 +134,8 @@ export default function MediaPage() {
       <CtaBanner
         eyebrow="Book or Read"
         title="Bring this work to your conference, or your inbox"
-        description="Read the latest commentary or start a speaker booking request."
-        primary={{ label: "Read the Latest Article", href: "/resources" }}
+        description="Download the latest white paper or start a speaker booking request."
+        primary={{ label: "Download White Paper", href: "/resources" }}
         secondary={{ label: "Book a Speaker", href: "#book" }}
       />
     </>

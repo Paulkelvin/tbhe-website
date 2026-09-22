@@ -13,11 +13,11 @@ export function ResourceHero() {
         <div className="relative z-10 text-center lg:text-left">
           <p className="eyebrow text-primary">Resource Center</p>
           <h1 className="text-h1 mt-4 text-ink">
-            Research and commentary for the educator community
+            White papers, tools, and resources for the educator community
           </h1>
           <p className="text-lead mx-auto mt-5 max-w-md text-body lg:mx-0">
-            Timely articles from across the ecosystem — free to read and
-            share.
+            Research from across the ecosystem — free to read, download, and
+            share. New categories are added as the library grows.
           </p>
         </div>
 

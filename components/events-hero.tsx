@@ -16,7 +16,7 @@ export function EventsHero() {
             Workshops, webinars, and Disrupt &amp; Connect meetups
           </h1>
           <p className="text-lead mx-auto mt-5 max-w-md text-body lg:mx-0">
-            Upcoming programming across all three arms of the ecosystem.
+            New programming is on the way as TBHE completes its rebrand.
           </p>
         </div>
 

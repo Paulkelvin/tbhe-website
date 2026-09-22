@@ -2,7 +2,7 @@ import type { Metadata } from "next"
 
 import { ResourceHero } from "@/components/resource-hero"
 import { Reveal } from "@/components/reveal"
-import { FEATURED_RESOURCE, RESOURCES } from "@/lib/content"
+import { FEATURED_RESOURCE, RESOURCE_CATEGORIES, RESOURCES } from "@/lib/content"
 
 export const metadata: Metadata = {
   title: "Resource Center — The Beautifully Human Educator",
@@ -11,7 +11,6 @@ export const metadata: Metadata = {
 const secondaryResources = RESOURCES.filter(
   (r) => r.title !== FEATURED_RESOURCE.title
 )
-const kinds = Array.from(new Set(RESOURCES.map((r) => r.kind)))
 
 function actionLabel(kind: string) {
   if (kind === "Webinar Recording") return "Watch"
@@ -26,36 +25,31 @@ export default function ResourcesPage() {
 
       <section className="section">
         <div className="mx-auto max-w-4xl">
-          {/* A quiet masthead strip naming what's in the archive — browsing
-              cues, not a repeat of the list below. A tidy 2-column grid on
-              mobile avoids an orphaned separator dot at the wrap point. */}
+          {/* Category masthead — every category the Resource Center is
+              organized by, populated or not, so visitors can see what's
+              coming as the library grows. */}
           <Reveal className="border-y border-hairline py-4">
             <div className="grid grid-cols-2 gap-x-4 gap-y-2.5 text-center sm:hidden">
-              {kinds.map((kind) => (
-                <span
-                  key={kind}
-                  className="eyebrow text-muted-ink"
-                >
-                  {kind}s
+              {RESOURCE_CATEGORIES.map((category) => (
+                <span key={category} className="eyebrow text-muted-ink">
+                  {category}
                 </span>
               ))}
             </div>
-            <div className="hidden items-center justify-center gap-5 sm:flex lg:justify-start">
-              {kinds.map((kind, index) => (
-                <span key={kind} className="flex items-center gap-5">
+            <div className="hidden flex-wrap items-center justify-center gap-x-5 gap-y-2 sm:flex lg:justify-start">
+              {RESOURCE_CATEGORIES.map((category, index) => (
+                <span key={category} className="flex items-center gap-5">
                   {index > 0 ? (
                     <span aria-hidden className="h-1 w-1 rounded-full bg-hairline-strong" />
                   ) : null}
-                  <span className="eyebrow text-muted-ink">
-                    {kind}s
-                  </span>
+                  <span className="eyebrow text-muted-ink">{category}</span>
                 </span>
               ))}
             </div>
           </Reveal>
 
           {/* Featured — an open-spread treatment, not a card: a spine-like
-              rule instead of a bounding box. */}
+              rule instead of a bounding box. Links straight to the PDF. */}
           <Reveal className="relative mt-14 border-l-2 border-primary/70 pl-6 sm:mt-16 sm:pl-10">
             <p className="eyebrow text-primary">
               Featured &middot; {FEATURED_RESOURCE.kind}
@@ -66,37 +60,70 @@ export default function ResourcesPage() {
             <p className="text-lead mt-4 max-w-xl text-body">
               {FEATURED_RESOURCE.description}
             </p>
-            <span className="group mt-6 inline-flex w-fit items-center gap-1.5 text-sm font-semibold text-primary">
-              <span className="border-b border-primary/40 pb-0.5">
+            <a
+              href={FEATURED_RESOURCE.file}
+              target="_blank"
+              rel="noreferrer"
+              className="group mt-6 inline-flex w-fit items-center gap-1.5 text-sm font-semibold text-primary"
+            >
+              <span className="border-b border-primary/40 pb-0.5 transition-colors group-hover:border-primary">
                 {FEATURED_RESOURCE.cta}
               </span>
-              <span aria-hidden>&rarr;</span>
-            </span>
+              <span className="transition-transform group-hover:translate-x-0.5">
+                &rarr;
+              </span>
+            </a>
           </Reveal>
 
-          {/* The rest of the archive — a contents-page rhythm: kind and
-              title read as one line, excerpt beneath, thin rules between. */}
-          <div className="mt-16 divide-y divide-hairline border-t border-hairline sm:mt-20">
-            {secondaryResources.map((resource, index) => (
-              <Reveal
-                key={resource.title}
-                delay={index * 0.06}
-                className="flex flex-col gap-3 py-7 sm:flex-row sm:items-baseline sm:justify-between sm:gap-8"
-              >
-                <div className="sm:max-w-xl">
-                  <p className="eyebrow text-muted-ink">
-                    {resource.kind}
-                  </p>
-                  <h3 className="text-h3 mt-1.5 text-ink">
-                    {resource.title}
-                  </h3>
-                  <p className="text-body-sm mt-2 text-body">{resource.description}</p>
-                </div>
-                <span className="shrink-0 text-sm font-semibold text-primary sm:pl-4">
-                  {actionLabel(resource.kind)} &rarr;
-                </span>
-              </Reveal>
-            ))}
+          {/* The rest of the archive, grouped by category. A category with
+              nothing in it yet shows a quiet "Coming soon" line instead of
+              disappearing, since the library is being built out over time. */}
+          <div className="mt-16 sm:mt-20">
+            {RESOURCE_CATEGORIES.map((category, categoryIndex) => {
+              const items = secondaryResources.filter(
+                (r) => r.category === category
+              )
+              return (
+                <Reveal
+                  key={category}
+                  delay={categoryIndex * 0.04}
+                  className="border-t border-hairline py-8 first:pt-0"
+                >
+                  <p className="eyebrow text-muted-ink">{category}</p>
+                  {items.length > 0 ? (
+                    <div className="mt-4 divide-y divide-hairline">
+                      {items.map((resource) => (
+                        <div
+                          key={resource.title}
+                          className="flex flex-col gap-3 py-5 first:pt-0 sm:flex-row sm:items-baseline sm:justify-between sm:gap-8"
+                        >
+                          <div className="sm:max-w-xl">
+                            <h3 className="text-h3 text-ink">
+                              {resource.title}
+                            </h3>
+                            <p className="text-body-sm mt-2 text-body">
+                              {resource.description}
+                            </p>
+                          </div>
+                          <a
+                            href={resource.file}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="shrink-0 text-sm font-semibold text-primary sm:pl-4"
+                          >
+                            {actionLabel(resource.kind)} &rarr;
+                          </a>
+                        </div>
+                      ))}
+                    </div>
+                  ) : (
+                    <p className="text-body-sm mt-3 text-muted-ink italic">
+                      Coming soon.
+                    </p>
+                  )}
+                </Reveal>
+              )
+            })}
           </div>
         </div>
       </section>

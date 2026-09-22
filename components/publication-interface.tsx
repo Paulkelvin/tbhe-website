@@ -1,5 +1,3 @@
-import Link from "next/link"
-
 import { FEATURED_RESOURCE, RESOURCES } from "@/lib/content"
 
 const secondary = RESOURCES.find((r) => r.title !== FEATURED_RESOURCE.title)
@@ -39,8 +37,10 @@ export function PublicationInterface() {
         </h3>
         <p className="text-body-sm mt-4 text-body">{FEATURED_RESOURCE.description}</p>
 
-        <Link
-          href="/resources"
+        <a
+          href={FEATURED_RESOURCE.file}
+          target="_blank"
+          rel="noreferrer"
           className="group mt-6 inline-flex w-fit items-center gap-1.5 text-sm font-semibold text-primary"
         >
           <span className="border-b border-primary/40 pb-0.5 transition-colors group-hover:border-primary">
@@ -49,7 +49,7 @@ export function PublicationInterface() {
           <span className="transition-transform group-hover:translate-x-0.5">
             &rarr;
           </span>
-        </Link>
+        </a>
       </div>
     </div>
   )
