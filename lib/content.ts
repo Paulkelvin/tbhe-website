@@ -3,16 +3,31 @@
 export const SITE = {
   name: "The Beautifully Human Educator",
   shortName: "TBHE",
-  founderName: "Cyrkle B. Brent",
+  founderName: "Cyrkle Brent",
   founderCredential: "M.Ed.",
   founderTitle: "Founder & Chief Coach",
   founderSecondaryTitle: "Head of School & Principal, St. Martin's Lutheran School",
-  tagline: "Liberating educators. Advocating for neurodiverse learners.",
-  taglineLead: "Liberating educators.",
-  taglineSub: "Advocating for neurodiverse learners.",
+  tagline: "Be a Better Teacher.",
+  taglineLead: "Be a Better Teacher.",
+  taglineSub: "Transforming the landscape for underserved, under-resourced learners.",
   description:
     "TBHE is an ecosystem of educational consulting, special education advocacy through Mission 139, and thought leadership for the educator community.",
 } as const
+
+export const BUSINESS_CONTACT = {
+  address: "12530 Fairwood Pkwy Ste. 102 #568, Bowie, MD 20720",
+  phone: "(202) 642-6982",
+  phoneHref: "tel:+12026426982",
+  email: "info@thebeautifullyhumaneducator.com",
+} as const
+
+export const COACHING_TEAM = [
+  { name: "Yolanda Barber", role: "Head Coach — Principals & School Planning" },
+  { name: "Rossana Mahvi", role: "Head Coach — Literacy & Special Education" },
+  { name: "Kawan Jones", role: "Head Coach — Culture & Classroom Management" },
+  { name: "Kitrece Carr", role: "Instructional Coach — Math" },
+  { name: "Ashley Dominique", role: "Instructional Coach — ELA" },
+] as const
 
 export const SOCIAL_LINKS = {
   instagram: "https://www.instagram.com/the_beautifullyhuman_educator",
@@ -27,6 +42,7 @@ export const MISSION_139_INSTAGRAM = "https://www.instagram.com/tbhe_mission_139
 export const DISCOVERY_CALL_CAL_LINK = "tbhe/discovery-call"
 export const EXECUTIVE_COACHING_CAL_LINK = "tbhe/executive-coaching"
 export const INCLUSIVE_CLASSROOM_CAL_LINK = "tbhe/curating-an-inclusive-classroom"
+export const PROFESSIONAL_DEVELOPMENT_CAL_LINK = "tbhe/professional-development-coaching"
 
 export type BookableService = {
   key: string
@@ -70,6 +86,12 @@ export const BOOKABLE_SERVICES: readonly BookableService[] = [
     imageAlt: "An educator leading a workshop at a whiteboard titled Inclusive Classrooms",
     imagePosition: "50% 22%",
     calLink: INCLUSIVE_CLASSROOM_CAL_LINK,
+  },
+  {
+    key: "professional-development",
+    title: "Professional Development & Coaching",
+    tagline: "Whole-Staff PD, Tailored to Your School",
+    calLink: PROFESSIONAL_DEVELOPMENT_CAL_LINK,
   },
 ] as const
 
@@ -140,9 +162,9 @@ export const ARMS: readonly Arm[] = [
     summary:
       "Research, keynotes, and live community events that push the national conversation on equity, burnout, and educator protection forward.",
     offerings: [
-      'White paper releases (e.g., "Playing Chess: IP Protection in Education")',
+      "Published research & commentary on policy affecting educators",
       "Keynote addresses & guest speaker series",
-      'Webinars (e.g., "Protect Your Peace & Intellectual Property")',
+      "Webinars for the wider educator community",
       '"Disrupt & Connect" live community networking events',
     ],
     cta: "Book a Speaker",
@@ -196,11 +218,12 @@ export const SCHOOL_PARTNERS = [
 ] as const
 
 export const FEATURED_RESOURCE = {
-  kind: "White Paper",
-  title: "Playing Chess: IP Protection in Education",
+  kind: "Article",
+  title:
+    "The Dept of Ed Just Gutted Special Education Resources. Here's What That Means for Your Neurodivergent Child and How Mission 139 Can Help.",
   description:
-    "A federal-advocacy-minded look at intellectual property protection for educators, published alongside commentary on Department of Education special ed policy updates.",
-  cta: "Download the White Paper",
+    "A look at recent federal cuts to special education resources, and how Mission 139 is stepping in for the families who need it most.",
+  cta: "Read the Article",
 } as const
 
 export const CONSULTING_MODULES = [
@@ -257,24 +280,18 @@ export const MISSION_139_PROGRAMS = [
   },
 ] as const
 
-export const KEYNOTE_TOPICS = [
-  "Diversity as Divine Design",
-  "Teacher Burnout vs. Systemic Change",
-  "Something else / custom topic",
-] as const
-
 export const MEDIA_OFFERINGS = [
   {
     icon: "FileText",
-    title: "Research & White Papers",
+    title: "Research & Commentary",
     description:
-      "A growing library of published research and IP-protection resources for educators, free to download.",
+      "A growing library of research and commentary on policy affecting educators and neurodivergent students, free to read.",
   },
   {
     icon: "Microphone",
     title: "Speaker Bureau",
     description:
-      'Keynote topics include "Diversity as Divine Design" and "Teacher Burnout vs. Systemic Change," booked for conferences and district events.',
+      "Keynote and workshop bookings for conferences and district events, tailored to your audience.",
   },
   {
     icon: "CalendarBlank",
@@ -307,27 +324,18 @@ export const EVENTS = [
 
 export const RESOURCES = [
   {
-    kind: "White Paper",
-    title: "Playing Chess: IP Protection in Education",
+    kind: "Article",
+    title:
+      "The Dept of Ed Just Gutted Special Education Resources. Here's What That Means for Your Neurodivergent Child and How Mission 139 Can Help.",
     description:
-      "Federal-advocacy-minded research on protecting educators' intellectual property.",
-  },
-  {
-    kind: "Toolkit",
-    title: "IEP/504 Parent Empowerment Toolkit",
-    description:
-      "A plain-language guide to understanding and advocating in IEP/504 meetings.",
-  },
-  {
-    kind: "Webinar Recording",
-    title: "Protect Your Peace & Intellectual Property",
-    description: "Recorded session on IP protection for classroom creators.",
+      "A look at recent federal cuts to special education resources, and how Mission 139 is stepping in for the families who need it most.",
   },
   {
     kind: "Article",
-    title: "Teacher Burnout vs. Systemic Change",
+    title:
+      "The Big, Beautiful Bill Is Here — But What Does It Actually Mean for Your Neurodivergent Child?",
     description:
-      "A look at what actually moves the needle on educator retention.",
+      "Breaking down a major piece of federal legislation and what it actually changes for neurodivergent students and their families.",
   },
 ] as const
 

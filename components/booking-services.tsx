@@ -4,6 +4,7 @@ import { useState } from "react"
 import Image from "next/image"
 import {
   ChalkboardTeacher,
+  GraduationCap,
   Handshake,
   Phone,
 } from "@phosphor-icons/react/dist/ssr"
@@ -18,6 +19,7 @@ const FALLBACK_ICON: Record<string, typeof Phone> = {
   discovery: Phone,
   executive: Handshake,
   classroom: ChalkboardTeacher,
+  "professional-development": GraduationCap,
 }
 
 function ServiceCard({
@@ -86,7 +88,7 @@ export function BookingServices() {
 
   return (
     <div>
-      <div className="grid gap-4 sm:grid-cols-3">
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {BOOKABLE_SERVICES.map((service) => (
           <ServiceCard
             key={service.key}

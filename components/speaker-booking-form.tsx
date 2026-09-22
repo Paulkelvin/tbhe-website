@@ -3,7 +3,6 @@
 import { useState, type FormEvent } from "react"
 
 import { Button } from "@/components/ui/button"
-import { KEYNOTE_TOPICS } from "@/lib/content"
 
 export function SpeakerBookingForm() {
   const [submitted, setSubmitted] = useState(false)
@@ -79,23 +78,14 @@ export function SpeakerBookingForm() {
       </div>
 
       <div className="grid gap-5 sm:grid-cols-2">
-        <Field label="Keynote topic" htmlFor="speaker-topic">
-          <select
+        <Field label="Topic or focus area" htmlFor="speaker-topic">
+          <input
             id="speaker-topic"
             name="topic"
             required
-            defaultValue=""
+            placeholder="e.g. Inclusive classrooms, teacher retention"
             className="form-input"
-          >
-            <option value="" disabled>
-              Select a topic
-            </option>
-            {KEYNOTE_TOPICS.map((topic) => (
-              <option key={topic} value={topic}>
-                {topic}
-              </option>
-            ))}
-          </select>
+          />
         </Field>
         <Field label="Estimated audience size" htmlFor="speaker-audience">
           <input id="speaker-audience" name="audienceSize" className="form-input" />

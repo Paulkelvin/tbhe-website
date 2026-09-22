@@ -8,6 +8,13 @@ const [titleLead, ...titleRest] = FEATURED_RESOURCE.title.split(": ")
 const titleTail = titleRest.join(": ")
 
 function Headline({ className }: { className?: string }) {
+  if (!titleTail) {
+    return (
+      <h3 className={`text-h3 text-ink ${className ?? ""}`}>
+        {titleLead}
+      </h3>
+    )
+  }
   return (
     <h3 className={`text-h3 text-ink ${className ?? ""}`}>
       {titleLead}:
@@ -48,7 +55,7 @@ export function FeaturedResource() {
         </p>
         <p className="text-lead mt-3 text-body">
           Research, frameworks, and field notes from across the ecosystem —
-          starting with our latest white paper.
+          starting with our latest article.
         </p>
       </Reveal>
 

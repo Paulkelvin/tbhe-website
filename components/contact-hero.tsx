@@ -1,6 +1,8 @@
+import { EnvelopeSimple, MapPin, Phone } from "@phosphor-icons/react/dist/ssr"
+
 import { ArtDefs, HandDrawnStroke } from "@/components/organic-art"
 import { ContactForm } from "@/components/contact-form"
-import { ARMS, type Arm } from "@/lib/content"
+import { ARMS, BUSINESS_CONTACT, type Arm } from "@/lib/content"
 
 const ARM_LABEL: Record<Arm["slug"], string> = {
   consulting: "Consulting",
@@ -31,6 +33,27 @@ export function ContactHero() {
             Tell us why you&apos;re reaching out and the right person on the
             TBHE team will follow up.
           </p>
+
+          <div className="mt-6 flex flex-col items-center gap-2.5 text-sm text-body lg:items-start">
+            <a
+              href={BUSINESS_CONTACT.phoneHref}
+              className="inline-flex items-center gap-2 transition-colors hover:text-ink"
+            >
+              <Phone size={16} className="shrink-0 text-primary" />
+              {BUSINESS_CONTACT.phone}
+            </a>
+            <a
+              href={`mailto:${BUSINESS_CONTACT.email}`}
+              className="inline-flex items-center gap-2 transition-colors hover:text-ink"
+            >
+              <EnvelopeSimple size={16} className="shrink-0 text-primary" />
+              {BUSINESS_CONTACT.email}
+            </a>
+            <span className="inline-flex items-center gap-2">
+              <MapPin size={16} className="shrink-0 text-primary" />
+              {BUSINESS_CONTACT.address}
+            </span>
+          </div>
 
           {/* Mobile: the three-arm detail simplifies to a single quiet line. */}
           <p className="eyebrow mt-8 text-muted-ink lg:hidden">

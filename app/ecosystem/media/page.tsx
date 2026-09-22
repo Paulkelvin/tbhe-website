@@ -8,16 +8,13 @@ import { PublicationInterface } from "@/components/publication-interface"
 import { SpeakerBookingForm } from "@/components/speaker-booking-form"
 import { CtaBanner } from "@/components/cta-banner"
 import { Reveal } from "@/components/reveal"
-import { ARMS, EVENTS, KEYNOTE_TOPICS, MEDIA_OFFERINGS } from "@/lib/content"
+import { ARMS, EVENTS, MEDIA_OFFERINGS } from "@/lib/content"
 
 export const metadata: Metadata = {
   title: "Media & Publishing — The Beautifully Human Educator",
 }
 
 const arm = ARMS.find((a) => a.slug === "media")!
-const speakingTopics = KEYNOTE_TOPICS.filter(
-  (topic) => topic !== "Something else / custom topic"
-)
 const mixerEvent = EVENTS.find(
   (e) => e.title === "Disrupt & Connect: Fall Networking Mixer"
 )!
@@ -63,18 +60,10 @@ export default function MediaPage() {
               <p className="text-body-sm mt-4 max-w-xl text-body">
                 {MEDIA_OFFERINGS[1].description}
               </p>
-              <div className="mt-8 divide-y divide-hairline border-t border-hairline">
-                {speakingTopics.map((topic, index) => (
-                  <div key={topic} className="flex items-baseline gap-4 py-5">
-                    <span className="font-display text-sm text-muted-ink">
-                      0{index + 1}
-                    </span>
-                    <h3 className="text-h3 text-ink">
-                      {topic}
-                    </h3>
-                  </div>
-                ))}
-              </div>
+              <p className="text-lead mt-8 max-w-xl border-t border-hairline pt-6 text-body">
+                No fixed topic list — tell us about your event below and
+                we&apos;ll tailor the session to your audience.
+              </p>
             </Reveal>
 
             <Reveal delay={0.05} className="lg:border-l lg:border-hairline lg:pl-16">
@@ -107,14 +96,14 @@ export default function MediaPage() {
         </div>
       </section>
 
-      {/* Research & White Papers — the digital publishing composition is
+      {/* Research & Commentary — the digital publishing composition is
           the section's whole reason for being; text stays quiet beside it. */}
       <section className="relative overflow-hidden bg-arm-media/[0.04] py-20 sm:py-24 lg:py-28">
         <div className="mx-auto max-w-6xl px-6 sm:px-8">
           <div className="grid gap-16 lg:grid-cols-[0.85fr_1fr] lg:items-center">
             <Reveal>
               <SectionHeading
-                eyebrow="Research & White Papers"
+                eyebrow="Research & Commentary"
                 title="A growing body of published work"
                 description={MEDIA_OFFERINGS[0].description}
               />
@@ -149,8 +138,8 @@ export default function MediaPage() {
       <CtaBanner
         eyebrow="Book or Read"
         title="Bring this work to your conference, or your inbox"
-        description="Download the latest research or start a speaker booking request."
-        primary={{ label: "Download White Paper", href: "/resources" }}
+        description="Read the latest commentary or start a speaker booking request."
+        primary={{ label: "Read the Latest Article", href: "/resources" }}
         secondary={{ label: "Book a Speaker", href: "#book" }}
       />
     </>

@@ -72,10 +72,9 @@ export default function TermsPage() {
 
           <h2>Intellectual property</h2>
           <p>
-            The Site&apos;s content — including text, research and white
-            papers (such as &quot;Playing Chess: IP Protection in
-            Education&quot;), toolkits, and design — belongs to{" "}
-            {SITE.shortName} or its licensors, unless otherwise noted. You
+            The Site&apos;s content — including text, published articles,
+            toolkits, and design — belongs to {SITE.shortName} or its
+            licensors, unless otherwise noted. You
             may view and share it for personal, non-commercial purposes, but
             may not republish, sell, or otherwise use it commercially
             without our written permission.

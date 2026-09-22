@@ -8,7 +8,7 @@ import { CtaBanner } from "@/components/cta-banner"
 import { Reveal } from "@/components/reveal"
 import { ArtDefs, HandDrawnStroke, OrganicBlob } from "@/components/organic-art"
 import { ReadMore } from "@/components/read-more"
-import { SITE } from "@/lib/content"
+import { COACHING_TEAM, SITE } from "@/lib/content"
 
 export const metadata: Metadata = {
   title: "About — The Beautifully Human Educator",
@@ -47,13 +47,19 @@ export default function AboutPage() {
             <Reveal className="relative z-10">
               <SectionHeading eyebrow="Founder Story" title="From the classroom to the ecosystem" />
               <p className="mt-5 text-body">
-                {SITE.founderName}&apos;s years teaching across K-8 and high
-                school revealed the same pattern again and again: early-career
+                {SITE.founderName} built TBHE on the same pattern she saw
+                again and again across a career as an English teacher,
+                special education teacher, special education coordinator,
+                and award-winning principal in Maryland and DC: early-career
                 teachers burning out, neurodivergent students falling through
                 the cracks of under-resourced systems, and a wider field
                 starved for honest thought leadership. TBHE was built to
                 respond to all three, at once, without pretending
                 they&apos;re separate problems.
+              </p>
+              <p className="text-body-sm mt-4 text-muted-ink">
+                BS, Towson State University &middot; Master&apos;s, Notre
+                Dame of Maryland
               </p>
             </Reveal>
 
@@ -79,6 +85,28 @@ export default function AboutPage() {
             </Reveal>
           </div>
         </div>
+      </section>
+
+      {/* Coaching Team — a simple name/role grid, no photos, so it reads
+          as a quiet roster rather than competing with the founder photo. */}
+      <section className="section pt-0">
+        <Reveal className="mx-auto max-w-5xl">
+          <SectionHeading
+            eyebrow="The Team"
+            title="A team of specialists behind every engagement"
+          />
+          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {COACHING_TEAM.map((member) => (
+              <div
+                key={member.name}
+                className="rounded-xl border border-hairline bg-surface-card p-5"
+              >
+                <p className="text-h3-alt text-ink">{member.name}</p>
+                <p className="caption mt-1 text-muted-ink">{member.role}</p>
+              </div>
+            ))}
+          </div>
+        </Reveal>
       </section>
 
       {/* Mission — deliberately quiet: no photography, just sage tone,
