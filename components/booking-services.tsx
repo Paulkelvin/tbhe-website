@@ -28,10 +28,13 @@ const FALLBACK_ICON: Record<string, typeof Phone> = {
   "professional-development": GraduationCap,
 }
 
-// Mirrors the real site's own "For Educators" / "For Schools & Districts"
-// filter — picking a category narrows the row to two relevant cards
-// instead of showing all four services at once.
-const CATEGORIES: { key: ServiceCategory; label: string }[] = [
+// Mirrors the real site's own "All Services" / "For Educators" /
+// "For Schools & Districts" filter — picking a category narrows the row
+// to the relevant cards instead of always showing all four at once.
+type ServiceFilter = "all" | ServiceCategory
+
+const FILTERS: { key: ServiceFilter; label: string }[] = [
+  { key: "all", label: "All Services" },
   { key: "educator", label: "For Educators" },
   { key: "school", label: "For Schools & Districts" },
 ]
@@ -94,44 +97,53 @@ function ServiceCard({
   )
 }
 
-export function BookingServices() {
-  const [category, setCategory] = useState<ServiceCategory>("educator")
-  const servicesInCategory = BOOKABLE_SERVICES.filter(
-    (s) => s.category === category
-  )
-  const [activeKey, setActiveKey] = useState(servicesInCategory[0].key)
-  const active =
-    BOOKABLE_SERVICES.find((s) => s.key === activeKey) ?? servicesInCategory[0]
+function servicesFor(filter: ServiceFilter): readonly BookableService[] {
+  return filter === "all"
+    ? BOOKABLE_SERVICES
+    : BOOKABLE_SERVICES.filter((s) => s.category === filter)
+}
 
-  function selectCategory(next: ServiceCategory) {
-    setCategory(next)
-    const firstInCategory = BOOKABLE_SERVICES.find((s) => s.category === next)
-    if (firstInCategory) setActiveKey(firstInCategory.key)
+export function BookingServices() {
+  const [filter, setFilter] = useState<ServiceFilter>("all")
+  const servicesInView = servicesFor(filter)
+  const [activeKey, setActiveKey] = useState(servicesInView[0].key)
+  const active =
+    BOOKABLE_SERVICES.find((s) => s.key === activeKey) ?? servicesInView[0]
+
+  function selectFilter(next: ServiceFilter) {
+    setFilter(next)
+    const first = servicesFor(next)[0]
+    if (first) setActiveKey(first.key)
   }
 
   return (
     <div>
       <div className="inline-flex flex-wrap gap-1 rounded-full border border-hairline bg-surface-card p-1">
-        {CATEGORIES.map((c) => (
+        {FILTERS.map((f) => (
           <button
-            key={c.key}
+            key={f.key}
             type="button"
-            onClick={() => selectCategory(c.key)}
-            aria-pressed={category === c.key}
+            onClick={() => selectFilter(f.key)}
+            aria-pressed={filter === f.key}
             className={cn(
               "rounded-full px-4 py-2 text-sm font-semibold transition-colors",
-              category === c.key
+              filter === f.key
                 ? "bg-arm-consulting text-canvas"
                 : "text-body hover:text-ink"
             )}
           >
-            {c.label}
+            {f.label}
           </button>
         ))}
       </div>
 
-      <div className="mt-6 grid gap-4 sm:grid-cols-2">
-        {servicesInCategory.map((service) => (
+      <div
+        className={cn(
+          "mt-6 grid gap-4 sm:grid-cols-2",
+          servicesInView.length > 2 && "lg:grid-cols-4"
+        )}
+      >
+        {servicesInView.map((service) => (
           <ServiceCard
             key={service.key}
             service={service}
