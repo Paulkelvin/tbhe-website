@@ -40,7 +40,11 @@ export const COACHING_TEAM: readonly CoachingTeamMember[] = [
     role: "Head Coach: Literacy & Special Education",
     photo: "/images/team/rossana-mahvi.jpg",
   },
-  { name: "Kawan Jones", role: "Head Coach: Culture & Classroom Management" },
+  {
+    name: "Kawan Jones",
+    role: "Head Coach: Culture & Classroom Management",
+    photo: "/images/team/kawan-jones.jpg",
+  },
   { name: "Kitrece Carr", role: "Instructional Coach: Math" },
   { name: "Ashley Dominique", role: "Instructional Coach: ELA" },
 ] as const
