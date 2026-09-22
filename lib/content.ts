@@ -36,13 +36,11 @@ export const SOCIAL_LINKS = {
 
 export const MISSION_139_INSTAGRAM = "https://www.instagram.com/tbhe_mission_139"
 
-// Placeholders — replace each with the real Cal.com username/event-type
-// slug once confirmed (e.g. "cyrkle-brent/discovery-call"). These three
-// mirror the real event types already set up in Cal.com.
-export const DISCOVERY_CALL_CAL_LINK = "tbhe/discovery-call"
-export const EXECUTIVE_COACHING_CAL_LINK = "tbhe/executive-coaching"
-export const INCLUSIVE_CLASSROOM_CAL_LINK = "tbhe/curating-an-inclusive-classroom"
-export const PROFESSIONAL_DEVELOPMENT_CAL_LINK = "tbhe/professional-development-coaching"
+// Real Calendly link the client provided. It's a single general-purpose
+// meeting scheduler (not per-service event types), so every service below
+// points to the same link until she sets up distinct Calendly event types.
+export const CALENDLY_BOOKING_LINK =
+  "https://calendly.com/cbrent-stmartinsonline/new-meeting"
 
 export type BookableService = {
   key: string
@@ -63,7 +61,7 @@ export const BOOKABLE_SERVICES: readonly BookableService[] = [
     title: "Complimentary Discovery Call",
     tagline: "What's the 411?",
     duration: "45 min",
-    calLink: DISCOVERY_CALL_CAL_LINK,
+    calLink: CALENDLY_BOOKING_LINK,
     image: "/images/service-discovery-call.jpg",
     imageAlt: "A smiling consultant on a video call with a notebook and coffee mug",
     imagePosition: "50% 12%",
@@ -73,7 +71,7 @@ export const BOOKABLE_SERVICES: readonly BookableService[] = [
     title: "Executive Coaching",
     tagline: "Step Your Game Up w/ Executive Coaching",
     duration: "1 hr",
-    calLink: EXECUTIVE_COACHING_CAL_LINK,
+    calLink: CALENDLY_BOOKING_LINK,
     image: "/images/service-executive-coaching.jpg",
     imageAlt: "Two educators in a one-on-one coaching conversation",
     imagePosition: "50% 18%",
@@ -85,13 +83,13 @@ export const BOOKABLE_SERVICES: readonly BookableService[] = [
     image: "/images/service-inclusive-classroom.jpg",
     imageAlt: "An educator leading a workshop at a whiteboard titled Inclusive Classrooms",
     imagePosition: "50% 22%",
-    calLink: INCLUSIVE_CLASSROOM_CAL_LINK,
+    calLink: CALENDLY_BOOKING_LINK,
   },
   {
     key: "professional-development",
     title: "Professional Development & Coaching",
     tagline: "Whole-Staff PD, Tailored to Your School",
-    calLink: PROFESSIONAL_DEVELOPMENT_CAL_LINK,
+    calLink: CALENDLY_BOOKING_LINK,
   },
 ] as const
 

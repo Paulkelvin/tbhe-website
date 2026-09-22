@@ -1,30 +1,46 @@
 "use client"
 
-import { useEffect } from "react"
-import Cal, { getCalApi } from "@calcom/embed-react"
+import { useCallback, useEffect, useRef } from "react"
+import Script from "next/script"
 import { CalendarBlank } from "@phosphor-icons/react/dist/ssr"
 
-import { DISCOVERY_CALL_CAL_LINK } from "@/lib/content"
+import { CALENDLY_BOOKING_LINK } from "@/lib/content"
 
+declare global {
+  interface Window {
+    Calendly?: {
+      initInlineWidget: (options: {
+        url: string
+        parentElement: HTMLElement
+      }) => void
+    }
+  }
+}
+
+// Real Calendly embed (the client's actual booking link) — matches the
+// site's brand color via Calendly's own theming query params rather than
+// custom CSS, since the widget renders inside a cross-origin iframe.
 export function BookingWidget({
-  calLink = DISCOVERY_CALL_CAL_LINK,
+  calLink = CALENDLY_BOOKING_LINK,
 }: {
   calLink?: string
 }) {
-  useEffect(() => {
-    ;(async () => {
-      const cal = await getCalApi()
-      cal("ui", {
-        theme: "light",
-        cssVarsPerTheme: {
-          light: { "cal-brand": "#763d8e" },
-          dark: { "cal-brand": "#763d8e" },
-        },
-        hideEventTypeDetails: false,
-        layout: "month_view",
+  const containerRef = useRef<HTMLDivElement>(null)
+  const url = `${calLink}?primary_color=763d8e&text_color=251827&background_color=ffffff`
+
+  const initWidget = useCallback(() => {
+    if (containerRef.current && window.Calendly) {
+      containerRef.current.innerHTML = ""
+      window.Calendly.initInlineWidget({
+        url,
+        parentElement: containerRef.current,
       })
-    })()
-  }, [])
+    }
+  }, [url])
+
+  useEffect(() => {
+    initWidget()
+  }, [initWidget])
 
   return (
     <div
@@ -35,11 +51,11 @@ export function BookingWidget({
         <CalendarBlank size={28} className="text-arm-consulting/40" />
         <p className="text-sm text-muted-ink">Loading available times…</p>
       </div>
-      <Cal
-        key={calLink}
-        calLink={calLink}
-        style={{ width: "100%", height: "100%", minHeight: "700px" }}
-        config={{ layout: "month_view", theme: "light" }}
+      <div ref={containerRef} style={{ minWidth: 320, height: 700 }} />
+      <Script
+        src="https://assets.calendly.com/assets/external/widget.js"
+        strategy="afterInteractive"
+        onReady={initWidget}
       />
     </div>
   )
