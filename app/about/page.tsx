@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 import Image from "next/image"
-import { Quotes } from "@phosphor-icons/react/dist/ssr"
+import { Quotes, UserCircle } from "@phosphor-icons/react/dist/ssr"
 
 import { PageHero } from "@/components/page-hero"
 import { SectionHeading } from "@/components/section-heading"
@@ -96,9 +96,9 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Coaching Team — a name/role grid. Members with a confirmed real
-          headshot get a circular photo; the rest stay text-only until
-          theirs is added, so the grid can fill in gradually. */}
+      {/* Coaching Team — real portrait photos front and center, matching
+          the weight the booking service cards give their photos, rather
+          than a small circular thumbnail beside the text. */}
       <section className="section pt-0">
         <Reveal className="mx-auto max-w-5xl">
           <SectionHeading
@@ -106,24 +106,32 @@ export default function AboutPage() {
             title="Dedication. Expertise. Passion. Unmatched."
             description="TBHE supports school administrators, classroom teachers, and organization leadership teams to create and sustain nurturing, inclusive environments that don't sacrifice excellence, rigor, or the wellbeing of the educator or staff."
           />
-          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {COACHING_TEAM.map((member) => (
               <div
                 key={member.name}
-                className="flex items-center gap-4 rounded-xl border border-hairline bg-surface-card p-5"
+                className="overflow-hidden rounded-2xl border border-hairline bg-surface-card"
               >
-                {member.photo ? (
-                  <div className="relative size-14 shrink-0 overflow-hidden rounded-full">
+                <div className="relative aspect-[4/5] w-full overflow-hidden bg-arm-consulting/5">
+                  {member.photo ? (
                     <Image
                       src={member.photo}
                       alt={member.name}
                       fill
-                      sizes="56px"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                       className="object-cover"
                     />
-                  </div>
-                ) : null}
-                <div>
+                  ) : (
+                    <div className="flex h-full w-full items-center justify-center">
+                      <UserCircle
+                        size={56}
+                        weight="light"
+                        className="text-arm-consulting/30"
+                      />
+                    </div>
+                  )}
+                </div>
+                <div className="p-5">
                   <p className="text-h3-alt text-ink">{member.name}</p>
                   <p className="caption mt-1 text-muted-ink">{member.role}</p>
                 </div>
