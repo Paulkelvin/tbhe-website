@@ -110,7 +110,7 @@ export const NAV_LINKS = [
   { label: "The Ecosystem", href: "/ecosystem" },
   { label: "Resource Center", href: "/resources" },
   { label: "Events", href: "/events" },
-  { label: "Contact", href: "/contact" },
+  { label: "Contact Us", href: "/contact" },
 ] as const
 
 export type ArmSlug = "consulting" | "mission-139" | "media"
