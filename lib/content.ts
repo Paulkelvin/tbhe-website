@@ -46,7 +46,11 @@ export const COACHING_TEAM: readonly CoachingTeamMember[] = [
     photo: "/images/team/kawan-jones.jpg",
   },
   { name: "Kitrece Carr", role: "Instructional Coach: Math" },
-  { name: "Ashley Dominique", role: "Instructional Coach: ELA" },
+  {
+    name: "Ashley Dominique",
+    role: "Instructional Coach: ELA",
+    photo: "/images/team/ashley-dominique.jpg",
+  },
 ] as const
 
 export const SOCIAL_LINKS = {
