@@ -1,10 +1,12 @@
 import Link from "next/link"
 import Image from "next/image"
 
+import { InstagramLogo } from "@phosphor-icons/react/dist/ssr"
+
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { OrganicBlob } from "@/components/organic-art"
-import { ARM_COLOR_CLASS, type Arm } from "@/lib/content"
+import { ARM_COLOR_CLASS, MISSION_139_INSTAGRAM, type Arm } from "@/lib/content"
 
 const PATH_ALT =
   "A hand-drawn vine of a path connecting small waypoints reading Heard, Understood, Supported, and Empowered, ending at an open door beneath a heart"
@@ -57,10 +59,22 @@ export function MissionHero({ arm, ctaHref }: { arm: Arm; ctaHref: string }) {
         <p className="text-body-sm mx-auto mt-3 max-w-2xl text-muted-ink">
           For: {arm.audience}
         </p>
-        <div className="mt-8">
+        <div className="mt-8 flex flex-col items-center gap-4">
           <Button asChild size="lg">
             <Link href={ctaHref}>{arm.cta}</Link>
           </Button>
+          <Link
+            href={MISSION_139_INSTAGRAM}
+            target="_blank"
+            rel="noreferrer"
+            className={cn(
+              "caption inline-flex items-center gap-1.5 transition-colors hover:text-arm-mission-ink",
+              colors.text
+            )}
+          >
+            <InstagramLogo size={16} />
+            Follow @tbhe_mission_139
+          </Link>
         </div>
       </div>
 

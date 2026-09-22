@@ -1,7 +1,8 @@
 import Image from "next/image"
 import Link from "next/link"
+import { InstagramLogo, LinkedinLogo } from "@phosphor-icons/react/dist/ssr"
 
-import { FOOTER_COLUMNS, SITE } from "@/lib/content"
+import { FOOTER_COLUMNS, SITE, SOCIAL_LINKS } from "@/lib/content"
 
 export function SiteFooter() {
   return (
@@ -16,6 +17,26 @@ export function SiteFooter() {
             className="h-12 w-auto"
           />
           <p className="text-body-sm mt-4 max-w-sm text-body">{SITE.tagline}</p>
+          <div className="mt-5 flex items-center gap-3">
+            <Link
+              href={SOCIAL_LINKS.instagram}
+              target="_blank"
+              rel="noreferrer"
+              aria-label="TBHE on Instagram"
+              className="flex size-9 items-center justify-center rounded-full border border-hairline-strong text-body transition-colors hover:border-primary hover:text-primary"
+            >
+              <InstagramLogo size={18} />
+            </Link>
+            <Link
+              href={SOCIAL_LINKS.linkedin}
+              target="_blank"
+              rel="noreferrer"
+              aria-label="TBHE on LinkedIn"
+              className="flex size-9 items-center justify-center rounded-full border border-hairline-strong text-body transition-colors hover:border-primary hover:text-primary"
+            >
+              <LinkedinLogo size={18} />
+            </Link>
+          </div>
         </div>
 
         {FOOTER_COLUMNS.map((col) => (

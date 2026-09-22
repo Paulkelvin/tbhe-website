@@ -3,7 +3,8 @@
 export const SITE = {
   name: "The Beautifully Human Educator",
   shortName: "TBHE",
-  founderName: "Cyrkle Brent",
+  founderName: "Cyrkle Lomax-Brent",
+  founderCredential: "M.Ed.",
   founderTitle: "Founder & Chief Coach",
   tagline: "Liberating educators. Advocating for neurodiverse learners.",
   taglineLead: "Liberating educators.",
@@ -11,6 +12,13 @@ export const SITE = {
   description:
     "TBHE is an ecosystem of educational consulting, special education advocacy through Mission 139, and thought leadership for the educator community.",
 } as const
+
+export const SOCIAL_LINKS = {
+  instagram: "https://www.instagram.com/the_beautifullyhuman_educator",
+  linkedin: "https://www.linkedin.com/company/the-beautifully-human-educator/",
+} as const
+
+export const MISSION_139_INSTAGRAM = "https://www.instagram.com/tbhe_mission_139"
 
 // Placeholders — replace each with the real Cal.com username/event-type
 // slug once confirmed (e.g. "cyrkle-brent/discovery-call"). These three

@@ -68,7 +68,7 @@ export default function AboutPage() {
                 />
               </div>
               <p className="text-h3 mt-6 text-center text-ink lg:text-left">
-                {SITE.founderName}
+                {SITE.founderName}, {SITE.founderCredential}
               </p>
               <p className="caption mt-1 text-center text-muted-ink lg:text-left">
                 {SITE.founderTitle}
