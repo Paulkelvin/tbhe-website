@@ -96,22 +96,37 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Coaching Team — a simple name/role grid, no photos, so it reads
-          as a quiet roster rather than competing with the founder photo. */}
+      {/* Coaching Team — a name/role grid. Members with a confirmed real
+          headshot get a circular photo; the rest stay text-only until
+          theirs is added, so the grid can fill in gradually. */}
       <section className="section pt-0">
         <Reveal className="mx-auto max-w-5xl">
           <SectionHeading
             eyebrow="The Team"
-            title="A team of specialists behind every engagement"
+            title="Dedication. Expertise. Passion. Unmatched."
+            description="TBHE supports school administrators, classroom teachers, and organization leadership teams to create and sustain nurturing, inclusive environments that don't sacrifice excellence, rigor, or the wellbeing of the educator or staff."
           />
           <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {COACHING_TEAM.map((member) => (
               <div
                 key={member.name}
-                className="rounded-xl border border-hairline bg-surface-card p-5"
+                className="flex items-center gap-4 rounded-xl border border-hairline bg-surface-card p-5"
               >
-                <p className="text-h3-alt text-ink">{member.name}</p>
-                <p className="caption mt-1 text-muted-ink">{member.role}</p>
+                {member.photo ? (
+                  <div className="relative size-14 shrink-0 overflow-hidden rounded-full">
+                    <Image
+                      src={member.photo}
+                      alt={member.name}
+                      fill
+                      sizes="56px"
+                      className="object-cover"
+                    />
+                  </div>
+                ) : null}
+                <div>
+                  <p className="text-h3-alt text-ink">{member.name}</p>
+                  <p className="caption mt-1 text-muted-ink">{member.role}</p>
+                </div>
               </div>
             ))}
           </div>

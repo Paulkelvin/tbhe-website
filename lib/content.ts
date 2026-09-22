@@ -21,9 +21,21 @@ export const BUSINESS_CONTACT = {
   email: "info@thebeautifullyhumaneducator.com",
 } as const
 
-export const COACHING_TEAM = [
+export type CoachingTeamMember = {
+  name: string
+  role: string
+  // Real headshot, added as photos are confirmed. Falls back to a plain
+  // text card when unset. See the Team section on the About page.
+  photo?: string
+}
+
+export const COACHING_TEAM: readonly CoachingTeamMember[] = [
   { name: "Yolanda Barber", role: "Head Coach: Principals & School Planning" },
-  { name: "Rossana Mahvi", role: "Head Coach: Literacy & Special Education" },
+  {
+    name: "Rossana Mahvi",
+    role: "Head Coach: Literacy & Special Education",
+    photo: "/images/team/rossana-mahvi.jpg",
+  },
   { name: "Kawan Jones", role: "Head Coach: Culture & Classroom Management" },
   { name: "Kitrece Carr", role: "Instructional Coach: Math" },
   { name: "Ashley Dominique", role: "Instructional Coach: ELA" },
