@@ -73,6 +73,9 @@ export default function AboutPage() {
               <p className="caption mt-1 text-center text-muted-ink lg:text-left">
                 {SITE.founderTitle}
               </p>
+              <p className="caption mt-0.5 text-center text-muted-ink lg:text-left">
+                {SITE.founderSecondaryTitle}
+              </p>
             </Reveal>
           </div>
         </div>

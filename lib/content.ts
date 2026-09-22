@@ -3,9 +3,10 @@
 export const SITE = {
   name: "The Beautifully Human Educator",
   shortName: "TBHE",
-  founderName: "Cyrkle Lomax-Brent",
+  founderName: "Cyrkle B. Brent",
   founderCredential: "M.Ed.",
   founderTitle: "Founder & Chief Coach",
+  founderSecondaryTitle: "Head of School & Principal, St. Martin's Lutheran School",
   tagline: "Liberating educators. Advocating for neurodiverse learners.",
   taglineLead: "Liberating educators.",
   taglineSub: "Advocating for neurodiverse learners.",
