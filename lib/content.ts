@@ -30,7 +30,11 @@ export type CoachingTeamMember = {
 }
 
 export const COACHING_TEAM: readonly CoachingTeamMember[] = [
-  { name: "Yolanda Barber", role: "Head Coach: Principals & School Planning" },
+  {
+    name: "Yolanda Barber",
+    role: "Head Coach: Principals & School Planning",
+    photo: "/images/team/yolanda-barber.jpg",
+  },
   {
     name: "Rossana Mahvi",
     role: "Head Coach: Literacy & Special Education",
