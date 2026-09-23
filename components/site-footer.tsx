@@ -1,8 +1,14 @@
 import Image from "next/image"
 import Link from "next/link"
-import { InstagramLogo, LinkedinLogo } from "@phosphor-icons/react/dist/ssr"
+import {
+  EnvelopeSimple,
+  InstagramLogo,
+  LinkedinLogo,
+  MapPin,
+  Phone,
+} from "@phosphor-icons/react/dist/ssr"
 
-import { FOOTER_COLUMNS, SITE, SOCIAL_LINKS } from "@/lib/content"
+import { BUSINESS_CONTACT, FOOTER_COLUMNS, SITE, SOCIAL_LINKS } from "@/lib/content"
 
 export function SiteFooter() {
   return (
@@ -17,6 +23,32 @@ export function SiteFooter() {
             className="h-12 w-auto"
           />
           <p className="text-body-sm mt-4 max-w-sm text-body">{SITE.tagline}</p>
+
+          <div className="mt-5 flex flex-col gap-2 text-sm text-body">
+            <a
+              href={BUSINESS_CONTACT.phoneHref}
+              className="inline-flex items-center gap-2 transition-colors hover:text-ink"
+            >
+              <Phone size={14} className="shrink-0 text-primary" />
+              {BUSINESS_CONTACT.phone}
+            </a>
+            <a
+              href={`mailto:${BUSINESS_CONTACT.email}`}
+              className="inline-flex items-center gap-2 transition-colors hover:text-ink"
+            >
+              <EnvelopeSimple size={14} className="shrink-0 text-primary" />
+              <span className="min-w-0 break-words">
+                {BUSINESS_CONTACT.email}
+              </span>
+            </a>
+            <span className="inline-flex items-center gap-2">
+              <MapPin size={14} className="shrink-0 text-primary" />
+              <span className="min-w-0 break-words">
+                {BUSINESS_CONTACT.address}
+              </span>
+            </span>
+          </div>
+
           <div className="mt-5 flex items-center gap-3">
             <Link
               href={SOCIAL_LINKS.instagram}
