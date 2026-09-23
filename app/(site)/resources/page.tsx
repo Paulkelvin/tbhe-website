@@ -1,3 +1,5 @@
+import Link from "next/link"
+
 import { ResourceHero } from "@/components/resource-hero"
 import { Reveal } from "@/components/reveal"
 import { getResourceCategories, getResources } from "@/sanity/queries"
@@ -141,6 +143,28 @@ export default async function ResourcesPage() {
               )
             })}
           </div>
+
+          {/* Closing — a compact, quiet next step rather than a dead end
+              after the archive, matching the page's own border-t idiom. */}
+          <Reveal className="mt-16 border-t border-hairline pt-9 text-center sm:mt-20 sm:pt-10">
+            <h2 className="text-h3 text-ink">Looking for something specific?</h2>
+            <p className="text-body-sm mx-auto mt-2.5 max-w-md text-body">
+              Ask us about research, resources, consulting, or educational
+              support — we&apos;re happy to point you in the right
+              direction.
+            </p>
+            <Link
+              href="/contact"
+              className="group mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-primary"
+            >
+              <span className="border-b border-primary/40 pb-0.5 transition-colors group-hover:border-primary">
+                Get in Touch
+              </span>
+              <span className="transition-transform group-hover:translate-x-0.5">
+                &rarr;
+              </span>
+            </Link>
+          </Reveal>
         </div>
       </section>
     </>

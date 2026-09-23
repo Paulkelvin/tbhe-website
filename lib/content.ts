@@ -449,6 +449,7 @@ export const FOOTER_COLUMNS = [
       ["Blog", "/blog"],
       ["Events", "/events"],
       ["Contact", "/contact"],
+      ["Donate", "/donate"],
     ],
   },
 ] as const

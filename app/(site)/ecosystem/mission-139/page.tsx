@@ -31,6 +31,15 @@ const FAMILY_ALT =
 const PATH_FULL_ALT =
   "A hand-drawn vine tracing a path through four waypoints (Heard, Understood, Supported, Empowered), ending at an open door beneath a heart"
 
+// Two of the four Programs promise something that otherwise has no link
+// anywhere on the page. Parent Empowerment Toolkits points to the
+// Resource Center (the real, existing home for that kind of material —
+// nothing invented), and Donor & Corporate Sponsorship points to Donate.
+const PROGRAM_LINKS: Record<string, { label: string; href: string }> = {
+  "Parent Empowerment Toolkits": { label: "Browse the Resource Center", href: "/resources" },
+  "Donor & Corporate Sponsorship": { label: "Give to Mission 139", href: "/donate" },
+}
+
 const ADVOCACY_SERVICES = [
   {
     title: "Understanding Educational Rights",
@@ -216,23 +225,39 @@ export default async function Mission139Page() {
             </Reveal>
 
             <Reveal delay={0.1} className="flex flex-col gap-8">
-              {programs.map((program) => (
-                <div key={program.title}>
-                  <h3 className="text-h3 text-ink">
-                    {program.title}
-                  </h3>
-                  <HandDrawnStroke
-                    className="mt-1.5 h-2 w-12"
-                    d="M2,4 C12,1 24,6 38,3"
-                    color="var(--arm-mission)"
-                    strokeWidth={1.6}
-                    viewBox="0 0 40 8"
-                  />
-                  <p className="text-body-sm mt-3 text-body">
-                    {program.description}
-                  </p>
-                </div>
-              ))}
+              {programs.map((program) => {
+                const link = PROGRAM_LINKS[program.title]
+                return (
+                  <div key={program.title}>
+                    <h3 className="text-h3 text-ink">
+                      {program.title}
+                    </h3>
+                    <HandDrawnStroke
+                      className="mt-1.5 h-2 w-12"
+                      d="M2,4 C12,1 24,6 38,3"
+                      color="var(--arm-mission)"
+                      strokeWidth={1.6}
+                      viewBox="0 0 40 8"
+                    />
+                    <p className="text-body-sm mt-3 text-body">
+                      {program.description}
+                    </p>
+                    {link ? (
+                      <Link
+                        href={link.href}
+                        className="group mt-2.5 inline-flex items-center gap-1.5 text-sm font-semibold text-arm-mission-ink"
+                      >
+                        <span className="border-b border-arm-mission-ink/40 pb-0.5 transition-colors group-hover:border-arm-mission-ink">
+                          {link.label}
+                        </span>
+                        <span className="transition-transform group-hover:translate-x-0.5">
+                          &rarr;
+                        </span>
+                      </Link>
+                    ) : null}
+                  </div>
+                )
+              })}
             </Reveal>
           </div>
         </div>
@@ -373,7 +398,7 @@ export default async function Mission139Page() {
         eyebrow="Get Support"
         title="Apply for family assistance or start an advocacy request"
         description="Serving families across the DMV region with IEP/504 representation, evaluation and therapy grants, and district advocacy."
-        primary={{ label: "Apply for Family Aid", href: "/contact" }}
+        primary={{ label: "Contact Our Team", href: "/contact" }}
         secondary={{ label: "Donate", href: "/donate" }}
         decoration={
           <HandDrawnStroke
