@@ -292,6 +292,8 @@ export type Post = {
   coverImage?: string
   coverImageAlt?: string
   author?: string
+  authorPhoto?: string
+  authorPhotoAlt?: string
   publishedAt?: string
   featured?: boolean
   body?: PortableTextBlock[]
@@ -304,6 +306,8 @@ const POST_PROJECTION = `{
   "coverImage": coverImage.asset->url,
   "coverImageAlt": coverImage.alt,
   author,
+  "authorPhoto": authorPhoto.asset->url,
+  "authorPhotoAlt": authorPhoto.alt,
   publishedAt,
   featured,
   body

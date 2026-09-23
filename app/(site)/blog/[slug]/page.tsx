@@ -2,9 +2,11 @@ import Image from "next/image"
 import Link from "next/link"
 import { notFound } from "next/navigation"
 
+import { Button } from "@/components/ui/button"
 import { ArticleBody } from "@/components/article-body"
 import { Reveal } from "@/components/reveal"
-import { formatPostDate } from "@/lib/blog"
+import { ShareButtons } from "@/components/share-buttons"
+import { estimateReadingMinutes, formatPostDate } from "@/lib/blog"
 import { SITE_URL } from "@/lib/content"
 import { getPostBySlug, getPosts } from "@/sanity/queries"
 
@@ -58,6 +60,8 @@ export default async function BlogPostPage({
   if (!post) notFound()
 
   const date = formatPostDate(post.publishedAt)
+  const readingMinutes = estimateReadingMinutes(post.body)
+  const canonicalUrl = `${SITE_URL}/blog/${slug}`
 
   const articleSchema = {
     "@context": "https://schema.org",
@@ -90,10 +94,26 @@ export default async function BlogPostPage({
 
             <p className="eyebrow mt-6 text-primary">{date}</p>
             <h1 className="text-h1 mt-3 text-ink">{post.title}</h1>
-            {post.author ? (
-              <p className="text-body-sm mt-4 text-muted-ink">
-                By {post.author}
-              </p>
+
+            {post.author || readingMinutes ? (
+              <div className="mt-5 flex items-center gap-3">
+                {post.authorPhoto ? (
+                  <Image
+                    src={post.authorPhoto}
+                    alt={post.authorPhotoAlt || post.author || ""}
+                    width={40}
+                    height={40}
+                    className="size-10 shrink-0 rounded-full object-cover"
+                  />
+                ) : null}
+                <p className="text-body-sm text-muted-ink">
+                  {post.author ? (
+                    <span className="font-semibold text-ink">{post.author}</span>
+                  ) : null}
+                  {post.author && readingMinutes ? " · " : null}
+                  {readingMinutes ? `${readingMinutes} min read` : null}
+                </p>
+              </div>
             ) : null}
           </Reveal>
 
@@ -117,6 +137,16 @@ export default async function BlogPostPage({
               <ArticleBody value={post.body} />
             </Reveal>
           ) : null}
+
+          <Reveal delay={0.15} className="mt-12 border-t border-hairline pt-8">
+            <Button asChild size="lg" className="w-fit">
+              <Link href="/contact">Apply for Support</Link>
+            </Button>
+
+            <div className="mt-8">
+              <ShareButtons url={canonicalUrl} title={post.title} />
+            </div>
+          </Reveal>
         </div>
       </article>
     </>

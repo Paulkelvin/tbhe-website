@@ -21,6 +21,13 @@ export default defineType({
       fields: [{ name: "alt", title: "Alt Text", type: "string" }],
     }),
     defineField({ name: "author", title: "Author", type: "string" }),
+    defineField({
+      name: "authorPhoto",
+      title: "Author Photo",
+      type: "image",
+      options: { hotspot: true },
+      fields: [{ name: "alt", title: "Alt Text", type: "string" }],
+    }),
     defineField({ name: "body", title: "Body", type: "array", of: [{ type: "block" }] }),
     defineField({ name: "publishedAt", title: "Published At", type: "datetime" }),
     defineField({ name: "featured", title: "Featured on Homepage", type: "boolean", initialValue: false }),
