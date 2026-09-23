@@ -1,13 +1,16 @@
-import { FEATURED_RESOURCE, RESOURCES } from "@/lib/content"
-
-const secondary = RESOURCES.find((r) => r.title !== FEATURED_RESOURCE.title)
+import { getResources } from "@/sanity/queries"
 
 // A decorative but real digital-publishing composition for the Media page —
 // built from the site's actual resource data with plain HTML/CSS, not an
 // image and not fake software chrome. One dominant surface (the featured
 // article), with a smaller surface layered behind it referencing the other
 // real published piece.
-export function PublicationInterface() {
+export async function PublicationInterface() {
+  const resources = await getResources()
+  const FEATURED_RESOURCE = resources.find((r) => r.featured) ?? resources[0]
+  const secondary = resources.find((r) => r.title !== FEATURED_RESOURCE?.title)
+  if (!FEATURED_RESOURCE) return null
+
   return (
     <div className="relative mx-auto w-full max-w-xl">
       {secondary ? (
@@ -44,7 +47,7 @@ export function PublicationInterface() {
           className="group mt-6 inline-flex w-fit items-center gap-1.5 text-sm font-semibold text-primary"
         >
           <span className="border-b border-primary/40 pb-0.5 transition-colors group-hover:border-primary">
-            {FEATURED_RESOURCE.cta}
+            {FEATURED_RESOURCE.ctaLabel ?? "Download the White Paper"}
           </span>
           <span className="transition-transform group-hover:translate-x-0.5">
             &rarr;

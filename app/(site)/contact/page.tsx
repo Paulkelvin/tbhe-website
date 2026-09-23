@@ -4,8 +4,8 @@ import { PageHero } from "@/components/page-hero"
 import { ContactForm } from "@/components/contact-form"
 import { Reveal } from "@/components/reveal"
 import { OrganicBlob } from "@/components/organic-art"
-import { BUSINESS_CONTACT } from "@/lib/content"
 import { pageMetadata } from "@/lib/seo"
+import { getSiteSettings } from "@/sanity/queries"
 
 export const metadata = pageMetadata({
   title: "Contact",
@@ -14,7 +14,10 @@ export const metadata = pageMetadata({
   path: "/contact",
 })
 
-export default function ContactPage() {
+export default async function ContactPage() {
+  const settings = await getSiteSettings()
+  const address = `${settings.addressLine1}, ${settings.addressCity}, ${settings.addressState} ${settings.addressZip}`
+
   return (
     <>
       <PageHero
@@ -59,28 +62,28 @@ export default function ContactPage() {
           className="mt-10 flex flex-col gap-4 border-t border-hairline pt-8 text-sm text-body sm:flex-row sm:flex-wrap sm:items-center sm:gap-8"
         >
           <a
-            href={BUSINESS_CONTACT.phoneHref}
+            href={`tel:+1${settings.phone.replace(/\D/g, "")}`}
             className="group flex min-w-0 items-center gap-3 transition-colors hover:text-ink"
           >
             <span className="flex size-9 shrink-0 items-center justify-center rounded-full border border-hairline-strong text-primary transition-colors group-hover:border-primary">
               <Phone size={16} />
             </span>
-            <span className="min-w-0 break-words">{BUSINESS_CONTACT.phone}</span>
+            <span className="min-w-0 break-words">{settings.phone}</span>
           </a>
           <a
-            href={`mailto:${BUSINESS_CONTACT.email}`}
+            href={`mailto:${settings.email}`}
             className="group flex min-w-0 items-center gap-3 transition-colors hover:text-ink"
           >
             <span className="flex size-9 shrink-0 items-center justify-center rounded-full border border-hairline-strong text-primary transition-colors group-hover:border-primary">
               <EnvelopeSimple size={16} />
             </span>
-            <span className="min-w-0 break-words">{BUSINESS_CONTACT.email}</span>
+            <span className="min-w-0 break-words">{settings.email}</span>
           </a>
           <div className="flex min-w-0 items-center gap-3">
             <span className="flex size-9 shrink-0 items-center justify-center rounded-full border border-hairline-strong text-primary">
               <MapPin size={16} />
             </span>
-            <span className="min-w-0 break-words">{BUSINESS_CONTACT.address}</span>
+            <span className="min-w-0 break-words">{address}</span>
           </div>
         </Reveal>
       </section>

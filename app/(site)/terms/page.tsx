@@ -1,8 +1,8 @@
 import Link from "next/link"
 
 import { PageHero } from "@/components/page-hero"
-import { SITE } from "@/lib/content"
 import { pageMetadata } from "@/lib/seo"
+import { getSiteSettings } from "@/sanity/queries"
 
 export const metadata = pageMetadata({
   title: "Terms of Service",
@@ -11,7 +11,9 @@ export const metadata = pageMetadata({
   path: "/terms",
 })
 
-export default function TermsPage() {
+export default async function TermsPage() {
+  const settings = await getSiteSettings()
+
   return (
     <>
       <PageHero eyebrow="Legal" title="Terms of Service" />
@@ -23,7 +25,7 @@ export default function TermsPage() {
           <p>
             These Terms of Service (&quot;Terms&quot;) govern your use of
             thebeautifullyhumaneducator.com (the &quot;Site&quot;), operated
-            by {SITE.name} (&quot;{SITE.shortName},&quot; &quot;we,&quot;
+            by {settings.siteName} (&quot;{settings.shortName},&quot; &quot;we,&quot;
             &quot;us&quot;), across all three arms of the ecosystem:
             Educational Consulting &amp; Coaching, Mission 139, and Media
             &amp; Publishing. By using the Site, you agree to these Terms.
@@ -76,7 +78,7 @@ export default function TermsPage() {
           <h2>Intellectual property</h2>
           <p>
             The Site&apos;s content, including text, published articles,
-            toolkits, and design, belongs to {SITE.shortName} or its
+            toolkits, and design, belongs to {settings.shortName} or its
             licensors, unless otherwise noted. You
             may view and share it for personal, non-commercial purposes, but
             may not republish, sell, or otherwise use it commercially
@@ -95,7 +97,7 @@ export default function TermsPage() {
           <p>
             The Site and its content are provided &quot;as is,&quot; without
             warranties of any kind. To the fullest extent permitted by law,{" "}
-            {SITE.shortName} is not liable for any indirect, incidental, or
+            {settings.shortName} is not liable for any indirect, incidental, or
             consequential damages arising from your use of the Site.
           </p>
 

@@ -3,7 +3,7 @@ import Link from "next/link"
 
 import { Button } from "@/components/ui/button"
 import { OrganicBlob } from "@/components/organic-art"
-import { NAV_LINKS } from "@/lib/content"
+import { getNavLinks } from "@/sanity/queries"
 
 // Next.js automatically adds a noindex robots tag for 404 responses, so
 // this only needs the title (no need to duplicate the robots directive).
@@ -11,7 +11,9 @@ export const metadata: Metadata = {
   title: "Page Not Found",
 }
 
-export default function NotFound() {
+export default async function NotFound() {
+  const NAV_LINKS = await getNavLinks()
+
   return (
     <section className="relative overflow-hidden border-b border-hairline bg-canvas-soft">
       <OrganicBlob

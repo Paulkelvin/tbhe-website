@@ -9,11 +9,17 @@ import { AnimatePresence, motion } from "motion/react"
 
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
-import { ARMS, NAV_LINKS, SITE } from "@/lib/content"
+import type { Arm } from "@/lib/content"
 
 const EASE = [0.4, 0, 0.2, 1] as const
 
-export function SiteHeader() {
+type SiteHeaderProps = {
+  siteName: string
+  navLinks: { label: string; href: string }[]
+  arms: Pick<Arm, "slug" | "name">[]
+}
+
+export function SiteHeader({ siteName, navLinks, arms }: SiteHeaderProps) {
   const [open, setOpen] = useState(false)
   const pathname = usePathname()
 
@@ -23,7 +29,7 @@ export function SiteHeader() {
         <Link href="/" className="shrink-0">
           <Image
             src="/images/tbhe-logo.png"
-            alt={SITE.name}
+            alt={siteName}
             width={972}
             height={631}
             priority
@@ -32,7 +38,7 @@ export function SiteHeader() {
         </Link>
 
         <nav className="hidden items-center gap-6 text-sm text-body md:flex">
-          {NAV_LINKS.map((link) => {
+          {navLinks.map((link) => {
             if (link.href === "/ecosystem") {
               const active = pathname.startsWith("/ecosystem")
               return (
@@ -54,7 +60,7 @@ export function SiteHeader() {
 
                   <div className="invisible absolute left-1/2 top-full z-50 w-64 -translate-x-1/2 pt-3 opacity-0 transition-all duration-150 group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
                     <div className="rounded-xl border border-hairline bg-canvas p-2 shadow-lg">
-                      {ARMS.map((arm) => (
+                      {arms.map((arm) => (
                         <Link
                           key={arm.slug}
                           href={`/ecosystem/${arm.slug}`}
@@ -120,7 +126,7 @@ export function SiteHeader() {
               className="absolute inset-x-0 top-full z-50 border-t border-hairline bg-canvas shadow-lg md:hidden"
             >
               <nav className="flex flex-col gap-1 px-6 py-4">
-                {NAV_LINKS.map((link) => (
+                {navLinks.map((link) => (
                   <div key={link.href}>
                     <Link
                       href={link.href}
@@ -131,7 +137,7 @@ export function SiteHeader() {
                     </Link>
                     {link.href === "/ecosystem" ? (
                       <div className="ml-3 flex flex-col gap-1 border-l border-hairline pl-3">
-                        {ARMS.map((arm) => (
+                        {arms.map((arm) => (
                           <Link
                             key={arm.slug}
                             href={`/ecosystem/${arm.slug}`}

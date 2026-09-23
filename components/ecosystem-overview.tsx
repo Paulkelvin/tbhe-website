@@ -2,9 +2,12 @@ import { cn } from "@/lib/utils"
 import { ArmCard } from "@/components/arm-card"
 import { OrganicBlob } from "@/components/organic-art"
 import { Reveal } from "@/components/reveal"
-import { ARM_COLOR_CLASS, ARMS } from "@/lib/content"
+import { ARM_COLOR_CLASS } from "@/lib/content"
+import { getArms } from "@/sanity/queries"
 
-export function EcosystemOverview() {
+export async function EcosystemOverview() {
+  const ARMS = await getArms()
+
   return (
     <section className="section relative">
       {/* Bridges into the Impact section below — one shape spanning the seam

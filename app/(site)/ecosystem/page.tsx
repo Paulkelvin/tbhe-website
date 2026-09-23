@@ -4,8 +4,9 @@ import { EcosystemHero } from "@/components/ecosystem-hero"
 import { OrganicBlob } from "@/components/organic-art"
 import { Reveal } from "@/components/reveal"
 import { cn } from "@/lib/utils"
-import { ARM_COLOR_CLASS, ARMS, SITE } from "@/lib/content"
+import { ARM_COLOR_CLASS } from "@/lib/content"
 import { pageMetadata } from "@/lib/seo"
+import { getArms, getSiteSettings } from "@/sanity/queries"
 
 export const metadata = pageMetadata({
   title: "The Ecosystem",
@@ -14,9 +15,9 @@ export const metadata = pageMetadata({
   path: "/ecosystem",
 })
 
-const [consulting, mission, media] = ARMS
-
-export default function EcosystemPage() {
+export default async function EcosystemPage() {
+  const [ARMS, settings] = await Promise.all([getArms(), getSiteSettings()])
+  const [consulting, mission, media] = ARMS
   const consultingColors = ARM_COLOR_CLASS[consulting.color]
   const missionColors = ARM_COLOR_CLASS[mission.color]
   const mediaColors = ARM_COLOR_CLASS[media.color]
@@ -261,7 +262,7 @@ export default function EcosystemPage() {
               TBHE
             </p>
             <p className="text-quote mt-4 text-ink lg:mt-3">
-              {SITE.tagline}
+              {settings.tagline}
             </p>
           </div>
         </Reveal>

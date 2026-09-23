@@ -6,7 +6,8 @@ import { InstagramLogo } from "@phosphor-icons/react/dist/ssr"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { OrganicBlob } from "@/components/organic-art"
-import { ARM_COLOR_CLASS, MISSION_139_INSTAGRAM, type Arm } from "@/lib/content"
+import { ARM_COLOR_CLASS, type Arm } from "@/lib/content"
+import { getSiteSettings } from "@/sanity/queries"
 
 const PATH_ALT =
   "A hand-drawn vine of a path connecting small waypoints reading Heard, Understood, Supported, and Empowered, ending at an open door beneath a heart"
@@ -15,8 +16,12 @@ const PATH_ALT =
 // composition with the Support Path illustration crossing behind the
 // content, instead of ArmHero's centered card-on-gradient treatment used by
 // the other two arm pages.
-export function MissionHero({ arm, ctaHref }: { arm: Arm; ctaHref: string }) {
+export async function MissionHero({ arm, ctaHref }: { arm: Arm; ctaHref: string }) {
   const colors = ARM_COLOR_CLASS[arm.color]
+  const settings = await getSiteSettings()
+  const mission139Instagram =
+    settings.socialLinks.find((s) => s.platform === "mission139-instagram")?.url ??
+    "https://www.instagram.com/tbhe_mission_139"
 
   return (
     <section className="relative overflow-hidden border-b border-hairline bg-arm-mission/[0.06]">
@@ -64,7 +69,7 @@ export function MissionHero({ arm, ctaHref }: { arm: Arm; ctaHref: string }) {
             <Link href={ctaHref}>{arm.cta}</Link>
           </Button>
           <Link
-            href={MISSION_139_INSTAGRAM}
+            href={mission139Instagram}
             target="_blank"
             rel="noreferrer"
             className={cn(

@@ -7,8 +7,8 @@ import { PublicationInterface } from "@/components/publication-interface"
 import { SpeakerBookingForm } from "@/components/speaker-booking-form"
 import { CtaBanner } from "@/components/cta-banner"
 import { Reveal } from "@/components/reveal"
-import { ARMS, MEDIA_OFFERINGS } from "@/lib/content"
 import { pageMetadata } from "@/lib/seo"
+import { getArms } from "@/sanity/queries"
 
 export const metadata = pageMetadata({
   title: "Media & Publishing",
@@ -17,12 +17,14 @@ export const metadata = pageMetadata({
   path: "/ecosystem/media",
 })
 
-const arm = ARMS.find((a) => a.slug === "media")!
-
 const KEYNOTE_PHOTO_ALT =
   "A speaker in a cream suit addresses a conference audience from the stage, gesturing mid-sentence with a microphone in hand"
 
-export default function MediaPage() {
+export default async function MediaPage() {
+  const arms = await getArms()
+  const arm = arms.find((a) => a.slug === "media")!
+  const MEDIA_OFFERINGS = arm.features ?? []
+
   return (
     <>
       <MediaHero arm={arm} ctaHref="#book" />

@@ -11,7 +11,7 @@ import { SectionHeading } from "@/components/section-heading"
 import { NewsletterForm } from "@/components/newsletter-form"
 import { Reveal } from "@/components/reveal"
 import { PaperSheet } from "@/components/organic-art"
-import { IMPACT_STATS, SCHOOL_PARTNERS } from "@/lib/content"
+import { getImpactStats, getSchoolPartners } from "@/sanity/queries"
 
 const HOME_DESCRIPTION =
   "Educational consulting, Mission 139 special-education advocacy, and media & publishing, three arms built by Cyrkle B. Brent, M.Ed. to help educators and neurodivergent students thrive."
@@ -26,7 +26,12 @@ export const metadata: Metadata = {
   twitter: { description: HOME_DESCRIPTION },
 }
 
-export default function HomePage() {
+export default async function HomePage() {
+  const [IMPACT_STATS, SCHOOL_PARTNERS] = await Promise.all([
+    getImpactStats(),
+    getSchoolPartners(),
+  ])
+
   return (
     <>
       <Hero />
@@ -51,10 +56,10 @@ export default function HomePage() {
               {SCHOOL_PARTNERS.map((partner) => (
                 <Image
                   key={partner.name}
-                  src={partner.logo}
+                  src={partner.logo ?? ""}
                   alt={partner.name}
-                  width={partner.width}
-                  height={partner.height}
+                  width={partner.logoWidth ?? 200}
+                  height={partner.logoHeight ?? 60}
                   className="h-9 w-auto transition-transform duration-300 hover:scale-105"
                 />
               ))}

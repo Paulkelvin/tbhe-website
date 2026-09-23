@@ -3,8 +3,8 @@ import Link from "next/link"
 import { EventsHero } from "@/components/events-hero"
 import { Reveal } from "@/components/reveal"
 import { Button } from "@/components/ui/button"
-import { EVENTS } from "@/lib/content"
 import { pageMetadata } from "@/lib/seo"
+import { getEvents } from "@/sanity/queries"
 
 export const metadata = pageMetadata({
   title: "Events",
@@ -13,7 +13,9 @@ export const metadata = pageMetadata({
   path: "/events",
 })
 
-export default function EventsPage() {
+export default async function EventsPage() {
+  const EVENTS = await getEvents()
+
   return (
     <>
       <EventsHero />

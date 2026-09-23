@@ -3,7 +3,8 @@ import { ArrowUpRight } from "@phosphor-icons/react/dist/ssr"
 
 import { cn } from "@/lib/utils"
 import { Reveal } from "@/components/reveal"
-import { ARM_COLOR_CLASS, ARMS, type ArmSlug } from "@/lib/content"
+import { ARM_COLOR_CLASS, type ArmSlug } from "@/lib/content"
+import { getArms } from "@/sanity/queries"
 
 const AUDIENCE_COPY: Record<ArmSlug, { audience: string; description: string }> = {
   consulting: {
@@ -23,7 +24,8 @@ const AUDIENCE_COPY: Record<ArmSlug, { audience: string; description: string }> 
   },
 }
 
-export function ThreeWayCta() {
+export async function ThreeWayCta() {
+  const ARMS = await getArms()
   return (
     <section className="relative overflow-hidden border-t border-hairline bg-ink">
       <div

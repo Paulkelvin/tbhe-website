@@ -13,8 +13,34 @@ export default defineType({
       options: { source: "name" },
       validation: (Rule) => Rule.required(),
     }),
-    defineField({ name: "tagline", title: "Tagline", type: "string" }),
-    defineField({ name: "description", title: "Description", type: "text" }),
+    defineField({ name: "tagline", title: "Tagline / Kicker", type: "string" }),
+    defineField({ name: "description", title: "Summary", type: "text" }),
+    defineField({ name: "audience", title: "Audience", type: "string" }),
+    defineField({
+      name: "offerings",
+      title: "Offerings",
+      type: "array",
+      of: [{ type: "string" }],
+    }),
+    defineField({ name: "cta", title: "CTA Label", type: "string" }),
+    defineField({
+      name: "features",
+      title: "Feature Modules",
+      description: "The icon-led feature list shown on this arm's own page (e.g. Consulting's PD modules).",
+      type: "array",
+      of: [
+        {
+          type: "object",
+          name: "armFeature",
+          fields: [
+            { name: "icon", type: "string", title: "Phosphor Icon Name" },
+            { name: "title", type: "string", title: "Title" },
+            { name: "description", type: "text", title: "Description" },
+          ],
+          preview: { select: { title: "title", subtitle: "icon" } },
+        },
+      ],
+    }),
     defineField({
       name: "colorKey",
       title: "Color Key",

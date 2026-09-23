@@ -4,11 +4,13 @@ import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { ArtDefs, OrganicBlob, OrganicOutline } from "@/components/organic-art"
 import { cn } from "@/lib/utils"
-import { ARM_COLOR_CLASS, ARMS, SITE } from "@/lib/content"
+import { ARM_COLOR_CLASS } from "@/lib/content"
+import { getArms, getSiteSettings } from "@/sanity/queries"
 
-const FOUNDER_ALT = `${SITE.founderName}, founder of The Beautifully Human Educator, laughing and gesturing warmly in a green blazer`
+export async function Hero() {
+  const [settings, ARMS] = await Promise.all([getSiteSettings(), getArms()])
+  const FOUNDER_ALT = `${settings.founderName}, founder of ${settings.siteName}, laughing and gesturing warmly in a green blazer`
 
-export function Hero() {
   return (
     <section className="relative overflow-hidden border-b border-hairline bg-canvas-soft">
       <ArtDefs />
@@ -35,15 +37,15 @@ export function Hero() {
         <div className="grid gap-8 lg:grid-cols-[1.08fr_1fr] lg:items-center">
           {/* Content */}
           <div className="relative z-20 flex flex-col justify-center py-4 text-center lg:py-24 lg:text-left">
-            <p className="eyebrow">{SITE.name}</p>
+            <p className="eyebrow">{settings.siteName}</p>
             <h1 className="text-display mt-5 text-primary">
-              {SITE.taglineLead}
+              {settings.tagline}
             </h1>
             <p className="text-h3 mt-2 text-body-strong">
-              {SITE.taglineSub}
+              {settings.taglineSub}
             </p>
             <p className="text-body-sm mx-auto mt-5 max-w-md text-body lg:mx-0">
-              {SITE.description}
+              {settings.description}
             </p>
 
             <div className="mt-8 flex flex-wrap justify-center gap-3 lg:justify-start">

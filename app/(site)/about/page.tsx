@@ -8,8 +8,8 @@ import { Reveal } from "@/components/reveal"
 import { ArtDefs, HandDrawnStroke, OrganicBlob } from "@/components/organic-art"
 import { ReadMore } from "@/components/read-more"
 import { StatGrid } from "@/components/stat-grid"
-import { COACHING_TEAM, IMPACT_STATS, SCHOOLS_SERVED, SITE } from "@/lib/content"
 import { pageMetadata } from "@/lib/seo"
+import { getImpactStats, getSiteSettings, getTeamMembers } from "@/sanity/queries"
 
 export const metadata = pageMetadata({
   title: "About",
@@ -18,9 +18,15 @@ export const metadata = pageMetadata({
   path: "/about",
 })
 
-const FOUNDER_PHOTO_ALT = `${SITE.founderName}, smiling, wearing glasses and a yellow blazer`
+export default async function AboutPage() {
+  const [settings, COACHING_TEAM, IMPACT_STATS] = await Promise.all([
+    getSiteSettings(),
+    getTeamMembers(),
+    getImpactStats(),
+  ])
+  const SCHOOLS_SERVED = settings.schoolsServed
+  const FOUNDER_PHOTO_ALT = `${settings.founderName}, smiling, wearing glasses and a yellow blazer`
 
-export default function AboutPage() {
   return (
     <>
       <ArtDefs />
@@ -51,7 +57,7 @@ export default function AboutPage() {
             <Reveal className="relative z-10">
               <SectionHeading eyebrow="Founder Story" title="From the classroom to the ecosystem" />
               <p className="mt-5 text-body">
-                For more than two decades, {SITE.founderName} has served
+                For more than two decades, {settings.founderName} has served
                 students, families, and school communities as a special
                 educator, instructional leader, and principal, work that
                 includes guiding a school to recognition as a 2022 National
@@ -86,13 +92,13 @@ export default function AboutPage() {
                 />
               </div>
               <p className="text-h3 mt-6 text-center text-ink lg:text-left">
-                {SITE.founderName}, {SITE.founderCredential}
+                {settings.founderName}, {settings.founderCredential}
               </p>
               <p className="caption mt-1 text-center text-muted-ink lg:text-left">
-                {SITE.founderTitle}
+                {settings.founderTitle}
               </p>
               <p className="caption mt-0.5 text-center text-muted-ink lg:text-left">
-                {SITE.founderSecondaryTitle}
+                {settings.founderSecondaryTitle}
               </p>
             </Reveal>
           </div>
@@ -116,9 +122,9 @@ export default function AboutPage() {
                 className="overflow-hidden rounded-2xl border border-hairline bg-surface-card"
               >
                 <div className="relative aspect-[4/5] w-full overflow-hidden bg-arm-consulting/5">
-                  {member.photo ? (
+                  {member.photoUrl ? (
                     <Image
-                      src={member.photo}
+                      src={member.photoUrl}
                       alt={member.name}
                       fill
                       sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
@@ -188,7 +194,7 @@ export default function AboutPage() {
           <p className="mx-auto mt-5 max-w-xl text-body">
             Mission 139 takes its name from Psalm 139, a reminder that
             every person is fearfully and wonderfully made. It was born from{" "}
-            {SITE.founderName}&apos;s experience as both an educator and
+            {settings.founderName}&apos;s experience as both an educator and
             advocate, after witnessing too many children being
             misunderstood, underestimated, or expected to fit systems that
             were never designed with their needs in mind. Difference is not
@@ -227,10 +233,10 @@ export default function AboutPage() {
             <ReadMore>
               {[
                 <p key="1">
-                  {SITE.name} is the standard of excellence when it comes to
+                  {settings.siteName} is the standard of excellence when it comes to
                   educational leadership, professional development, and
                   supporting the diverse needs of students, families, and
-                  school communities. {SITE.founderName} brings a rare
+                  school communities. {settings.founderName} brings a rare
                   combination of expertise, authenticity, compassion, and
                   vision that immediately sets her apart.
                 </p>,
@@ -240,19 +246,19 @@ export default function AboutPage() {
                   looking to create meaningful impact, or a parent
                   advocating for the best outcomes for your child, you can
                   expect a transformative experience.{" "}
-                  {SITE.founderName}&apos;s ability to connect people,
+                  {settings.founderName}&apos;s ability to connect people,
                   develop leaders, and champion students, especially those
                   with unique learning needs, is truly exceptional.
                 </p>,
                 <p key="3">
-                  What makes {SITE.name} special is that the work never
+                  What makes {settings.siteName} special is that the work never
                   loses sight of the people it serves. Every strategy,
                   conversation, and partnership is rooted in the belief that
                   students, families, and educators deserve to be seen,
                   valued, and empowered to succeed.
                 </p>,
                 <p key="4">
-                  I wholeheartedly recommend {SITE.name} to schools,
+                  I wholeheartedly recommend {settings.siteName} to schools,
                   districts, educational organizations, community leaders,
                   and anyone committed to creating better outcomes for
                   children. If you are looking for a trusted partner who

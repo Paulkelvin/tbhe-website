@@ -13,25 +13,17 @@ import {
 import { BookingWidget } from "@/components/booking-widget"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
-import {
-  BOOKABLE_SERVICES,
-  type BookableService,
-  type ServiceCategory,
-} from "@/lib/content"
+import type { BookableService } from "@/sanity/queries"
 
 // Icon shown in place of a real photo until one is supplied for that
-// service — a plain fallback, not meant to be the finished look.
-const FALLBACK_ICON: Record<string, typeof Phone> = {
-  discovery: Phone,
-  executive: Handshake,
-  classroom: ChalkboardTeacher,
-  "professional-development": GraduationCap,
-}
+// service — a plain fallback, not meant to be the finished look. Cycled
+// by position since services no longer carry a fixed icon key.
+const FALLBACK_ICONS = [Phone, Handshake, ChalkboardTeacher, GraduationCap]
 
 // Mirrors the real site's own "All Services" / "For Educators" /
 // "For Schools & Districts" filter — picking a category narrows the row
 // to the relevant cards instead of always showing all four at once.
-type ServiceFilter = "all" | ServiceCategory
+type ServiceFilter = "all" | BookableService["category"]
 
 const FILTERS: { key: ServiceFilter; label: string }[] = [
   { key: "all", label: "All Services" },
@@ -41,14 +33,16 @@ const FILTERS: { key: ServiceFilter; label: string }[] = [
 
 function ServiceCard({
   service,
+  index,
   active,
   onSelect,
 }: {
   service: BookableService
+  index: number
   active: boolean
   onSelect: () => void
 }) {
-  const Icon = FALLBACK_ICON[service.key] ?? Phone
+  const Icon = FALLBACK_ICONS[index % FALLBACK_ICONS.length]
 
   return (
     <button
@@ -85,7 +79,7 @@ function ServiceCard({
       </div>
       <div className="p-5">
         <h3 className="text-h3-alt text-ink">{service.title}</h3>
-        <p className="text-body-sm mt-1 text-body italic">{service.tagline}</p>
+        <p className="text-body-sm mt-1 text-body italic">{service.description}</p>
       </div>
       {active ? (
         <span
@@ -97,23 +91,21 @@ function ServiceCard({
   )
 }
 
-function servicesFor(filter: ServiceFilter): readonly BookableService[] {
-  return filter === "all"
-    ? BOOKABLE_SERVICES
-    : BOOKABLE_SERVICES.filter((s) => s.category === filter)
-}
+export function BookingServices({ services }: { services: BookableService[] }) {
+  function servicesFor(filter: ServiceFilter) {
+    return filter === "all" ? services : services.filter((s) => s.category === filter)
+  }
 
-export function BookingServices() {
   const [filter, setFilter] = useState<ServiceFilter>("all")
   const servicesInView = servicesFor(filter)
-  const [activeKey, setActiveKey] = useState(servicesInView[0].key)
+  const [activeTitle, setActiveTitle] = useState(servicesInView[0]?.title)
   const active =
-    BOOKABLE_SERVICES.find((s) => s.key === activeKey) ?? servicesInView[0]
+    services.find((s) => s.title === activeTitle) ?? servicesInView[0]
 
   function selectFilter(next: ServiceFilter) {
     setFilter(next)
     const first = servicesFor(next)[0]
-    if (first) setActiveKey(first.key)
+    if (first) setActiveTitle(first.title)
   }
 
   return (
@@ -143,19 +135,20 @@ export function BookingServices() {
           servicesInView.length > 2 && "lg:grid-cols-4"
         )}
       >
-        {servicesInView.map((service) => (
+        {servicesInView.map((service, index) => (
           <ServiceCard
-            key={service.key}
+            key={service.title}
             service={service}
-            active={active.key === service.key}
-            onSelect={() => setActiveKey(service.key)}
+            index={index}
+            active={active?.title === service.title}
+            onSelect={() => setActiveTitle(service.title)}
           />
         ))}
       </div>
 
       <div className="mt-6">
-        {active.category === "educator" ? (
-          <BookingWidget calLink={active.calLink} />
+        {active?.category === "educator" ? (
+          <BookingWidget calLink={active.bookingUrl} />
         ) : (
           <div className="flex flex-col items-center gap-4 rounded-2xl border border-hairline bg-arm-consulting/5 px-6 py-14 text-center">
             <p className="text-h3 text-ink">

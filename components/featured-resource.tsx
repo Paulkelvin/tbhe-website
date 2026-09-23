@@ -2,12 +2,17 @@ import Link from "next/link"
 import Image from "next/image"
 
 import { Reveal } from "@/components/reveal"
-import { FEATURED_RESOURCE } from "@/lib/content"
+import { getResources, type SanityResource } from "@/sanity/queries"
 
-const [titleLead, ...titleRest] = FEATURED_RESOURCE.title.split(": ")
-const titleTail = titleRest.join(": ")
-
-function Headline({ className }: { className?: string }) {
+function Headline({
+  resource,
+  className,
+}: {
+  resource: SanityResource
+  className?: string
+}) {
+  const [titleLead, ...titleRest] = resource.title.split(": ")
+  const titleTail = titleRest.join(": ")
   if (!titleTail) {
     return (
       <h3 className={`text-h3 text-ink ${className ?? ""}`}>
@@ -24,31 +29,35 @@ function Headline({ className }: { className?: string }) {
   )
 }
 
-function ResourceMeta() {
+function ResourceMeta({ resource }: { resource: SanityResource }) {
   return (
     <p className="eyebrow text-arm-media-ink">
-      Featured {FEATURED_RESOURCE.kind}
+      Featured {resource.kind}
     </p>
   )
 }
 
-function ResourceCta() {
+function ResourceCta({ resource }: { resource: SanityResource }) {
   return (
     <a
-      href={FEATURED_RESOURCE.file}
+      href={resource.file}
       target="_blank"
       rel="noreferrer"
       className="group mt-6 inline-flex w-fit items-center gap-1.5 text-sm font-semibold text-primary"
     >
       <span className="border-b border-primary/40 pb-0.5 transition-colors group-hover:border-primary">
-        {FEATURED_RESOURCE.cta}
+        {resource.ctaLabel ?? "Download the White Paper"}
       </span>
       <span className="transition-transform group-hover:translate-x-0.5">&rarr;</span>
     </a>
   )
 }
 
-export function FeaturedResource() {
+export async function FeaturedResource() {
+  const resources = await getResources()
+  const FEATURED_RESOURCE = resources.find((r) => r.featured) ?? resources[0]
+  if (!FEATURED_RESOURCE) return null
+
   return (
     <section className="section">
       <Reveal className="mx-auto mb-10 max-w-xl text-center md:mb-14">
@@ -77,10 +86,10 @@ export function FeaturedResource() {
         </div>
 
         <div className="absolute top-10 left-0 w-[38%] rounded-2xl bg-surface-card p-8 shadow-[0_25px_60px_-32px_rgba(37,24,39,0.35)] lg:p-9">
-          <ResourceMeta />
-          <Headline className="mt-3" />
+          <ResourceMeta resource={FEATURED_RESOURCE} />
+          <Headline resource={FEATURED_RESOURCE} className="mt-3" />
           <p className="text-body-sm mt-4 text-body">{FEATURED_RESOURCE.description}</p>
-          <ResourceCta />
+          <ResourceCta resource={FEATURED_RESOURCE} />
         </div>
       </Reveal>
 
@@ -99,10 +108,10 @@ export function FeaturedResource() {
         </div>
 
         <div className="relative z-10 -mt-10 mx-4 rounded-2xl bg-surface-card p-6 shadow-[0_20px_45px_-28px_rgba(37,24,39,0.35)]">
-          <ResourceMeta />
-          <Headline className="mt-3" />
+          <ResourceMeta resource={FEATURED_RESOURCE} />
+          <Headline resource={FEATURED_RESOURCE} className="mt-3" />
           <p className="text-body-sm mt-3 text-body">{FEATURED_RESOURCE.description}</p>
-          <ResourceCta />
+          <ResourceCta resource={FEATURED_RESOURCE} />
         </div>
       </Reveal>
 

@@ -1,8 +1,8 @@
 import Link from "next/link"
 
 import { PageHero } from "@/components/page-hero"
-import { SITE } from "@/lib/content"
 import { pageMetadata } from "@/lib/seo"
+import { getSiteSettings } from "@/sanity/queries"
 
 export const metadata = pageMetadata({
   title: "Privacy Policy",
@@ -11,7 +11,9 @@ export const metadata = pageMetadata({
   path: "/privacy",
 })
 
-export default function PrivacyPage() {
+export default async function PrivacyPage() {
+  const settings = await getSiteSettings()
+
   return (
     <>
       <PageHero eyebrow="Legal" title="Privacy Policy" />
@@ -21,8 +23,8 @@ export default function PrivacyPage() {
           <p className="text-sm text-muted-ink">Last updated: September 19, 2026</p>
 
           <p>
-            This Privacy Policy explains what information {SITE.name}{" "}
-            (&quot;{SITE.shortName},&quot; &quot;we,&quot; &quot;us&quot;)
+            This Privacy Policy explains what information {settings.siteName}{" "}
+            (&quot;{settings.shortName},&quot; &quot;we,&quot; &quot;us&quot;)
             collects through thebeautifullyhumaneducator.com (the
             &quot;Site&quot;), how we use it, and the choices you have. It
             covers all three arms of the ecosystem: Educational Consulting

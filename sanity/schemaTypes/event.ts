@@ -6,6 +6,7 @@ export default defineType({
   type: "document",
   fields: [
     defineField({ name: "title", title: "Title", type: "string", validation: (Rule) => Rule.required() }),
+    defineField({ name: "type", title: "Event Type", type: "string", description: "e.g. Webinar, Workshop, Community Meetup" }),
     defineField({ name: "date", title: "Date", type: "datetime" }),
     defineField({ name: "location", title: "Location", type: "string" }),
     defineField({ name: "description", title: "Description", type: "text" }),

@@ -8,15 +8,11 @@ export default defineType({
     defineField({ name: "name", title: "Name", type: "string", validation: (Rule) => Rule.required() }),
     defineField({ name: "role", title: "Role", type: "string" }),
     defineField({ name: "bio", title: "Bio", type: "text" }),
-    defineField({
-      name: "photo",
-      title: "Photo",
-      type: "image",
-      options: { hotspot: true },
-      fields: [{ name: "alt", title: "Alt Text", type: "string", validation: (Rule) => Rule.required() }],
-    }),
+    // Plain string, not a Sanity image asset: currently points at a
+    // static file under /public/images/team.
+    defineField({ name: "photo", title: "Photo Path", type: "string" }),
     defineField({ name: "order", title: "Display Order", type: "number" }),
   ],
   orderings: [{ title: "Display Order", name: "orderAsc", by: [{ field: "order", direction: "asc" }] }],
-  preview: { select: { title: "name", subtitle: "role", media: "photo" } },
+  preview: { select: { title: "name", subtitle: "role" } },
 })

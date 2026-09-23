@@ -1,14 +1,13 @@
 import { ArtDefs } from "@/components/organic-art"
-import { ARMS } from "@/lib/content"
-
-const [consulting, mission, media] = ARMS
+import { getArms } from "@/sanity/queries"
 
 // Page-specific hero for /ecosystem only. Desktop's signature moment is a
 // large ribbon composition — three wide, organic-edged paths entering from
 // three directions and converging on a shared center — so the "three arms,
 // one mission" structure reads instantly, before any copy. Mobile keeps the
 // simpler typographic lockup rather than squeezing the ribbons down.
-export function EcosystemHero() {
+export async function EcosystemHero() {
+  const [consulting, mission, media] = await getArms()
   return (
     <section className="relative overflow-hidden border-b border-hairline bg-canvas">
       <ArtDefs />

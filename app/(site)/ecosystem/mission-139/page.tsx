@@ -7,8 +7,8 @@ import { SectionHeading } from "@/components/section-heading"
 import { CtaBanner } from "@/components/cta-banner"
 import { Reveal } from "@/components/reveal"
 import { ArtDefs, HandDrawnStroke } from "@/components/organic-art"
-import { ARMS, MISSION_139_PROGRAMS } from "@/lib/content"
 import { pageMetadata } from "@/lib/seo"
+import { getArms } from "@/sanity/queries"
 
 export const metadata = pageMetadata({
   title: "Mission 139",
@@ -16,8 +16,6 @@ export const metadata = pageMetadata({
     "Mission 139 is a 501(c)(3) nonprofit providing special-education advocacy, IEP/504 support, and financial aid for neurodivergent students and families.",
   path: "/ecosystem/mission-139",
 })
-
-const arm = ARMS.find((a) => a.slug === "mission-139")!
 
 const BELONG_ARTWORK_ALT =
   "A child's crayon drawing titled 'I belong here,' showing a family holding hands beside a school under a smiling sun, with the words Seen, Supported, Included, and Empowered along the bottom"
@@ -28,7 +26,11 @@ const FAMILY_ALT =
 const PATH_FULL_ALT =
   "A hand-drawn vine tracing a path through four waypoints (Heard, Understood, Supported, Empowered), ending at an open door beneath a heart"
 
-export default function Mission139Page() {
+export default async function Mission139Page() {
+  const arms = await getArms()
+  const arm = arms.find((a) => a.slug === "mission-139")!
+  const programs = arm.features ?? []
+
   return (
     <>
       <ArtDefs />
@@ -137,7 +139,7 @@ export default function Mission139Page() {
             </Reveal>
 
             <Reveal delay={0.1} className="flex flex-col gap-8">
-              {MISSION_139_PROGRAMS.map((program) => (
+              {programs.map((program) => (
                 <div key={program.title}>
                   <h3 className="text-h3 text-ink">
                     {program.title}
