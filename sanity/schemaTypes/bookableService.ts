@@ -21,7 +21,21 @@ export default defineType({
       title: "Image",
       type: "image",
       options: { hotspot: true },
-      fields: [{ name: "alt", title: "Alt Text", type: "string" }],
+      fields: [
+        {
+          name: "alt",
+          title: "Alt Text",
+          type: "string",
+          validation: (Rule) =>
+            Rule.custom((alt, context) => {
+              const image = context.parent as { asset?: unknown } | undefined
+              if (image?.asset && !alt) {
+                return "Alt text is required when an image is set"
+              }
+              return true
+            }),
+        },
+      ],
     }),
     defineField({
       name: "imagePosition",

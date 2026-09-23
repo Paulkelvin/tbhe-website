@@ -58,6 +58,7 @@ export function ConsultingHero({ arm, ctaHref }: { arm: Arm; ctaHref: string }) 
             src="/images/consulting-workspace.png"
             alt={WORKSPACE_ALT}
             fill
+            priority
             sizes="60vw"
             className="object-contain"
             style={{ objectPosition: "15% 35%" }}
@@ -72,6 +73,7 @@ export function ConsultingHero({ arm, ctaHref }: { arm: Arm; ctaHref: string }) 
           src="/images/consulting-workspace.png"
           alt={WORKSPACE_ALT}
           fill
+          priority
           sizes="54vw"
           className="object-contain"
           style={{ objectPosition: "left center" }}

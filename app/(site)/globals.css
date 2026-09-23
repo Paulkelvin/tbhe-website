@@ -85,7 +85,10 @@
   --ink: #251827;
   --body: #5c525c;
   --body-strong: #251827;
-  --muted-ink: #7a6e7e;
+  /* Darkened from #7a6e7e — the original measured 4.2:1 against the
+     cream canvas-soft background, short of WCAG AA's 4.5:1 for normal
+     text. This value keeps the same hue/saturation, just less light. */
+  --muted-ink: #6e6371;
   --muted-soft: #ada2ab;
 
   /* One accent per ecosystem arm. Consulting uses the exact logo plum;

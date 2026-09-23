@@ -42,7 +42,7 @@ export function ArmCard({ arm, index }: { arm: Arm; index?: number }) {
             <Icon size={20} weight="duotone" />
           </div>
           {number ? (
-            <span className="font-display text-sm text-muted-ink/70">{number}</span>
+            <span className="font-display text-sm text-muted-ink">{number}</span>
           ) : null}
         </div>
 

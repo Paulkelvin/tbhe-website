@@ -61,7 +61,7 @@ function ServiceCard({
         {service.image ? (
           <Image
             src={service.image}
-            alt={service.imageAlt ?? ""}
+            alt={service.imageAlt || service.title}
             fill
             sizes="(max-width: 640px) 100vw, 50vw"
             className="object-cover"

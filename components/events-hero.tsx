@@ -26,6 +26,7 @@ export function EventsHero() {
             src="/images/events-hero.jpg"
             alt={EVENTS_PHOTO_ALT}
             fill
+            priority
             sizes="100vw"
             className="object-cover"
             style={{ objectPosition: "38% 55%" }}
@@ -39,6 +40,7 @@ export function EventsHero() {
             src="/images/events-hero.jpg"
             alt={EVENTS_PHOTO_ALT}
             fill
+            priority
             sizes="65vw"
             className="object-cover"
             style={{ objectPosition: "38% 45%" }}

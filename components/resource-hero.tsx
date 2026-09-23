@@ -28,6 +28,7 @@ export function ResourceHero() {
             src="/images/resource-hero.png"
             alt={RESOURCE_HERO_ALT}
             fill
+            priority
             sizes="90vw"
             className="object-cover"
             style={{ objectPosition: "58% 48%" }}
@@ -41,6 +42,7 @@ export function ResourceHero() {
             src="/images/resource-hero.png"
             alt={RESOURCE_HERO_ALT}
             fill
+            priority
             sizes="60vw"
             className="object-contain"
           />

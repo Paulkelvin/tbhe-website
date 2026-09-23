@@ -74,7 +74,7 @@ export function SiteHeader({ siteName, navLinks, arms }: SiteHeaderProps) {
               const active = pathname.startsWith("/ecosystem")
               return (
                 <div key={link.href} ref={ecosystemRef} className="relative">
-                  <div className="flex items-center gap-1">
+                  <div className="flex items-center gap-2">
                     <Link
                       href={link.href}
                       onClick={() => setEcosystemOpen(false)}
@@ -90,7 +90,7 @@ export function SiteHeader({ siteName, navLinks, arms }: SiteHeaderProps) {
                       onClick={() => setEcosystemOpen((v) => !v)}
                       aria-expanded={ecosystemOpen}
                       aria-label={ecosystemOpen ? "Close Ecosystem menu" : "Open Ecosystem menu"}
-                      className="flex items-center py-1 text-body transition-colors duration-200 hover:text-ink"
+                      className="-my-2 -ml-1 -mr-2.5 flex items-center py-2 pr-2.5 pl-1 text-body transition-colors duration-200 hover:text-ink"
                     >
                       <CaretDown
                         size={10}

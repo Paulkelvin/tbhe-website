@@ -10,11 +10,10 @@ export function StatGrid({
           key={stat.label}
           className="flex flex-col items-center justify-center gap-2 rounded-2xl bg-canvas-soft px-3 py-8 text-center"
         >
-          <dt className="sr-only">{stat.label}</dt>
-          <dd className="text-h2 text-primary">
+          <dt className="order-2 text-body-sm text-body">{stat.label}</dt>
+          <dd className="order-1 text-h2 text-primary">
             {stat.value}
           </dd>
-          <p className="text-body-sm text-body">{stat.label}</p>
         </div>
       ))}
     </dl>
