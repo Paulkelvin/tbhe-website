@@ -101,7 +101,10 @@
      brand tones above read fine as fills/icons but fall short of WCAG AA
      contrast at small text sizes, so labels and links use these instead. */
   --arm-mission-ink: #557521;
-  --arm-media-ink: #996822;
+  /* Darkened from #996822 — measured 4.36:1 on the homepage's Media &
+     Publishing card label, short of WCAG AA's 4.5:1. Same warm gold/
+     brown hue, just less light. */
+  --arm-media-ink: #946521;
 
   --success: #1f8a65;
   --error: #cf2d3f;
