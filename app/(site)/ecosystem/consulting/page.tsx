@@ -110,15 +110,20 @@ export default async function ConsultingPage() {
           the scheduling embed, so the section feels designed rather than a
           heading dropped above a blank rectangle. */}
       <section id="book" className="section relative overflow-hidden scroll-mt-20">
-        <div className="grid gap-10 lg:grid-cols-[0.85fr_1.4fr] lg:items-start">
+        <div className="grid grid-cols-1 gap-10 lg:grid-cols-[0.85fr_1.4fr] lg:items-start">
           {/* Booking options come first on mobile: the process steps are
               helpful context, but the actual services/calendar are what
               someone landing here via "Book a Consultation" needs to see
               without scrolling past an explainer first. */}
-          <Reveal delay={0.05} className="order-1 lg:order-2">
+          {/* min-w-0 keeps this grid item from stretching to fit the
+              filter pills' unwrapped width (they scroll internally
+              instead) — without it, the whole column silently overflows
+              past the mobile viewport and the section's overflow-hidden
+              clips it, cropping every card and image on the right edge. */}
+          <Reveal delay={0.05} className="order-1 min-w-0 lg:order-2">
             <BookingServices services={services} />
           </Reveal>
-          <Reveal className="order-2 lg:order-1">
+          <Reveal className="order-2 min-w-0 lg:order-1">
             <SectionHeading
               eyebrow="Booking"
               title="Choose how we start"
