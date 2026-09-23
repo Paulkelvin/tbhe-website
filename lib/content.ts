@@ -134,6 +134,8 @@ export const BOOKABLE_SERVICES: readonly BookableService[] = [
     title: "Professional Development & Coaching",
     tagline: "Whole-Staff PD, Tailored to Your School",
     calLink: CALENDLY_BOOKING_LINK,
+    image: "/images/service-professional-development.png",
+    imageAlt: "A consultant leading a whole-staff professional development workshop with a whiteboard reading Professional Growth",
   },
 ] as const
 
