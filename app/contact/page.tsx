@@ -16,9 +16,9 @@ export default function ContactPage() {
     <>
       <PageHero
         className="overflow-hidden"
+        compact
         eyebrow="Contact"
         title="One inbox for consulting, advocacy, and media"
-        description="Tell us why you're reaching out and the right person on the TBHE team will follow up."
         decoration={
           <OrganicBlob
             color="var(--primary)"
@@ -31,52 +31,55 @@ export default function ContactPage() {
       />
 
       {/* Send a message — the same two-column, label-left/form-right
-          rhythm used by the Media and Consulting booking sections, so the
-          page reads consistently with the rest of the site instead of
-          folding the form into the hero itself. */}
-      <section className="section">
-        <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:items-start">
+          rhythm used by the Media and Consulting booking sections. The
+          intro is kept short and the contact-info block moved below the
+          form so the form itself sits near the top of the page instead
+          of after a long stack of text on mobile. */}
+      <section className="section pt-8 sm:pt-14">
+        <div className="grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-start lg:gap-12">
           <Reveal className="min-w-0">
             <p className="eyebrow text-primary">Get in Touch</p>
             <h2 className="text-h2 mt-3 text-ink">Send us a message</h2>
-            <p className="text-lead mt-4 max-w-sm text-body">
-              Consulting, Mission 139, and media inquiries all land in the
-              same inbox, and the right person on the TBHE team will follow
-              up.
+            <p className="text-lead mt-3 max-w-sm text-body">
+              Consulting, Mission 139, and media inquiries all reach the
+              right person on the TBHE team.
             </p>
-
-            <div className="mt-8 flex flex-col gap-4 text-sm text-body">
-              <a
-                href={BUSINESS_CONTACT.phoneHref}
-                className="group flex items-center gap-3 transition-colors hover:text-ink"
-              >
-                <span className="flex size-9 shrink-0 items-center justify-center rounded-full border border-hairline-strong text-primary transition-colors group-hover:border-primary">
-                  <Phone size={16} />
-                </span>
-                <span className="min-w-0 break-words">{BUSINESS_CONTACT.phone}</span>
-              </a>
-              <a
-                href={`mailto:${BUSINESS_CONTACT.email}`}
-                className="group flex items-center gap-3 transition-colors hover:text-ink"
-              >
-                <span className="flex size-9 shrink-0 items-center justify-center rounded-full border border-hairline-strong text-primary transition-colors group-hover:border-primary">
-                  <EnvelopeSimple size={16} />
-                </span>
-                <span className="min-w-0 break-words">{BUSINESS_CONTACT.email}</span>
-              </a>
-              <div className="flex items-center gap-3">
-                <span className="flex size-9 shrink-0 items-center justify-center rounded-full border border-hairline-strong text-primary">
-                  <MapPin size={16} />
-                </span>
-                <span className="min-w-0 break-words">{BUSINESS_CONTACT.address}</span>
-              </div>
-            </div>
           </Reveal>
 
           <Reveal delay={0.05}>
             <ContactForm />
           </Reveal>
         </div>
+
+        <Reveal
+          delay={0.1}
+          className="mt-10 flex flex-col gap-4 border-t border-hairline pt-8 text-sm text-body sm:flex-row sm:flex-wrap sm:items-center sm:gap-8"
+        >
+          <a
+            href={BUSINESS_CONTACT.phoneHref}
+            className="group flex min-w-0 items-center gap-3 transition-colors hover:text-ink"
+          >
+            <span className="flex size-9 shrink-0 items-center justify-center rounded-full border border-hairline-strong text-primary transition-colors group-hover:border-primary">
+              <Phone size={16} />
+            </span>
+            <span className="min-w-0 break-words">{BUSINESS_CONTACT.phone}</span>
+          </a>
+          <a
+            href={`mailto:${BUSINESS_CONTACT.email}`}
+            className="group flex min-w-0 items-center gap-3 transition-colors hover:text-ink"
+          >
+            <span className="flex size-9 shrink-0 items-center justify-center rounded-full border border-hairline-strong text-primary transition-colors group-hover:border-primary">
+              <EnvelopeSimple size={16} />
+            </span>
+            <span className="min-w-0 break-words">{BUSINESS_CONTACT.email}</span>
+          </a>
+          <div className="flex min-w-0 items-center gap-3">
+            <span className="flex size-9 shrink-0 items-center justify-center rounded-full border border-hairline-strong text-primary">
+              <MapPin size={16} />
+            </span>
+            <span className="min-w-0 break-words">{BUSINESS_CONTACT.address}</span>
+          </div>
+        </Reveal>
       </section>
     </>
   )
