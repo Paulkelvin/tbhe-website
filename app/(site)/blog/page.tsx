@@ -9,6 +9,7 @@ export const metadata = pageMetadata({
   description:
     "Commentary, policy breakdowns, and practical guidance for educators from The Beautifully Human Educator.",
   path: "/blog",
+  image: "/images/blog/blog-hero-banner.jpg",
 })
 
 // Posts are managed in Sanity, so the blog updates as soon as an editor
