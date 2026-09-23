@@ -8,6 +8,7 @@ export const metadata = pageMetadata({
   description:
     "Free white papers and research from The Beautifully Human Educator on special education policy, inclusive classrooms, and neurodivergent student support.",
   path: "/resources",
+  image: "/images/resource-hero.png",
 })
 
 // Content for this page is managed in Sanity Studio (getResources /
@@ -78,7 +79,7 @@ export default async function ResourcesPage() {
             <a
               href={FEATURED_RESOURCE.file}
               target="_blank"
-              rel="noreferrer"
+              rel="noreferrer noopener"
               className="group mt-6 inline-flex w-fit items-center gap-1.5 text-sm font-semibold text-primary"
             >
               <span className="border-b border-primary/40 pb-0.5 transition-colors group-hover:border-primary">
@@ -123,7 +124,7 @@ export default async function ResourcesPage() {
                           <a
                             href={resource.file}
                             target="_blank"
-                            rel="noreferrer"
+                            rel="noreferrer noopener"
                             className="shrink-0 text-sm font-semibold text-primary sm:pl-4"
                           >
                             {actionLabel(resource.kind, resource.file)} &rarr;

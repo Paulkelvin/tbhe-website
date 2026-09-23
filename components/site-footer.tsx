@@ -60,7 +60,7 @@ export async function SiteFooter() {
               <Link
                 href={instagram}
                 target="_blank"
-                rel="noreferrer"
+                rel="noreferrer noopener"
                 aria-label="TBHE on Instagram"
                 className="flex size-9 items-center justify-center rounded-full border border-hairline-strong text-body transition-colors hover:border-primary hover:text-primary"
               >
@@ -71,7 +71,7 @@ export async function SiteFooter() {
               <Link
                 href={linkedin}
                 target="_blank"
-                rel="noreferrer"
+                rel="noreferrer noopener"
                 aria-label="TBHE on LinkedIn"
                 className="flex size-9 items-center justify-center rounded-full border border-hairline-strong text-body transition-colors hover:border-primary hover:text-primary"
               >

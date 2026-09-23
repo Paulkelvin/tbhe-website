@@ -71,7 +71,7 @@ export async function MissionHero({ arm, ctaHref }: { arm: Arm; ctaHref: string 
           <Link
             href={mission139Instagram}
             target="_blank"
-            rel="noreferrer"
+            rel="noreferrer noopener"
             className={cn(
               "caption inline-flex items-center gap-1.5 transition-colors hover:text-arm-mission-ink",
               colors.text

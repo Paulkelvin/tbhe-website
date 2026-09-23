@@ -3,6 +3,7 @@ import Link from "next/link"
 import { EventsHero } from "@/components/events-hero"
 import { Reveal } from "@/components/reveal"
 import { Button } from "@/components/ui/button"
+import { SITE_URL } from "@/lib/content"
 import { pageMetadata } from "@/lib/seo"
 import { getEvents } from "@/sanity/queries"
 
@@ -11,13 +12,39 @@ export const metadata = pageMetadata({
   description:
     "Workshops, webinars, and Disrupt & Connect community meetups from The Beautifully Human Educator. New programming is announced here first.",
   path: "/events",
+  image: "/images/events-hero.jpg",
 })
 
 export default async function EventsPage() {
   const EVENTS = await getEvents()
 
+  // Only events with a real date are valid schema.org Events (startDate
+  // is required) — the "coming soon" placeholder state emits nothing.
+  const eventsSchema = EVENTS.filter((event) => event.date).map((event) => ({
+    "@context": "https://schema.org",
+    "@type": "Event",
+    name: event.title,
+    description: event.description,
+    startDate: event.date,
+    eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
+    location: event.location
+      ? { "@type": "Place", name: event.location }
+      : undefined,
+    organizer: { "@type": "Organization", name: "The Beautifully Human Educator", url: SITE_URL },
+    url: event.registrationUrl,
+  }))
+
   return (
     <>
+      {eventsSchema.map((schema, index) => (
+        <script
+          key={index}
+          type="application/ld+json"
+          // eslint-disable-next-line react/no-danger
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+        />
+      ))}
+
       <EventsHero />
 
       <section className="section">

@@ -42,7 +42,7 @@ function ResourceCta({ resource }: { resource: SanityResource }) {
     <a
       href={resource.file}
       target="_blank"
-      rel="noreferrer"
+      rel="noreferrer noopener"
       className="group mt-6 inline-flex w-fit items-center gap-1.5 text-sm font-semibold text-primary"
     >
       <span className="border-b border-primary/40 pb-0.5 transition-colors group-hover:border-primary">

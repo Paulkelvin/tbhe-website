@@ -6,7 +6,7 @@ import { BookingServices } from "@/components/booking-services"
 import { CtaBanner } from "@/components/cta-banner"
 import { Reveal } from "@/components/reveal"
 import { ArtDefs, HandDrawnStroke } from "@/components/organic-art"
-import { pageMetadata } from "@/lib/seo"
+import { breadcrumbSchema, pageMetadata } from "@/lib/seo"
 import { getArms, getBookableServices } from "@/sanity/queries"
 
 export const metadata = pageMetadata({
@@ -14,6 +14,7 @@ export const metadata = pageMetadata({
   description:
     "Professional development, instructional coaching, and leadership mentorship for school administrators, district leaders, and early-career educators.",
   path: "/ecosystem/consulting",
+  image: "/images/consulting-workspace.png",
 })
 
 const BOOKING_PROCESS_STEPS = [
@@ -40,8 +41,20 @@ export default async function ConsultingPage() {
   const arm = arms.find((a) => a.slug === "consulting")!
   const [, ...secondaryModules] = arm.features ?? []
 
+  const breadcrumbs = breadcrumbSchema([
+    { name: "Home", path: "/" },
+    { name: "The Ecosystem", path: "/ecosystem" },
+    { name: "Educational Consulting & Coaching", path: "/ecosystem/consulting" },
+  ])
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        // eslint-disable-next-line react/no-danger
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbs) }}
+      />
+
       <ArtDefs />
 
       <ConsultingHero arm={arm} ctaHref="#book" />

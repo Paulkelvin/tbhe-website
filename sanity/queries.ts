@@ -295,6 +295,7 @@ export type Post = {
   authorPhoto?: string
   authorPhotoAlt?: string
   publishedAt?: string
+  updatedAt?: string
   featured?: boolean
   body?: PortableTextBlock[]
 }
@@ -309,6 +310,7 @@ const POST_PROJECTION = `{
   "authorPhoto": authorPhoto.asset->url,
   "authorPhotoAlt": authorPhoto.alt,
   publishedAt,
+  "updatedAt": _updatedAt,
   featured,
   body
 }`

@@ -7,7 +7,7 @@ import { PublicationInterface } from "@/components/publication-interface"
 import { SpeakerBookingForm } from "@/components/speaker-booking-form"
 import { CtaBanner } from "@/components/cta-banner"
 import { Reveal } from "@/components/reveal"
-import { pageMetadata } from "@/lib/seo"
+import { breadcrumbSchema, pageMetadata } from "@/lib/seo"
 import { getArms } from "@/sanity/queries"
 
 export const metadata = pageMetadata({
@@ -15,6 +15,7 @@ export const metadata = pageMetadata({
   description:
     "Research, white papers, and keynote speaking on equity, educator burnout, and neurodivergent student support from The Beautifully Human Educator.",
   path: "/ecosystem/media",
+  image: "/images/media-keynote.jpg",
 })
 
 const KEYNOTE_PHOTO_ALT =
@@ -25,8 +26,20 @@ export default async function MediaPage() {
   const arm = arms.find((a) => a.slug === "media")!
   const MEDIA_OFFERINGS = arm.features ?? []
 
+  const breadcrumbs = breadcrumbSchema([
+    { name: "Home", path: "/" },
+    { name: "The Ecosystem", path: "/ecosystem" },
+    { name: "Media & Publishing", path: "/ecosystem/media" },
+  ])
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        // eslint-disable-next-line react/no-danger
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbs) }}
+      />
+
       <MediaHero arm={arm} ctaHref="#book" />
 
       {/* Keynotes — a full-bleed stage photograph breaking the standard

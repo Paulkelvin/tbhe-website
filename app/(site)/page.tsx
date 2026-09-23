@@ -12,6 +12,7 @@ import { SectionHeading } from "@/components/section-heading"
 import { NewsletterForm } from "@/components/newsletter-form"
 import { Reveal } from "@/components/reveal"
 import { PaperSheet } from "@/components/organic-art"
+import { DEFAULT_OG_IMAGE } from "@/lib/seo"
 import { getImpactStats, getSchoolPartners } from "@/sanity/queries"
 
 const HOME_DESCRIPTION =
@@ -23,8 +24,15 @@ const HOME_DESCRIPTION =
 export const metadata: Metadata = {
   description: HOME_DESCRIPTION,
   alternates: { canonical: "/" },
-  openGraph: { description: HOME_DESCRIPTION },
-  twitter: { description: HOME_DESCRIPTION },
+  openGraph: {
+    description: HOME_DESCRIPTION,
+    images: [{ url: DEFAULT_OG_IMAGE }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    description: HOME_DESCRIPTION,
+    images: [DEFAULT_OG_IMAGE],
+  },
 }
 
 export default async function HomePage() {

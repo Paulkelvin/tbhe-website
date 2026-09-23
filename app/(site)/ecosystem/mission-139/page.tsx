@@ -7,14 +7,16 @@ import { SectionHeading } from "@/components/section-heading"
 import { CtaBanner } from "@/components/cta-banner"
 import { Reveal } from "@/components/reveal"
 import { ArtDefs, HandDrawnStroke } from "@/components/organic-art"
-import { pageMetadata } from "@/lib/seo"
-import { getArms } from "@/sanity/queries"
+import { SITE_URL } from "@/lib/content"
+import { breadcrumbSchema as buildBreadcrumbSchema, pageMetadata } from "@/lib/seo"
+import { getArms, getSiteSettings } from "@/sanity/queries"
 
 export const metadata = pageMetadata({
   title: "Mission 139",
   description:
     "Mission 139 is a 501(c)(3) nonprofit providing special-education advocacy, IEP/504 support, and financial aid for neurodivergent students and families.",
   path: "/ecosystem/mission-139",
+  image: "/images/mission-support-path.png",
 })
 
 const BELONG_ARTWORK_ALT =
@@ -27,12 +29,48 @@ const PATH_FULL_ALT =
   "A hand-drawn vine tracing a path through four waypoints (Heard, Understood, Supported, Empowered), ending at an open door beneath a heart"
 
 export default async function Mission139Page() {
-  const arms = await getArms()
+  const [arms, settings] = await Promise.all([getArms(), getSiteSettings()])
   const arm = arms.find((a) => a.slug === "mission-139")!
   const programs = arm.features ?? []
 
+  const nonprofitSchema = {
+    "@context": "https://schema.org",
+    "@type": "NGO",
+    name: "Mission 139",
+    description: arm.summary,
+    url: `${SITE_URL}/ecosystem/mission-139`,
+    email: settings.email,
+    telephone: settings.phone,
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: settings.addressLine1,
+      addressLocality: settings.addressCity,
+      addressRegion: settings.addressState,
+      postalCode: settings.addressZip,
+      addressCountry: "US",
+    },
+    parentOrganization: { "@type": "Organization", name: settings.siteName, url: SITE_URL },
+  }
+
+  const breadcrumbs = buildBreadcrumbSchema([
+    { name: "Home", path: "/" },
+    { name: "The Ecosystem", path: "/ecosystem" },
+    { name: "Mission 139", path: "/ecosystem/mission-139" },
+  ])
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        // eslint-disable-next-line react/no-danger
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(nonprofitSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        // eslint-disable-next-line react/no-danger
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbs) }}
+      />
+
       <ArtDefs />
 
       <MissionHero arm={arm} ctaHref="/contact" />

@@ -63,7 +63,7 @@ export default async function PrivacyPage() {
               <a
                 href="https://calendly.com/privacy"
                 target="_blank"
-                rel="noreferrer"
+                rel="noreferrer noopener"
               >
                 Calendly&apos;s own privacy policy
               </a>

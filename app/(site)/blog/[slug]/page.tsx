@@ -4,10 +4,13 @@ import { notFound } from "next/navigation"
 
 import { Button } from "@/components/ui/button"
 import { ArticleBody } from "@/components/article-body"
+import { BlogCard } from "@/components/blog-card"
 import { Reveal } from "@/components/reveal"
+import { SectionHeading } from "@/components/section-heading"
 import { ShareButtons } from "@/components/share-buttons"
 import { estimateReadingMinutes, formatPostDate } from "@/lib/blog"
-import { SITE_URL } from "@/lib/content"
+import { SITE, SITE_URL } from "@/lib/content"
+import { breadcrumbSchema as buildBreadcrumbSchema, DEFAULT_OG_IMAGE } from "@/lib/seo"
 import { getPostBySlug, getPosts } from "@/sanity/queries"
 
 export const revalidate = 60
@@ -40,12 +43,13 @@ export async function generateMetadata({
       type: "article",
       publishedTime: post.publishedAt,
       authors: post.author ? [post.author] : undefined,
-      images: post.coverImage ? [{ url: post.coverImage }] : undefined,
+      images: [{ url: post.coverImage ?? DEFAULT_OG_IMAGE }],
     },
     twitter: {
+      card: "summary_large_image",
       title: post.title,
       description,
-      images: post.coverImage ? [post.coverImage] : undefined,
+      images: [post.coverImage ?? DEFAULT_OG_IMAGE],
     },
   }
 }
@@ -63,14 +67,29 @@ export default async function BlogPostPage({
   const readingMinutes = estimateReadingMinutes(post.body)
   const canonicalUrl = `${SITE_URL}/blog/${slug}`
 
+  const allPosts = await getPosts()
+  const relatedPosts = allPosts.filter((p) => p.slug !== slug).slice(0, 3)
+
+  const breadcrumbs = buildBreadcrumbSchema([
+    { name: "Home", path: "/" },
+    { name: "Blog", path: "/blog" },
+    { name: post.title, path: `/blog/${slug}` },
+  ])
+
   const articleSchema = {
     "@context": "https://schema.org",
     "@type": "Article",
     headline: post.title,
     description: post.excerpt,
     datePublished: post.publishedAt,
+    dateModified: post.updatedAt ?? post.publishedAt,
     author: post.author ? { "@type": "Person", name: post.author } : undefined,
-    image: post.coverImage ? [post.coverImage] : undefined,
+    image: [post.coverImage ?? `${SITE_URL}${DEFAULT_OG_IMAGE}`],
+    publisher: {
+      "@type": "Organization",
+      name: SITE.name,
+      logo: { "@type": "ImageObject", url: `${SITE_URL}/images/tbhe-logo.png` },
+    },
     mainEntityOfPage: `${SITE_URL}/blog/${slug}`,
   }
 
@@ -80,6 +99,11 @@ export default async function BlogPostPage({
         type="application/ld+json"
         // eslint-disable-next-line react/no-danger
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        // eslint-disable-next-line react/no-danger
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbs) }}
       />
 
       <article className="section">
@@ -149,6 +173,23 @@ export default async function BlogPostPage({
           </Reveal>
         </div>
       </article>
+
+      {relatedPosts.length ? (
+        <section className="section pt-0">
+          <div className="mx-auto max-w-5xl border-t border-hairline pt-14">
+            <Reveal>
+              <SectionHeading eyebrow="Keep Reading" title="More from the Blog" />
+            </Reveal>
+            <div className="mt-10 grid gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
+              {relatedPosts.map((relatedPost, index) => (
+                <Reveal key={relatedPost.slug} delay={index * 0.05}>
+                  <BlogCard post={relatedPost} />
+                </Reveal>
+              ))}
+            </div>
+          </div>
+        </section>
+      ) : null}
     </>
   )
 }

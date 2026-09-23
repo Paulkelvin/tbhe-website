@@ -7,6 +7,7 @@ import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { PageTransition } from "@/components/page-transition"
 import { SITE_URL } from "@/lib/content"
+import { DEFAULT_OG_IMAGE } from "@/lib/seo"
 import { getArms, getNavLinks, getSiteSettings } from "@/sanity/queries"
 
 const fontSans = Manrope({ subsets: ["latin"], variable: "--font-sans" })
@@ -30,8 +31,14 @@ export async function generateMetadata(): Promise<Metadata> {
       title: fullName,
       description: settings.description,
       url: SITE_URL,
+      images: [{ url: DEFAULT_OG_IMAGE }],
     },
-    twitter: { card: "summary", title: fullName, description: settings.description },
+    twitter: {
+      card: "summary_large_image",
+      title: fullName,
+      description: settings.description,
+      images: [DEFAULT_OG_IMAGE],
+    },
   }
 }
 

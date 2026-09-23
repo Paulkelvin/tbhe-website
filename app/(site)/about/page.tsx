@@ -16,6 +16,7 @@ export const metadata = pageMetadata({
   description:
     "Meet Cyrkle B. Brent, M.Ed., founder of The Beautifully Human Educator and Mission 139, and the coaching team behind TBHE's real school impact.",
   path: "/about",
+  image: "/images/founder-headshot.jpg",
 })
 
 export default async function AboutPage() {
