@@ -166,13 +166,18 @@ export async function getFooterColumns(): Promise<FooterColumn[]> {
   }))
 }
 
-export type TeamMember = { name: string; role: string; photoUrl?: string | null }
+export type TeamMember = {
+  name: string
+  role: string
+  photoUrl?: string | null
+  photoAlt?: string | null
+}
 
 export async function getTeamMembers(): Promise<TeamMember[]> {
   try {
-    const members = await sanityClient.fetch<
-      { name: string; role: string; photoUrl: string | null }[]
-    >(`*[_type == "teamMember"] | order(order asc){ name, role, "photoUrl": photo }`)
+    const members = await sanityClient.fetch<TeamMember[]>(
+      `*[_type == "teamMember"] | order(order asc){ name, role, "photoUrl": photo.asset->url, "photoAlt": photo.alt }`
+    )
     if (members?.length) return members
   } catch {
     // fall through to static fallback
@@ -194,7 +199,7 @@ export type BookableService = {
 export async function getBookableServices(): Promise<BookableService[]> {
   try {
     const services = await sanityClient.fetch<BookableService[]>(
-      `*[_type == "bookableService"] | order(order asc){ title, category, description, duration, bookingUrl, image, imageAlt, imagePosition }`
+      `*[_type == "bookableService"] | order(order asc){ title, category, description, duration, bookingUrl, "image": image.asset->url, "imageAlt": image.alt, imagePosition }`
     )
     if (services?.length) return services
   } catch {
@@ -215,6 +220,7 @@ export async function getBookableServices(): Promise<BookableService[]> {
 export type SchoolPartner = {
   name: string
   logo?: string
+  logoAlt?: string
   logoWidth?: number
   logoHeight?: number
 }
@@ -222,7 +228,7 @@ export type SchoolPartner = {
 export async function getSchoolPartners(): Promise<SchoolPartner[]> {
   try {
     const schools = await sanityClient.fetch<SchoolPartner[]>(
-      `*[_type == "schoolPartner"] | order(order asc){ name, logo, logoWidth, logoHeight }`
+      `*[_type == "schoolPartner"] | order(order asc){ name, "logo": logo.asset->url, "logoAlt": logo.alt, "logoWidth": logo.asset->metadata.dimensions.width, "logoHeight": logo.asset->metadata.dimensions.height }`
     )
     if (schools?.length) return schools
   } catch {

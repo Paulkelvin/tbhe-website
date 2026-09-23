@@ -16,10 +16,13 @@ export default defineType({
     defineField({ name: "description", title: "Tagline", type: "text" }),
     defineField({ name: "duration", title: "Duration", type: "string" }),
     defineField({ name: "bookingUrl", title: "Booking URL (Calendly)", type: "url" }),
-    // Plain string, not a Sanity image asset: these currently point at
-    // static files under /public/images.
-    defineField({ name: "image", title: "Image Path", type: "string" }),
-    defineField({ name: "imageAlt", title: "Image Alt Text", type: "string" }),
+    defineField({
+      name: "image",
+      title: "Image",
+      type: "image",
+      options: { hotspot: true },
+      fields: [{ name: "alt", title: "Alt Text", type: "string" }],
+    }),
     defineField({
       name: "imagePosition",
       title: "Image CSS object-position",
