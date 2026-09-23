@@ -1,6 +1,6 @@
 import { ResourceHero } from "@/components/resource-hero"
 import { Reveal } from "@/components/reveal"
-import { FEATURED_RESOURCE, RESOURCE_CATEGORIES, RESOURCES } from "@/lib/content"
+import { getResourceCategories, getResources } from "@/sanity/queries"
 import { pageMetadata } from "@/lib/seo"
 
 export const metadata = pageMetadata({
@@ -10,9 +10,10 @@ export const metadata = pageMetadata({
   path: "/resources",
 })
 
-const secondaryResources = RESOURCES.filter(
-  (r) => r.title !== FEATURED_RESOURCE.title
-)
+// Content for this page is managed in Sanity Studio (getResources /
+// getResourceCategories), so the Resource Center updates whenever an
+// editor adds or edits a resource there — no code change required.
+export const revalidate = 60
 
 function actionLabel(kind: string, file: string) {
   if (kind === "Webinar Recording") return "Watch"
@@ -23,7 +24,16 @@ function actionLabel(kind: string, file: string) {
   return "Download"
 }
 
-export default function ResourcesPage() {
+export default async function ResourcesPage() {
+  const [resources, RESOURCE_CATEGORIES] = await Promise.all([
+    getResources(),
+    Promise.resolve(getResourceCategories()),
+  ])
+  const FEATURED_RESOURCE = resources.find((r) => r.featured) ?? resources[0]
+  const secondaryResources = resources.filter(
+    (r) => r.title !== FEATURED_RESOURCE?.title
+  )
+
   return (
     <>
       <ResourceHero />
@@ -72,7 +82,7 @@ export default function ResourcesPage() {
               className="group mt-6 inline-flex w-fit items-center gap-1.5 text-sm font-semibold text-primary"
             >
               <span className="border-b border-primary/40 pb-0.5 transition-colors group-hover:border-primary">
-                {FEATURED_RESOURCE.cta}
+                {FEATURED_RESOURCE.ctaLabel ?? "Download the White Paper"}
               </span>
               <span className="transition-transform group-hover:translate-x-0.5">
                 &rarr;
