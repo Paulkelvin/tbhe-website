@@ -125,8 +125,11 @@ export function BookingServices({ services }: { services: BookableService[] }) {
     setActiveTitle(title)
     // The calendar/quote panel below is the whole point of picking a
     // card, so bring it into view rather than leaving people to notice
-    // it changed further down the page.
-    panelRef.current?.scrollIntoView({ behavior: "smooth", block: "nearest" })
+    // it changed further down the page. "center" rather than "start":
+    // the calendar is taller than most phone screens, and centering it
+    // fills the whole viewport with it instead of leaving its bottom
+    // half (the actual date/time picker) cut off below the fold.
+    panelRef.current?.scrollIntoView({ behavior: "smooth", block: "center" })
   }
 
   return (
@@ -182,9 +185,8 @@ export function BookingServices({ services }: { services: BookableService[] }) {
               Let&apos;s build a proposal for your team.
             </p>
             <p className="text-body-sm max-w-md text-body">
-              School and district engagements are scoped around your staff
-              size and goals, so this one starts with a quote rather than a
-              calendar. Tell us what you need and we&apos;ll follow up.
+              These engagements are scoped to your staff and goals, so we
+              start with a quote instead of a calendar.
             </p>
             <Button asChild size="lg">
               <Link href="/contact">Request a Quote</Link>
