@@ -1,6 +1,8 @@
 import type { AdminField } from "@/lib/admin/field-types"
 import { RESOURCE_CATEGORIES } from "@/lib/content"
 
+export type AdminFieldGroup = { title: string; fieldNames: string[] }
+
 export type AdminSection = {
   slug: string
   typeName: string
@@ -9,6 +11,10 @@ export type AdminSection = {
   singleton?: boolean
   fixedId?: string
   fields: AdminField[]
+  // Optional: organizes a singleton's fields into labeled sections
+  // instead of one flat grid. Collections don't need this — each
+  // document is edited on its own page already.
+  groups?: AdminFieldGroup[]
 }
 
 export const ADMIN_SECTIONS: AdminSection[] = [
@@ -47,6 +53,19 @@ export const ADMIN_SECTIONS: AdminSection[] = [
       },
       { type: "text", name: "calendlyBookingLink", label: "Calendly Booking Link" },
       { type: "text", name: "mission139InstagramUrl", label: "Mission 139 Instagram URL" },
+    ],
+    groups: [
+      { title: "Basics", fieldNames: ["siteName", "shortName", "tagline", "taglineSub", "description"] },
+      {
+        title: "Founder",
+        fieldNames: ["founderName", "founderCredential", "founderTitle", "founderSecondaryTitle"],
+      },
+      {
+        title: "Contact & Address",
+        fieldNames: ["email", "phone", "addressLine1", "addressCity", "addressState", "addressZip"],
+      },
+      { title: "About Page", fieldNames: ["schoolsServed"] },
+      { title: "Links", fieldNames: ["socialLinks", "calendlyBookingLink", "mission139InstagramUrl"] },
     ],
   },
   {
