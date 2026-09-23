@@ -400,6 +400,15 @@ export const RESOURCES: readonly Resource[] = [
       "Research-backed strategies for building inclusive rigor for neurodivergent learners, with real-world lesson examples across grade bands.",
     file: "/resources/creating-rigorous-classrooms-for-all-students.pdf",
   },
+  {
+    kind: "White Paper",
+    category: "Intellectual Property & Educator Protection",
+    title: "Playing Chess: Protecting Your Intellectual Property",
+    description:
+      "A free guide helping educators navigate the murky waters of collaboration while safeguarding their original work. Licensed CC BY-SA 4.0.",
+    // No PDF on file yet — links to the real original until we have it.
+    file: "https://beauhuman.wixsite.com/my-site-1/product-page/playing-chess-intellectual-property-white-paper",
+  },
 ] as const
 
 export const FOOTER_COLUMNS = [

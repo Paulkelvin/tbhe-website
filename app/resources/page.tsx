@@ -14,9 +14,12 @@ const secondaryResources = RESOURCES.filter(
   (r) => r.title !== FEATURED_RESOURCE.title
 )
 
-function actionLabel(kind: string) {
+function actionLabel(kind: string, file: string) {
   if (kind === "Webinar Recording") return "Watch"
   if (kind === "Article") return "Read"
+  // External links (no PDF hosted on our own site yet) get "View"
+  // instead of "Download" so the label doesn't overpromise.
+  if (file.startsWith("http")) return "View"
   return "Download"
 }
 
@@ -113,7 +116,7 @@ export default function ResourcesPage() {
                             rel="noreferrer"
                             className="shrink-0 text-sm font-semibold text-primary sm:pl-4"
                           >
-                            {actionLabel(resource.kind)} &rarr;
+                            {actionLabel(resource.kind, resource.file)} &rarr;
                           </a>
                         </div>
                       ))}
