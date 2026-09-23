@@ -5,6 +5,7 @@ import { Quotes } from "@phosphor-icons/react/dist/ssr"
 import { MissionHero } from "@/components/mission-hero"
 import { SectionHeading } from "@/components/section-heading"
 import { CtaBanner } from "@/components/cta-banner"
+import { DonateForm } from "@/components/donate-form"
 import { Reveal } from "@/components/reveal"
 import { ArtDefs, HandDrawnStroke } from "@/components/organic-art"
 import { SITE_URL } from "@/lib/content"
@@ -244,7 +245,6 @@ export default async function Mission139Page() {
         title="Apply for family assistance or start an advocacy request"
         description="Serving families across the DMV region with IEP/504 representation, evaluation and therapy grants, and district advocacy."
         primary={{ label: "Apply for Family Aid", href: "/contact" }}
-        secondary={{ label: "Donate", href: "/donate" }}
         decoration={
           <HandDrawnStroke
             className="pointer-events-none absolute right-[12%] bottom-[22%] hidden h-8 w-8 opacity-[0.16] lg:block"
@@ -255,6 +255,41 @@ export default async function Mission139Page() {
           />
         }
       />
+
+      {/* Give — a quieter closing section for anyone who came here wanting
+          to donate rather than apply for aid, in the same eyebrow +
+          hand-drawn-accent language as the rest of the page rather than a
+          bolted-on separate widget. */}
+      <section id="give" className="relative overflow-hidden py-20 sm:py-24 lg:py-28">
+        <div className="mx-auto max-w-2xl px-6 text-center sm:px-8">
+          <Reveal>
+            <p className="eyebrow text-arm-mission-ink">Give</p>
+            <h2 className="text-h2 mt-3 text-ink">Partner with Mission 139</h2>
+            <HandDrawnStroke
+              className="mx-auto mt-3 h-2 w-14"
+              d="M2,4 C12,1 24,6 38,3"
+              color="var(--arm-mission)"
+              strokeWidth={1.6}
+              viewBox="0 0 40 8"
+            />
+            <p className="text-quote mx-auto mt-5 max-w-xl text-ink">
+              &quot;Speak up for those who cannot speak for themselves…defend
+              the rights of the poor and needy.&quot;
+            </p>
+            <p className="caption mt-2 text-muted-ink">Proverbs 31:8–9</p>
+            <p className="text-body-sm mx-auto mt-5 max-w-xl text-body">
+              Your tax-deductible gift funds advocacy, IEP coaching, and
+              educational access for neurodivergent students and their
+              families — give once, and every dollar goes toward carrying
+              out the mission.
+            </p>
+          </Reveal>
+
+          <Reveal delay={0.05} className="mt-10 rounded-2xl border border-hairline bg-canvas-soft p-7 text-left sm:p-10">
+            <DonateForm />
+          </Reveal>
+        </div>
+      </section>
     </>
   )
 }

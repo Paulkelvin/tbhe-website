@@ -57,7 +57,7 @@ export async function Hero() {
                 size="lg"
                 className="bg-arm-media text-ink hover:bg-arm-media/85"
               >
-                <Link href="/donate">Support Mission 139</Link>
+                <Link href="/ecosystem/mission-139#give">Support Mission 139</Link>
               </Button>
             </div>
           </div>
