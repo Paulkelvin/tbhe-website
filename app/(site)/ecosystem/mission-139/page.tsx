@@ -203,9 +203,11 @@ export default async function Mission139Page() {
       {/* The Walk — a quiet moment before the final ask. The path itself
           (its Heard / Understood / Supported / Empowered waypoints already
           drawn into the illustration) is the whole section, sized so the
-          lettering is comfortably legible rather than purely decorative. */}
-      <section className="overflow-hidden py-16 sm:py-20">
-        <div className="relative mx-auto hidden aspect-[3/1] w-full max-w-4xl px-6 lg:block">
+          lettering is comfortably legible rather than purely decorative.
+          Desktop only — on mobile the fragments read as illegible clutter
+          rather than a moment, so the section is skipped entirely there. */}
+      <section className="hidden overflow-hidden py-16 sm:py-20 lg:block">
+        <div className="relative mx-auto aspect-[3/1] w-full max-w-4xl px-6">
           <Image
             src="/images/mission-support-path.png"
             alt={PATH_FULL_ALT}
@@ -213,30 +215,6 @@ export default async function Mission139Page() {
             sizes="900px"
             className="object-contain"
           />
-        </div>
-
-        {/* Mobile: two small fragments, not one long line down the page. */}
-        <div className="flex items-center justify-center gap-8 px-6 lg:hidden">
-          <div className="relative h-24 w-40">
-            <Image
-              src="/images/mission-support-path.png"
-              alt={PATH_FULL_ALT}
-              fill
-              sizes="160px"
-              className="object-cover"
-              style={{ objectPosition: "58% 40%" }}
-            />
-          </div>
-          <div className="relative h-28 w-32">
-            <Image
-              src="/images/mission-support-path.png"
-              alt=""
-              fill
-              sizes="128px"
-              className="object-cover"
-              style={{ objectPosition: "97% 40%" }}
-            />
-          </div>
         </div>
       </section>
 
