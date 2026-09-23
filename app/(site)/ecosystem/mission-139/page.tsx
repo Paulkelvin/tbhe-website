@@ -244,7 +244,7 @@ export default async function Mission139Page() {
         title="Apply for family assistance or start an advocacy request"
         description="Serving families across the DMV region with IEP/504 representation, evaluation and therapy grants, and district advocacy."
         primary={{ label: "Apply for Family Aid", href: "/contact" }}
-        secondary={{ label: "Donate", href: "/api/donate" }}
+        secondary={{ label: "Donate", href: "/donate" }}
         decoration={
           <HandDrawnStroke
             className="pointer-events-none absolute right-[12%] bottom-[22%] hidden h-8 w-8 opacity-[0.16] lg:block"

@@ -10,6 +10,7 @@ const ROUTES = [
   { path: "/ecosystem/consulting", priority: 0.8, changeFrequency: "monthly" as const },
   { path: "/ecosystem/mission-139", priority: 0.8, changeFrequency: "monthly" as const },
   { path: "/ecosystem/media", priority: 0.8, changeFrequency: "monthly" as const },
+  { path: "/donate", priority: 0.7, changeFrequency: "monthly" as const },
   { path: "/resources", priority: 0.7, changeFrequency: "weekly" as const },
   { path: "/blog", priority: 0.7, changeFrequency: "weekly" as const },
   { path: "/events", priority: 0.7, changeFrequency: "weekly" as const },
