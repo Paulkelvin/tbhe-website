@@ -9,7 +9,7 @@ import { getArms } from "@/sanity/queries"
 export async function EcosystemHero() {
   const [consulting, mission, media] = await getArms()
   return (
-    <section className="relative overflow-hidden border-b border-hairline bg-canvas">
+    <section className="relative overflow-hidden border-b border-hairline bg-surface-card">
       <ArtDefs />
       <div className="mx-auto max-w-4xl px-6 pt-16 text-center sm:px-8 sm:pt-20">
         <p className="eyebrow text-primary">The Ecosystem</p>
@@ -106,7 +106,7 @@ export async function EcosystemHero() {
         </div>
 
         <div className="absolute top-[63%] left-1/2 -translate-x-1/2 -translate-y-1/2 text-center">
-          <div className="rounded-full bg-canvas/85 px-10 py-7 backdrop-blur-[2px]">
+          <div className="rounded-full bg-surface-card/85 px-10 py-7 backdrop-blur-[2px]">
             <p className="eyebrow text-muted-ink">
               TBHE
             </p>

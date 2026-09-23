@@ -86,7 +86,7 @@ export default function DonatePage() {
       </section>
 
       <section className="section pt-0">
-        <Reveal className="mx-auto max-w-xl rounded-2xl border border-hairline bg-canvas p-7 sm:p-10">
+        <Reveal className="mx-auto max-w-xl rounded-2xl border border-hairline bg-surface-card p-7 sm:p-10">
           <p className="eyebrow text-arm-mission-ink">Support our Mission</p>
           <h2 className="text-h2 mt-2 text-ink">Help us make a difference.</h2>
           <div className="mt-6">

@@ -55,7 +55,7 @@ export function SiteHeader({ siteName, navLinks, arms }: SiteHeaderProps) {
   }, [ecosystemOpen])
 
   return (
-    <header className="sticky top-0 z-50 border-b border-hairline bg-canvas/90 backdrop-blur">
+    <header className="sticky top-0 z-50 border-b border-hairline bg-surface-card/90 backdrop-blur">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6 sm:px-8">
         <Link href="/" className="shrink-0">
           <Image
@@ -109,7 +109,7 @@ export function SiteHeader({ siteName, navLinks, arms }: SiteHeaderProps) {
                         transition={{ duration: 0.15, ease: EASE }}
                         className="absolute left-1/2 top-full z-50 w-64 -translate-x-1/2 pt-3"
                       >
-                        <div className="rounded-xl border border-hairline bg-canvas p-2 shadow-lg">
+                        <div className="rounded-xl border border-hairline bg-surface-card p-2 shadow-lg">
                           {arms.map((arm) => (
                             <Link
                               key={arm.slug}
@@ -176,7 +176,7 @@ export function SiteHeader({ siteName, navLinks, arms }: SiteHeaderProps) {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -8 }}
               transition={{ duration: 0.25, ease: EASE }}
-              className="absolute inset-x-0 top-full z-50 border-t border-hairline bg-canvas shadow-lg md:hidden"
+              className="absolute inset-x-0 top-full z-50 border-t border-hairline bg-surface-card shadow-lg md:hidden"
             >
               <nav className="flex flex-col gap-1 px-6 py-4">
                 {navLinks.map((link) => (

@@ -12,7 +12,7 @@ export async function Hero() {
   const FOUNDER_ALT = `${settings.founderName}, founder of ${settings.siteName}, laughing and gesturing warmly in a green blazer`
 
   return (
-    <section className="relative overflow-hidden border-b border-hairline bg-canvas-soft">
+    <section className="relative overflow-hidden border-b border-hairline bg-surface-card">
       <ArtDefs />
 
       {/* Background depth, behind everything. Simplified on mobile: one
@@ -119,7 +119,7 @@ export async function Hero() {
       </div>
 
       {/* Ecosystem strip — a slim editorial anchor, not a feature bar. */}
-      <div className="relative z-30 border-t border-hairline bg-canvas-soft">
+      <div className="relative z-30 border-t border-hairline bg-surface-card">
         <nav
           aria-label="The TBHE ecosystem"
           className="mx-auto flex max-w-[1440px] flex-col items-center gap-2 px-6 py-4 text-center sm:flex-row sm:justify-center sm:gap-10 sm:px-10 lg:justify-between lg:px-16 xl:px-20"

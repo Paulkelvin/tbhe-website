@@ -75,6 +75,14 @@ export async function ThreeWayCta() {
         <h2 className="text-h2 mt-3 text-canvas">
           Which part of the ecosystem do you need?
         </h2>
+        {/* A single, deliberate lime mark — the one spot on the homepage
+            where the brand's lime accent appears outside Mission 139,
+            here because it's the only background (dark ink) where raw
+            lime actually clears WCAG's contrast minimum. */}
+        <span
+          aria-hidden
+          className="mx-auto mt-4 block h-[3px] w-9 rounded-full bg-arm-mission"
+        />
 
         <div className="mt-12 grid gap-6 sm:grid-cols-3">
           {ARMS.map((arm) => {

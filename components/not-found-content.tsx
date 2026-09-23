@@ -12,7 +12,7 @@ export async function NotFoundContent() {
   const NAV_LINKS = await getNavLinks()
 
   return (
-    <section className="relative overflow-hidden border-b border-hairline bg-canvas-soft">
+    <section className="relative overflow-hidden border-b border-hairline bg-surface-card">
       <OrganicBlob
         color="var(--primary)"
         variant={1}

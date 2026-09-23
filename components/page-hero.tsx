@@ -20,7 +20,7 @@ export function PageHero({
   compact?: boolean
 }) {
   return (
-    <section className={cn("relative border-b border-hairline bg-canvas-soft", className)}>
+    <section className={cn("relative border-b border-hairline bg-surface-card", className)}>
       {decoration}
       <div
         className={cn(

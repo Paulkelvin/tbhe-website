@@ -257,7 +257,7 @@ export default async function EcosystemPage() {
         </div>
 
         <Reveal className="relative mx-auto max-w-2xl px-6 text-center sm:px-8 lg:absolute lg:inset-0 lg:flex lg:flex-col lg:items-center lg:justify-center">
-          <div className="lg:rounded-full lg:bg-canvas/85 lg:px-12 lg:py-8 lg:backdrop-blur-[2px]">
+          <div className="lg:rounded-full lg:bg-surface-card/85 lg:px-12 lg:py-8 lg:backdrop-blur-[2px]">
             <p className="eyebrow text-muted-ink">
               TBHE
             </p>

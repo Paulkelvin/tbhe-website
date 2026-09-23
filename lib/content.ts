@@ -313,7 +313,7 @@ export const ARM_COLOR_CLASS: Record<
     text: "text-arm-consulting",
     bg: "bg-arm-consulting",
     border: "border-arm-consulting",
-    softBg: "bg-arm-consulting/10",
+    softBg: "bg-lavender",
   },
   mission: {
     text: "text-arm-mission-ink",

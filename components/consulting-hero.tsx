@@ -16,7 +16,7 @@ export function ConsultingHero({ arm, ctaHref }: { arm: Arm; ctaHref: string }) 
   const colors = ARM_COLOR_CLASS[arm.color]
 
   return (
-    <section className="relative overflow-hidden border-b border-hairline bg-canvas-soft">
+    <section className="relative overflow-hidden border-b border-hairline bg-surface-card">
       <OrganicBlob
         color="var(--arm-consulting)"
         variant={1}

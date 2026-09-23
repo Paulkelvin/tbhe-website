@@ -29,10 +29,13 @@
   --color-canvas-soft: var(--canvas-soft);
   --color-surface-card: var(--surface-card);
   --color-surface-strong: var(--surface-strong);
+  --color-lavender-surface: var(--lavender-surface);
+  --color-lavender: var(--lavender);
 
   --color-hairline: var(--hairline);
   --color-hairline-soft: var(--hairline-soft);
   --color-hairline-strong: var(--hairline-strong);
+  --color-hairline-lavender: var(--hairline-lavender);
 
   --color-ink: var(--ink);
   --color-body: var(--body);
@@ -81,6 +84,14 @@
   --hairline: #e6ddca;
   --hairline-soft: #efe8d9;
   --hairline-strong: #d6c9ac;
+  --hairline-lavender: #dbc5e4;
+
+  /* Lavender: derived from the brand purple's own hue (282°), lighter and
+     less saturated. Surface is a section-background alternative to warm
+     cream; the mid tone is for chips/badges/dividers. Part of the
+     white + purple + lavender + ink identity, not a new accent color. */
+  --lavender-surface: #f4eef7;
+  --lavender: #e5d6eb;
 
   --ink: #251827;
   --body: #5c525c;

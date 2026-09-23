@@ -8,7 +8,7 @@ const RESOURCE_HERO_ALT =
 // from PageHero's centered layout used by About/Ecosystem/Events/Contact.
 export function ResourceHero() {
   return (
-    <section className="relative overflow-hidden border-b border-hairline bg-canvas">
+    <section className="relative overflow-hidden border-b border-hairline bg-surface-card">
       <div className="mx-auto grid max-w-6xl gap-10 px-6 py-16 sm:px-8 lg:grid-cols-[0.85fr_1.2fr] lg:items-center lg:gap-6 lg:py-20">
         <div className="relative z-10 text-center lg:text-left">
           <p className="eyebrow text-primary">Resource Center</p>
