@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 import { Cormorant_Garamond, Manrope } from "next/font/google"
 
-import "./globals.css"
+import "@/app/(site)/globals.css"
 import { cn } from "@/lib/utils"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
