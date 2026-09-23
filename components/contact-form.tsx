@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, type FormEvent } from "react"
+import { useEffect, useState, type FormEvent } from "react"
 
 import { Button } from "@/components/ui/button"
 
@@ -13,10 +13,25 @@ const REASONS = [
   "Something else",
 ] as const
 
+// Links like /contact?reason=donate (e.g. the Donate button's fallback
+// when Square isn't configured yet) land here with context to pre-fill,
+// rather than dropping the visitor on a blank form.
+const REASON_PARAM_MAP: Record<string, (typeof REASONS)[number]> = {
+  donate: "Donation or corporate sponsorship",
+}
+
 export function ContactForm() {
   const [submitted, setSubmitted] = useState(false)
   const [submitting, setSubmitting] = useState(false)
   const [error, setError] = useState(false)
+  const [prefilledReason, setPrefilledReason] = useState("")
+
+  useEffect(() => {
+    const param = new URLSearchParams(window.location.search).get("reason")
+    if (param && REASON_PARAM_MAP[param]) {
+      setPrefilledReason(REASON_PARAM_MAP[param])
+    }
+  }, [])
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
@@ -86,7 +101,14 @@ export function ContactForm() {
       </Field>
 
       <Field label="What are you reaching out about?" htmlFor="reason">
-        <select id="reason" name="reason" required defaultValue="" className="form-input">
+        <select
+          id="reason"
+          name="reason"
+          required
+          value={prefilledReason}
+          onChange={(event) => setPrefilledReason(event.target.value)}
+          className="form-input"
+        >
           <option value="" disabled>
             Select a reason
           </option>

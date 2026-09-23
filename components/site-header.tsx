@@ -4,11 +4,12 @@ import { useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { List, X } from "@phosphor-icons/react"
+import { CaretDown, List, X } from "@phosphor-icons/react"
 import { AnimatePresence, motion } from "motion/react"
 
 import { Button } from "@/components/ui/button"
-import { NAV_LINKS, SITE } from "@/lib/content"
+import { cn } from "@/lib/utils"
+import { ARMS, NAV_LINKS, SITE } from "@/lib/content"
 
 const EASE = [0.4, 0, 0.2, 1] as const
 
@@ -32,6 +33,42 @@ export function SiteHeader() {
 
         <nav className="hidden items-center gap-6 text-sm text-body md:flex">
           {NAV_LINKS.map((link) => {
+            if (link.href === "/ecosystem") {
+              const active = pathname.startsWith("/ecosystem")
+              return (
+                <div key={link.href} className="group relative">
+                  <Link
+                    href={link.href}
+                    className={cn(
+                      "relative flex items-center gap-1 py-1 transition-colors duration-200 after:absolute after:inset-x-0 after:-bottom-1 after:h-px after:origin-left after:scale-x-0 after:bg-ink after:transition-transform after:duration-300 after:ease-out hover:text-ink hover:after:scale-x-100",
+                      active && "text-ink after:scale-x-100"
+                    )}
+                  >
+                    {link.label}
+                    <CaretDown
+                      size={10}
+                      weight="bold"
+                      className="transition-transform duration-200 group-hover:-rotate-180"
+                    />
+                  </Link>
+
+                  <div className="invisible absolute left-1/2 top-full z-50 w-64 -translate-x-1/2 pt-3 opacity-0 transition-all duration-150 group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
+                    <div className="rounded-xl border border-hairline bg-canvas p-2 shadow-lg">
+                      {ARMS.map((arm) => (
+                        <Link
+                          key={arm.slug}
+                          href={`/ecosystem/${arm.slug}`}
+                          className="block rounded-lg px-3 py-2 text-sm text-body transition-colors duration-200 hover:bg-canvas-soft hover:text-ink"
+                        >
+                          {arm.name}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              )
+            }
+
             const active = pathname === link.href
             return (
               <Link
@@ -84,14 +121,29 @@ export function SiteHeader() {
             >
               <nav className="flex flex-col gap-1 px-6 py-4">
                 {NAV_LINKS.map((link) => (
-                  <Link
-                    key={link.href}
-                    href={link.href}
-                    onClick={() => setOpen(false)}
-                    className="rounded-md px-2 py-2 text-sm text-body transition-colors duration-200 hover:bg-canvas-soft hover:text-ink"
-                  >
-                    {link.label}
-                  </Link>
+                  <div key={link.href}>
+                    <Link
+                      href={link.href}
+                      onClick={() => setOpen(false)}
+                      className="block rounded-md px-2 py-2 text-sm text-body transition-colors duration-200 hover:bg-canvas-soft hover:text-ink"
+                    >
+                      {link.label}
+                    </Link>
+                    {link.href === "/ecosystem" ? (
+                      <div className="ml-3 flex flex-col gap-1 border-l border-hairline pl-3">
+                        {ARMS.map((arm) => (
+                          <Link
+                            key={arm.slug}
+                            href={`/ecosystem/${arm.slug}`}
+                            onClick={() => setOpen(false)}
+                            className="rounded-md px-2 py-1.5 text-sm text-muted-ink transition-colors duration-200 hover:bg-canvas-soft hover:text-ink"
+                          >
+                            {arm.name}
+                          </Link>
+                        ))}
+                      </div>
+                    ) : null}
+                  </div>
                 ))}
                 <Link
                   href="/contact"
