@@ -33,7 +33,10 @@ export default function AdminProtectedLayout({
         </form>
       </aside>
 
-      <div className="flex-1">
+      {/* min-w-0: without it, this flex item's automatic minimum width
+          is its content's min-content — the nowrap pill row below would
+          then stretch the whole page instead of scrolling within itself. */}
+      <div className="min-w-0 flex-1">
         {/* Mobile top bar — the sidebar collapses below sm */}
         <div className="border-b border-hairline bg-canvas sm:hidden">
           <div className="flex items-center justify-between px-5 py-4">
