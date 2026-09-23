@@ -274,3 +274,75 @@ export async function getEvents(): Promise<SanityEvent[]> {
   }
   return FALLBACK_EVENTS.map((e) => ({ title: e.title, type: e.type, description: e.description }))
 }
+
+export type PortableTextBlock = {
+  _type: "block"
+  _key: string
+  style: string
+  listItem?: "bullet"
+  level?: number
+  markDefs: unknown[]
+  children: { _type: "span"; _key: string; text: string; marks: string[] }[]
+}
+
+export type Post = {
+  title: string
+  slug: string
+  excerpt?: string
+  coverImage?: string
+  coverImageAlt?: string
+  author?: string
+  publishedAt?: string
+  featured?: boolean
+  body?: PortableTextBlock[]
+}
+
+const POST_PROJECTION = `{
+  title,
+  slug,
+  excerpt,
+  "coverImage": coverImage.asset->url,
+  "coverImageAlt": coverImage.alt,
+  author,
+  publishedAt,
+  featured,
+  body
+}`
+
+// The blog is Sanity-only (no static fallback content) — an empty array
+// here means "no posts yet," not a fetch failure, so pages should render
+// their own empty state rather than showing fabricated placeholder posts.
+export async function getPosts(): Promise<Post[]> {
+  try {
+    return (
+      (await sanityClient.fetch<Post[]>(
+        `*[_type == "post" && defined(slug)] | order(publishedAt desc) ${POST_PROJECTION}`
+      )) ?? []
+    )
+  } catch {
+    return []
+  }
+}
+
+export async function getFeaturedPosts(limit = 2): Promise<Post[]> {
+  try {
+    return (
+      (await sanityClient.fetch<Post[]>(
+        `*[_type == "post" && featured == true && defined(slug)] | order(publishedAt desc) [0...${limit}] ${POST_PROJECTION}`
+      )) ?? []
+    )
+  } catch {
+    return []
+  }
+}
+
+export async function getPostBySlug(slug: string): Promise<Post | null> {
+  try {
+    return await sanityClient.fetch<Post | null>(
+      `*[_type == "post" && slug == $slug][0] ${POST_PROJECTION}`,
+      { slug }
+    )
+  } catch {
+    return null
+  }
+}

@@ -67,6 +67,25 @@ export function FieldInput({
     )
   }
 
+  if (field.type === "richText") {
+    return (
+      <label className="flex flex-col gap-1.5">
+        <span className="text-sm font-semibold text-body-strong">{field.label}</span>
+        <span className="text-xs text-muted-ink">
+          Blank line between paragraphs. Start a line with{" "}
+          <code className="rounded bg-canvas-soft px-1">## </code> for a heading,{" "}
+          <code className="rounded bg-canvas-soft px-1">- </code> for a bullet.
+        </span>
+        <textarea
+          value={typeof value === "string" ? value : ""}
+          onChange={(e) => onChange(e.target.value)}
+          rows={16}
+          className={`${inputClass} font-mono text-[13px] leading-relaxed`}
+        />
+      </label>
+    )
+  }
+
   if (field.type === "number") {
     return (
       <label className="flex flex-col gap-1.5">
@@ -253,6 +272,7 @@ export function fieldSpansFullWidth(field: AdminField): boolean {
   return (
     field.type === "textarea" ||
     field.type === "stringList" ||
+    field.type === "richText" ||
     field.type === "objectList" ||
     field.type === "image"
   )

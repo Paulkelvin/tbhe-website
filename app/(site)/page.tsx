@@ -5,6 +5,7 @@ import { Hero } from "@/components/hero"
 import { EcosystemOverview } from "@/components/ecosystem-overview"
 import { TestimonialSection } from "@/components/testimonial-section"
 import { FeaturedResource } from "@/components/featured-resource"
+import { FromTheBlog } from "@/components/from-the-blog"
 import { ThreeWayCta } from "@/components/three-way-cta"
 import { StatGrid } from "@/components/stat-grid"
 import { SectionHeading } from "@/components/section-heading"
@@ -71,6 +72,8 @@ export default async function HomePage() {
       <TestimonialSection />
 
       <FeaturedResource />
+
+      <FromTheBlog />
 
       <section className="relative overflow-hidden bg-gradient-to-br from-arm-consulting/10 via-canvas-soft to-arm-media/10 py-14 sm:py-20 lg:py-(--section-padding)">
         <PaperSheet

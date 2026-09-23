@@ -144,6 +144,7 @@ export const NAV_LINKS = [
   { label: "About", href: "/about" },
   { label: "The Ecosystem", href: "/ecosystem" },
   { label: "Resource Center", href: "/resources" },
+  { label: "Blog", href: "/blog" },
   { label: "Events", href: "/events" },
   { label: "Contact Us", href: "/contact" },
 ] as const
@@ -431,6 +432,7 @@ export const FOOTER_COLUMNS = [
     links: [
       ["About", "/about"],
       ["Resource Center", "/resources"],
+      ["Blog", "/blog"],
       ["Events", "/events"],
       ["Contact", "/contact"],
     ],

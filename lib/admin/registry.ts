@@ -165,6 +165,22 @@ export const ADMIN_SECTIONS: AdminSection[] = [
     ],
   },
   {
+    slug: "posts",
+    typeName: "post",
+    title: "Blog Posts",
+    description: "Articles shown on /blog and featured on the homepage.",
+    fields: [
+      { type: "text", name: "title", label: "Title", required: true },
+      { type: "text", name: "slug", label: "Slug (URL: /blog/your-slug-here)", required: true },
+      { type: "textarea", name: "excerpt", label: "Excerpt (short summary for cards)" },
+      { type: "image", name: "coverImage", label: "Cover Image" },
+      { type: "text", name: "author", label: "Author" },
+      { type: "datetime", name: "publishedAt", label: "Published At" },
+      { type: "boolean", name: "featured", label: "Featured on Homepage" },
+      { type: "richText", name: "body", label: "Body" },
+    ],
+  },
+  {
     slug: "stats",
     typeName: "impactStat",
     title: "Impact Stats",

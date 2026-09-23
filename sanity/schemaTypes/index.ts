@@ -8,6 +8,7 @@ import schoolPartner from "./schoolPartner"
 import impactStat from "./impactStat"
 import footerColumn from "./footerColumn"
 import navLink from "./navLink"
+import post from "./post"
 
 export const schemaTypes = [
   siteSettings,
@@ -20,4 +21,5 @@ export const schemaTypes = [
   impactStat,
   footerColumn,
   navLink,
+  post,
 ]

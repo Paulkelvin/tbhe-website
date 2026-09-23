@@ -1,4 +1,5 @@
 import type { AdminField } from "@/lib/admin/field-types"
+import { blocksToText, textToBlocks } from "@/lib/admin/richtext"
 
 export type Values = Record<string, unknown>
 
@@ -46,6 +47,8 @@ export function deserializeValues(
     const raw = doc[field.name]
     if (field.type === "stringList") {
       values[field.name] = Array.isArray(raw) ? raw.join("\n") : ""
+    } else if (field.type === "richText") {
+      values[field.name] = blocksToText(raw)
     } else if (field.type === "objectList") {
       values[field.name] = Array.isArray(raw)
         ? raw.map((item) => ({ _key: crypto.randomUUID(), ...(item as Values) }))
@@ -73,6 +76,8 @@ export function buildSavePayload(fields: AdminField[], values: Values): Values {
     const v = values[field.name]
     if (field.type === "stringList") {
       out[field.name] = typeof v === "string" ? v.split("\n").map((s) => s.trim()).filter(Boolean) : []
+    } else if (field.type === "richText") {
+      out[field.name] = typeof v === "string" ? textToBlocks(v) : []
     } else if (field.type === "number") {
       out[field.name] = v === "" || v == null ? null : Number(v)
     } else if (field.type === "objectList" && Array.isArray(v)) {
