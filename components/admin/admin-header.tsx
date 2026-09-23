@@ -22,8 +22,8 @@ export function AdminHeader({ groups }: { groups: AdminNavGroup[] }) {
   }, [pathname])
 
   return (
-    <header className="sticky top-0 z-50 border-b border-hairline bg-canvas">
-      <div className="mx-auto flex h-16 max-w-4xl items-center justify-between px-5 sm:px-8">
+    <header className="sticky top-0 z-50 border-b border-hairline bg-canvas sm:hidden">
+      <div className="mx-auto flex h-16 max-w-4xl items-center justify-between px-5">
         <Link href="/admin" className="text-h3-alt text-ink">
           TBHE Admin
         </Link>
@@ -70,11 +70,11 @@ export function AdminHeader({ groups }: { groups: AdminNavGroup[] }) {
               className="absolute inset-x-0 top-full z-50 max-h-[calc(100vh-4rem)] overflow-y-auto border-t border-hairline bg-canvas shadow-lg"
               aria-label="Admin sections"
             >
-              <div className="mx-auto max-w-4xl px-5 py-5 sm:px-8">
+              <div className="px-5 py-5">
                 {groups.map((group) => (
                   <div key={group.title} className="mb-6 last:mb-0">
                     <p className="eyebrow text-muted-ink">{group.title}</p>
-                    <div className="mt-2 grid gap-1 sm:grid-cols-2">
+                    <div className="mt-2 flex flex-col gap-1">
                       {group.items.map((item) => {
                         const active = pathname === item.href
                         return (

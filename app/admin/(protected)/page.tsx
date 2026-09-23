@@ -7,8 +7,8 @@ export default function AdminDashboardPage() {
       <h1 className="text-h2 mt-2 text-ink">Edit website content</h1>
       <p className="text-body-sm mt-3 max-w-xl text-body">
         Changes here go live on the real site within a minute or so — no
-        code, no deploy. Open the menu in the top right to pick a section to
-        edit.
+        code, no deploy. Pick a section from the sidebar (or the menu, on
+        mobile) to start editing.
       </p>
 
       {!hasAdminToken() ? (

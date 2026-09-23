@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
@@ -21,7 +21,38 @@ type SiteHeaderProps = {
 
 export function SiteHeader({ siteName, navLinks, arms }: SiteHeaderProps) {
   const [open, setOpen] = useState(false)
+  const [ecosystemOpen, setEcosystemOpen] = useState(false)
+  const ecosystemRef = useRef<HTMLDivElement>(null)
   const pathname = usePathname()
+
+  // The Ecosystem dropdown used to open on CSS :hover/:focus-within, which
+  // has no real "leave" event on a touchscreen — tapping it left the panel
+  // stuck open over whatever page you navigated to. It's now driven by
+  // explicit state instead, so it always has a real way to close: picking
+  // an item, navigating away, tapping outside it, or pressing Escape.
+  useEffect(() => {
+    setEcosystemOpen(false)
+  }, [pathname])
+
+  useEffect(() => {
+    if (!ecosystemOpen) return
+
+    function handlePointerDown(e: PointerEvent) {
+      if (ecosystemRef.current && !ecosystemRef.current.contains(e.target as Node)) {
+        setEcosystemOpen(false)
+      }
+    }
+    function handleKeyDown(e: KeyboardEvent) {
+      if (e.key === "Escape") setEcosystemOpen(false)
+    }
+
+    document.addEventListener("pointerdown", handlePointerDown)
+    document.addEventListener("keydown", handleKeyDown)
+    return () => {
+      document.removeEventListener("pointerdown", handlePointerDown)
+      document.removeEventListener("keydown", handleKeyDown)
+    }
+  }, [ecosystemOpen])
 
   return (
     <header className="sticky top-0 z-50 border-b border-hairline bg-canvas/90 backdrop-blur">
@@ -42,35 +73,57 @@ export function SiteHeader({ siteName, navLinks, arms }: SiteHeaderProps) {
             if (link.href === "/ecosystem") {
               const active = pathname.startsWith("/ecosystem")
               return (
-                <div key={link.href} className="group relative">
-                  <Link
-                    href={link.href}
-                    className={cn(
-                      "relative flex items-center gap-1 py-1 transition-colors duration-200 after:absolute after:inset-x-0 after:-bottom-1 after:h-px after:origin-left after:scale-x-0 after:bg-ink after:transition-transform after:duration-300 after:ease-out hover:text-ink hover:after:scale-x-100",
-                      active && "text-ink after:scale-x-100"
-                    )}
-                  >
-                    {link.label}
-                    <CaretDown
-                      size={10}
-                      weight="bold"
-                      className="transition-transform duration-200 group-hover:-rotate-180"
-                    />
-                  </Link>
-
-                  <div className="invisible absolute left-1/2 top-full z-50 w-64 -translate-x-1/2 pt-3 opacity-0 transition-all duration-150 group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
-                    <div className="rounded-xl border border-hairline bg-canvas p-2 shadow-lg">
-                      {arms.map((arm) => (
-                        <Link
-                          key={arm.slug}
-                          href={`/ecosystem/${arm.slug}`}
-                          className="block rounded-lg px-3 py-2 text-sm text-body transition-colors duration-200 hover:bg-canvas-soft hover:text-ink"
-                        >
-                          {arm.name}
-                        </Link>
-                      ))}
-                    </div>
+                <div key={link.href} ref={ecosystemRef} className="relative">
+                  <div className="flex items-center gap-1">
+                    <Link
+                      href={link.href}
+                      onClick={() => setEcosystemOpen(false)}
+                      className={cn(
+                        "relative py-1 transition-colors duration-200 after:absolute after:inset-x-0 after:-bottom-1 after:h-px after:origin-left after:scale-x-0 after:bg-ink after:transition-transform after:duration-300 after:ease-out hover:text-ink hover:after:scale-x-100",
+                        active && "text-ink after:scale-x-100"
+                      )}
+                    >
+                      {link.label}
+                    </Link>
+                    <button
+                      type="button"
+                      onClick={() => setEcosystemOpen((v) => !v)}
+                      aria-expanded={ecosystemOpen}
+                      aria-label={ecosystemOpen ? "Close Ecosystem menu" : "Open Ecosystem menu"}
+                      className="flex items-center py-1 text-body transition-colors duration-200 hover:text-ink"
+                    >
+                      <CaretDown
+                        size={10}
+                        weight="bold"
+                        className={cn("transition-transform duration-200", ecosystemOpen && "-rotate-180")}
+                      />
+                    </button>
                   </div>
+
+                  <AnimatePresence>
+                    {ecosystemOpen ? (
+                      <motion.div
+                        initial={{ opacity: 0, y: -4 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -4 }}
+                        transition={{ duration: 0.15, ease: EASE }}
+                        className="absolute left-1/2 top-full z-50 w-64 -translate-x-1/2 pt-3"
+                      >
+                        <div className="rounded-xl border border-hairline bg-canvas p-2 shadow-lg">
+                          {arms.map((arm) => (
+                            <Link
+                              key={arm.slug}
+                              href={`/ecosystem/${arm.slug}`}
+                              onClick={() => setEcosystemOpen(false)}
+                              className="block rounded-lg px-3 py-2 text-sm text-body transition-colors duration-200 hover:bg-canvas-soft hover:text-ink"
+                            >
+                              {arm.name}
+                            </Link>
+                          ))}
+                        </div>
+                      </motion.div>
+                    ) : null}
+                  </AnimatePresence>
                 </div>
               )
             }
