@@ -129,12 +129,7 @@ export function BookingServices({ services }: { services: BookableService[] }) {
         ))}
       </div>
 
-      <div
-        className={cn(
-          "mt-6 grid gap-4 sm:grid-cols-2",
-          servicesInView.length > 2 && "lg:grid-cols-4"
-        )}
-      >
+      <div className="mt-6 grid gap-4 sm:grid-cols-2">
         {servicesInView.map((service, index) => (
           <ServiceCard
             key={service.title}
