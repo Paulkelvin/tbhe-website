@@ -8,6 +8,7 @@ import { CtaBanner } from "@/components/cta-banner"
 import { DonateForm } from "@/components/donate-form"
 import { Reveal } from "@/components/reveal"
 import { ArtDefs, HandDrawnStroke } from "@/components/organic-art"
+import { ScrollToHash } from "@/components/scroll-to-hash"
 import { SITE_URL } from "@/lib/content"
 import { breadcrumbSchema as buildBreadcrumbSchema, pageMetadata } from "@/lib/seo"
 import { getArms, getSiteSettings } from "@/sanity/queries"
@@ -72,6 +73,7 @@ export default async function Mission139Page() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbs) }}
       />
 
+      <ScrollToHash />
       <ArtDefs />
 
       <MissionHero arm={arm} ctaHref="/contact" />
@@ -238,7 +240,7 @@ export default async function Mission139Page() {
           to donate rather than apply for aid, in the same eyebrow +
           hand-drawn-accent language as the rest of the page rather than a
           bolted-on separate widget. */}
-      <section id="give" className="relative overflow-hidden py-20 sm:py-24 lg:py-28">
+      <section id="give" className="relative overflow-hidden py-20 sm:py-24 scroll-mt-20 lg:py-28">
         <div className="mx-auto max-w-2xl px-6 text-center sm:px-8">
           <Reveal>
             <p className="eyebrow text-arm-mission-ink">Give</p>

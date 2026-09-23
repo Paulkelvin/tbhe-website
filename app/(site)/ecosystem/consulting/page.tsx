@@ -6,6 +6,7 @@ import { BookingServices } from "@/components/booking-services"
 import { CtaBanner } from "@/components/cta-banner"
 import { Reveal } from "@/components/reveal"
 import { ArtDefs, HandDrawnStroke } from "@/components/organic-art"
+import { ScrollToHash } from "@/components/scroll-to-hash"
 import { breadcrumbSchema, pageMetadata } from "@/lib/seo"
 import { getArms, getBookableServices } from "@/sanity/queries"
 
@@ -55,6 +56,7 @@ export default async function ConsultingPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbs) }}
       />
 
+      <ScrollToHash />
       <ArtDefs />
 
       <ConsultingHero arm={arm} ctaHref="#book" />

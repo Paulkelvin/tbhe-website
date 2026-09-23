@@ -7,6 +7,7 @@ import { PublicationInterface } from "@/components/publication-interface"
 import { SpeakerBookingForm } from "@/components/speaker-booking-form"
 import { CtaBanner } from "@/components/cta-banner"
 import { Reveal } from "@/components/reveal"
+import { ScrollToHash } from "@/components/scroll-to-hash"
 import { breadcrumbSchema, pageMetadata } from "@/lib/seo"
 import { getArms } from "@/sanity/queries"
 
@@ -40,6 +41,7 @@ export default async function MediaPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbs) }}
       />
 
+      <ScrollToHash />
       <MediaHero arm={arm} ctaHref="#book" />
 
       {/* Keynotes — a full-bleed stage photograph breaking the standard
