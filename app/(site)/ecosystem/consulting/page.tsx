@@ -111,7 +111,14 @@ export default async function ConsultingPage() {
           heading dropped above a blank rectangle. */}
       <section id="book" className="section relative overflow-hidden scroll-mt-20">
         <div className="grid gap-10 lg:grid-cols-[0.85fr_1.4fr] lg:items-start">
-          <Reveal>
+          {/* Booking options come first on mobile: the process steps are
+              helpful context, but the actual services/calendar are what
+              someone landing here via "Book a Consultation" needs to see
+              without scrolling past an explainer first. */}
+          <Reveal delay={0.05} className="order-1 lg:order-2">
+            <BookingServices services={services} />
+          </Reveal>
+          <Reveal className="order-2 lg:order-1">
             <SectionHeading
               eyebrow="Booking"
               title="Choose how we start"
@@ -137,9 +144,6 @@ export default async function ConsultingPage() {
                 </div>
               ))}
             </div>
-          </Reveal>
-          <Reveal delay={0.05}>
-            <BookingServices services={services} />
           </Reveal>
         </div>
       </section>

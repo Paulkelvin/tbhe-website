@@ -110,23 +110,32 @@ export function BookingServices({ services }: { services: BookableService[] }) {
 
   return (
     <div>
-      <div className="inline-flex flex-wrap gap-1 rounded-full border border-hairline bg-surface-card p-1">
-        {FILTERS.map((f) => (
-          <button
-            key={f.key}
-            type="button"
-            onClick={() => selectFilter(f.key)}
-            aria-pressed={filter === f.key}
-            className={cn(
-              "rounded-full px-4 py-2 text-sm font-semibold transition-colors",
-              filter === f.key
-                ? "bg-arm-consulting text-canvas"
-                : "text-body hover:text-ink"
-            )}
-          >
-            {f.label}
-          </button>
-        ))}
+      {/* A horizontally-scrolling row rather than flex-wrap: three pills
+          plus their padding don't fit one line on narrow phones, and
+          wrapping breaks the rounded-full container into a lopsided
+          shape. Scrolling keeps it a single clean pill, with the last
+          option peeking at the edge as a scroll affordance. */}
+      <div
+        className="-mx-6 flex gap-1 overflow-x-auto px-6 [-ms-overflow-style:none] [scrollbar-width:none] sm:mx-0 sm:px-0 [&::-webkit-scrollbar]:hidden"
+      >
+        <div className="flex shrink-0 gap-1 rounded-full border border-hairline bg-surface-card p-1">
+          {FILTERS.map((f) => (
+            <button
+              key={f.key}
+              type="button"
+              onClick={() => selectFilter(f.key)}
+              aria-pressed={filter === f.key}
+              className={cn(
+                "shrink-0 rounded-full px-4 py-2 text-sm font-semibold whitespace-nowrap transition-colors",
+                filter === f.key
+                  ? "bg-arm-consulting text-canvas"
+                  : "text-body hover:text-ink"
+              )}
+            >
+              {f.label}
+            </button>
+          ))}
+        </div>
       </div>
 
       <div className="mt-6 grid gap-4 sm:grid-cols-2">
