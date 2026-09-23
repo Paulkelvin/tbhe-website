@@ -1,12 +1,14 @@
-import type { Metadata } from "next"
-
 import { ResourceHero } from "@/components/resource-hero"
 import { Reveal } from "@/components/reveal"
 import { FEATURED_RESOURCE, RESOURCE_CATEGORIES, RESOURCES } from "@/lib/content"
+import { pageMetadata } from "@/lib/seo"
 
-export const metadata: Metadata = {
-  title: "Resource Center | The Beautifully Human Educator",
-}
+export const metadata = pageMetadata({
+  title: "Resource Center",
+  description:
+    "Free white papers and research from The Beautifully Human Educator on special education policy, inclusive classrooms, and neurodivergent student support.",
+  path: "/resources",
+})
 
 const secondaryResources = RESOURCES.filter(
   (r) => r.title !== FEATURED_RESOURCE.title

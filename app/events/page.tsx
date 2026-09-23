@@ -1,14 +1,17 @@
-import type { Metadata } from "next"
 import Link from "next/link"
 
 import { EventsHero } from "@/components/events-hero"
 import { Reveal } from "@/components/reveal"
 import { Button } from "@/components/ui/button"
 import { EVENTS } from "@/lib/content"
+import { pageMetadata } from "@/lib/seo"
 
-export const metadata: Metadata = {
-  title: "Events | The Beautifully Human Educator",
-}
+export const metadata = pageMetadata({
+  title: "Events",
+  description:
+    "Workshops, webinars, and Disrupt & Connect community meetups from The Beautifully Human Educator. New programming is announced here first.",
+  path: "/events",
+})
 
 export default function EventsPage() {
   return (

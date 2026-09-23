@@ -1,12 +1,15 @@
-import type { Metadata } from "next"
 import Link from "next/link"
 
 import { PageHero } from "@/components/page-hero"
 import { SITE } from "@/lib/content"
+import { pageMetadata } from "@/lib/seo"
 
-export const metadata: Metadata = {
-  title: "Terms of Service | The Beautifully Human Educator",
-}
+export const metadata = pageMetadata({
+  title: "Terms of Service",
+  description:
+    "The terms governing use of thebeautifullyhumaneducator.com, covering our consulting, Mission 139 advocacy, and media & publishing services.",
+  path: "/terms",
+})
 
 export default function TermsPage() {
   return (

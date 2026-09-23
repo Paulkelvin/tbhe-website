@@ -1,4 +1,3 @@
-import type { Metadata } from "next"
 import Link from "next/link"
 
 import { EcosystemHero } from "@/components/ecosystem-hero"
@@ -6,10 +5,14 @@ import { OrganicBlob } from "@/components/organic-art"
 import { Reveal } from "@/components/reveal"
 import { cn } from "@/lib/utils"
 import { ARM_COLOR_CLASS, ARMS, SITE } from "@/lib/content"
+import { pageMetadata } from "@/lib/seo"
 
-export const metadata: Metadata = {
-  title: "The Ecosystem | The Beautifully Human Educator",
-}
+export const metadata = pageMetadata({
+  title: "The Ecosystem",
+  description:
+    "Three arms, one mission: Educational Consulting & Coaching, Mission 139 special-education advocacy, and Media & Publishing thought leadership.",
+  path: "/ecosystem",
+})
 
 const [consulting, mission, media] = ARMS
 

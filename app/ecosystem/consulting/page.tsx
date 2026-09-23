@@ -1,4 +1,3 @@
-import type { Metadata } from "next"
 import Image from "next/image"
 
 import { ConsultingHero } from "@/components/consulting-hero"
@@ -8,10 +7,14 @@ import { CtaBanner } from "@/components/cta-banner"
 import { Reveal } from "@/components/reveal"
 import { ArtDefs, HandDrawnStroke } from "@/components/organic-art"
 import { ARMS, CONSULTING_MODULES } from "@/lib/content"
+import { pageMetadata } from "@/lib/seo"
 
-export const metadata: Metadata = {
-  title: "Educational Consulting & Coaching | The Beautifully Human Educator",
-}
+export const metadata = pageMetadata({
+  title: "Educational Consulting & Coaching",
+  description:
+    "Professional development, instructional coaching, and leadership mentorship for school administrators, district leaders, and early-career educators.",
+  path: "/ecosystem/consulting",
+})
 
 const arm = ARMS.find((a) => a.slug === "consulting")!
 const [, ...secondaryModules] = CONSULTING_MODULES

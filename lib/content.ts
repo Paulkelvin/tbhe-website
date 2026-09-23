@@ -1,5 +1,10 @@
 // Centralized site copy so pages/components stay free of hardcoded strings.
 
+// Canonical production URL. Falls back to the current Vercel preview
+// domain until a real custom domain is connected — see NEXT_PUBLIC_SITE_URL.
+export const SITE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://tbhe-website.vercel.app"
+
 export const SITE = {
   name: "The Beautifully Human Educator",
   shortName: "TBHE",

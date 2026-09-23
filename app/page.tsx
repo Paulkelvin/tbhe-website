@@ -1,3 +1,4 @@
+import type { Metadata } from "next"
 import Image from "next/image"
 
 import { Hero } from "@/components/hero"
@@ -11,6 +12,19 @@ import { NewsletterForm } from "@/components/newsletter-form"
 import { Reveal } from "@/components/reveal"
 import { PaperSheet } from "@/components/organic-art"
 import { IMPACT_STATS, SCHOOL_PARTNERS } from "@/lib/content"
+
+const HOME_DESCRIPTION =
+  "Educational consulting, Mission 139 special-education advocacy, and media & publishing, three arms built by Cyrkle B. Brent, M.Ed. to help educators and neurodivergent students thrive."
+
+// Not using the shared pageMetadata() helper here: the homepage should
+// keep the root layout's full site title as-is (the title template would
+// otherwise double it up as "... (TBHE) | TBHE").
+export const metadata: Metadata = {
+  description: HOME_DESCRIPTION,
+  alternates: { canonical: "/" },
+  openGraph: { description: HOME_DESCRIPTION },
+  twitter: { description: HOME_DESCRIPTION },
+}
 
 export default function HomePage() {
   return (

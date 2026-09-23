@@ -1,12 +1,15 @@
-import type { Metadata } from "next"
 import Link from "next/link"
 
 import { PageHero } from "@/components/page-hero"
 import { SITE } from "@/lib/content"
+import { pageMetadata } from "@/lib/seo"
 
-export const metadata: Metadata = {
-  title: "Privacy Policy | The Beautifully Human Educator",
-}
+export const metadata = pageMetadata({
+  title: "Privacy Policy",
+  description:
+    "How The Beautifully Human Educator collects, uses, and protects information submitted through our contact, booking, donation, and newsletter forms.",
+  path: "/privacy",
+})
 
 export default function PrivacyPage() {
   return (

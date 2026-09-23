@@ -1,4 +1,3 @@
-import type { Metadata } from "next"
 import Image from "next/image"
 
 import { Quotes } from "@phosphor-icons/react/dist/ssr"
@@ -9,10 +8,14 @@ import { CtaBanner } from "@/components/cta-banner"
 import { Reveal } from "@/components/reveal"
 import { ArtDefs, HandDrawnStroke } from "@/components/organic-art"
 import { ARMS, MISSION_139_PROGRAMS } from "@/lib/content"
+import { pageMetadata } from "@/lib/seo"
 
-export const metadata: Metadata = {
-  title: "Mission 139 | The Beautifully Human Educator",
-}
+export const metadata = pageMetadata({
+  title: "Mission 139",
+  description:
+    "Mission 139 is a 501(c)(3) nonprofit providing special-education advocacy, IEP/504 support, and financial aid for neurodivergent students and families.",
+  path: "/ecosystem/mission-139",
+})
 
 const arm = ARMS.find((a) => a.slug === "mission-139")!
 

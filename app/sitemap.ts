@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next"
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://tbhe-website.vercel.app"
+import { SITE_URL } from "@/lib/content"
 
 const ROUTES = [
   { path: "", priority: 1, changeFrequency: "weekly" as const },

@@ -14,6 +14,12 @@ export function EcosystemHero() {
       <ArtDefs />
       <div className="mx-auto max-w-4xl px-6 pt-16 text-center sm:px-8 sm:pt-20">
         <p className="eyebrow text-primary">The Ecosystem</p>
+        {/* The page has no single visible headline at every breakpoint
+            (mobile shows "Three Arms / One Mission" as styled spans,
+            desktop shows it split across the ribbon composition), so a
+            visually-hidden h1 gives the page exactly one real heading
+            without changing either layout. */}
+        <h1 className="sr-only">Three Arms, One Mission</h1>
 
         {/* Mobile / tablet: the typographic lockup. */}
         <div className="mt-5 lg:hidden">

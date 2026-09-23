@@ -1,4 +1,3 @@
-import type { Metadata } from "next"
 import Image from "next/image"
 import { Quotes, UserCircle } from "@phosphor-icons/react/dist/ssr"
 
@@ -10,10 +9,14 @@ import { ArtDefs, HandDrawnStroke, OrganicBlob } from "@/components/organic-art"
 import { ReadMore } from "@/components/read-more"
 import { StatGrid } from "@/components/stat-grid"
 import { COACHING_TEAM, IMPACT_STATS, SCHOOLS_SERVED, SITE } from "@/lib/content"
+import { pageMetadata } from "@/lib/seo"
 
-export const metadata: Metadata = {
-  title: "About | The Beautifully Human Educator",
-}
+export const metadata = pageMetadata({
+  title: "About",
+  description:
+    "Meet Cyrkle B. Brent, M.Ed., founder of The Beautifully Human Educator and Mission 139, and the coaching team behind TBHE's real school impact.",
+  path: "/about",
+})
 
 const FOUNDER_PHOTO_ALT = `${SITE.founderName}, smiling, wearing glasses and a yellow blazer`
 

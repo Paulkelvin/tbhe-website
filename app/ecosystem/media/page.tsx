@@ -1,4 +1,3 @@
-import type { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
 
@@ -9,10 +8,14 @@ import { SpeakerBookingForm } from "@/components/speaker-booking-form"
 import { CtaBanner } from "@/components/cta-banner"
 import { Reveal } from "@/components/reveal"
 import { ARMS, MEDIA_OFFERINGS } from "@/lib/content"
+import { pageMetadata } from "@/lib/seo"
 
-export const metadata: Metadata = {
-  title: "Media & Publishing | The Beautifully Human Educator",
-}
+export const metadata = pageMetadata({
+  title: "Media & Publishing",
+  description:
+    "Research, white papers, and keynote speaking on equity, educator burnout, and neurodivergent student support from The Beautifully Human Educator.",
+  path: "/ecosystem/media",
+})
 
 const arm = ARMS.find((a) => a.slug === "media")!
 

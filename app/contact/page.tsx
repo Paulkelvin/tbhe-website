@@ -1,4 +1,3 @@
-import type { Metadata } from "next"
 import { EnvelopeSimple, MapPin, Phone } from "@phosphor-icons/react/dist/ssr"
 
 import { PageHero } from "@/components/page-hero"
@@ -6,10 +5,14 @@ import { ContactForm } from "@/components/contact-form"
 import { Reveal } from "@/components/reveal"
 import { OrganicBlob } from "@/components/organic-art"
 import { BUSINESS_CONTACT } from "@/lib/content"
+import { pageMetadata } from "@/lib/seo"
 
-export const metadata: Metadata = {
-  title: "Contact | The Beautifully Human Educator",
-}
+export const metadata = pageMetadata({
+  title: "Contact",
+  description:
+    "Reach The Beautifully Human Educator for consulting, Mission 139 family advocacy, or media inquiries. One inbox, one team, real follow-up.",
+  path: "/contact",
+})
 
 export default function ContactPage() {
   return (
