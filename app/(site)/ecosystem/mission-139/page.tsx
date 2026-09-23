@@ -1,11 +1,12 @@
 import Image from "next/image"
+import Link from "next/link"
 
 import { Quotes } from "@phosphor-icons/react/dist/ssr"
 
+import { Button } from "@/components/ui/button"
 import { MissionHero } from "@/components/mission-hero"
 import { SectionHeading } from "@/components/section-heading"
 import { CtaBanner } from "@/components/cta-banner"
-import { DonateForm } from "@/components/donate-form"
 import { Reveal } from "@/components/reveal"
 import { ArtDefs, HandDrawnStroke } from "@/components/organic-art"
 import { ScrollToHash } from "@/components/scroll-to-hash"
@@ -29,6 +30,41 @@ const FAMILY_ALT =
 
 const PATH_FULL_ALT =
   "A hand-drawn vine tracing a path through four waypoints (Heard, Understood, Supported, Empowered), ending at an open door beneath a heart"
+
+const ADVOCACY_SERVICES = [
+  {
+    title: "Understanding Educational Rights",
+    description:
+      "We help families understand their rights under laws like IDEA, Section 504, and state-specific regulations.",
+  },
+  {
+    title: "IEP & 504 Plan Support",
+    description:
+      "We guide families through developing, reviewing, or revising a plan tailored to their child's specific needs.",
+  },
+  {
+    title: "Collaboration with Schools",
+    description:
+      "We act as a bridge between families and schools, facilitating productive communication to find solutions.",
+  },
+  {
+    title: "Navigating Evaluations & Services",
+    description:
+      "We help request and interpret evaluations, so students receive the accommodations and interventions they're owed.",
+  },
+  {
+    title: "Empowering Families",
+    description:
+      "We give families the knowledge and tools to keep advocating for their children long after we've stepped in.",
+  },
+]
+
+const FINANCIAL_ASSISTANCE_SUPPORT = [
+  "Advocacy services (IEP support, educational consulting, school navigation)",
+  "Related service providers (speech therapy, occupational therapy, counseling)",
+  "Scholarships to specialized or microschool programs",
+  "Assistive technology and learning tools designed for neurodivergent students",
+]
 
 export default async function Mission139Page() {
   const [arms, settings] = await Promise.all([getArms(), getSiteSettings()])
@@ -76,7 +112,7 @@ export default async function Mission139Page() {
       <ScrollToHash />
       <ArtDefs />
 
-      <MissionHero arm={arm} ctaHref="/contact" />
+      <MissionHero arm={arm} ctaHref="#financial-assistance" />
 
       {/* Psalm 139 — the page's signature moment. The child's artwork bleeds
           in from the left, asymmetric against a generous field of verse and
@@ -202,6 +238,119 @@ export default async function Mission139Page() {
         </div>
       </section>
 
+      {/* Educational Advocacy — the first deep-dive: what an advocate
+          actually does day to day, beyond the one-line summary above. */}
+      <section id="advocacy" className="relative overflow-hidden border-t border-hairline py-20 scroll-mt-20 sm:py-24 lg:py-28">
+        <div className="mx-auto max-w-4xl px-6 sm:px-8">
+          <Reveal>
+            <SectionHeading
+              eyebrow="Educational Advocacy"
+              title="Navigating the system shouldn't fall on you alone"
+              description="An educational advocate helps students and families navigate the complexities of the education system — ensuring every student, especially those with unique needs, has access to the resources and support they need to thrive."
+            />
+          </Reveal>
+
+          <Reveal delay={0.05} className="mt-10 grid gap-8 sm:grid-cols-2">
+            {ADVOCACY_SERVICES.map((item) => (
+              <div key={item.title}>
+                <h3 className="text-h3-alt text-ink">{item.title}</h3>
+                <HandDrawnStroke
+                  className="mt-1.5 h-2 w-10"
+                  d="M2,4 C12,1 24,6 38,3"
+                  color="var(--arm-mission)"
+                  strokeWidth={1.4}
+                  viewBox="0 0 40 8"
+                />
+                <p className="text-body-sm mt-2.5 text-body">{item.description}</p>
+              </div>
+            ))}
+          </Reveal>
+
+          <Reveal delay={0.1} className="relative mt-14 -rotate-1 overflow-hidden rounded-sm border border-hairline bg-surface-card p-8 sm:p-10">
+            <Quotes size={28} weight="fill" className="text-arm-mission-ink/25" />
+            <p className="text-quote mt-3 text-ink">
+              &quot;When you partner with us, you&apos;re not just gaining
+              an advocate — you&apos;re gaining a compassionate ally
+              committed to helping your child achieve their fullest
+              potential.&quot;
+            </p>
+            <p className="caption mt-4 text-muted-ink">Mission 139 Family Advocate</p>
+          </Reveal>
+
+          <Reveal delay={0.15} className="mt-8 flex flex-wrap gap-3">
+            <Button asChild size="lg">
+              <Link href="/contact?reason=advocacy">Complete Intake Form</Link>
+            </Button>
+            <Button asChild size="lg" variant="outline">
+              <Link href={settings.calendlyBookingLink} target="_blank" rel="noreferrer noopener">
+                Schedule a Call
+              </Link>
+            </Button>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* Financial Assistance — the second deep-dive: what's covered, who
+          qualifies, and how to actually apply. */}
+      <section id="financial-assistance" className="relative overflow-hidden border-t border-hairline py-20 scroll-mt-20 sm:py-24 lg:py-28">
+        <div className="mx-auto max-w-4xl px-6 sm:px-8">
+          <Reveal>
+            <SectionHeading
+              eyebrow="Financial Assistance"
+              title="Support shouldn't depend on what you can afford"
+              description="Navigating services for neurodivergent learners can be emotionally and financially overwhelming. Our Financial Assistance for Access to Services program provides needs-based support for families seeking essential tools and services for their child."
+            />
+          </Reveal>
+
+          <Reveal delay={0.05} className="mt-10 grid gap-10 sm:grid-cols-2">
+            <div>
+              <p className="eyebrow text-arm-mission-ink">What We Support</p>
+              <ul className="mt-3 flex flex-col gap-2.5 text-sm text-body">
+                {FINANCIAL_ASSISTANCE_SUPPORT.map((item) => (
+                  <li key={item} className="flex gap-2.5">
+                    <span aria-hidden className="mt-2 size-1.5 shrink-0 rounded-full bg-arm-mission" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="flex flex-col gap-6">
+              <div>
+                <p className="eyebrow text-arm-mission-ink">Who Is Eligible?</p>
+                <p className="text-body-sm mt-2 text-body">
+                  Families of neurodivergent children (diagnosed or
+                  undiagnosed) facing financial barriers to needed services.
+                  We serve students from all educational backgrounds —
+                  public, private, charter, homeschool, or microschool.
+                </p>
+              </div>
+              <div>
+                <p className="eyebrow text-arm-mission-ink">How to Apply</p>
+                <p className="text-body-sm mt-2 text-body">
+                  Share basic information about your child&apos;s needs,
+                  your household circumstances, and the support you&apos;re
+                  seeking. Supporting documents — an IEP, service
+                  estimates, evaluations — are optional but helpful. Every
+                  application is reviewed with care and confidentiality.
+                </p>
+              </div>
+            </div>
+          </Reveal>
+
+          <Reveal delay={0.1} className="mt-10 flex flex-wrap gap-3">
+            <Button asChild size="lg">
+              <Link href="/contact?reason=financial-assistance">Apply for Assistance</Link>
+            </Button>
+            <Button asChild size="lg" variant="outline">
+              <Link href={settings.calendlyBookingLink} target="_blank" rel="noreferrer noopener">
+                Schedule a Call
+              </Link>
+            </Button>
+          </Reveal>
+        </div>
+      </section>
+
       {/* The Walk — a quiet moment before the final ask. The path itself
           (its Heard / Understood / Supported / Empowered waypoints already
           drawn into the illustration) is the whole section, sized so the
@@ -225,6 +374,7 @@ export default async function Mission139Page() {
         title="Apply for family assistance or start an advocacy request"
         description="Serving families across the DMV region with IEP/504 representation, evaluation and therapy grants, and district advocacy."
         primary={{ label: "Apply for Family Aid", href: "/contact" }}
+        secondary={{ label: "Donate", href: "/donate" }}
         decoration={
           <HandDrawnStroke
             className="pointer-events-none absolute right-[12%] bottom-[22%] hidden h-8 w-8 opacity-[0.16] lg:block"
@@ -235,41 +385,6 @@ export default async function Mission139Page() {
           />
         }
       />
-
-      {/* Give — a quieter closing section for anyone who came here wanting
-          to donate rather than apply for aid, in the same eyebrow +
-          hand-drawn-accent language as the rest of the page rather than a
-          bolted-on separate widget. */}
-      <section id="give" className="relative overflow-hidden py-20 sm:py-24 scroll-mt-20 lg:py-28">
-        <div className="mx-auto max-w-2xl px-6 text-center sm:px-8">
-          <Reveal>
-            <p className="eyebrow text-arm-mission-ink">Give</p>
-            <h2 className="text-h2 mt-3 text-ink">Partner with Mission 139</h2>
-            <HandDrawnStroke
-              className="mx-auto mt-3 h-2 w-14"
-              d="M2,4 C12,1 24,6 38,3"
-              color="var(--arm-mission)"
-              strokeWidth={1.6}
-              viewBox="0 0 40 8"
-            />
-            <p className="text-quote mx-auto mt-5 max-w-xl text-ink">
-              &quot;Speak up for those who cannot speak for themselves…defend
-              the rights of the poor and needy.&quot;
-            </p>
-            <p className="caption mt-2 text-muted-ink">Proverbs 31:8–9</p>
-            <p className="text-body-sm mx-auto mt-5 max-w-xl text-body">
-              Your tax-deductible gift funds advocacy, IEP coaching, and
-              educational access for neurodivergent students and their
-              families — give once, and every dollar goes toward carrying
-              out the mission.
-            </p>
-          </Reveal>
-
-          <Reveal delay={0.05} className="mt-10 rounded-2xl border border-hairline bg-canvas-soft p-7 text-left sm:p-10">
-            <DonateForm />
-          </Reveal>
-        </div>
-      </section>
     </>
   )
 }

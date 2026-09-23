@@ -18,6 +18,8 @@ const REASONS = [
 // rather than dropping the visitor on a blank form.
 const REASON_PARAM_MAP: Record<string, (typeof REASONS)[number]> = {
   donate: "Donation or corporate sponsorship",
+  advocacy: "Advocacy / IEP & 504 support",
+  "financial-assistance": "Mission 139 family assistance",
 }
 
 export function ContactForm() {

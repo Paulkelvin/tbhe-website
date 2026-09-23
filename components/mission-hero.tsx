@@ -4,6 +4,7 @@ import Image from "next/image"
 import { InstagramLogo } from "@phosphor-icons/react/dist/ssr"
 
 import { cn } from "@/lib/utils"
+import { AnchorLink } from "@/components/anchor-link"
 import { Button } from "@/components/ui/button"
 import { OrganicBlob } from "@/components/organic-art"
 import { ARM_COLOR_CLASS, type Arm } from "@/lib/content"
@@ -66,7 +67,7 @@ export async function MissionHero({ arm, ctaHref }: { arm: Arm; ctaHref: string 
         </p>
         <div className="mt-8 flex flex-col items-center gap-4">
           <Button asChild size="lg">
-            <Link href={ctaHref}>{arm.cta}</Link>
+            <AnchorLink href={ctaHref}>{arm.cta}</AnchorLink>
           </Button>
           <Link
             href={mission139Instagram}

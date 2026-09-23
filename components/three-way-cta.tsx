@@ -106,7 +106,7 @@ export async function ThreeWayCta() {
                 </Link>
                 {arm.slug === "mission-139" ? (
                   <Link
-                    href="/ecosystem/mission-139#give"
+                    href="/donate"
                     className="group mt-2 inline-flex items-center gap-1.5 text-sm font-semibold text-arm-mission-ink"
                   >
                     <span className="border-b border-arm-mission-ink/40 pb-0.5 transition-colors group-hover:border-arm-mission-ink">
