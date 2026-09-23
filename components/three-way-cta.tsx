@@ -3,7 +3,7 @@ import { ArrowUpRight } from "@phosphor-icons/react/dist/ssr"
 
 import { cn } from "@/lib/utils"
 import { Reveal } from "@/components/reveal"
-import { ARM_COLOR_CLASS, type ArmSlug } from "@/lib/content"
+import { ARM_ACTION_HREF, ARM_COLOR_CLASS, type ArmSlug } from "@/lib/content"
 import { getArms } from "@/sanity/queries"
 
 const AUDIENCE_COPY: Record<ArmSlug, { audience: string; description: string }> = {
@@ -93,7 +93,7 @@ export async function ThreeWayCta() {
                 </p>
                 <p className="text-body-sm mt-2 text-canvas/80">{copy.description}</p>
                 <Link
-                  href={`/ecosystem/${arm.slug}`}
+                  href={ARM_ACTION_HREF[arm.slug]}
                   className="group mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-canvas"
                 >
                   <span className="border-b border-canvas/40 pb-0.5 transition-colors group-hover:border-canvas">

@@ -50,7 +50,7 @@ export async function Hero() {
 
             <div className="mt-8 flex flex-wrap justify-center gap-3 lg:justify-start">
               <Button asChild size="lg">
-                <Link href="/ecosystem/consulting">Explore Consulting Services</Link>
+                <Link href="/ecosystem/consulting#book">Explore Consulting Services</Link>
               </Button>
               <Button
                 asChild

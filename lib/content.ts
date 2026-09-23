@@ -165,6 +165,20 @@ export type Arm = {
   features?: readonly ArmFeature[]
 }
 
+// Where each arm's action CTA (arm.cta — "Book a Consultation", "Apply for
+// Family Aid", "Book a Speaker") should actually land: the real form or
+// booking widget, not just the top of that arm's page. Consulting and
+// Media both have their booking section in-page (#book); Mission 139's
+// "apply" flow is the general Contact form, same as its own page hero and
+// closing CTA already use — so any button using this label, wherever it
+// appears on the site (homepage arm cards, the "get involved" CTA row),
+// takes visitors straight to where the action actually happens.
+export const ARM_ACTION_HREF: Record<ArmSlug, string> = {
+  consulting: "/ecosystem/consulting#book",
+  "mission-139": "/contact",
+  media: "/ecosystem/media#book",
+}
+
 export const ARMS: readonly Arm[] = [
   {
     slug: "consulting",

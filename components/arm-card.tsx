@@ -8,7 +8,7 @@ import {
 
 import { cn } from "@/lib/utils"
 import { DecorativeBlob } from "@/components/decorative-blob"
-import { ARM_COLOR_CLASS, type Arm } from "@/lib/content"
+import { ARM_ACTION_HREF, ARM_COLOR_CLASS, type Arm } from "@/lib/content"
 
 const ARM_ICON: Record<Arm["color"], typeof GraduationCap> = {
   consulting: GraduationCap,
@@ -23,7 +23,7 @@ export function ArmCard({ arm, index }: { arm: Arm; index?: number }) {
 
   return (
     <Link
-      href={`/ecosystem/${arm.slug}`}
+      href={ARM_ACTION_HREF[arm.slug]}
       className="group relative flex h-full flex-col justify-between overflow-hidden rounded-2xl border border-hairline bg-surface-card p-6 transition-all duration-300 ease-out hover:-translate-y-1 hover:border-hairline-strong hover:shadow-[0_16px_40px_-16px_rgba(37,24,39,0.18)] sm:p-8"
     >
       <DecorativeBlob
