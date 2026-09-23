@@ -1,10 +1,11 @@
 "use client"
 
-import { useState } from "react"
+import { useRef, useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import {
   ChalkboardTeacher,
+  CheckCircle,
   GraduationCap,
   Handshake,
   Phone,
@@ -76,10 +77,21 @@ function ServiceCard({
             {service.duration}
           </span>
         ) : null}
+        {active ? (
+          <span className="absolute top-3 left-3 flex items-center gap-1.5 rounded-full bg-arm-consulting px-3 py-1 text-xs font-semibold text-canvas shadow-sm">
+            <CheckCircle size={14} weight="fill" />
+            Selected
+          </span>
+        ) : null}
       </div>
       <div className="p-5">
         <h3 className="text-h3-alt text-ink">{service.title}</h3>
         <p className="text-body-sm mt-1 text-body italic">{service.description}</p>
+        {!active ? (
+          <p className="text-body-sm mt-2 font-semibold text-arm-consulting">
+            {service.category === "educator" ? "See availability ↓" : "Get a quote ↓"}
+          </p>
+        ) : null}
       </div>
       {active ? (
         <span
@@ -101,11 +113,20 @@ export function BookingServices({ services }: { services: BookableService[] }) {
   const [activeTitle, setActiveTitle] = useState(servicesInView[0]?.title)
   const active =
     services.find((s) => s.title === activeTitle) ?? servicesInView[0]
+  const panelRef = useRef<HTMLDivElement>(null)
 
   function selectFilter(next: ServiceFilter) {
     setFilter(next)
     const first = servicesFor(next)[0]
     if (first) setActiveTitle(first.title)
+  }
+
+  function selectService(title: string) {
+    setActiveTitle(title)
+    // The calendar/quote panel below is the whole point of picking a
+    // card, so bring it into view rather than leaving people to notice
+    // it changed further down the page.
+    panelRef.current?.scrollIntoView({ behavior: "smooth", block: "nearest" })
   }
 
   return (
@@ -138,19 +159,23 @@ export function BookingServices({ services }: { services: BookableService[] }) {
         </div>
       </div>
 
-      <div className="mt-6 grid gap-4 sm:grid-cols-2">
+      <p className="text-body-sm mt-4 text-muted-ink">
+        Pick a service — the calendar or quote form below updates to match.
+      </p>
+
+      <div className="mt-3 grid gap-4 sm:grid-cols-2">
         {servicesInView.map((service, index) => (
           <ServiceCard
             key={service.title}
             service={service}
             index={index}
             active={active?.title === service.title}
-            onSelect={() => setActiveTitle(service.title)}
+            onSelect={() => selectService(service.title)}
           />
         ))}
       </div>
 
-      <div className="mt-6">
+      <div ref={panelRef} className="mt-6 scroll-mt-24">
         {active?.category === "educator" ? (
           <BookingWidget calLink={active.bookingUrl} />
         ) : (
