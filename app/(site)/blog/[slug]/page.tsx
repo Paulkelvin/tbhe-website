@@ -164,7 +164,7 @@ export default async function BlogPostPage({
 
           <Reveal delay={0.15} className="mt-12 border-t border-hairline pt-8">
             <Button asChild size="lg" className="w-fit">
-              <Link href="/contact">Apply for Support</Link>
+              <Link href="/contact?reason=financial-assistance">Apply for Support</Link>
             </Button>
 
             <div className="mt-8">

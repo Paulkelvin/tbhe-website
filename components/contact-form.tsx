@@ -20,6 +20,7 @@ const REASON_PARAM_MAP: Record<string, (typeof REASONS)[number]> = {
   donate: "Donation or corporate sponsorship",
   advocacy: "Advocacy / IEP & 504 support",
   "financial-assistance": "Mission 139 family assistance",
+  consulting: "Consulting & professional development",
 }
 
 export function ContactForm() {

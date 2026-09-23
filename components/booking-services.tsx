@@ -189,7 +189,7 @@ export function BookingServices({ services }: { services: BookableService[] }) {
               start with a quote instead of a calendar.
             </p>
             <Button asChild size="lg">
-              <Link href="/contact">Request a Quote</Link>
+              <Link href="/contact?reason=consulting">Request a Quote</Link>
             </Button>
           </div>
         )}
