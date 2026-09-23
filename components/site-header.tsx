@@ -205,6 +205,13 @@ export function SiteHeader({ siteName, navLinks, arms }: SiteHeaderProps) {
                   </div>
                 ))}
                 <Link
+                  href="/donate"
+                  onClick={() => setOpen(false)}
+                  className="block rounded-md px-2 py-2 text-sm text-body transition-colors duration-200 hover:bg-canvas-soft hover:text-ink"
+                >
+                  Donate
+                </Link>
+                <Link
                   href="/contact"
                   onClick={() => setOpen(false)}
                   className="mt-2 rounded-full bg-primary px-4 py-2 text-center text-sm font-semibold tracking-[0.01em] text-primary-foreground transition-opacity duration-200 hover:opacity-90"
