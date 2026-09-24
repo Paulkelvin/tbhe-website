@@ -45,16 +45,11 @@ export default async function ResourcesPage() {
         <div className="mx-auto max-w-4xl">
           {/* Category masthead — every category the Resource Center is
               organized by, populated or not, so visitors can see what's
-              coming as the library grows. */}
-          <Reveal className="border-y border-hairline py-4">
-            <div className="grid grid-cols-2 gap-x-4 gap-y-2.5 text-center sm:hidden">
-              {RESOURCE_CATEGORIES.map((category) => (
-                <span key={category} className="eyebrow text-muted-ink">
-                  {category}
-                </span>
-              ))}
-            </div>
-            <div className="hidden flex-wrap items-center justify-center gap-x-5 gap-y-2 sm:flex lg:justify-start">
+              coming as the library grows. Desktop-only: as plain text
+              labels, this read as visual clutter on narrow mobile
+              screens, so it's hidden there rather than reflowed. */}
+          <Reveal className="hidden border-y border-hairline py-4 sm:block">
+            <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 lg:justify-start">
               {RESOURCE_CATEGORIES.map((category, index) => (
                 <span key={category} className="flex items-center gap-5">
                   {index > 0 ? (
