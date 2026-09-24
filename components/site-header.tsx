@@ -34,6 +34,13 @@ export function SiteHeader({ siteName, navLinks, arms }: SiteHeaderProps) {
     setEcosystemOpen(false)
   }, [pathname])
 
+  // Also collapse the mobile Ecosystem sub-list whenever the mobile menu
+  // itself closes, so reopening it always starts collapsed rather than
+  // remembering whatever state it was left in.
+  useEffect(() => {
+    if (!open) setEcosystemOpen(false)
+  }, [open])
+
   useEffect(() => {
     if (!ecosystemOpen) return
 
@@ -181,14 +188,39 @@ export function SiteHeader({ siteName, navLinks, arms }: SiteHeaderProps) {
               <nav className="flex flex-col gap-1 px-6 py-4">
                 {navLinks.map((link) => (
                   <div key={link.href}>
-                    <Link
-                      href={link.href}
-                      onClick={() => setOpen(false)}
-                      className="block rounded-md px-2 py-2 text-sm text-body transition-colors duration-200 hover:bg-canvas-soft hover:text-ink"
-                    >
-                      {link.label}
-                    </Link>
                     {link.href === "/ecosystem" ? (
+                      <div className="flex items-center">
+                        <Link
+                          href={link.href}
+                          onClick={() => setOpen(false)}
+                          className="block flex-1 rounded-md px-2 py-2 text-sm text-body transition-colors duration-200 hover:bg-canvas-soft hover:text-ink"
+                        >
+                          {link.label}
+                        </Link>
+                        <button
+                          type="button"
+                          onClick={() => setEcosystemOpen((v) => !v)}
+                          aria-expanded={ecosystemOpen}
+                          aria-label={ecosystemOpen ? "Collapse Ecosystem menu" : "Expand Ecosystem menu"}
+                          className="flex items-center rounded-md p-2 text-body transition-colors duration-200 hover:bg-canvas-soft hover:text-ink"
+                        >
+                          <CaretDown
+                            size={12}
+                            weight="bold"
+                            className={cn("transition-transform duration-200", ecosystemOpen && "-rotate-180")}
+                          />
+                        </button>
+                      </div>
+                    ) : (
+                      <Link
+                        href={link.href}
+                        onClick={() => setOpen(false)}
+                        className="block rounded-md px-2 py-2 text-sm text-body transition-colors duration-200 hover:bg-canvas-soft hover:text-ink"
+                      >
+                        {link.label}
+                      </Link>
+                    )}
+                    {link.href === "/ecosystem" && ecosystemOpen ? (
                       <div className="ml-3 flex flex-col gap-1 border-l border-hairline pl-3">
                         {arms.map((arm) => (
                           <Link
