@@ -67,15 +67,23 @@ export default async function HomePage() {
           <div className="mt-12 flex flex-col items-center gap-8">
             <span className="eyebrow">School Partners</span>
             <div className="flex flex-wrap items-center justify-center gap-x-12 gap-y-6">
+              {/* A fixed bounding box + object-contain, rather than a fixed
+                  height, so a square badge mark and a wide wordmark render
+                  at comparable visual weight instead of the badge shrinking
+                  down to the wordmark's own thin height. */}
               {SCHOOL_PARTNERS.map((partner) => (
-                <Image
+                <div
                   key={partner.name}
-                  src={partner.logo ?? ""}
-                  alt={partner.name}
-                  width={partner.logoWidth ?? 200}
-                  height={partner.logoHeight ?? 60}
-                  className="h-9 w-auto transition-transform duration-300 hover:scale-105"
-                />
+                  className="relative h-14 w-32 transition-transform duration-300 hover:scale-105"
+                >
+                  <Image
+                    src={partner.logo ?? ""}
+                    alt={partner.name}
+                    fill
+                    sizes="128px"
+                    className="object-contain"
+                  />
+                </div>
               ))}
             </div>
           </div>
