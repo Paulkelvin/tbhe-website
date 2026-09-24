@@ -18,6 +18,11 @@ import { getImpactStats, getSchoolPartners } from "@/sanity/queries"
 const HOME_DESCRIPTION =
   "Educational consulting, Mission 139 special-education advocacy, and media & publishing, three arms built by Cyrkle B. Brent, M.Ed. to help educators and neurodivergent students thrive."
 
+// Matches the other CMS-driven pages (blog, resources, events): without
+// this, the homepage is fully static and only picks up Sanity edits
+// (impact stats, school partners) on the next deploy, not on a schedule.
+export const revalidate = 60
+
 // Not using the shared pageMetadata() helper here: the homepage should
 // keep the root layout's full site title as-is (the title template would
 // otherwise double it up as "... (TBHE) | TBHE").
