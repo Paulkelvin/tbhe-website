@@ -355,6 +355,18 @@ export const SCHOOL_PARTNERS = [
     width: 463,
     height: 145,
   },
+  {
+    name: "Citizens of the World Charter Schools - Mar Vista",
+    logo: "/logos/citizens-of-the-world-mar-vista.png",
+    width: 140,
+    height: 140,
+  },
+  {
+    name: "Saint Mary's School",
+    logo: "/logos/saint-marys-school.png",
+    width: 140,
+    height: 140,
+  },
 ] as const
 
 // Categories the Resource Center is organized by. Most are empty for now —
