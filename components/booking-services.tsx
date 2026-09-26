@@ -178,7 +178,22 @@ export function BookingServices({ services }: { services: BookableService[] }) {
 
       <div ref={panelRef} className="mt-6 scroll-mt-24">
         {active?.category === "educator" ? (
-          <BookingWidget calLink={active.bookingUrl} />
+          <>
+            {active.priceCents ? (
+              <div className="mb-4 flex flex-col items-center justify-between gap-3 rounded-2xl border border-hairline bg-arm-consulting/5 px-6 py-5 text-center sm:flex-row sm:text-left">
+                <p className="text-body-sm text-body">
+                  {active.title} is ${(active.priceCents / 100).toFixed(0)} per
+                  session. Pay online now, then pick a time below.
+                </p>
+                <Button asChild size="lg" className="w-full shrink-0 sm:w-fit">
+                  <a href={`/api/pay/service?service=${encodeURIComponent(active.title)}`}>
+                    Pay &amp; Reserve — ${(active.priceCents / 100).toFixed(0)}
+                  </a>
+                </Button>
+              </div>
+            ) : null}
+            <BookingWidget calLink={active.bookingUrl} />
+          </>
         ) : (
           <div className="flex flex-col items-center gap-4 rounded-2xl border border-hairline bg-arm-consulting/5 px-6 py-14 text-center">
             <p className="text-h3 text-ink">

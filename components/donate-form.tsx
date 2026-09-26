@@ -7,7 +7,10 @@ import { cn } from "@/lib/utils"
 
 const PRESET_AMOUNTS = [10, 20, 30, 100, 250, 500]
 
+type Interval = "once" | "monthly"
+
 export function DonateForm() {
+  const [frequency, setFrequency] = useState<Interval>("once")
   const [selected, setSelected] = useState<number | null>(null)
   const [custom, setCustom] = useState("")
 
@@ -21,7 +24,33 @@ export function DonateForm() {
 
   return (
     <div>
-      <div className="grid grid-cols-3 gap-3 sm:grid-cols-6">
+      {/* Matches the pill-toggle pattern already used for the Consulting
+          booking filters, so this isn't a new visual idiom. */}
+      <div className="flex shrink-0 gap-1 rounded-full border border-hairline bg-surface-card p-1">
+        {(
+          [
+            { key: "once", label: "Give Once" },
+            { key: "monthly", label: "Give Monthly" },
+          ] as const
+        ).map((option) => (
+          <button
+            key={option.key}
+            type="button"
+            onClick={() => setFrequency(option.key)}
+            aria-pressed={frequency === option.key}
+            className={cn(
+              "flex-1 rounded-full px-4 py-2 text-sm font-semibold whitespace-nowrap transition-colors",
+              frequency === option.key
+                ? "bg-arm-mission text-arm-mission-ink"
+                : "text-body hover:text-ink"
+            )}
+          >
+            {option.label}
+          </button>
+        ))}
+      </div>
+
+      <div className="mt-4 grid grid-cols-3 gap-3 sm:grid-cols-6">
         {PRESET_AMOUNTS.map((value) => {
           const active = !hasCustom && selected === value
           return (
@@ -75,7 +104,9 @@ export function DonateForm() {
           size="lg"
           className="mt-6 w-full bg-arm-mission text-arm-mission-ink hover:bg-arm-mission/85 sm:w-fit"
         >
-          <a href={`/api/donate?amount=${amount}`}>Donate ${amount} Now</a>
+          <a href={`/api/donate?amount=${amount}&interval=${frequency}`}>
+            {frequency === "monthly" ? `Donate $${amount}/mo Now` : `Donate $${amount} Now`}
+          </a>
         </Button>
       ) : (
         <Button
@@ -90,6 +121,9 @@ export function DonateForm() {
       <p className="caption mt-4 text-muted-ink">
         Mission 139 is a 501(c)(3) nonprofit organization. Your donation is
         tax-deductible to the fullest extent allowed by law.
+        {frequency === "monthly"
+          ? " Your card will be charged this amount every month until you cancel."
+          : null}
       </p>
     </div>
   )

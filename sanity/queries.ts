@@ -194,14 +194,24 @@ export type BookableService = {
   image?: string
   imageAlt?: string
   imagePosition?: string
+  // Cents, derived from the dollar `price` field so callers never have to
+  // do that conversion themselves. Unset means "no online payment for
+  // this service" — see BookingServices and /api/pay/service.
+  priceCents?: number
+}
+
+function toPriceCents(price: unknown): number | undefined {
+  return typeof price === "number" && price > 0 ? Math.round(price * 100) : undefined
 }
 
 export async function getBookableServices(): Promise<BookableService[]> {
   try {
-    const services = await sanityClient.fetch<BookableService[]>(
-      `*[_type == "bookableService"] | order(order asc){ title, category, description, duration, bookingUrl, "image": image.asset->url, "imageAlt": image.alt, imagePosition }`
+    const services = await sanityClient.fetch<(BookableService & { price?: number })[]>(
+      `*[_type == "bookableService"] | order(order asc){ title, category, description, duration, bookingUrl, "image": image.asset->url, "imageAlt": image.alt, imagePosition, price }`
     )
-    if (services?.length) return services
+    if (services?.length) {
+      return services.map((s) => ({ ...s, priceCents: toPriceCents(s.price) }))
+    }
   } catch {
     // fall through to static fallback
   }
@@ -214,6 +224,7 @@ export async function getBookableServices(): Promise<BookableService[]> {
     image: s.image,
     imageAlt: s.imageAlt,
     imagePosition: s.imagePosition,
+    priceCents: toPriceCents(s.price),
   }))
 }
 

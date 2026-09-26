@@ -17,6 +17,14 @@ export default defineType({
     defineField({ name: "duration", title: "Duration", type: "string" }),
     defineField({ name: "bookingUrl", title: "Booking URL (Calendly)", type: "url" }),
     defineField({
+      name: "price",
+      title: "Price (USD)",
+      type: "number",
+      description:
+        "Per-session price in whole dollars, e.g. 150 for $150. Leave empty for services with no online payment (free calls, or school/district engagements quoted individually) — setting this is what turns on the \"Pay & Reserve\" button for this service.",
+      validation: (Rule) => Rule.min(0),
+    }),
+    defineField({
       name: "image",
       title: "Image",
       type: "image",

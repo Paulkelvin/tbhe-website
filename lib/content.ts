@@ -93,6 +93,12 @@ export type BookableService = {
   image?: string
   imageAlt?: string
   imagePosition?: string
+  // Per-session price in whole USD dollars (e.g. 150 for $150). Unset by
+  // default — a service only gets an online "Pay & Reserve" button once
+  // this is filled in (here, or on the live Sanity document), so nothing
+  // changes for visitors until a real, confirmed price is set. See
+  // BookingServices and /api/pay/service.
+  price?: number
 }
 
 export const BOOKABLE_SERVICES: readonly BookableService[] = [
@@ -117,6 +123,11 @@ export const BOOKABLE_SERVICES: readonly BookableService[] = [
     image: "/images/service-executive-coaching.jpg",
     imageAlt: "Two educators in a one-on-one coaching conversation",
     imagePosition: "50% 18%",
+    // PLACEHOLDER — not a confirmed price. Only used if this static list
+    // is ever the active data source (see getBookableServices); the live
+    // Sanity document currently has no price set, so no payment button
+    // shows on the real site until a real price is confirmed and entered.
+    price: 150,
   },
   {
     key: "classroom",
