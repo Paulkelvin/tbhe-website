@@ -23,6 +23,7 @@ export function SiteHeader({ siteName, navLinks, arms }: SiteHeaderProps) {
   const [open, setOpen] = useState(false)
   const [ecosystemOpen, setEcosystemOpen] = useState(false)
   const ecosystemRef = useRef<HTMLDivElement>(null)
+  const mobileEcosystemRef = useRef<HTMLDivElement>(null)
   const pathname = usePathname()
 
   // The Ecosystem dropdown used to open on CSS :hover/:focus-within, which
@@ -45,7 +46,15 @@ export function SiteHeader({ siteName, navLinks, arms }: SiteHeaderProps) {
     if (!ecosystemOpen) return
 
     function handlePointerDown(e: PointerEvent) {
-      if (ecosystemRef.current && !ecosystemRef.current.contains(e.target as Node)) {
+      const target = e.target as Node
+      // The desktop dropdown's own container (ecosystemRef) is still
+      // mounted in the DOM on mobile — just CSS-hidden by "md:flex" — so
+      // checking only that ref made every mobile tap register as
+      // "outside" and close the menu the instant it opened. The mobile
+      // toggle/sublist get their own ref so either surface counts.
+      const insideDesktop = ecosystemRef.current?.contains(target)
+      const insideMobile = mobileEcosystemRef.current?.contains(target)
+      if (!insideDesktop && !insideMobile) {
         setEcosystemOpen(false)
       }
     }
@@ -187,7 +196,10 @@ export function SiteHeader({ siteName, navLinks, arms }: SiteHeaderProps) {
             >
               <nav className="flex flex-col gap-1 px-6 py-4">
                 {navLinks.map((link) => (
-                  <div key={link.href}>
+                  <div
+                    key={link.href}
+                    ref={link.href === "/ecosystem" ? mobileEcosystemRef : undefined}
+                  >
                     {link.href === "/ecosystem" ? (
                       <div className="flex items-center">
                         <Link
