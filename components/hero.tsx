@@ -9,7 +9,7 @@ import { getArms, getSiteSettings } from "@/sanity/queries"
 
 export async function Hero() {
   const [settings, ARMS] = await Promise.all([getSiteSettings(), getArms()])
-  const FOUNDER_ALT = `${settings.founderName}, founder of ${settings.siteName}, laughing and gesturing warmly in a green blazer`
+  const FOUNDER_ALT = `${settings.founderName}, founder of ${settings.siteName}, smiling in glasses and a yellow blazer`
 
   return (
     <section className="relative overflow-hidden border-b border-hairline bg-surface-card">
@@ -73,7 +73,7 @@ export async function Hero() {
                 fill
                 priority
                 sizes="(max-width: 640px) 420px, 480px"
-                className="object-cover object-top"
+                className="object-contain object-bottom"
               />
             </div>
           </div>
@@ -101,8 +101,8 @@ export async function Hero() {
             fill
             priority
             sizes="54vw"
-            className="object-cover object-top"
-            style={{ objectPosition: "50% 0%" }}
+            className="object-contain object-bottom"
+            style={{ objectPosition: "50% 100%" }}
           />
         </div>
 
@@ -114,7 +114,7 @@ export async function Hero() {
           filterId="paper-roughen-2"
           rotate={8}
           strokeWidth={1.6}
-          className="top-[4%] right-[6%] h-[62%] w-[38%] opacity-[0.55]"
+          className="top-[46%] right-[4%] h-[46%] w-[34%] opacity-[0.55]"
         />
       </div>
 
