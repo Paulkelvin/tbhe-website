@@ -229,12 +229,12 @@ export default async function AboutPage() {
           instead of the homepage testimonial's paper-clip styling. */}
       <section className="section relative overflow-hidden">
         <Reveal className="relative mx-auto max-w-2xl rounded-2xl border border-hairline bg-surface-card p-8 shadow-[0_18px_40px_-26px_rgba(37,24,39,0.15)] sm:p-12">
-          <div className="relative mx-auto size-20 overflow-hidden rounded-full border-2 border-canvas shadow-[0_8px_20px_-8px_rgba(37,24,39,0.35)]">
+          <div className="relative mx-auto size-36 overflow-hidden rounded-full border-2 border-canvas shadow-[0_8px_20px_-8px_rgba(37,24,39,0.35)]">
             <Image
               src="/images/founder-personal-note.jpg"
               alt={`${settings.founderName} in conversation, wearing glasses and a purple vest`}
               fill
-              sizes="80px"
+              sizes="144px"
               className="object-cover object-top"
             />
           </div>
