@@ -279,6 +279,7 @@ export default async function AboutPage() {
                 </p>,
               ]}
             </ReadMore>
+            <p className="caption mt-2 text-muted-ink">— Iron Bridge Solutions</p>
           </div>
         </Reveal>
       </section>
