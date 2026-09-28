@@ -20,7 +20,7 @@ export const metadata = pageMetadata({
 })
 
 const KEYNOTE_PHOTO_ALT =
-  "A speaker in a cream suit addresses a conference audience from the stage, gesturing mid-sentence with a microphone in hand"
+  "Cyrkle Brent speaks from the podium to a packed school assembly, with Psalm 139:14 projected on the screen behind her"
 
 export default async function MediaPage() {
   const arms = await getArms()
@@ -55,9 +55,9 @@ export default async function MediaPage() {
             fill
             sizes="100vw"
             className="object-cover"
-            style={{ objectPosition: "62% 25%" }}
+            style={{ objectPosition: "30% 0%" }}
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-ink/95 from-0% via-ink/80 via-55% to-transparent to-95%" />
+          <div className="absolute inset-0 bg-gradient-to-t from-ink/95 from-0% via-ink/75 via-30% to-transparent to-60%" />
           <div className="absolute inset-x-0 bottom-0">
             <div className="mx-auto max-w-6xl px-6 pb-10 sm:px-8 sm:pb-14">
               <p className="eyebrow text-arm-media">
