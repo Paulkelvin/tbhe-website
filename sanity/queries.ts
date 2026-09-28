@@ -138,33 +138,51 @@ export async function getArms(): Promise<Arm[]> {
   return [...FALLBACK_ARMS]
 }
 
+export async function getShowEventsPage(): Promise<boolean> {
+  try {
+    return (await sanityClient.fetch<boolean | null>(`*[_type == "siteSettings"][0].showEventsPage`)) === true
+  } catch {
+    return false
+  }
+}
+
+function withoutHiddenPages<T extends { href: string }>(links: T[], showEvents: boolean): T[] {
+  return showEvents ? links : links.filter((link) => link.href !== "/events")
+}
+
 export async function getNavLinks(): Promise<{ label: string; href: string }[]> {
+  const showEvents = await getShowEventsPage()
   try {
     const links = await sanityClient.fetch<{ label: string; href: string }[]>(
       `*[_type == "navLink"] | order(order asc){ label, href }`
     )
-    if (links?.length) return links
+    if (links?.length) return withoutHiddenPages(links, showEvents)
   } catch {
     // fall through to static fallback
   }
-  return [...FALLBACK_NAV_LINKS]
+  return withoutHiddenPages([...FALLBACK_NAV_LINKS], showEvents)
 }
 
 export type FooterColumn = { heading: string; links: { label: string; href: string }[] }
 
 export async function getFooterColumns(): Promise<FooterColumn[]> {
+  const showEvents = await getShowEventsPage()
+  const visible = (columns: FooterColumn[]) =>
+    columns.map((col) => ({ ...col, links: withoutHiddenPages(col.links ?? [], showEvents) }))
   try {
     const columns = await sanityClient.fetch<FooterColumn[]>(
       `*[_type == "footerColumn"] | order(order asc){ heading, links }`
     )
-    if (columns?.length) return columns
+    if (columns?.length) return visible(columns)
   } catch {
     // fall through to static fallback
   }
-  return FALLBACK_FOOTER_COLUMNS.map((col) => ({
-    heading: col.title,
-    links: col.links.map(([label, href]) => ({ label, href })),
-  }))
+  return visible(
+    FALLBACK_FOOTER_COLUMNS.map((col) => ({
+      heading: col.title,
+      links: col.links.map(([label, href]) => ({ label, href })),
+    }))
+  )
 }
 
 export type TeamMember = {

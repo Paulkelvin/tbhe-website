@@ -44,5 +44,12 @@ export default defineType({
     }),
     defineField({ name: "calendlyBookingLink", title: "Calendly Booking Link", type: "url" }),
     defineField({ name: "mission139InstagramUrl", title: "Mission 139 Instagram URL", type: "url" }),
+    defineField({
+      name: "showEventsPage",
+      title: "Show Events page",
+      type: "boolean",
+      description: "Off hides Events from the menu, footer and sitemap, and /events shows the not-found page.",
+      initialValue: false,
+    }),
   ],
 })

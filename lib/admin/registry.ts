@@ -53,8 +53,10 @@ export const ADMIN_SECTIONS: AdminSection[] = [
       },
       { type: "text", name: "calendlyBookingLink", label: "Calendly Booking Link" },
       { type: "text", name: "mission139InstagramUrl", label: "Mission 139 Instagram URL" },
+      { type: "boolean", name: "showEventsPage", label: "Show Events page" },
     ],
     groups: [
+      { title: "Pages", fieldNames: ["showEventsPage"] },
       { title: "Basics", fieldNames: ["siteName", "shortName", "tagline", "taglineSub", "description"] },
       {
         title: "Founder",

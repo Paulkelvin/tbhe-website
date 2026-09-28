@@ -102,14 +102,18 @@ export function FieldInput({
 
   if (field.type === "boolean") {
     return (
-      <label className="flex items-center gap-2.5 pt-6">
+      <label className="flex cursor-pointer items-center gap-3 pt-6">
         <input
           type="checkbox"
+          role="switch"
           checked={Boolean(value)}
           onChange={(e) => onChange(e.target.checked)}
-          className="size-4 rounded border-hairline-strong"
+          className="peer sr-only"
         />
+        <span className="relative h-6 w-11 shrink-0 rounded-full bg-hairline-strong transition-colors peer-checked:bg-primary peer-focus-visible:ring-2 peer-focus-visible:ring-primary/40 after:absolute after:top-0.5 after:left-0.5 after:size-5 after:rounded-full after:bg-white after:shadow after:transition-transform peer-checked:after:translate-x-5" />
         <span className="text-sm font-semibold text-body-strong">{field.label}</span>
+        <span className="text-xs text-muted-ink peer-checked:hidden">Off</span>
+        <span className="hidden text-xs font-semibold text-primary peer-checked:inline">On</span>
       </label>
     )
   }

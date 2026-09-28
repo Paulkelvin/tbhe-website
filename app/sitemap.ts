@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next"
 
 import { SITE_URL } from "@/lib/content"
-import { getPosts } from "@/sanity/queries"
+import { getPosts, getShowEventsPage } from "@/sanity/queries"
 
 const ROUTES = [
   { path: "", priority: 1, changeFrequency: "weekly" as const },
@@ -21,10 +21,10 @@ const ROUTES = [
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const lastModified = new Date()
-  const posts = await getPosts()
+  const [posts, showEvents] = await Promise.all([getPosts(), getShowEventsPage()])
 
   return [
-    ...ROUTES.map((route) => ({
+    ...ROUTES.filter((route) => showEvents || route.path !== "/events").map((route) => ({
       url: `${SITE_URL}${route.path}`,
       lastModified,
       changeFrequency: route.changeFrequency,

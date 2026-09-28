@@ -1,11 +1,12 @@
 import Link from "next/link"
+import { notFound } from "next/navigation"
 
 import { EventsHero } from "@/components/events-hero"
 import { Reveal } from "@/components/reveal"
 import { Button } from "@/components/ui/button"
 import { SITE_URL } from "@/lib/content"
 import { pageMetadata } from "@/lib/seo"
-import { getEvents } from "@/sanity/queries"
+import { getEvents, getShowEventsPage } from "@/sanity/queries"
 
 export const metadata = pageMetadata({
   title: "Events",
@@ -15,7 +16,10 @@ export const metadata = pageMetadata({
   image: "/images/events-hero.jpg",
 })
 
+export const revalidate = 60
+
 export default async function EventsPage() {
+  if (!(await getShowEventsPage())) notFound()
   const EVENTS = await getEvents()
 
   // Only events with a real date are valid schema.org Events (startDate

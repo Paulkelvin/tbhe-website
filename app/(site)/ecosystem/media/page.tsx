@@ -9,7 +9,7 @@ import { CtaBanner } from "@/components/cta-banner"
 import { Reveal } from "@/components/reveal"
 import { ScrollToHash } from "@/components/scroll-to-hash"
 import { breadcrumbSchema, pageMetadata } from "@/lib/seo"
-import { getArms } from "@/sanity/queries"
+import { getArms, getShowEventsPage } from "@/sanity/queries"
 
 export const metadata = pageMetadata({
   title: "Media & Publishing",
@@ -23,7 +23,7 @@ const KEYNOTE_PHOTO_ALT =
   "Cyrkle Brent speaks from the podium to a packed school assembly, with Psalm 139:14 projected on the screen behind her"
 
 export default async function MediaPage() {
-  const arms = await getArms()
+  const [arms, showEvents] = await Promise.all([getArms(), getShowEventsPage()])
   const arm = arms.find((a) => a.slug === "media")!
   const MEDIA_OFFERINGS = arm.features ?? []
 
@@ -96,17 +96,19 @@ export default async function MediaPage() {
                   updates.
                 </p>
               </div>
-              <Link
-                href="/events"
-                className="group mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-primary"
-              >
-                <span className="border-b border-primary/40 pb-0.5 transition-colors group-hover:border-primary">
-                  See the Events page
-                </span>
-                <span className="transition-transform group-hover:translate-x-0.5">
-                  &rarr;
-                </span>
-              </Link>
+              {showEvents ? (
+                <Link
+                  href="/events"
+                  className="group mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-primary"
+                >
+                  <span className="border-b border-primary/40 pb-0.5 transition-colors group-hover:border-primary">
+                    See the Events page
+                  </span>
+                  <span className="transition-transform group-hover:translate-x-0.5">
+                    &rarr;
+                  </span>
+                </Link>
+              ) : null}
             </Reveal>
           </div>
         </div>
