@@ -244,6 +244,11 @@ async function createMonthlyDonationCheckoutUrl(amountCents: number): Promise<st
 
     const response = await square.checkout.paymentLinks.create({
       idempotencyKey: randomUUID(),
+      quickPay: {
+        name: "Mission 139 Monthly Donation",
+        priceMoney: { amount: BigInt(amountCents), currency: CURRENCY },
+        locationId,
+      },
       checkoutOptions: {
         subscriptionPlanId: variationId,
         redirectUrl: `${SITE_URL}/payment/success?context=donation&interval=monthly`,
