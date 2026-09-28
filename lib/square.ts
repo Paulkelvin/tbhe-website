@@ -209,7 +209,7 @@ async function findOrCreateMonthlyDonationVariationId(
           phases: [
             {
               cadence: "MONTHLY",
-              recurringPriceMoney: { amount: BigInt(amountCents), currency: CURRENCY },
+              pricing: { type: "STATIC", priceMoney: { amount: BigInt(amountCents), currency: CURRENCY } },
               ordinal: BigInt(0),
             },
           ],
