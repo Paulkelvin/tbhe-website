@@ -18,6 +18,7 @@ import {
   DISCOVERY_CALL_TITLE,
   EXECUTIVE_COACHING_PLANS,
   EXECUTIVE_COACHING_TITLE,
+  formatUsd,
 } from "@/lib/content"
 import type { BookableService } from "@/sanity/queries"
 
@@ -196,19 +197,27 @@ export function BookingServices({ services }: { services: BookableService[] }) {
                 >
                   <p className="eyebrow text-arm-consulting">{plan.validity}</p>
                   <h3 className="text-h3 mt-2 text-ink">{plan.name}</h3>
-                  <p className="text-h2 mt-3 text-ink">{plan.price}</p>
-                  <p className="caption mt-1 text-muted-ink">{plan.setupFee}</p>
-                  <p className="text-body-sm mt-4 text-body">{plan.description}</p>
+                  <p className="text-h2 mt-3 text-ink">{formatUsd(plan.priceCents)}</p>
+                  <p className="caption mt-1 text-muted-ink">
+                    + {formatUsd(plan.setupFeeCents)} account setup fee
+                  </p>
+                  <p className="text-body-sm mt-4 flex-1 text-body">{plan.description}</p>
+                  <Button asChild size="lg" className="mt-6 w-full">
+                    <a href={`/api/pay/plan?plan=${plan.id}`}>
+                      Pay Now — {formatUsd(plan.priceCents + plan.setupFeeCents)}
+                    </a>
+                  </Button>
                 </div>
               ))}
             </div>
             <div className="mt-6 flex flex-col items-center gap-4 text-center">
               <p className="text-body-sm max-w-md text-body">
-                Every engagement starts with a free discovery call. Afterward,
-                you&apos;ll receive an invoice for the plan that fits.
+                Ready to start? Pay online above. Prefer to talk it through
+                first? Book a free discovery call and we&apos;ll invoice you
+                after.
               </p>
-              <Button size="lg" onClick={() => selectService(DISCOVERY_CALL_TITLE)}>
-                Get Started — Book a Free Discovery Call
+              <Button size="lg" variant="outline" onClick={() => selectService(DISCOVERY_CALL_TITLE)}>
+                Book a Free Discovery Call
               </Button>
             </div>
           </div>

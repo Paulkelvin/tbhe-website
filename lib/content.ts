@@ -155,22 +155,28 @@ export const DISCOVERY_CALL_TITLE = "Complimentary Discovery Call"
 
 export const EXECUTIVE_COACHING_PLANS = [
   {
+    id: "retainer-10-month",
     name: "10-Month Retainer",
-    price: "$10,000",
-    setupFee: "+ $175 account setup fee",
+    priceCents: 1_000_000,
+    setupFeeCents: 17_500,
     validity: "Valid for one year",
     description:
       "A 10-month executive coaching partnership designed for school leaders (principals, network leaders, and education executives) who are ready to lead with clarity, confidence, and care.",
   },
   {
+    id: "session-pack-5-month",
     name: "5-Month Session Pack",
-    price: "$5,000",
-    setupFee: "+ $175 account setup fee",
+    priceCents: 500_000,
+    setupFeeCents: 17_500,
     validity: "Valid for 5 months",
     description:
       "Consistent, high-impact support without the longer-term commitment. Includes one coaching session per month from the TBHE team.",
   },
 ] as const
+
+export function formatUsd(cents: number) {
+  return `$${(cents / 100).toLocaleString("en-US", { maximumFractionDigits: 0 })}`
+}
 
 export const NAV_LINKS = [
   { label: "Home", href: "/" },
