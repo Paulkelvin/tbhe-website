@@ -17,7 +17,7 @@ let cachedClient: SquareClient | null | undefined
 function getSquareClient(): SquareClient | null {
   if (cachedClient !== undefined) return cachedClient
 
-  const token = process.env.SQUARE_ACCESS_TOKEN
+  const token = process.env.SQUARE_ACCESS_TOKEN?.trim()
   if (!token) {
     cachedClient = null
     return cachedClient
@@ -25,16 +25,60 @@ function getSquareClient(): SquareClient | null {
 
   cachedClient = new SquareClient({
     token,
-    environment:
-      process.env.SQUARE_ENVIRONMENT === "production"
-        ? SquareEnvironment.Production
-        : SquareEnvironment.Sandbox,
+    environment: isProduction() ? SquareEnvironment.Production : SquareEnvironment.Sandbox,
   })
   return cachedClient
 }
 
+function isProduction() {
+  return process.env.SQUARE_ENVIRONMENT?.trim().toLowerCase() === "production"
+}
+
 function getLocationId(): string | null {
-  return process.env.SQUARE_LOCATION_ID || null
+  return process.env.SQUARE_LOCATION_ID?.trim() || null
+}
+
+function describeError(error: unknown) {
+  if (error && typeof error === "object" && "errors" in error) {
+    const { statusCode, errors } = error as { statusCode?: number; errors?: { category?: string; code?: string; detail?: string }[] }
+    return { statusCode, errors: errors?.map((e) => ({ category: e.category, code: e.code, detail: e.detail })) }
+  }
+  return { message: error instanceof Error ? error.message : String(error) }
+}
+
+// Temporary: reports config presence and Square's error codes (never secrets) to debug live checkout.
+export async function diagnoseSquare() {
+  const square = getSquareClient()
+  const locationId = getLocationId()
+  const result: Record<string, unknown> = {
+    tokenSet: Boolean(process.env.SQUARE_ACCESS_TOKEN?.trim()),
+    locationIdSet: Boolean(locationId),
+    environmentRaw: process.env.SQUARE_ENVIRONMENT ?? null,
+    usingEnvironment: isProduction() ? "production" : "sandbox",
+  }
+  if (!square) return result
+
+  try {
+    const { locations } = await square.locations.list()
+    result.locationCount = locations?.length ?? 0
+    result.locationIdMatchesAccount = Boolean(locations?.some((l) => l.id === locationId))
+  } catch (error) {
+    result.locationsError = describeError(error)
+  }
+
+  if (locationId) {
+    try {
+      const response = await square.checkout.paymentLinks.create({
+        idempotencyKey: randomUUID(),
+        quickPay: { name: "Diagnostic", priceMoney: { amount: BigInt(100), currency: CURRENCY }, locationId },
+      })
+      result.checkoutLinkCreated = Boolean(response.paymentLink?.url)
+      if (response.paymentLink?.id) await square.checkout.paymentLinks.delete({ id: response.paymentLink.id })
+    } catch (error) {
+      result.checkoutError = describeError(error)
+    }
+  }
+  return result
 }
 
 export function isSquareConfigured(): boolean {
