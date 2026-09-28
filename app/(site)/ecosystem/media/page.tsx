@@ -16,11 +16,11 @@ export const metadata = pageMetadata({
   description:
     "Research, white papers, and keynote speaking on equity, educator burnout, and neurodivergent student support from The Beautifully Human Educator.",
   path: "/ecosystem/media",
-  image: "/images/speaker-banner.jpg",
+  image: "/images/speaker-keynote.jpg",
 })
 
 const KEYNOTE_PHOTO_ALT =
-  "Cyrkle Brent, in a purple vest and patterned glasses, speaking mid-conversation with her hands raised"
+  "Cyrkle Brent speaks from the podium to a packed school assembly, with Psalm 139:14 projected on the screen behind her"
 
 export default async function MediaPage() {
   const arms = await getArms()
@@ -50,14 +50,14 @@ export default async function MediaPage() {
       <section className="relative">
         <div className="relative h-[58vh] w-full overflow-hidden sm:h-[66vh]">
           <Image
-            src="/images/speaker-banner.jpg"
+            src="/images/speaker-keynote.jpg"
             alt={KEYNOTE_PHOTO_ALT}
             fill
             sizes="100vw"
             className="object-cover"
-            style={{ objectPosition: "58% 0%" }}
+            style={{ objectPosition: "30% 0%" }}
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-ink/95 from-0% via-ink/80 via-35% to-transparent to-70% lg:bg-gradient-to-r lg:via-ink/70 lg:via-30% lg:to-60%" />
+          <div className="absolute inset-0 bg-gradient-to-t from-ink/95 from-0% via-ink/80 via-30% to-transparent to-60%" />
           <div className="absolute inset-x-0 bottom-0">
             <div className="mx-auto max-w-6xl px-6 pb-10 sm:px-8 sm:pb-14">
               <p className="eyebrow text-canvas!">

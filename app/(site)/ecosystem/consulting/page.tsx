@@ -75,15 +75,34 @@ export default async function ConsultingPage() {
           </Reveal>
 
           <div className="relative mt-14 grid gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
-            <Reveal delay={0.05} className="relative">
+            <Reveal delay={0.05} className="relative mb-12 sm:mb-0">
               <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl">
                 <Image
-                  src="/images/consulting-anchor.jpg"
-                  alt="A group of educators in a professional development workshop discussion"
+                  src="/images/consulting-session.jpg"
+                  alt="Cyrkle Brent, in a purple vest, gestures while leading a professional development session with educators around a table"
                   fill
                   sizes="(max-width: 1024px) 100vw, 55vw"
                   className="object-cover"
                 />
+              </div>
+              <div className="absolute -bottom-12 -left-2 w-28 -rotate-3 overflow-hidden rounded-2xl border-4 border-canvas shadow-[0_18px_40px_-12px_rgba(37,24,39,0.45)] sm:-bottom-10 sm:-left-6 sm:w-36">
+                <video
+                  poster="/videos/coaching-session-poster.jpg"
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  preload="metadata"
+                  aria-label="Cyrkle Brent coaching a group of educators"
+                  className="aspect-[9/16] w-full object-cover"
+                >
+                  <source src="/videos/coaching-session.webm" type="video/webm" />
+                  <source src="/videos/coaching-session.mp4" type="video/mp4" />
+                </video>
+                <span className="absolute top-2 left-2 flex items-center gap-1 rounded-full bg-ink/70 px-2 py-0.5 text-[10px] font-semibold tracking-wide text-canvas uppercase">
+                  <span className="size-1.5 animate-pulse rounded-full bg-[#e3b5f5]" />
+                  In session
+                </span>
               </div>
               {/* A single sticky note from the workshop materials overlaps
                   the photo's outer edge — restrained, not a repeat of the
