@@ -1,29 +1,12 @@
 import { getResources } from "@/sanity/queries"
 
-// A decorative but real digital-publishing composition for the Media page —
-// built from the site's actual resource data with plain HTML/CSS, not an
-// image and not fake software chrome. One dominant surface (the featured
-// article), with a smaller surface layered behind it referencing the other
-// real published piece.
 export async function PublicationInterface() {
   const resources = await getResources()
   const FEATURED_RESOURCE = resources.find((r) => r.featured) ?? resources[0]
-  const secondary = resources.find((r) => r.title !== FEATURED_RESOURCE?.title)
   if (!FEATURED_RESOURCE) return null
 
   return (
     <div className="relative mx-auto w-full max-w-xl">
-      {secondary ? (
-        <div className="absolute -top-12 -right-4 w-40 rounded-md border border-hairline bg-surface-card p-4 shadow-[0_20px_45px_-28px_rgba(37,24,39,0.4)] sm:-top-16 sm:-right-9 sm:w-56 sm:p-5">
-          <p className="eyebrow text-[9px] text-arm-media-ink sm:text-[10px]">
-            {secondary.kind}
-          </p>
-          <p className="text-h3-alt mt-1.5 line-clamp-2 text-[0.7rem] leading-snug text-ink sm:mt-2 sm:text-xs">
-            {secondary.title}
-          </p>
-        </div>
-      ) : null}
-
       <div className="relative rounded-lg border border-hairline bg-surface-card p-7 shadow-[0_35px_70px_-32px_rgba(37,24,39,0.45)] sm:p-10">
         <div className="flex items-center justify-between border-b border-hairline pb-4">
           <p className="eyebrow text-muted-ink">

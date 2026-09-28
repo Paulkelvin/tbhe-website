@@ -27,11 +27,11 @@ export function BlogCard({ post }: { post: Post }) {
       </div>
       <div className="mt-5">
         {date ? <p className="eyebrow text-primary">{date}</p> : null}
-        <h3 className="text-h3 mt-2 text-ink transition-colors group-hover:text-primary">
+        <h3 className="text-h3 mt-2 line-clamp-2 text-ink transition-colors group-hover:text-primary">
           {post.title}
         </h3>
         {post.excerpt ? (
-          <p className="text-body-sm mt-2.5 line-clamp-3 text-body">
+          <p className="text-body-sm mt-2.5 line-clamp-2 text-body">
             {post.excerpt}
           </p>
         ) : null}
