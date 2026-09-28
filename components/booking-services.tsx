@@ -14,6 +14,11 @@ import {
 import { BookingWidget } from "@/components/booking-widget"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
+import {
+  DISCOVERY_CALL_TITLE,
+  EXECUTIVE_COACHING_PLANS,
+  EXECUTIVE_COACHING_TITLE,
+} from "@/lib/content"
 import type { BookableService } from "@/sanity/queries"
 
 // Icon shown in place of a real photo until one is supplied for that
@@ -89,7 +94,11 @@ function ServiceCard({
         <p className="text-body-sm mt-1 text-body italic">{service.description}</p>
         {!active ? (
           <p className="text-body-sm mt-2 font-semibold text-arm-consulting">
-            {service.category === "educator" ? "See availability ↓" : "Get a quote ↓"}
+            {service.title === EXECUTIVE_COACHING_TITLE
+              ? "View plans ↓"
+              : service.category === "educator"
+                ? "See availability ↓"
+                : "Get a quote ↓"}
           </p>
         ) : null}
       </div>
@@ -177,7 +186,33 @@ export function BookingServices({ services }: { services: BookableService[] }) {
       </div>
 
       <div ref={panelRef} className="mt-6 scroll-mt-24">
-        {active?.category === "educator" ? (
+        {active?.title === EXECUTIVE_COACHING_TITLE ? (
+          <div className="rounded-2xl border border-hairline bg-arm-consulting/5 p-5 sm:p-8">
+            <div className="grid gap-4 sm:grid-cols-2">
+              {EXECUTIVE_COACHING_PLANS.map((plan) => (
+                <div
+                  key={plan.name}
+                  className="flex flex-col rounded-xl border border-hairline bg-surface-card p-6"
+                >
+                  <p className="eyebrow text-arm-consulting">{plan.validity}</p>
+                  <h3 className="text-h3 mt-2 text-ink">{plan.name}</h3>
+                  <p className="text-h2 mt-3 text-ink">{plan.price}</p>
+                  <p className="caption mt-1 text-muted-ink">{plan.setupFee}</p>
+                  <p className="text-body-sm mt-4 text-body">{plan.description}</p>
+                </div>
+              ))}
+            </div>
+            <div className="mt-6 flex flex-col items-center gap-4 text-center">
+              <p className="text-body-sm max-w-md text-body">
+                Every engagement starts with a free discovery call. Afterward,
+                you&apos;ll receive an invoice for the plan that fits.
+              </p>
+              <Button size="lg" onClick={() => selectService(DISCOVERY_CALL_TITLE)}>
+                Get Started — Book a Free Discovery Call
+              </Button>
+            </div>
+          </div>
+        ) : active?.category === "educator" ? (
           <>
             {active.priceCents ? (
               <div className="mb-4 flex flex-col items-center justify-between gap-3 rounded-2xl border border-hairline bg-arm-consulting/5 px-6 py-5 text-center sm:flex-row sm:text-left">

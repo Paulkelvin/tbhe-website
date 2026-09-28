@@ -150,6 +150,28 @@ export const BOOKABLE_SERVICES: readonly BookableService[] = [
   },
 ] as const
 
+export const EXECUTIVE_COACHING_TITLE = "Executive Coaching"
+export const DISCOVERY_CALL_TITLE = "Complimentary Discovery Call"
+
+export const EXECUTIVE_COACHING_PLANS = [
+  {
+    name: "10-Month Retainer",
+    price: "$10,000",
+    setupFee: "+ $175 account setup fee",
+    validity: "Valid for one year",
+    description:
+      "A 10-month executive coaching partnership designed for school leaders (principals, network leaders, and education executives) who are ready to lead with clarity, confidence, and care.",
+  },
+  {
+    name: "5-Month Session Pack",
+    price: "$5,000",
+    setupFee: "+ $175 account setup fee",
+    validity: "Valid for 5 months",
+    description:
+      "Consistent, high-impact support without the longer-term commitment. Includes one coaching session per month from the TBHE team.",
+  },
+] as const
+
 export const NAV_LINKS = [
   { label: "Home", href: "/" },
   { label: "About", href: "/about" },
