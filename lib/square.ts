@@ -62,6 +62,7 @@ export async function diagnoseSquare() {
     const { locations } = await square.locations.list()
     result.locationCount = locations?.length ?? 0
     result.locationIdMatchesAccount = Boolean(locations?.some((l) => l.id === locationId))
+    result.accountLocations = locations?.map((l) => ({ id: l.id, name: l.name, status: l.status }))
   } catch (error) {
     result.locationsError = describeError(error)
   }
