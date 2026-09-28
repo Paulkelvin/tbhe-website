@@ -18,9 +18,9 @@ export function FieldGrid({
   onImagePreview: (name: string, url: string | undefined) => void
 }) {
   return (
-    <div className="grid gap-4 sm:grid-cols-2">
+    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
       {fields.map((field) => (
-        <div key={field.name} className={fieldSpansFullWidth(field) ? "sm:col-span-2" : undefined}>
+        <div key={field.name} className={fieldSpansFullWidth(field) ? "min-w-0 sm:col-span-2" : "min-w-0"}>
           <FieldInput
             field={field}
             value={values[field.name]}

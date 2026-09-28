@@ -76,12 +76,12 @@ export async function FeaturedResource() {
       <Reveal className="relative hidden md:block md:h-[440px]">
         <div className="absolute inset-y-0 right-0 w-[76%] overflow-hidden rounded-2xl">
           <Image
-            src="/images/chess-knight.png"
-            alt="A carved wooden chess knight in dramatic light, symbolizing strategic thinking"
+            src="/images/resource-big-beautiful-bill.jpg"
+            alt="A parent's hand and a child's hand resting on a thick policy document, beside lavender headphones and sensory toys"
             fill
             sizes="76vw"
             className="object-cover"
-            style={{ objectPosition: "58% center" }}
+            style={{ objectPosition: "center" }}
           />
         </div>
 
@@ -98,8 +98,8 @@ export async function FeaturedResource() {
       <Reveal className="relative md:hidden">
         <div className="relative h-[420px] w-full overflow-hidden rounded-2xl">
           <Image
-            src="/images/chess-knight.png"
-            alt="A carved wooden chess knight in dramatic light, symbolizing strategic thinking"
+            src="/images/resource-big-beautiful-bill.jpg"
+            alt="A parent's hand and a child's hand resting on a thick policy document, beside lavender headphones and sensory toys"
             fill
             sizes="100vw"
             className="object-cover"

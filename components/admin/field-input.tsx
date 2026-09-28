@@ -12,7 +12,7 @@ import {
 } from "@/lib/admin/entry"
 
 const inputClass =
-  "w-full rounded-lg border border-hairline-strong bg-canvas px-3 py-2 text-sm text-ink outline-none focus:border-primary"
+  "w-full min-w-0 max-w-full rounded-lg border border-hairline-strong bg-canvas px-3 py-2 text-sm text-ink outline-none focus:border-primary"
 
 export function FieldInput({
   field,
@@ -146,7 +146,7 @@ export function FieldInput({
           type="datetime-local"
           value={isoToLocalInputValue(value)}
           onChange={(e) => onChange(localInputValueToIso(e.target.value))}
-          className={inputClass}
+          className={`${inputClass} appearance-none`}
         />
       </label>
     )
@@ -264,7 +264,7 @@ function ImageUploadInput({ onUploaded }: { onUploaded: (assetId: string, url: s
             setUploading(false)
           }
         }}
-        className="text-sm text-body"
+        className="max-w-full text-sm text-body"
       />
       {uploading ? <p className="mt-1 text-xs text-muted-ink">Uploading…</p> : null}
       {error ? <p className="mt-1 text-xs font-medium text-red-600">{error}</p> : null}
