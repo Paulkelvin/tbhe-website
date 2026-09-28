@@ -188,21 +188,27 @@ export function BookingServices({ services }: { services: BookableService[] }) {
 
       <div ref={panelRef} className="mt-6 scroll-mt-24">
         {active?.title === EXECUTIVE_COACHING_TITLE ? (
-          <div className="rounded-2xl border border-hairline bg-arm-consulting/5 p-5 sm:p-8">
-            <div className="grid gap-4 sm:grid-cols-2">
+          <div className="rounded-2xl border border-hairline bg-arm-consulting/5 p-3 sm:p-8">
+            <div className="grid gap-3 sm:grid-cols-2 sm:gap-4">
               {EXECUTIVE_COACHING_PLANS.map((plan) => (
                 <div
                   key={plan.name}
-                  className="flex flex-col rounded-xl border border-hairline bg-surface-card p-6"
+                  className="flex flex-col rounded-xl border border-hairline bg-surface-card p-4 sm:p-6"
                 >
-                  <p className="eyebrow text-arm-consulting">{plan.validity}</p>
-                  <h3 className="text-h3 mt-2 text-ink">{plan.name}</h3>
-                  <p className="text-h2 mt-3 text-ink">{formatUsd(plan.priceCents)}</p>
-                  <p className="caption mt-1 text-muted-ink">
-                    + {formatUsd(plan.setupFeeCents)} account setup fee
+                  <div className="flex items-start justify-between gap-3 sm:flex-col sm:justify-start sm:gap-2">
+                    <div>
+                      <p className="eyebrow text-arm-consulting">{plan.validity}</p>
+                      <h3 className="text-h3 mt-1 text-ink">{plan.name}</h3>
+                    </div>
+                    <div className="shrink-0 text-right sm:text-left">
+                      <p className="text-h3 text-ink">{formatUsd(plan.priceCents)}</p>
+                      <p className="caption text-muted-ink">+ {formatUsd(plan.setupFeeCents)} setup</p>
+                    </div>
+                  </div>
+                  <p className="mt-2 flex-1 text-sm leading-snug text-body sm:mt-4 sm:text-base sm:leading-relaxed">
+                    {plan.description}
                   </p>
-                  <p className="text-body-sm mt-4 flex-1 text-body">{plan.description}</p>
-                  <Button asChild size="lg" className="mt-6 w-full">
+                  <Button asChild className="mt-3 w-full sm:mt-6">
                     <a href={`/api/pay/plan?plan=${plan.id}`}>
                       Pay Now — {formatUsd(plan.priceCents + plan.setupFeeCents)}
                     </a>
@@ -210,13 +216,11 @@ export function BookingServices({ services }: { services: BookableService[] }) {
                 </div>
               ))}
             </div>
-            <div className="mt-6 flex flex-col items-center gap-4 text-center">
-              <p className="text-body-sm max-w-md text-body">
-                Ready to start? Pay online above. Prefer to talk it through
-                first? Book a free discovery call and we&apos;ll invoice you
-                after.
+            <div className="mt-3 flex flex-col items-center gap-2 text-center sm:mt-6 sm:gap-4">
+              <p className="text-sm text-body sm:text-base">
+                Prefer to talk first? Book a free call — we&apos;ll invoice you after.
               </p>
-              <Button size="lg" variant="outline" onClick={() => selectService(DISCOVERY_CALL_TITLE)}>
+              <Button variant="outline" className="w-full sm:w-fit" onClick={() => selectService(DISCOVERY_CALL_TITLE)}>
                 Book a Free Discovery Call
               </Button>
             </div>
