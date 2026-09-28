@@ -10,6 +10,7 @@ import {
   FOOTER_COLUMNS as FALLBACK_FOOTER_COLUMNS,
   COACHING_TEAM as FALLBACK_COACHING_TEAM,
   BOOKABLE_SERVICES as FALLBACK_BOOKABLE_SERVICES,
+  EXECUTIVE_COACHING_PLANS as FALLBACK_COACHING_PLANS,
   SCHOOL_PARTNERS as FALLBACK_SCHOOL_PARTNERS,
   SCHOOLS_SERVED as FALLBACK_SCHOOLS_SERVED,
   IMPACT_STATS as FALLBACK_IMPACT_STATS,
@@ -226,6 +227,37 @@ export async function getBookableServices(): Promise<BookableService[]> {
     imagePosition: s.imagePosition,
     priceCents: toPriceCents(s.price),
   }))
+}
+
+export type CoachingPlan = {
+  id: string
+  name: string
+  validity?: string
+  priceCents: number
+  setupFeeCents: number
+  description?: string
+}
+
+export async function getCoachingPlans(): Promise<CoachingPlan[]> {
+  try {
+    const plans = await sanityClient.fetch<{ _id: string; name: string; validity?: string; price?: number; setupFee?: number; description?: string }[]>(
+      `*[_type == "coachingPlan" && !(_id in path("drafts.**"))] | order(order asc){ _id, name, validity, price, setupFee, description }`
+    )
+    const valid = plans?.filter((p) => toPriceCents(p.price))
+    if (valid?.length) {
+      return valid.map((p) => ({
+        id: p._id,
+        name: p.name,
+        validity: p.validity,
+        priceCents: toPriceCents(p.price)!,
+        setupFeeCents: toPriceCents(p.setupFee) ?? 0,
+        description: p.description,
+      }))
+    }
+  } catch {
+    // fall through to static fallback
+  }
+  return FALLBACK_COACHING_PLANS.map((p) => ({ ...p }))
 }
 
 export type SchoolPartner = {

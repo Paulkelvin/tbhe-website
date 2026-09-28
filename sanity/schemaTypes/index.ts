@@ -2,6 +2,7 @@ import siteSettings from "./siteSettings"
 import teamMember from "./teamMember"
 import arm from "./arm"
 import bookableService from "./bookableService"
+import coachingPlan from "./coachingPlan"
 import resource from "./resource"
 import event from "./event"
 import schoolPartner from "./schoolPartner"
@@ -15,6 +16,7 @@ export const schemaTypes = [
   teamMember,
   arm,
   bookableService,
+  coachingPlan,
   resource,
   event,
   schoolPartner,

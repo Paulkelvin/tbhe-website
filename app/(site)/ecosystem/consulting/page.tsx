@@ -8,7 +8,7 @@ import { Reveal } from "@/components/reveal"
 import { ArtDefs, HandDrawnStroke } from "@/components/organic-art"
 import { ScrollToHash } from "@/components/scroll-to-hash"
 import { breadcrumbSchema, pageMetadata } from "@/lib/seo"
-import { getArms, getBookableServices } from "@/sanity/queries"
+import { getArms, getBookableServices, getCoachingPlans } from "@/sanity/queries"
 
 export const metadata = pageMetadata({
   title: "Educational Consulting & Coaching",
@@ -38,7 +38,7 @@ const BOOKING_PROCESS_STEPS = [
 ]
 
 export default async function ConsultingPage() {
-  const [arms, services] = await Promise.all([getArms(), getBookableServices()])
+  const [arms, services, plans] = await Promise.all([getArms(), getBookableServices(), getCoachingPlans()])
   const arm = arms.find((a) => a.slug === "consulting")!
   const [, ...secondaryModules] = arm.features ?? []
 
@@ -136,7 +136,7 @@ export default async function ConsultingPage() {
               past the mobile viewport and the section's overflow-hidden
               clips it, cropping every card and image on the right edge. */}
           <Reveal delay={0.05} className="order-1 min-w-0 lg:order-2">
-            <BookingServices services={services} />
+            <BookingServices services={services} plans={plans} />
           </Reveal>
           <Reveal className="order-2 min-w-0 lg:order-1">
             <SectionHeading

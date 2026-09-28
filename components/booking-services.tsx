@@ -16,11 +16,10 @@ import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import {
   DISCOVERY_CALL_TITLE,
-  EXECUTIVE_COACHING_PLANS,
   EXECUTIVE_COACHING_TITLE,
   formatUsd,
 } from "@/lib/content"
-import type { BookableService } from "@/sanity/queries"
+import type { BookableService, CoachingPlan } from "@/sanity/queries"
 
 // Icon shown in place of a real photo until one is supplied for that
 // service — a plain fallback, not meant to be the finished look. Cycled
@@ -113,7 +112,7 @@ function ServiceCard({
   )
 }
 
-export function BookingServices({ services }: { services: BookableService[] }) {
+export function BookingServices({ services, plans }: { services: BookableService[]; plans: CoachingPlan[] }) {
   function servicesFor(filter: ServiceFilter) {
     return filter === "all" ? services : services.filter((s) => s.category === filter)
   }
@@ -190,9 +189,9 @@ export function BookingServices({ services }: { services: BookableService[] }) {
         {active?.title === EXECUTIVE_COACHING_TITLE ? (
           <div className="rounded-2xl border border-hairline bg-arm-consulting/5 p-3 sm:p-8">
             <div className="grid gap-3 sm:grid-cols-2 sm:gap-4">
-              {EXECUTIVE_COACHING_PLANS.map((plan) => (
+              {plans.map((plan) => (
                 <div
-                  key={plan.name}
+                  key={plan.id}
                   className="flex flex-col rounded-xl border border-hairline bg-surface-card p-4 sm:p-6"
                 >
                   <div className="flex items-start justify-between gap-3 sm:flex-col sm:justify-start sm:gap-2">
@@ -202,7 +201,9 @@ export function BookingServices({ services }: { services: BookableService[] }) {
                     </div>
                     <div className="shrink-0 text-right sm:text-left">
                       <p className="text-h3 text-ink">{formatUsd(plan.priceCents)}</p>
-                      <p className="caption text-muted-ink">+ {formatUsd(plan.setupFeeCents)} setup</p>
+                      {plan.setupFeeCents ? (
+                        <p className="caption text-muted-ink">+ {formatUsd(plan.setupFeeCents)} setup</p>
+                      ) : null}
                     </div>
                   </div>
                   <p className="mt-2 flex-1 text-sm leading-snug text-body sm:mt-4 sm:text-base sm:leading-relaxed">

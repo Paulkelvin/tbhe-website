@@ -112,6 +112,20 @@ export const ADMIN_SECTIONS: AdminSection[] = [
     ],
   },
   {
+    slug: "coaching-plans",
+    typeName: "coachingPlan",
+    title: "Executive Coaching Plans",
+    description: "The plan cards and Pay Now prices shown when Executive Coaching is selected on the Consulting page.",
+    fields: [
+      { type: "text", name: "name", label: "Name", required: true },
+      { type: "text", name: "validity", label: "Validity (e.g. Valid for one year)" },
+      { type: "number", name: "price", label: "Price (USD, whole dollars)" },
+      { type: "number", name: "setupFee", label: "Account Setup Fee (USD, whole dollars)" },
+      { type: "textarea", name: "description", label: "Description" },
+      { type: "number", name: "order", label: "Display Order" },
+    ],
+  },
+  {
     slug: "team",
     typeName: "teamMember",
     title: "Team Members",

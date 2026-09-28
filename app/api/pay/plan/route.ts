@@ -1,11 +1,11 @@
 import { NextResponse } from "next/server"
 
-import { EXECUTIVE_COACHING_PLANS } from "@/lib/content"
 import { createServicePaymentCheckoutUrl } from "@/lib/square"
+import { getCoachingPlans } from "@/sanity/queries"
 
 export async function GET(request: Request) {
   const planId = new URL(request.url).searchParams.get("plan")
-  const plan = EXECUTIVE_COACHING_PLANS.find((p) => p.id === planId)
+  const plan = (await getCoachingPlans()).find((p) => p.id === planId)
   const checkoutUrl = plan
     ? await createServicePaymentCheckoutUrl({
         serviceName: `Executive Coaching — ${plan.name}`,
