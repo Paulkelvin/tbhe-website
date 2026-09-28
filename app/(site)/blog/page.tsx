@@ -2,6 +2,7 @@ import { BlogHero } from "@/components/blog-hero"
 import { BlogCard } from "@/components/blog-card"
 import { Reveal } from "@/components/reveal"
 import { pageMetadata } from "@/lib/seo"
+import { getSubstackPosts, SUBSTACK_URL } from "@/lib/substack"
 import { getPosts } from "@/sanity/queries"
 
 export const metadata = pageMetadata({
@@ -12,12 +13,13 @@ export const metadata = pageMetadata({
   image: "/images/blog/blog-hero-banner.jpg",
 })
 
-// Posts are managed in Sanity, so the blog updates as soon as an editor
-// publishes something new — no redeploy required.
 export const revalidate = 60
 
 export default async function BlogPage() {
-  const posts = await getPosts()
+  const [sitePosts, substackPosts] = await Promise.all([getPosts(), getSubstackPosts()])
+  const posts = [...sitePosts, ...substackPosts].sort(
+    (a, b) => new Date(b.publishedAt ?? 0).getTime() - new Date(a.publishedAt ?? 0).getTime()
+  )
 
   return (
     <>
@@ -45,6 +47,25 @@ export default async function BlogPage() {
               ))}
             </div>
           )}
+
+          <Reveal className="mt-16 border-t border-hairline pt-9 text-center sm:mt-20 sm:pt-10">
+            <h2 className="text-h3 text-ink">The Long Hallway</h2>
+            <p className="text-body-sm mx-auto mt-2.5 max-w-md text-body">
+              Honest conversations about schools, leadership, and the
+              children we serve — Cyrkle&apos;s newsletter on Substack.
+            </p>
+            <a
+              href={SUBSTACK_URL}
+              target="_blank"
+              rel="noreferrer noopener"
+              className="group mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-primary"
+            >
+              <span className="border-b border-primary/40 pb-0.5 transition-colors group-hover:border-primary">
+                Subscribe on Substack
+              </span>
+              <span className="transition-transform group-hover:translate-x-0.5">↗</span>
+            </a>
+          </Reveal>
         </div>
       </section>
     </>

@@ -309,6 +309,7 @@ export type Post = {
   updatedAt?: string
   featured?: boolean
   body?: PortableTextBlock[]
+  externalUrl?: string
 }
 
 const POST_PROJECTION = `{
