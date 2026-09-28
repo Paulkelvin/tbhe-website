@@ -63,7 +63,7 @@ export default async function AdminSectionPage({
   }
 
   const docs = await client.fetch(
-    `*[_type == $type] | order(coalesce(order, 0) asc){ _id, ${projection} }`,
+    `*[_type == $type && !(_id in path("drafts.**"))] | order(coalesce(order, 0) asc){ _id, ${projection} }`,
     { type: section.typeName }
   )
 
