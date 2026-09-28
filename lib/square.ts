@@ -38,6 +38,13 @@ function getLocationId(): string | null {
   return process.env.SQUARE_LOCATION_ID?.trim() || null
 }
 
+const recentErrors: unknown[] = []
+
+function logError(label: string, error: unknown) {
+  console.error(`Square ${label} failed:`, error)
+  recentErrors.push({ label, ...describeError(error) })
+}
+
 function describeError(error: unknown) {
   if (error && typeof error === "object" && "errors" in error) {
     const { statusCode, errors } = error as { statusCode?: number; errors?: { category?: string; code?: string; detail?: string }[] }
@@ -79,6 +86,9 @@ export async function diagnoseSquare() {
       result.checkoutError = describeError(error)
     }
   }
+  recentErrors.length = 0
+  result.monthlyLinkCreated = Boolean(await createDonationCheckoutUrl(1000, "monthly"))
+  result.monthlyErrors = [...recentErrors]
   return result
 }
 
@@ -121,7 +131,7 @@ async function createQuickPayCheckoutUrl({
     })
     return response.paymentLink?.url ?? null
   } catch (error) {
-    console.error("Square createQuickPayCheckoutUrl failed:", error)
+    logError("createQuickPayCheckoutUrl", error)
     return null
   }
 }
@@ -150,7 +160,7 @@ async function findCatalogObjectByName(
     })
     return match?.id ?? null
   } catch (error) {
-    console.error("Square findCatalogObjectByName failed:", error)
+    logError("findCatalogObjectByName", error)
     return null
   }
 }
@@ -172,7 +182,7 @@ async function findOrCreateMonthlyDonationPlanId(square: SquareClient): Promise<
     })
     return created.catalogObject?.id ?? null
   } catch (error) {
-    console.error("Square findOrCreateMonthlyDonationPlanId failed:", error)
+    logError("findOrCreateMonthlyDonationPlanId", error)
     return null
   }
 }
@@ -208,7 +218,7 @@ async function findOrCreateMonthlyDonationVariationId(
     })
     return created.catalogObject?.id ?? null
   } catch (error) {
-    console.error("Square findOrCreateMonthlyDonationVariationId failed:", error)
+    logError("findOrCreateMonthlyDonationVariationId", error)
     return null
   }
 }
@@ -242,7 +252,7 @@ async function createMonthlyDonationCheckoutUrl(amountCents: number): Promise<st
     })
     return response.paymentLink?.url ?? null
   } catch (error) {
-    console.error("Square createMonthlyDonationCheckoutUrl failed:", error)
+    logError("createMonthlyDonationCheckoutUrl", error)
     return null
   }
 }
