@@ -38,64 +38,6 @@ function getLocationId(): string | null {
   return process.env.SQUARE_LOCATION_ID?.trim() || null
 }
 
-const recentErrors: unknown[] = []
-
-function logError(label: string, error: unknown) {
-  console.error(`Square ${label} failed:`, error)
-  recentErrors.push({ label, ...describeError(error) })
-}
-
-function describeError(error: unknown) {
-  if (error && typeof error === "object" && "errors" in error) {
-    const { statusCode, errors } = error as { statusCode?: number; errors?: { category?: string; code?: string; detail?: string }[] }
-    return { statusCode, errors: errors?.map((e) => ({ category: e.category, code: e.code, detail: e.detail })) }
-  }
-  return { message: error instanceof Error ? error.message : String(error) }
-}
-
-// Temporary: reports config presence and Square's error codes (never secrets) to debug live checkout.
-export async function diagnoseSquare() {
-  const square = getSquareClient()
-  const locationId = getLocationId()
-  const result: Record<string, unknown> = {
-    tokenSet: Boolean(process.env.SQUARE_ACCESS_TOKEN?.trim()),
-    locationIdSet: Boolean(locationId),
-    environmentRaw: process.env.SQUARE_ENVIRONMENT ?? null,
-    usingEnvironment: isProduction() ? "production" : "sandbox",
-  }
-  if (!square) return result
-
-  try {
-    const { locations } = await square.locations.list()
-    result.locationCount = locations?.length ?? 0
-    result.locationIdMatchesAccount = Boolean(locations?.some((l) => l.id === locationId))
-    result.accountLocations = locations?.map((l) => ({ id: l.id, name: l.name, status: l.status }))
-  } catch (error) {
-    result.locationsError = describeError(error)
-  }
-
-  if (locationId) {
-    try {
-      const response = await square.checkout.paymentLinks.create({
-        idempotencyKey: randomUUID(),
-        quickPay: { name: "Diagnostic", priceMoney: { amount: BigInt(100), currency: CURRENCY }, locationId },
-      })
-      result.checkoutLinkCreated = Boolean(response.paymentLink?.url)
-      if (response.paymentLink?.id) await square.checkout.paymentLinks.delete({ id: response.paymentLink.id })
-    } catch (error) {
-      result.checkoutError = describeError(error)
-    }
-  }
-  recentErrors.length = 0
-  result.monthlyLinkCreated = Boolean(await createDonationCheckoutUrl(1000, "monthly"))
-  result.monthlyErrors = [...recentErrors]
-  return result
-}
-
-export function isSquareConfigured(): boolean {
-  return Boolean(getSquareClient() && getLocationId())
-}
-
 /**
  * A one-time, ad hoc "Quick Pay" checkout link for a fixed amount — used
  * for one-time donations and flat-fee service payments. No Catalog setup
@@ -131,7 +73,7 @@ async function createQuickPayCheckoutUrl({
     })
     return response.paymentLink?.url ?? null
   } catch (error) {
-    logError("createQuickPayCheckoutUrl", error)
+    console.error("Square createQuickPayCheckoutUrl failed:", error)
     return null
   }
 }
@@ -160,7 +102,7 @@ async function findCatalogObjectByName(
     })
     return match?.id ?? null
   } catch (error) {
-    logError("findCatalogObjectByName", error)
+    console.error("Square findCatalogObjectByName failed:", error)
     return null
   }
 }
@@ -182,7 +124,7 @@ async function findOrCreateMonthlyDonationPlanId(square: SquareClient): Promise<
     })
     return created.catalogObject?.id ?? null
   } catch (error) {
-    logError("findOrCreateMonthlyDonationPlanId", error)
+    console.error("Square findOrCreateMonthlyDonationPlanId failed:", error)
     return null
   }
 }
@@ -218,7 +160,7 @@ async function findOrCreateMonthlyDonationVariationId(
     })
     return created.catalogObject?.id ?? null
   } catch (error) {
-    logError("findOrCreateMonthlyDonationVariationId", error)
+    console.error("Square findOrCreateMonthlyDonationVariationId failed:", error)
     return null
   }
 }
@@ -257,7 +199,7 @@ async function createMonthlyDonationCheckoutUrl(amountCents: number): Promise<st
     })
     return response.paymentLink?.url ?? null
   } catch (error) {
-    logError("createMonthlyDonationCheckoutUrl", error)
+    console.error("Square createMonthlyDonationCheckoutUrl failed:", error)
     return null
   }
 }
