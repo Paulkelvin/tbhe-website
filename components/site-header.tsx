@@ -80,7 +80,7 @@ export function SiteHeader({ siteName, navLinks, arms }: SiteHeaderProps) {
             width={972}
             height={631}
             priority
-            className="h-10 w-auto sm:h-11"
+            className="h-12 w-auto sm:h-14"
           />
         </Link>
 
