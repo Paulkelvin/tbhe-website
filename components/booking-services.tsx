@@ -148,8 +148,8 @@ export function BookingServices({ services }: { services: BookableService[] }) {
           wrapping breaks the rounded-full container into a lopsided
           shape. Stays within the normal content edges (no bleed) —
           swiping reveals the rest instead of it hanging off-screen. */}
-      <div className="flex gap-1 overflow-x-auto [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-        <div className="flex shrink-0 gap-1 rounded-full border border-hairline bg-surface-card p-1">
+      <div className="w-full overflow-hidden rounded-full border border-hairline bg-surface-card p-1 sm:w-fit">
+        <div className="flex gap-1 overflow-x-auto rounded-full [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
           {FILTERS.map((f) => (
             <button
               key={f.key}
@@ -238,7 +238,7 @@ export function BookingServices({ services }: { services: BookableService[] }) {
               These engagements are scoped to your staff and goals, so we
               start with a quote instead of a calendar.
             </p>
-            <Button asChild size="lg">
+            <Button asChild size="lg" className="btn-shine">
               <Link href="/contact?reason=consulting">Request a Quote</Link>
             </Button>
           </div>
