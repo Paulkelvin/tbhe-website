@@ -3,6 +3,7 @@ import Image from "next/image"
 
 import { Hero } from "@/components/hero"
 import { EcosystemOverview } from "@/components/ecosystem-overview"
+import { BrandMontage } from "@/components/brand-montage"
 import { TestimonialSection } from "@/components/testimonial-section"
 import { FeaturedResource } from "@/components/featured-resource"
 import { FromTheBlog } from "@/components/from-the-blog"
@@ -89,6 +90,8 @@ export default async function HomePage() {
           </div>
         </Reveal>
       </section>
+
+      <BrandMontage />
 
       <TestimonialSection />
 
