@@ -2,7 +2,7 @@
 // middleware and Node server actions.
 
 export const ADMIN_COOKIE_NAME = "tbhe_admin_session"
-const SESSION_VALUE = "authenticated"
+export const ADMIN_SESSION_SECONDS = 12 * 60 * 60
 
 function toHex(buffer: ArrayBuffer): string {
   return [...new Uint8Array(buffer)].map((b) => b.toString(16).padStart(2, "0")).join("")
@@ -22,14 +22,17 @@ async function sign(value: string): Promise<string> {
   return toHex(signature)
 }
 
+// The expiry is inside the signed value, so a copied or old cookie stops working after 12 hours even if the browser keeps it.
 export async function createSessionCookieValue(): Promise<string> {
-  return `${SESSION_VALUE}.${await sign(SESSION_VALUE)}`
+  const value = `admin:${Date.now() + ADMIN_SESSION_SECONDS * 1000}`
+  return `${value}.${await sign(value)}`
 }
 
 export async function isValidSession(cookieValue: string | undefined | null): Promise<boolean> {
   if (!cookieValue) return false
   const [value, signature] = cookieValue.split(".")
-  if (!value || !signature || value !== SESSION_VALUE) return false
+  const expiresAt = Number(value?.split(":")[1])
+  if (!value?.startsWith("admin:") || !signature || !(expiresAt > Date.now())) return false
   try {
     return (await sign(value)) === signature
   } catch {

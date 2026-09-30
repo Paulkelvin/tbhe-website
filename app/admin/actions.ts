@@ -5,7 +5,7 @@ import { cookies } from "next/headers"
 import { redirect } from "next/navigation"
 
 import { getAdminClient } from "@/sanity/adminClient"
-import { ADMIN_COOKIE_NAME, createSessionCookieValue, isValidSession } from "@/lib/admin/auth"
+import { ADMIN_COOKIE_NAME, ADMIN_SESSION_SECONDS, createSessionCookieValue, isValidSession } from "@/lib/admin/auth"
 import { syncSquarePayments } from "@/lib/payments"
 
 export async function login(formData: FormData) {
@@ -23,7 +23,7 @@ export async function login(formData: FormData) {
     secure: process.env.NODE_ENV === "production",
     sameSite: "lax",
     path: "/",
-    maxAge: 60 * 60 * 24 * 7,
+    maxAge: ADMIN_SESSION_SECONDS,
   })
   redirect(target)
 }
