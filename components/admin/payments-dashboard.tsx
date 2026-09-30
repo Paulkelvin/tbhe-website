@@ -1,9 +1,8 @@
 "use client"
 
-import { useMemo, useState, useTransition } from "react"
+import { useEffect, useMemo, useState } from "react"
 import { useRouter } from "next/navigation"
 import {
-  ArrowClockwise,
   ArrowCounterClockwise,
   ArrowSquareOut,
   CheckCircle,
@@ -265,8 +264,6 @@ export function PaymentsDashboard({
   const [kind, setKind] = useState<KindFilter>("all")
   const [query, setQuery] = useState("")
   const [shown, setShown] = useState(25)
-  const [syncing, startSync] = useTransition()
-  const [syncMessage, setSyncMessage] = useState<string | null>(null)
 
   const inRange = useMemo(() => {
     if (range === "all") return payments
@@ -307,14 +304,14 @@ export function PaymentsDashboard({
     }
   }, [inRange, payments])
 
-  function sync() {
-    setSyncMessage(null)
-    startSync(async () => {
-      const result = await adminSyncPayments()
-      setSyncMessage(result.ok ? (result.count ? `Synced ${result.count} new or updated payment${result.count === 1 ? "" : "s"} from Square.` : "Everything is already up to date.") : result.error)
-      router.refresh()
-    })
-  }
+  // Quietly catches up on anything the webhook missed (and older payments) each time the dashboard opens.
+  useEffect(() => {
+    adminSyncPayments()
+      .then((result) => {
+        if (result.ok && result.count > 0) router.refresh()
+      })
+      .catch(() => {})
+  }, [router])
 
   function exportCsv() {
     const url = URL.createObjectURL(new Blob([toCsv(visible)], { type: "text/csv" }))
@@ -363,17 +360,7 @@ export function PaymentsDashboard({
             </button>
           ))}
         </div>
-        <button
-          type="button"
-          onClick={sync}
-          disabled={syncing}
-          className="ml-auto inline-flex items-center gap-1.5 rounded-full border border-hairline-strong bg-surface-card px-3 py-1.5 text-xs font-semibold text-ink transition-colors hover:border-primary disabled:opacity-60"
-        >
-          <ArrowClockwise size={14} className={cn(syncing && "animate-spin")} />
-          {syncing ? "Syncing…" : "Sync from Square"}
-        </button>
       </div>
-      {syncMessage ? <p className="-mt-3 text-xs text-muted-ink">{syncMessage}</p> : null}
 
       <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
         <StatTile label="Total received" value={money(stats.total)} sub={`${stats.count} payment${stats.count === 1 ? "" : "s"}, ${rangeLabel}`} />
@@ -431,7 +418,7 @@ export function PaymentsDashboard({
             <p className="text-sm font-semibold text-ink">No payments to show</p>
             <p className="mx-auto mt-1 max-w-sm text-xs text-muted-ink">
               {payments.length === 0
-                ? "New payments appear here automatically. Use “Sync from Square” to bring in anything paid before this was set up."
+                ? "New payments appear here automatically."
                 : "Try a different time range, type or search."}
             </p>
           </div>
