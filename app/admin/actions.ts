@@ -5,7 +5,8 @@ import { cookies } from "next/headers"
 import { redirect } from "next/navigation"
 
 import { getAdminClient } from "@/sanity/adminClient"
-import { ADMIN_COOKIE_NAME, createSessionCookieValue } from "@/lib/admin/auth"
+import { ADMIN_COOKIE_NAME, createSessionCookieValue, isValidSession } from "@/lib/admin/auth"
+import { syncSquarePayments } from "@/lib/payments"
 
 export async function login(formData: FormData) {
   const password = formData.get("password")
@@ -27,6 +28,14 @@ export async function login(formData: FormData) {
   redirect(target)
 }
 
+// Server actions are plain POST endpoints, so each write re-checks the session instead of trusting the page-level redirect.
+async function requireAdmin() {
+  const cookieStore = await cookies()
+  if (!(await isValidSession(cookieStore.get(ADMIN_COOKIE_NAME)?.value))) {
+    throw new Error("Not signed in.")
+  }
+}
+
 export async function logout() {
   const cookieStore = await cookies()
   cookieStore.delete(ADMIN_COOKIE_NAME)
@@ -40,6 +49,7 @@ export async function adminSaveDocument(input: {
   id?: string
   data: Record<string, unknown>
 }): Promise<{ id: string }> {
+  await requireAdmin()
   const client = getAdminClient()
   const result = input.id
     ? await client.createOrReplace({ _id: input.id, _type: input.type, ...input.data })
@@ -49,6 +59,7 @@ export async function adminSaveDocument(input: {
 }
 
 export async function adminDeleteDocument(id: string): Promise<void> {
+  await requireAdmin()
   const client = getAdminClient()
   await client.delete(id)
   revalidatePath("/", "layout")
@@ -57,6 +68,7 @@ export async function adminDeleteDocument(id: string): Promise<void> {
 export async function adminUploadImage(
   formData: FormData
 ): Promise<{ assetId: string; url: string }> {
+  await requireAdmin()
   const file = formData.get("file")
   if (!(file instanceof File)) {
     throw new Error("No file provided")
@@ -68,4 +80,15 @@ export async function adminUploadImage(
     contentType: file.type || undefined,
   })
   return { assetId: asset._id, url: asset.url }
+}
+
+export async function adminSyncPayments(): Promise<{ ok: true; count: number } | { ok: false; error: string }> {
+  await requireAdmin()
+  try {
+    const count = await syncSquarePayments()
+    revalidatePath("/admin/payments")
+    return { ok: true, count }
+  } catch (error) {
+    return { ok: false, error: error instanceof Error ? error.message : "Sync failed." }
+  }
 }

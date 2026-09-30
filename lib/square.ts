@@ -14,7 +14,7 @@ const CURRENCY = "USD" as const
 
 let cachedClient: SquareClient | null | undefined
 
-function getSquareClient(): SquareClient | null {
+export function getSquareClient(): SquareClient | null {
   if (cachedClient !== undefined) return cachedClient
 
   const token = process.env.SQUARE_ACCESS_TOKEN?.trim()
@@ -34,7 +34,7 @@ function isProduction() {
   return process.env.SQUARE_ENVIRONMENT?.trim().toLowerCase() === "production"
 }
 
-function getLocationId(): string | null {
+export function getLocationId(): string | null {
   return process.env.SQUARE_LOCATION_ID?.trim() || null
 }
 

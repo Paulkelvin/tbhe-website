@@ -9,6 +9,10 @@ export type AdminNavGroup = { title: string; items: AdminNavItem[] }
 // without touching the content-schema registry.
 export const ADMIN_NAV_GROUPS: AdminNavGroup[] = [
   {
+    title: "Business",
+    items: [{ label: "Payments", href: "/admin/payments" }],
+  },
+  {
     title: "Content",
     items: ADMIN_SECTIONS.map((section) => ({
       label: section.title,

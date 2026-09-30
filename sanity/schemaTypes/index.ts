@@ -10,6 +10,7 @@ import impactStat from "./impactStat"
 import footerColumn from "./footerColumn"
 import navLink from "./navLink"
 import post from "./post"
+import payment from "./payment"
 
 export const schemaTypes = [
   siteSettings,
@@ -24,4 +25,5 @@ export const schemaTypes = [
   footerColumn,
   navLink,
   post,
+  payment,
 ]
