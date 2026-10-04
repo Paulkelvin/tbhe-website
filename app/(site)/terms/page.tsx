@@ -7,7 +7,7 @@ import { getSiteSettings } from "@/sanity/queries"
 export const metadata = pageMetadata({
   title: "Terms of Service",
   description:
-    "The terms governing use of thebeautifullyhumaneducator.com, covering our consulting, Mission 139 advocacy, and media & publishing services.",
+    "The terms governing use of www.tbheducator.com, covering our consulting, Mission 139 advocacy, and media & publishing services.",
   path: "/terms",
 })
 
@@ -20,11 +20,11 @@ export default async function TermsPage() {
 
       <section className="section">
         <div className="prose-legal mx-auto max-w-2xl">
-          <p className="text-sm text-muted-ink">Last updated: September 19, 2026</p>
+          <p className="text-sm text-muted-ink">Last updated: October 4, 2026</p>
 
           <p>
             These Terms of Service (&quot;Terms&quot;) govern your use of
-            thebeautifullyhumaneducator.com (the &quot;Site&quot;), operated
+            www.tbheducator.com (the &quot;Site&quot;), operated
             by {settings.siteName} (&quot;{settings.shortName},&quot; &quot;we,&quot;
             &quot;us&quot;), across all three arms of the ecosystem:
             Educational Consulting &amp; Coaching, Mission 139, and Media
@@ -61,7 +61,7 @@ export default async function TermsPage() {
             </li>
             <li>
               Submit false information through our forms, including the
-              family assistance application or speaker booking request.
+              family assistance request or speaker booking request.
             </li>
           </ul>
 

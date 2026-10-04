@@ -79,8 +79,8 @@ export function SiteHeader({ siteName, navLinks, arms }: SiteHeaderProps) {
             <Image
               src="/images/tbhe-logo.png"
               alt={siteName}
-              width={972}
-              height={631}
+              width={140}
+              height={91}
               priority
               className="h-12 w-auto sm:h-14"
             />

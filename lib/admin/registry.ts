@@ -53,10 +53,12 @@ export const ADMIN_SECTIONS: AdminSection[] = [
       },
       { type: "text", name: "calendlyBookingLink", label: "Calendly Booking Link" },
       { type: "text", name: "mission139InstagramUrl", label: "Mission 139 Instagram URL" },
+      { type: "text", name: "mission139Ein", label: "Mission 139 EIN (IRS tax ID, e.g. 12-3456789)" },
       { type: "boolean", name: "showEventsPage", label: "Show Events page" },
     ],
     groups: [
       { title: "Pages", fieldNames: ["showEventsPage"] },
+      { title: "Mission 139", fieldNames: ["mission139Ein"] },
       { title: "Basics", fieldNames: ["siteName", "shortName", "tagline", "taglineSub", "description"] },
       {
         title: "Founder",

@@ -6,7 +6,7 @@ import { getResourceCategories, getResources } from "@/sanity/queries"
 import { pageMetadata } from "@/lib/seo"
 
 export const metadata = pageMetadata({
-  title: "Resource Center",
+  title: "Resources for Educators & Families",
   description:
     "Free white papers and research from The Beautifully Human Educator on special education policy, inclusive classrooms, and neurodivergent student support.",
   path: "/resources",
@@ -88,14 +88,13 @@ export default async function ResourcesPage() {
             </a>
           </Reveal>
 
-          {/* The rest of the archive, grouped by category. A category with
-              nothing in it yet shows a quiet "Coming soon" line instead of
-              disappearing, since the library is being built out over time. */}
+          {/* The rest of the archive, grouped by category. Empty categories stay hidden until something is published in them. */}
           <div className="mt-16 sm:mt-20">
             {RESOURCE_CATEGORIES.map((category, categoryIndex) => {
               const items = secondaryResources.filter(
                 (r) => r.category === category
               )
+              if (items.length === 0) return null
               return (
                 <Reveal
                   key={category}
@@ -103,8 +102,7 @@ export default async function ResourcesPage() {
                   className="border-t border-hairline py-8 first:pt-0"
                 >
                   <p className="eyebrow text-muted-ink">{category}</p>
-                  {items.length > 0 ? (
-                    <div className="mt-4 divide-y divide-hairline">
+                  <div className="mt-4 divide-y divide-hairline">
                       {items.map((resource) => (
                         <div
                           key={resource.title}
@@ -128,12 +126,7 @@ export default async function ResourcesPage() {
                           </a>
                         </div>
                       ))}
-                    </div>
-                  ) : (
-                    <p className="text-body-sm mt-3 text-muted-ink italic">
-                      Coming soon.
-                    </p>
-                  )}
+                  </div>
                 </Reveal>
               )
             })}

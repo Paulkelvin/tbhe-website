@@ -11,7 +11,7 @@ import { breadcrumbSchema, pageMetadata } from "@/lib/seo"
 import { getArms, getBookableServices, getCoachingPlans } from "@/sanity/queries"
 
 export const metadata = pageMetadata({
-  title: "Educational Consulting & Coaching",
+  title: "Teacher Coaching & School Consulting",
   description:
     "Professional development, instructional coaching, and leadership mentorship for school administrators, district leaders, and early-career educators.",
   path: "/ecosystem/consulting",

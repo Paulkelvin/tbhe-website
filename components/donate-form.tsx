@@ -9,7 +9,7 @@ const PRESET_AMOUNTS = [10, 20, 30, 100, 250, 500]
 
 type Interval = "once" | "monthly"
 
-export function DonateForm() {
+export function DonateForm({ ein }: { ein?: string }) {
   const [frequency, setFrequency] = useState<Interval>("once")
   const [selected, setSelected] = useState<number | null>(null)
   const [custom, setCustom] = useState("")
@@ -41,7 +41,7 @@ export function DonateForm() {
             className={cn(
               "flex-1 rounded-full px-4 py-2 text-sm font-semibold whitespace-nowrap transition-colors",
               frequency === option.key
-                ? "bg-arm-mission text-arm-mission-ink"
+                ? "bg-arm-mission text-ink"
                 : "text-body hover:text-ink"
             )}
           >
@@ -85,6 +85,7 @@ export function DonateForm() {
           <input
             type="number"
             min={1}
+            max={25000}
             step={1}
             inputMode="decimal"
             value={custom}
@@ -119,11 +120,17 @@ export function DonateForm() {
       )}
 
       <p className="caption mt-4 text-muted-ink">
-        Mission 139 is a 501(c)(3) nonprofit organization. Your donation is
+        Mission 139 is a 501(c)(3) nonprofit organization
+        {ein ? ` (EIN ${ein})` : ""}. Your donation is
         tax-deductible to the fullest extent allowed by law.
         {frequency === "monthly"
           ? " Your card will be charged this amount every month until you cancel."
-          : null}
+          : null}{" "}
+        Gifts are generally non-refundable; see our{" "}
+        <a href="/terms" className="underline hover:text-ink">
+          Terms
+        </a>
+        .
       </p>
     </div>
   )

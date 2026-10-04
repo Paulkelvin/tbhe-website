@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useState, type FormEvent } from "react"
+import { HoneypotField } from "@/components/honeypot-field"
 
 import { Button } from "@/components/ui/button"
 
@@ -75,6 +76,7 @@ export function ContactForm() {
       onSubmit={handleSubmit}
       className="grid gap-6 rounded-2xl border border-hairline bg-surface-card p-8 shadow-[0_30px_60px_-38px_rgba(37,24,39,0.3)] sm:p-9"
     >
+      <HoneypotField />
       <div className="grid gap-5 sm:grid-cols-2">
         <Field
           label="Full name"
@@ -168,7 +170,7 @@ function Field({
       <span className="flex items-baseline gap-2">
         <span className="caption text-ink">{label}</span>
         {hint ? (
-          <span className="text-quote text-[0.9375rem] text-primary/70">
+          <span className="text-quote text-[0.9375rem] text-primary">
             {hint}
           </span>
         ) : null}

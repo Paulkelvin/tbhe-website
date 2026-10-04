@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, type FormEvent } from "react"
+import { HoneypotField } from "@/components/honeypot-field"
 
 import { Button } from "@/components/ui/button"
 
@@ -44,6 +45,7 @@ export function NewsletterForm() {
       onSubmit={handleSubmit}
       className="flex w-full max-w-md flex-col gap-3 sm:flex-row"
     >
+      <HoneypotField />
       <input
         type="email"
         name="email"

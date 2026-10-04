@@ -67,12 +67,13 @@ export type SiteSettings = {
   schoolsServed: string[]
   socialLinks: { platform: string; url: string }[]
   calendlyBookingLink: string
+  mission139Ein?: string
 }
 
 export async function getSiteSettings(): Promise<SiteSettings> {
   try {
     const settings = await sanityClient.fetch<SiteSettings | null>(
-      `*[_type == "siteSettings"][0]{ siteName, shortName, tagline, taglineSub, description, email, phone, addressLine1, addressCity, addressState, addressZip, founderName, founderCredential, founderTitle, founderSecondaryTitle, schoolsServed, socialLinks, calendlyBookingLink }`
+      `*[_type == "siteSettings"][0]{ siteName, shortName, tagline, taglineSub, description, email, phone, addressLine1, addressCity, addressState, addressZip, founderName, founderCredential, founderTitle, founderSecondaryTitle, schoolsServed, socialLinks, calendlyBookingLink, mission139Ein }`
     )
     if (settings) return settings
   } catch {

@@ -45,6 +45,12 @@ export default defineType({
     defineField({ name: "calendlyBookingLink", title: "Calendly Booking Link", type: "url" }),
     defineField({ name: "mission139InstagramUrl", title: "Mission 139 Instagram URL", type: "url" }),
     defineField({
+      name: "mission139Ein",
+      title: "Mission 139 EIN",
+      type: "string",
+      description: "IRS tax ID, e.g. 12-3456789. Shown on the Donate page, footer and donation receipts once filled in.",
+    }),
+    defineField({
       name: "showEventsPage",
       title: "Show Events page",
       type: "boolean",

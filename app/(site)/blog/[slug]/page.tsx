@@ -20,6 +20,11 @@ export async function generateStaticParams() {
   return posts.map((post) => ({ slug: post.slug }))
 }
 
+function clip(text: string, max: number) {
+  if (text.length <= max) return text
+  return text.slice(0, max - 1).replace(/\s+\S*$/, "") + "…"
+}
+
 export async function generateMetadata({
   params,
 }: {
@@ -29,11 +34,12 @@ export async function generateMetadata({
   const post = await getPostBySlug(slug)
   if (!post) return {}
 
-  const description = post.excerpt ?? ""
+  const description = clip(post.excerpt ?? "", 155)
   const path = `/blog/${slug}`
 
   return {
-    title: post.title,
+    // Long headlines read fine on the page, but Google cuts titles near 60 characters, so long ones drop the site suffix.
+    title: post.title.length > 52 ? { absolute: clip(post.title, 62) } : post.title,
     description,
     alternates: { canonical: path },
     openGraph: {

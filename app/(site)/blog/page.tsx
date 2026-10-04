@@ -6,7 +6,7 @@ import { getSubstackPosts, SUBSTACK_URL } from "@/lib/substack"
 import { getPosts } from "@/sanity/queries"
 
 export const metadata = pageMetadata({
-  title: "Blog",
+  title: "Blog: Special Education & Educator Insights",
   description:
     "Commentary, policy breakdowns, and practical guidance for educators from The Beautifully Human Educator.",
   path: "/blog",
@@ -42,7 +42,7 @@ export default async function BlogPage() {
             <div className="grid gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">
               {posts.map((post, index) => (
                 <Reveal key={post.slug} delay={index * 0.05}>
-                  <BlogCard post={post} />
+                  <BlogCard post={post} headingLevel="h2" />
                 </Reveal>
               ))}
             </div>

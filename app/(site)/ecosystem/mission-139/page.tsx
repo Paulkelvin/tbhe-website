@@ -15,7 +15,7 @@ import { breadcrumbSchema as buildBreadcrumbSchema, pageMetadata } from "@/lib/s
 import { getArms, getSiteSettings } from "@/sanity/queries"
 
 export const metadata = pageMetadata({
-  title: "Mission 139",
+  title: "Mission 139: Special Education Advocacy",
   description:
     "Mission 139 is a 501(c)(3) nonprofit providing special-education advocacy, IEP/504 support, and financial aid for neurodivergent students and families.",
   path: "/ecosystem/mission-139",
@@ -84,6 +84,8 @@ export default async function Mission139Page() {
     "@context": "https://schema.org",
     "@type": "NGO",
     name: "Mission 139",
+    nonprofitStatus: "Nonprofit501c3",
+    ...(settings.mission139Ein ? { taxID: settings.mission139Ein } : {}),
     description: arm.summary,
     url: `${SITE_URL}/ecosystem/mission-139`,
     email: settings.email,

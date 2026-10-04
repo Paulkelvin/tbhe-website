@@ -17,6 +17,7 @@ const ROUTES = [
   { path: "/contact", priority: 0.6, changeFrequency: "yearly" as const },
   { path: "/privacy", priority: 0.2, changeFrequency: "yearly" as const },
   { path: "/terms", priority: 0.2, changeFrequency: "yearly" as const },
+  { path: "/accessibility", priority: 0.2, changeFrequency: "yearly" as const },
 ]
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {

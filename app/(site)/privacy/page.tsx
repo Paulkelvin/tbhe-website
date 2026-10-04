@@ -20,12 +20,12 @@ export default async function PrivacyPage() {
 
       <section className="section">
         <div className="prose-legal mx-auto max-w-2xl">
-          <p className="text-sm text-muted-ink">Last updated: September 19, 2026</p>
+          <p className="text-sm text-muted-ink">Last updated: October 4, 2026</p>
 
           <p>
             This Privacy Policy explains what information {settings.siteName}{" "}
             (&quot;{settings.shortName},&quot; &quot;we,&quot; &quot;us&quot;)
-            collects through thebeautifullyhumaneducator.com (the
+            collects through www.tbheducator.com (the
             &quot;Site&quot;), how we use it, and the choices you have. It
             covers all three arms of the ecosystem: Educational Consulting
             &amp; Coaching, Mission 139, and Media &amp; Publishing.
@@ -52,8 +52,10 @@ export default async function PrivacyPage() {
               <strong>Donations:</strong> if you donate to Mission 139, your
               payment is handled entirely by Square, our payment processor.
               We do not receive or store your card number or other payment
-              credentials; Square provides us with confirmation that a
-              donation was made and the amount.
+              credentials. When a payment (a donation or a coaching
+              payment) is completed, we keep a record of your name, email
+              address, the amount, what it was for, and the receipt number,
+              and we email a confirmation to you and to our team.
             </li>
             <li>
               <strong>Scheduling a consultation:</strong> the booking
@@ -88,7 +90,7 @@ export default async function PrivacyPage() {
             <li>To send newsletter updates, if you signed up for them.</li>
             <li>
               To evaluate and follow up on Mission 139 family assistance
-              applications and advocacy requests.
+              and advocacy requests.
             </li>
           </ul>
           <p>
@@ -113,6 +115,13 @@ export default async function PrivacyPage() {
             not knowingly collect personal information directly from
             children under 13. If you believe a child has provided us with
             personal information, please contact us and we will delete it.
+          </p>
+          <p>
+            When you contact us about family assistance or advocacy, please
+            share only what we need to get started. Do not send medical
+            records, evaluations, or your child&apos;s full diagnosis through
+            the contact form; we will ask for anything further directly and
+            privately.
           </p>
 
           <h2>Your choices</h2>

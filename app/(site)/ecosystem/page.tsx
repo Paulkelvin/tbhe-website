@@ -9,7 +9,7 @@ import { pageMetadata } from "@/lib/seo"
 import { getArms, getSiteSettings } from "@/sanity/queries"
 
 export const metadata = pageMetadata({
-  title: "The Ecosystem",
+  title: "Coaching, Advocacy & Media",
   description:
     "Three arms, one mission: Educational Consulting & Coaching, Mission 139 special-education advocacy, and Media & Publishing thought leadership.",
   path: "/ecosystem",

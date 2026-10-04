@@ -8,7 +8,7 @@ import { pageMetadata } from "@/lib/seo"
 import { getSiteSettings } from "@/sanity/queries"
 
 export const metadata = pageMetadata({
-  title: "Contact",
+  title: "Contact Us",
   description:
     "Reach The Beautifully Human Educator for consulting, Mission 139 family advocacy, or media inquiries. One inbox, one team, real follow-up.",
   path: "/contact",

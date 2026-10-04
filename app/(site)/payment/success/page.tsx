@@ -5,11 +5,14 @@ import { PageHero } from "@/components/page-hero"
 import { Button } from "@/components/ui/button"
 import { pageMetadata } from "@/lib/seo"
 
-export const metadata: Metadata = pageMetadata({
-  title: "Payment Received",
-  description: "Confirmation of your payment to The Beautifully Human Educator.",
-  path: "/payment/success",
-})
+export const metadata: Metadata = {
+  ...pageMetadata({
+    title: "Payment Received",
+    description: "Confirmation of your payment to The Beautifully Human Educator.",
+    path: "/payment/success",
+  }),
+  robots: { index: false, follow: false },
+}
 
 export default async function PaymentSuccessPage({
   searchParams,

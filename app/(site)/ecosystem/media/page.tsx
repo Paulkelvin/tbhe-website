@@ -12,7 +12,7 @@ import { breadcrumbSchema, pageMetadata } from "@/lib/seo"
 import { getArms, getShowEventsPage } from "@/sanity/queries"
 
 export const metadata = pageMetadata({
-  title: "Media & Publishing",
+  title: "Keynote Speaker, Media & Publishing",
   description:
     "Research, white papers, and keynote speaking on equity, educator burnout, and neurodivergent student support from The Beautifully Human Educator.",
   path: "/ecosystem/media",

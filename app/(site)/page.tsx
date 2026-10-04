@@ -17,7 +17,7 @@ import { DEFAULT_OG_IMAGE } from "@/lib/seo"
 import { getImpactStats, getSchoolPartners } from "@/sanity/queries"
 
 const HOME_DESCRIPTION =
-  "Educational consulting, Mission 139 special-education advocacy, and media & publishing, three arms built by Cyrkle B. Brent, M.Ed. to help educators and neurodivergent students thrive."
+  "Teacher coaching, Mission 139 special-education advocacy, and keynotes from Cyrkle B. Brent, M.Ed., helping educators and neurodivergent students thrive."
 
 // Matches the other CMS-driven pages (blog, resources, events): without
 // this, the homepage is fully static and only picks up Sanity edits
@@ -28,6 +28,7 @@ export const revalidate = 60
 // keep the root layout's full site title as-is (the title template would
 // otherwise double it up as "... (TBHE) | TBHE").
 export const metadata: Metadata = {
+  title: { absolute: "TBHE | Teacher Coaching, Special Ed Advocacy & Keynotes" },
   description: HOME_DESCRIPTION,
   alternates: { canonical: "/" },
   openGraph: {

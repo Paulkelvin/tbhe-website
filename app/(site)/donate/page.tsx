@@ -4,6 +4,7 @@ import { Quotes } from "@phosphor-icons/react/dist/ssr"
 
 import { PageHero } from "@/components/page-hero"
 import { DonateForm } from "@/components/donate-form"
+import { getSiteSettings } from "@/sanity/queries"
 import { SectionHeading } from "@/components/section-heading"
 import { Reveal } from "@/components/reveal"
 import { OrganicBlob } from "@/components/organic-art"
@@ -20,7 +21,10 @@ export const metadata = pageMetadata({
 const ADVOCATE_MEETING_ALT =
   "A family advocate and a mother reviewing an IEP document together at a table while her son reads a book beside them, in a warm office with a bookshelf and community resources pinned to a corkboard"
 
-export default function DonatePage() {
+export const revalidate = 60
+
+export default async function DonatePage() {
+  const settings = await getSiteSettings()
   return (
     <>
       <PageHero
@@ -47,6 +51,7 @@ export default function DonatePage() {
               alt={ADVOCATE_MEETING_ALT}
               fill
               sizes="(min-width: 1024px) 42vw, 90vw"
+              priority
               className="object-cover"
             />
           </Reveal>
@@ -90,7 +95,7 @@ export default function DonatePage() {
           <p className="eyebrow text-arm-mission-ink">Support our Mission</p>
           <h2 className="text-h2 mt-2 text-ink">Help us make a difference.</h2>
           <div className="mt-6">
-            <DonateForm />
+            <DonateForm ein={settings.mission139Ein} />
           </div>
         </Reveal>
 

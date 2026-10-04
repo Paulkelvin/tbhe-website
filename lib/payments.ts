@@ -4,6 +4,7 @@ import { SITE_URL } from "@/lib/content"
 import { brandedEmail, detailRows, sendEmail } from "@/lib/email"
 import { getLocationId, getSquareClient } from "@/lib/square"
 import { getAdminClient, hasAdminToken } from "@/sanity/adminClient"
+import { getSiteSettings } from "@/sanity/queries"
 
 // Server-only: talks to Square with the access token and writes to Sanity with the admin token.
 
@@ -108,6 +109,7 @@ async function sendPaymentEmails(record: Omit<PaymentRecord, "_id" | "emailsSent
   const date = new Date(record.paidAt).toLocaleDateString("en-US", { dateStyle: "long" })
   const isDonation = record.kind !== "service"
   const adminEmail = process.env.CONTACT_TO_EMAIL
+  const ein = isDonation ? (await getSiteSettings()).mission139Ein : undefined
 
   if (record.buyerEmail) {
     await sendEmail({
@@ -127,6 +129,15 @@ async function sendPaymentEmails(record: Omit<PaymentRecord, "_id" | "emailsSent
           Date: date,
           "Receipt number": record.receiptNumber,
           Card: record.cardBrand && record.cardLast4 ? `${record.cardBrand} ending ${record.cardLast4}` : undefined,
+          // IRS written-acknowledgment wording, required for gifts of $250 or more.
+          ...(isDonation
+            ? {
+                Organization: "Mission 139, a 501(c)(3) nonprofit organization",
+                EIN: ein,
+                "Tax note":
+                  "No goods or services were provided in exchange for this contribution. Please keep this email for your tax records.",
+              }
+            : {}),
         }),
         cta: record.receiptUrl ? { label: "View your receipt", href: record.receiptUrl } : undefined,
       }),

@@ -4,7 +4,8 @@ import Link from "next/link"
 import { formatPostDate } from "@/lib/blog"
 import type { Post } from "@/sanity/queries"
 
-export function BlogCard({ post }: { post: Post }) {
+export function BlogCard({ post, headingLevel = "h3" }: { post: Post; headingLevel?: "h2" | "h3" }) {
+  const Heading = headingLevel
   const date = formatPostDate(post.publishedAt)
   const external = Boolean(post.externalUrl)
 
@@ -27,9 +28,9 @@ export function BlogCard({ post }: { post: Post }) {
       </div>
       <div className="mt-5">
         {date ? <p className="eyebrow text-primary">{date}</p> : null}
-        <h3 className="text-h3 mt-2 line-clamp-2 text-ink transition-colors group-hover:text-primary">
+        <Heading className="text-h3 mt-2 line-clamp-2 text-ink transition-colors group-hover:text-primary">
           {post.title}
-        </h3>
+        </Heading>
         {post.excerpt ? (
           <p className="text-body-sm mt-2.5 line-clamp-2 text-body">
             {post.excerpt}

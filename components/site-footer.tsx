@@ -26,8 +26,8 @@ export async function SiteFooter() {
           <Image
             src="/images/tbhe-logo.png"
             alt={settings.siteName}
-            width={972}
-            height={631}
+            width={140}
+            height={91}
             className="h-12 w-auto"
           />
           <p className="text-body-sm mt-4 max-w-sm text-body">{settings.tagline}</p>
@@ -89,7 +89,7 @@ export async function SiteFooter() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-sm text-body hover:text-ink"
+                    className="inline-block py-1 text-sm text-body hover:text-ink"
                   >
                     {link.label}
                   </Link>
@@ -114,9 +114,15 @@ export async function SiteFooter() {
               <Link href="/terms" className="hover:text-ink">
                 Terms of Service
               </Link>
+              <Link href="/accessibility" className="hover:text-ink">
+                Accessibility
+              </Link>
             </div>
           </div>
-          <p>Mission 139 is a 501(c)(3) nonprofit organization.</p>
+          <p>
+            Mission 139 is a 501(c)(3) nonprofit organization
+            {settings.mission139Ein ? ` (EIN ${settings.mission139Ein})` : ""}.
+          </p>
         </div>
       </div>
     </footer>

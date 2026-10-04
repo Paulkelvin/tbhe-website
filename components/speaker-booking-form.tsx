@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, type FormEvent } from "react"
+import { HoneypotField } from "@/components/honeypot-field"
 
 import { Button } from "@/components/ui/button"
 
@@ -48,6 +49,7 @@ export function SpeakerBookingForm() {
       onSubmit={handleSubmit}
       className="grid gap-5 rounded-2xl border border-hairline bg-surface-card p-8"
     >
+      <HoneypotField />
       <div className="grid gap-5 sm:grid-cols-2">
         <Field label="Full name" htmlFor="speaker-name">
           <input id="speaker-name" name="name" required className="form-input" />
