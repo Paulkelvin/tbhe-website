@@ -363,6 +363,70 @@
   .btn-shine::after { animation: none; }
 }
 
+/* H.U.M.A.N. assistant avatar — a small, human-feeling character with
+   blink, breathing, thinking, greeting and happy states. */
+.human-avatar__head {
+  transform-box: fill-box;
+  transform-origin: 50% 88%;
+  animation: human-avatar-breathe 5.5s ease-in-out infinite;
+}
+.human-avatar__eyes {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: human-avatar-blink 6.5s ease-in-out infinite;
+}
+.human-avatar__pupils {
+  transition: transform 0.3s ease;
+}
+.human-avatar--thinking .human-avatar__head {
+  animation: human-avatar-think 2.4s ease-in-out infinite;
+}
+.human-avatar--thinking .human-avatar__pupils {
+  transform: translate(0.9px, -0.7px);
+}
+.human-avatar--happy {
+  animation: human-avatar-pop 0.55s ease-out;
+}
+.human-avatar__wave {
+  transform-box: fill-box;
+  transform-origin: 80% 90%;
+  animation: human-avatar-wave 1.1s ease-in-out infinite;
+}
+@keyframes human-avatar-breathe {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(0.7px); }
+}
+@keyframes human-avatar-blink {
+  0%, 92%, 100% { transform: scaleY(1); }
+  95%, 97% { transform: scaleY(0.08); }
+}
+@keyframes human-avatar-think {
+  0%, 100% { transform: rotate(0deg) translateY(0); }
+  50% { transform: rotate(-2.5deg) translateY(-0.7px); }
+}
+@keyframes human-avatar-pop {
+  0% { transform: scale(1); }
+  40% { transform: scale(1.07); }
+  100% { transform: scale(1); }
+}
+@keyframes human-avatar-wave {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-18deg); }
+  50% { transform: rotate(10deg); }
+  75% { transform: rotate(-12deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .human-avatar__head,
+  .human-avatar__eyes,
+  .human-avatar__pupils,
+  .human-avatar__wave,
+  .human-avatar--happy {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+  }
+}
+
 /* iOS Safari zooms into any focused field under 16px; unlayered so it beats text-sm utilities. */
 @media (max-width: 767px) {
   input,

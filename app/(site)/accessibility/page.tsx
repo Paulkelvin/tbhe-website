@@ -42,9 +42,10 @@ export default async function AccessibilityPage() {
             <li>Clear form labels and error messages.</li>
             <li>Animations and the homepage video respect your device&apos;s &quot;reduce motion&quot; setting.</li>
             <li>
-              The H.U.M.A.N. assistant can be opened and used by keyboard, keeps
-              focus inside the chat while it is open, announces replies to screen
-              readers, closes with Escape, and respects reduced-motion settings.
+              The H.U.M.A.N. assistant can be opened and used by keyboard, moves
+              focus into the chat when it opens, announces replies to screen
+              readers, closes with Escape or a click outside, and respects
+              reduced-motion settings.
             </li>
             <li>No flashing content, and videos play without sound.</li>
           </ul>

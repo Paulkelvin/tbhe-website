@@ -6,11 +6,7 @@ import { ArrowLeft, CheckCircle, EnvelopeSimple } from "@phosphor-icons/react"
 
 import { Button } from "@/components/ui/button"
 import { HoneypotField } from "@/components/honeypot-field"
-import {
-  INQUIRY_OPTIONS,
-  ROLE_OPTIONS,
-  TIMELINE_OPTIONS,
-} from "@/lib/assistant/inquiry"
+import { INQUIRY_OPTIONS } from "@/lib/assistant/inquiry"
 import { BUSINESS_CONTACT } from "@/lib/content"
 
 export function LeadForm({
@@ -40,10 +36,7 @@ export function LeadForm({
     const payload = {
       name: form.get("name"),
       email: form.get("email"),
-      role: form.get("role"),
       inquiry: form.get("inquiry"),
-      location: form.get("location"),
-      timeline: form.get("timeline"),
       message: form.get("message"),
       page,
       consent: form.get("consent") === "on",
@@ -111,9 +104,6 @@ export function LeadForm({
             <ArrowLeft size={16} />
             Back to the conversation
           </Button>
-          <Button asChild variant="ghost" size="lg">
-            <Link href="/contact">Visit the Contact page</Link>
-          </Button>
         </div>
       </div>
     )
@@ -127,24 +117,22 @@ export function LeadForm({
       <button
         type="button"
         onClick={onBack}
-        className="mb-4 inline-flex items-center gap-1.5 rounded-md text-xs font-semibold text-muted-ink transition-colors hover:text-ink focus-visible:ring-[3px] focus-visible:ring-ring/50 focus-visible:outline-none"
+        className="mb-4 inline-flex items-center gap-1.5 rounded-md py-1 text-xs font-semibold text-muted-ink transition-colors hover:text-ink focus-visible:ring-[3px] focus-visible:ring-ring/50 focus-visible:outline-none"
       >
         <ArrowLeft size={14} />
-        Back to the conversation
+        Back
       </button>
 
-      <p className="eyebrow text-primary">Connect with our team</p>
-      <h3 className="text-h3 mt-1.5 text-ink">Tell us a little about you</h3>
+      <h3 className="text-h3 text-ink">Talk with our team</h3>
       <p className="text-body-sm mt-1.5 text-body">
-        We&apos;ll route your note to the right person — no need to know which
-        organization to choose.
+        Share a few details and we&apos;ll route your note to the right person.
       </p>
 
       <HoneypotField />
 
       <div className="mt-5 grid gap-4">
         <div className="grid gap-4 sm:grid-cols-2">
-          <Field label="Full name" htmlFor="assistant-name" required>
+          <Field label="Name" htmlFor="assistant-name" required>
             <input
               id="assistant-name"
               name="name"
@@ -165,26 +153,8 @@ export function LeadForm({
           </Field>
         </div>
 
-        <Field label="I am a…" htmlFor="assistant-role">
-          <select
-            id="assistant-role"
-            name="role"
-            className="form-input"
-            defaultValue=""
-          >
-            <option value="" disabled>
-              Select one
-            </option>
-            {ROLE_OPTIONS.map((role) => (
-              <option key={role} value={role}>
-                {role}
-              </option>
-            ))}
-          </select>
-        </Field>
-
         <Field
-          label="I'm reaching out about"
+          label="What can we help with?"
           htmlFor="assistant-inquiry"
           required
         >
@@ -206,49 +176,19 @@ export function LeadForm({
           </select>
         </Field>
 
-        <div className="grid gap-4 sm:grid-cols-2">
-          <Field label="City and state" htmlFor="assistant-location">
-            <input
-              id="assistant-location"
-              name="location"
-              placeholder="e.g. Bowie, MD"
-              autoComplete="address-level2"
-              className="form-input"
-            />
-          </Field>
-          <Field label="Timeline" htmlFor="assistant-timeline">
-            <select
-              id="assistant-timeline"
-              name="timeline"
-              className="form-input"
-              defaultValue=""
-            >
-              <option value="" disabled>
-                Select one
-              </option>
-              {TIMELINE_OPTIONS.map((option) => (
-                <option key={option} value={option}>
-                  {option}
-                </option>
-              ))}
-            </select>
-          </Field>
-        </div>
-
-        <Field label="How can we help?" htmlFor="assistant-message">
+        <Field label="Message" htmlFor="assistant-message">
           <textarea
             id="assistant-message"
             name="message"
-            rows={4}
+            rows={3}
             className="form-input resize-none"
-            placeholder="Share what's going on and what kind of support you're looking for."
+            placeholder="What's going on?"
           />
         </Field>
 
         <p className="text-xs leading-relaxed text-muted-ink">
           Please don&apos;t include medical records, IEP documents, or your
-          child&apos;s full name. If the team needs more, they&apos;ll ask
-          privately.
+          child&apos;s full name.
         </p>
 
         <label className="flex items-start gap-2.5 text-xs leading-relaxed text-body">

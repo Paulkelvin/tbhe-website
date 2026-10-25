@@ -27,12 +27,13 @@ function textStream(text: string) {
   })
 }
 
-function streamResponse(stream: ReadableStream<Uint8Array>) {
+function streamResponse(stream: ReadableStream<Uint8Array>, crisis = false) {
   return new Response(stream, {
     headers: {
       "Content-Type": "text/plain; charset=utf-8",
       "Cache-Control": "no-store, no-transform",
       "X-Accel-Buffering": "no",
+      ...(crisis ? { "X-Assistant-Safety": "crisis" } : {}),
     },
   })
 }
@@ -85,7 +86,7 @@ export async function POST(request: Request) {
 
   // A fixed response guarantees crisis resources even if the model call fails.
   if (isCrisisMessage(messages[messages.length - 1].content)) {
-    return streamResponse(textStream(CRISIS_RESPONSE))
+    return streamResponse(textStream(CRISIS_RESPONSE), true)
   }
 
   const apiKey = process.env.OPENAI_API_KEY

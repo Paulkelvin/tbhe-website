@@ -1,57 +1,23 @@
-// Client-safe assistant identity and pathway copy.
+// Client-safe assistant identity and starter prompts.
 
 export const ASSISTANT_NAME = "H.U.M.A.N."
 export const ASSISTANT_EXPANSION =
   "Helping You Understand, Move Forward, Advocate & Navigate"
 
-export const GREETING = `Welcome! I'm H.U.M.A.N., your guide for The Beautifully Human Educator and Mission 139. Tell me a little about yourself, and I'll help you find the right next step.`
+export const GREETING = `Hi! I'm H.U.M.A.N., your guide for The Beautifully Human Educator and Mission 139. What can I help you with today?`
 
-export const PATHWAYS = [
+export const SUGGESTIONS = [
   {
-    id: "parent",
-    label: "I'm a parent",
-    detail: "Advocacy & IEPs",
-    prompt: "I'm a parent or caregiver looking for support for my child.",
-    icon: "HandHeart",
+    label: "My child needs support",
+    prompt: "I'm a parent looking for support for my child.",
   },
   {
-    id: "educator",
-    label: "I'm an educator",
-    detail: "Coaching & PD",
-    prompt: "I'm an educator interested in coaching or professional learning.",
-    icon: "Student",
-  },
-  {
-    id: "leader",
-    label: "I'm a school leader",
-    detail: "Consulting",
+    label: "Coaching for my school",
     prompt:
-      "I'm a school leader looking for consulting or school improvement support.",
-    icon: "Buildings",
+      "I'm looking for coaching or professional development for my school.",
   },
   {
-    id: "organizer",
-    label: "I'm an event organizer",
-    detail: "Speaking",
-    prompt:
-      "I'm planning an event and want to learn about speaking or workshops.",
-    icon: "Microphone",
-  },
-  {
-    id: "donor",
-    label: "I want to give",
-    detail: "Mission 139",
-    prompt: "I'd like to learn about donating or partnering with Mission 139.",
-    icon: "Heart",
-  },
-  {
-    id: "exploring",
-    label: "I'm exploring",
-    detail: "Learn more",
-    prompt:
-      "I'm just learning about The Beautifully Human Educator and Mission 139.",
-    icon: "Compass",
+    label: "Speaking or an event",
+    prompt: "I'd like to ask about speaking or workshops for an event.",
   },
 ] as const
-
-export type Pathway = (typeof PATHWAYS)[number]
