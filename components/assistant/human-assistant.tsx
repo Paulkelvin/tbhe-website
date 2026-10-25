@@ -25,6 +25,28 @@ import { cn } from "@/lib/utils"
 
 const EASE = [0.4, 0, 0.2, 1] as const
 const MAX_INPUT = 1500
+const LAUNCHER_WIDTH = 104
+const LAUNCHER_HEIGHT = 100
+const LAUNCHER_EDGE = 12
+const LAUNCHER_POSITION_KEY = "tbhe-human-launcher-position"
+
+type LauncherPosition = { x: number; y: number }
+
+function clampLauncherPosition(position: LauncherPosition): LauncherPosition {
+  const maxX = Math.max(
+    LAUNCHER_EDGE,
+    window.innerWidth - LAUNCHER_WIDTH - LAUNCHER_EDGE
+  )
+  const maxY = Math.max(
+    LAUNCHER_EDGE,
+    window.innerHeight - LAUNCHER_HEIGHT - LAUNCHER_EDGE
+  )
+
+  return {
+    x: Math.min(Math.max(LAUNCHER_EDGE, position.x), maxX),
+    y: Math.min(Math.max(LAUNCHER_EDGE, position.y), maxY),
+  }
+}
 
 // Markdown is only needed once a reply appears, so keep its parser out of the
 // initial page bundle.
@@ -59,6 +81,8 @@ export function HumanAssistant() {
   const [announcement, setAnnouncement] = useState("")
   const [stickToBottom, setStickToBottom] = useState(true)
   const [mood, setMood] = useState<AvatarMood>("idle")
+  const [position, setPosition] = useState<LauncherPosition | null>(null)
+  const [dragging, setDragging] = useState(false)
 
   const panelRef = useRef<HTMLDivElement>(null)
   const launcherRef = useRef<HTMLButtonElement>(null)
@@ -71,6 +95,16 @@ export function HumanAssistant() {
   const busyRef = useRef(false)
   const timeoutRef = useRef<number | null>(null)
   const timedOutRef = useRef(false)
+  const positionRef = useRef<LauncherPosition | null>(null)
+  const dragRef = useRef<{
+    startX: number
+    startY: number
+    originX: number
+    originY: number
+    pointerId: number
+    moved: boolean
+  } | null>(null)
+  const suppressClickRef = useRef(false)
 
   function nextId() {
     idRef.current += 1
@@ -371,6 +405,133 @@ export function HumanAssistant() {
     }
   }
 
+  // Restore the launcher where the visitor left it, or bottom-right on a
+  // first visit. Keep it inside the viewport on resize.
+  useEffect(() => {
+    const margin = window.matchMedia("(min-width: 640px)").matches ? 24 : 16
+    let next: LauncherPosition = {
+      x: window.innerWidth - LAUNCHER_WIDTH - margin,
+      y: window.innerHeight - LAUNCHER_HEIGHT - margin,
+    }
+
+    try {
+      const saved = window.localStorage.getItem(LAUNCHER_POSITION_KEY)
+      if (saved) {
+        const parsed = JSON.parse(saved) as Partial<LauncherPosition>
+        if (Number.isFinite(parsed.x) && Number.isFinite(parsed.y)) {
+          next = { x: parsed.x as number, y: parsed.y as number }
+        }
+      }
+    } catch {
+      // Private mode or a corrupt value: fall back to the default corner.
+    }
+
+    const clamped = clampLauncherPosition(next)
+    positionRef.current = clamped
+    setPosition(clamped)
+
+    function handleResize() {
+      const current = positionRef.current
+      if (!current) return
+      const resized = clampLauncherPosition(current)
+      positionRef.current = resized
+      setPosition(resized)
+    }
+
+    window.addEventListener("resize", handleResize)
+    return () => window.removeEventListener("resize", handleResize)
+  }, [])
+
+  function handleLauncherPointerDown(
+    event: React.PointerEvent<HTMLButtonElement>
+  ) {
+    if (event.pointerType === "mouse" && event.button !== 0) return
+    const current = positionRef.current
+    if (!current) return
+
+    suppressClickRef.current = false
+    dragRef.current = {
+      startX: event.clientX,
+      startY: event.clientY,
+      originX: current.x,
+      originY: current.y,
+      pointerId: event.pointerId,
+      moved: false,
+    }
+
+    try {
+      event.currentTarget.setPointerCapture(event.pointerId)
+    } catch {
+      // Pointer capture is a nice-to-have; dragging still works without it.
+    }
+  }
+
+  function handleLauncherPointerMove(
+    event: React.PointerEvent<HTMLButtonElement>
+  ) {
+    const drag = dragRef.current
+    if (!drag) return
+
+    const dx = event.clientX - drag.startX
+    const dy = event.clientY - drag.startY
+    if (!drag.moved && Math.hypot(dx, dy) < 6) return
+
+    if (!drag.moved) {
+      drag.moved = true
+      setDragging(true)
+    }
+
+    const next = clampLauncherPosition({
+      x: drag.originX + dx,
+      y: drag.originY + dy,
+    })
+    positionRef.current = next
+    setPosition(next)
+  }
+
+  function handleLauncherPointerUp(
+    event: React.PointerEvent<HTMLButtonElement>
+  ) {
+    const drag = dragRef.current
+    if (!drag) return
+
+    dragRef.current = null
+    setDragging(false)
+
+    try {
+      if (event.currentTarget.hasPointerCapture(drag.pointerId)) {
+        event.currentTarget.releasePointerCapture(drag.pointerId)
+      }
+    } catch {
+      // The browser may have already released it.
+    }
+
+    if (!drag.moved) return
+
+    const finalPosition = positionRef.current
+    if (finalPosition) {
+      try {
+        window.localStorage.setItem(
+          LAUNCHER_POSITION_KEY,
+          JSON.stringify(finalPosition)
+        )
+      } catch {
+        // Saving is optional; the position still holds for this visit.
+      }
+    }
+
+    // A drag ends with a click event; don't let it open the chat.
+    suppressClickRef.current = true
+    window.setTimeout(() => {
+      suppressClickRef.current = false
+    }, 0)
+  }
+
+  function handleLauncherClick() {
+    if (suppressClickRef.current) return
+    setOpen(true)
+  }
+
   // The page behind is scroll-locked, so keyboard focus should stay in the
   // panel too.
   function handlePanelKeyDown(event: React.KeyboardEvent<HTMLDivElement>) {
@@ -404,26 +565,44 @@ export function HumanAssistant() {
   return (
     <>
       <AnimatePresence>
-        {!open ? (
+        {!open && position ? (
           <motion.button
             key="human-launcher"
             ref={launcherRef}
             type="button"
-            onClick={() => setOpen(true)}
+            style={{ left: position.x, top: position.y }}
+            onClick={handleLauncherClick}
+            onPointerDown={handleLauncherPointerDown}
+            onPointerMove={handleLauncherPointerMove}
+            onPointerUp={handleLauncherPointerUp}
+            onPointerCancel={handleLauncherPointerUp}
             aria-expanded={open}
             aria-controls="human-assistant-panel"
             aria-label={`Ask ${ASSISTANT_NAME}, the virtual assistant`}
+            title="Drag to move"
             initial={reduceMotion ? false : { opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             exit={reduceMotion ? undefined : { opacity: 0, y: 12 }}
             transition={{ duration: 0.3, ease: EASE }}
-            className="group fixed right-4 bottom-[max(1rem,env(safe-area-inset-bottom))] z-50 flex size-16 items-center justify-center rounded-full border border-hairline bg-surface-card shadow-[0_16px_36px_-16px_rgba(37,24,39,0.55)] transition-transform duration-200 hover:-translate-y-0.5 focus-visible:ring-4 focus-visible:ring-primary/25 focus-visible:outline-none sm:right-6 sm:bottom-6"
+            className={cn(
+              "group fixed z-50 flex touch-none flex-col items-end gap-1.5 rounded-2xl select-none focus-visible:outline-none",
+              dragging
+                ? "cursor-grabbing"
+                : "cursor-grab active:cursor-grabbing"
+            )}
           >
-            <span className="pointer-events-none absolute right-0 bottom-full mb-2 whitespace-nowrap rounded-full border border-hairline bg-surface-card/95 px-2.5 py-1 text-[11px] font-semibold tracking-[0.01em] text-ink shadow-[0_6px_18px_-8px_rgba(37,24,39,0.4)] backdrop-blur">
+            <span className="whitespace-nowrap rounded-full border border-hairline bg-surface-card/95 px-2.5 py-1 text-[11px] font-semibold tracking-[0.01em] text-ink shadow-[0_6px_18px_-8px_rgba(37,24,39,0.4)] backdrop-blur">
               Ask {ASSISTANT_NAME}
             </span>
-            <HumanAvatar size={52} />
-            <span className="absolute right-1.5 bottom-1.5 size-3 rounded-full border-2 border-surface-card bg-[#557521]" />
+            <span
+              className={cn(
+                "relative flex size-16 items-center justify-center rounded-full border border-hairline bg-surface-card shadow-[0_16px_36px_-16px_rgba(37,24,39,0.55)] transition-[box-shadow,border-color] duration-200 group-hover:border-primary/30 group-hover:shadow-[0_20px_40px_-16px_rgba(37,24,39,0.6)] group-focus-visible:ring-4 group-focus-visible:ring-primary/25",
+                dragging && "border-primary/40"
+              )}
+            >
+              <HumanAvatar size={52} />
+              <span className="absolute right-1.5 bottom-1.5 size-3 rounded-full border-2 border-surface-card bg-[#557521]" />
+            </span>
           </motion.button>
         ) : null}
       </AnimatePresence>
