@@ -4,7 +4,13 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { useCallback, useEffect, useRef, useState } from "react"
 import { AnimatePresence, motion, useReducedMotion } from "motion/react"
-import { PaperPlaneRight, Stop, WarningCircle, X } from "@phosphor-icons/react"
+import {
+  PaperPlaneRight,
+  Stop,
+  UserCircle,
+  WarningCircle,
+  X,
+} from "@phosphor-icons/react"
 
 import { AssistantText } from "@/components/assistant/assistant-message"
 import {
@@ -102,6 +108,26 @@ export function HumanAssistant() {
     setOpen(false)
     setView("chat")
   }, [pathname])
+
+  // Keep the page still while the chat is open; only the conversation
+  // scrolls, inside its own panel.
+  useEffect(() => {
+    if (!open) return
+    const bodyOverflow = document.body.style.overflow
+    const htmlOverflow = document.documentElement.style.overflow
+    const htmlGutter = document.documentElement.style.scrollbarGutter
+
+    // Reserve the scrollbar's space so hiding it doesn't shift the page.
+    document.documentElement.style.scrollbarGutter = "stable"
+    document.body.style.overflow = "hidden"
+    document.documentElement.style.overflow = "hidden"
+
+    return () => {
+      document.body.style.overflow = bodyOverflow
+      document.documentElement.style.overflow = htmlOverflow
+      document.documentElement.style.scrollbarGutter = htmlGutter
+    }
+  }, [open])
 
   // Wave once when the greeting appears, never mid-conversation.
   useEffect(() => {
@@ -307,15 +333,13 @@ export function HumanAssistant() {
             animate={{ opacity: 1, y: 0 }}
             exit={reduceMotion ? undefined : { opacity: 0, y: 12 }}
             transition={{ duration: 0.3, ease: EASE }}
-            className="fixed right-4 bottom-[max(1rem,env(safe-area-inset-bottom))] z-50 flex items-center gap-2 rounded-full border border-hairline bg-surface-card py-1.5 pr-4 pl-1.5 shadow-[0_14px_34px_-14px_rgba(37,24,39,0.45)] transition-transform duration-200 hover:-translate-y-0.5 focus-visible:ring-4 focus-visible:ring-primary/25 focus-visible:outline-none sm:right-6 sm:bottom-6"
+            className="group fixed right-4 bottom-[max(1rem,env(safe-area-inset-bottom))] z-50 flex size-16 items-center justify-center rounded-full border border-hairline bg-surface-card shadow-[0_16px_36px_-16px_rgba(37,24,39,0.55)] transition-transform duration-200 hover:-translate-y-0.5 focus-visible:ring-4 focus-visible:ring-primary/25 focus-visible:outline-none sm:right-6 sm:bottom-6"
           >
-            <span className="relative">
-              <HumanAvatar size={38} />
-              <span className="absolute right-0 bottom-0 size-2.5 rounded-full border-2 border-surface-card bg-[#557521]" />
-            </span>
-            <span className="text-sm font-semibold text-ink">
+            <span className="pointer-events-none absolute right-0 bottom-full mb-2 whitespace-nowrap rounded-full border border-hairline bg-surface-card/95 px-2.5 py-1 text-[11px] font-semibold tracking-[0.01em] text-ink shadow-[0_6px_18px_-8px_rgba(37,24,39,0.4)] backdrop-blur">
               Ask {ASSISTANT_NAME}
             </span>
+            <HumanAvatar size={52} />
+            <span className="absolute right-1.5 bottom-1.5 size-3 rounded-full border-2 border-surface-card bg-[#557521]" />
           </motion.button>
         ) : null}
       </AnimatePresence>
@@ -341,22 +365,27 @@ export function HumanAssistant() {
 
             <header className="flex items-center gap-3 border-b border-hairline px-4 py-3">
               <HumanAvatar size={44} mood={mood} />
-              <div className="min-w-0 flex-1">
+              <div className="flex min-w-0 flex-1 items-baseline gap-2">
                 <h2 id="human-assistant-title" className="text-h3-alt text-ink">
                   {ASSISTANT_NAME}
                 </h2>
-                <p className="mt-0.5 flex items-center gap-1.5 text-xs text-muted-ink">
-                  <span
-                    className={cn(
-                      "size-1.5 rounded-full",
-                      streaming
-                        ? "animate-pulse bg-arm-media-ink"
-                        : "bg-[#557521]"
-                    )}
-                  />
-                  {streaming ? "Typing…" : "AI guide"}
-                </p>
+                {streaming ? (
+                  <span className="text-xs font-medium text-muted-ink">
+                    Typing…
+                  </span>
+                ) : null}
               </div>
+              {view === "chat" ? (
+                <button
+                  type="button"
+                  onClick={() => setView("lead")}
+                  aria-label="Talk to a person"
+                  title="Talk to a person"
+                  className="flex size-10 items-center justify-center rounded-full text-muted-ink transition-colors hover:bg-canvas-soft hover:text-ink focus-visible:ring-[3px] focus-visible:ring-ring/50 focus-visible:outline-none"
+                >
+                  <UserCircle size={20} />
+                </button>
+              ) : null}
               <button
                 type="button"
                 onClick={closePanel}
@@ -481,17 +510,6 @@ export function HumanAssistant() {
                           </button>
                         )}
                       </form>
-
-                      <p className="mt-1.5 text-center text-xs leading-tight text-muted-ink">
-                        AI guide · may make mistakes ·{" "}
-                        <button
-                          type="button"
-                          onClick={() => setView("lead")}
-                          className="font-semibold text-primary underline underline-offset-2 focus-visible:ring-[3px] focus-visible:ring-ring/50 focus-visible:outline-none"
-                        >
-                          Talk to a person
-                        </button>
-                      </p>
                     </div>
                   )}
                 </>
@@ -549,9 +567,8 @@ function StreamingBubble({
 
 function TypingBubble({ reduceMotion }: { reduceMotion: boolean }) {
   return (
-    <div className="flex items-end gap-2">
-      <HumanAvatar size={26} mood="thinking" />
-      <div className="flex items-center gap-2 rounded-2xl rounded-bl-md bg-canvas-soft px-3 py-2.5">
+    <div className="flex">
+      <div className="flex items-center gap-1 rounded-2xl rounded-tl-md bg-canvas-soft px-3.5 py-3">
         <span className="flex items-center gap-1" aria-hidden>
           {[0, 1, 2].map((dot) => (
             <span
