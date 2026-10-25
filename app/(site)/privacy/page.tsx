@@ -20,7 +20,7 @@ export default async function PrivacyPage() {
 
       <section className="section">
         <div className="prose-legal mx-auto max-w-2xl">
-          <p className="text-sm text-muted-ink">Last updated: October 4, 2026</p>
+          <p className="text-sm text-muted-ink">Last updated: October 25, 2026</p>
 
           <p>
             This Privacy Policy explains what information {settings.siteName}{" "}
@@ -56,6 +56,15 @@ export default async function PrivacyPage() {
               payment) is completed, we keep a record of your name, email
               address, the amount, what it was for, and the receipt number,
               and we email a confirmation to you and to our team.
+            </li>
+            <li>
+              <strong>The H.U.M.A.N. assistant:</strong> messages you type into
+              the chat are sent to OpenAI to generate a reply. If you choose to
+              share your details through the &quot;Talk with our team&quot;
+              form, we also collect your name, email address, role, inquiry
+              type, city and state, timeline, and message. Please do not send
+              medical records, IEP documents, or your child&apos;s full name
+              through the assistant.
             </li>
             <li>
               <strong>Scheduling a consultation:</strong> the booking
@@ -103,8 +112,28 @@ export default async function PrivacyPage() {
             Form submissions are delivered to our team by email through
             Resend, our email delivery provider. Donation payments are
             processed by Square. Consultation scheduling is handled by
-            Calendly. Each of these providers processes data under its own
+            Calendly. Chat messages sent to the H.U.M.A.N. assistant are
+            processed by OpenAI to generate a response, under OpenAI&apos;s API
+            terms. Each of these providers processes data under its own
             privacy policy and security practices.
+          </p>
+
+          <h2>The H.U.M.A.N. assistant</h2>
+          <p>
+            H.U.M.A.N. is an AI assistant, not a person, attorney, clinician,
+            or school official. It can explain general educational processes
+            and connect you with the right team, but it does not give legal,
+            medical, or psychological advice, and it does not decide
+            eligibility for Mission 139 assistance or any service.
+          </p>
+          <p>
+            We do not store chat transcripts on our servers; the conversation
+            stays in your browser for the current visit. If you submit the
+            &quot;Talk with our team&quot; form, the details you enter are
+            emailed to the appropriate inbox and may also trigger an automatic
+            acknowledgment email to you. Mission 139 funding and eligibility
+            decisions are always made by authorized people, never by the
+            assistant.
           </p>
 
           <h2>Children&apos;s privacy</h2>

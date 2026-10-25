@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { PageTransition } from "@/components/page-transition"
+import { HumanAssistant } from "@/components/assistant/human-assistant"
 import { SITE_URL } from "@/lib/content"
 import { DEFAULT_OG_IMAGE } from "@/lib/seo"
 import { getArms, getNavLinks, getSiteSettings } from "@/sanity/queries"
@@ -105,6 +106,7 @@ export default async function RootLayout({ children }: RootLayoutProps) {
           <PageTransition>{children}</PageTransition>
         </main>
         <SiteFooter />
+        <HumanAssistant />
       </body>
     </html>
   )

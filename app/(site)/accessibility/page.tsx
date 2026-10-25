@@ -20,7 +20,7 @@ export default async function AccessibilityPage() {
 
       <section className="section">
         <div className="prose-legal mx-auto max-w-2xl">
-          <p className="text-sm text-muted-ink">Last updated: October 4, 2026</p>
+          <p className="text-sm text-muted-ink">Last updated: October 25, 2026</p>
 
           <p>
             {settings.siteName} serves educators and families of neurodivergent students, so we want this site
@@ -41,13 +41,19 @@ export default async function AccessibilityPage() {
             <li>Descriptive alternative text on meaningful images.</li>
             <li>Clear form labels and error messages.</li>
             <li>Animations and the homepage video respect your device&apos;s &quot;reduce motion&quot; setting.</li>
+            <li>
+              The H.U.M.A.N. assistant can be opened and used by keyboard, keeps
+              focus inside the chat while it is open, announces replies to screen
+              readers, closes with Escape, and respects reduced-motion settings.
+            </li>
             <li>No flashing content, and videos play without sound.</li>
           </ul>
 
           <h2>Third-party tools</h2>
           <p>
-            Some features are provided by other companies, including Calendly (scheduling) and Square (payments).
-            We choose providers with accessibility in mind, but we do not control their pages.
+            Some features are provided by other companies, including Calendly (scheduling), Square (payments), and
+            OpenAI (the H.U.M.A.N. assistant). We choose providers with accessibility in mind, but we do not control
+            their pages or their models&apos; output.
           </p>
 
           <h2>Tell us about a problem</h2>
