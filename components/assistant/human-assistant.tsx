@@ -1,6 +1,7 @@
 "use client"
 
 import Link from "next/link"
+import dynamic from "next/dynamic"
 import { usePathname } from "next/navigation"
 import { useCallback, useEffect, useRef, useState } from "react"
 import { AnimatePresence, motion, useReducedMotion } from "motion/react"
@@ -12,7 +13,6 @@ import {
   X,
 } from "@phosphor-icons/react"
 
-import { AssistantText } from "@/components/assistant/assistant-message"
 import {
   HumanAvatar,
   type AvatarMood,
@@ -25,6 +25,21 @@ import { cn } from "@/lib/utils"
 
 const EASE = [0.4, 0, 0.2, 1] as const
 const MAX_INPUT = 1500
+
+// Markdown is only needed once a reply appears, so keep its parser out of the
+// initial page bundle.
+const AssistantText = dynamic(
+  () =>
+    import("@/components/assistant/assistant-message").then(
+      (module) => module.AssistantText
+    ),
+  {
+    ssr: false,
+    loading: () => (
+      <span className="inline-block h-3 w-24 animate-pulse rounded bg-ink/10" />
+    ),
+  }
+)
 
 type ChatMessage = { id: string; role: "user" | "assistant"; content: string }
 type AssistantError = { code: string; message: string }
@@ -53,6 +68,9 @@ export function HumanAssistant() {
   const streamRef = useRef("")
   const idRef = useRef(0)
   const moodTimerRef = useRef<number | null>(null)
+  const busyRef = useRef(false)
+  const timeoutRef = useRef<number | null>(null)
+  const timedOutRef = useRef(false)
 
   function nextId() {
     idRef.current += 1
@@ -74,6 +92,7 @@ export function HumanAssistant() {
 
   const closePanel = useCallback(() => {
     abortRef.current?.abort()
+    if (timeoutRef.current) window.clearTimeout(timeoutRef.current)
     clearMoodTimer()
     setOpen(false)
     setView("chat")
@@ -108,6 +127,13 @@ export function HumanAssistant() {
     setOpen(false)
     setView("chat")
   }, [pathname])
+
+  // Warm the markdown chunk as soon as the panel opens, so the first reply
+  // renders instantly instead of showing a placeholder.
+  useEffect(() => {
+    if (!open) return
+    void import("@/components/assistant/assistant-message")
+  }, [open])
 
   // Keep the page still while the chat is open; only the conversation
   // scrolls, inside its own panel.
@@ -180,6 +206,8 @@ export function HumanAssistant() {
   }, [messages, streamText, view, open, stickToBottom, streaming])
 
   async function runReply(history: ChatMessage[]) {
+    busyRef.current = true
+    timedOutRef.current = false
     clearMoodTimer()
     setMood("thinking")
     setStreaming(true)
@@ -191,6 +219,10 @@ export function HumanAssistant() {
 
     const controller = new AbortController()
     abortRef.current = controller
+    timeoutRef.current = window.setTimeout(() => {
+      timedOutRef.current = true
+      controller.abort()
+    }, 45_000)
 
     try {
       const response = await fetch("/api/assistant", {
@@ -252,10 +284,28 @@ export function HumanAssistant() {
             { id: nextId(), role: "assistant", content: partial },
           ])
         }
-        setMood("idle")
+
+        if (timedOutRef.current) {
+          setError({
+            code: "timeout",
+            message:
+              "This is taking longer than usual. Please try again, or reach the team through the Contact page.",
+          })
+          setMood("concerned")
+        } else {
+          setMood("idle")
+        }
         return
       }
 
+      // Keep whatever part of the answer already arrived, then offer a retry.
+      const partial = streamRef.current.trim()
+      if (partial) {
+        setMessages((current) => [
+          ...current,
+          { id: nextId(), role: "assistant", content: partial },
+        ])
+      }
       setError({
         code: "error",
         message:
@@ -263,6 +313,11 @@ export function HumanAssistant() {
       })
       setMood("concerned")
     } finally {
+      if (timeoutRef.current) {
+        window.clearTimeout(timeoutRef.current)
+        timeoutRef.current = null
+      }
+      busyRef.current = false
       setStreaming(false)
       setStreamText("")
       streamRef.current = ""
@@ -273,8 +328,9 @@ export function HumanAssistant() {
 
   function sendMessage(text: string) {
     const content = text.trim().slice(0, MAX_INPUT)
-    if (!content || streaming) return
+    if (!content || busyRef.current) return
 
+    busyRef.current = true
     setInput("")
     const userMessage: ChatMessage = {
       id: nextId(),
@@ -288,12 +344,14 @@ export function HumanAssistant() {
   }
 
   function retry() {
+    if (busyRef.current) return
     if (messages.length && messages[messages.length - 1].role === "user") {
       void runReply(messages)
     }
   }
 
   function stopGenerating() {
+    timedOutRef.current = false
     abortRef.current?.abort()
   }
 
@@ -310,6 +368,32 @@ export function HumanAssistant() {
     if (desktop || event.ctrlKey || event.metaKey) {
       event.preventDefault()
       sendMessage(input)
+    }
+  }
+
+  // The page behind is scroll-locked, so keyboard focus should stay in the
+  // panel too.
+  function handlePanelKeyDown(event: React.KeyboardEvent<HTMLDivElement>) {
+    if (event.key !== "Tab") return
+
+    const root = panelRef.current
+    if (!root) return
+    const focusable = Array.from(
+      root.querySelectorAll<HTMLElement>(
+        'a[href], button:not([disabled]), textarea:not([disabled]), input:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])'
+      )
+    ).filter((element) => element.getClientRects().length > 0)
+
+    if (!focusable.length) return
+    const first = focusable[0]
+    const last = focusable[focusable.length - 1]
+
+    if (event.shiftKey && document.activeElement === first) {
+      event.preventDefault()
+      last.focus()
+    } else if (!event.shiftKey && document.activeElement === last) {
+      event.preventDefault()
+      first.focus()
     }
   }
 
@@ -351,8 +435,10 @@ export function HumanAssistant() {
             id="human-assistant-panel"
             ref={panelRef}
             role="dialog"
+            aria-modal="true"
             aria-labelledby="human-assistant-title"
             tabIndex={-1}
+            onKeyDown={handlePanelKeyDown}
             initial={reduceMotion ? false : { opacity: 0, y: 24, scale: 0.98 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={reduceMotion ? undefined : { opacity: 0, y: 16, scale: 0.98 }}
@@ -525,7 +611,7 @@ export function HumanAssistant() {
 function MessageBubble({ message }: { message: ChatMessage }) {
   if (message.role === "user") {
     return (
-      <div className="flex justify-end">
+      <div className="assistant-message-in flex justify-end">
         <div className="max-w-[86%] rounded-2xl rounded-br-md bg-primary px-3.5 py-2.5 text-[0.9375rem] leading-[1.65] whitespace-pre-wrap text-primary-foreground">
           {message.content}
         </div>
@@ -534,7 +620,7 @@ function MessageBubble({ message }: { message: ChatMessage }) {
   }
 
   return (
-    <div className="flex">
+    <div className="assistant-message-in flex">
       <div className="max-w-[88%] rounded-2xl rounded-tl-md bg-canvas-soft px-3.5 py-2.5 text-[0.9375rem] leading-[1.65] text-ink">
         <AssistantText text={message.content} />
       </div>

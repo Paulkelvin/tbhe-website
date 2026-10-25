@@ -27,6 +27,13 @@ export function HumanAvatar({
   const uid = useId().replace(/[^a-zA-Z0-9]/g, "")
   const backgroundId = `avatar-bg-${uid}`
   const clipId = `avatar-clip-${uid}`
+  const skinId = `avatar-skin-${uid}`
+  const hairId = `avatar-hair-${uid}`
+  const shoulderId = `avatar-shoulder-${uid}`
+
+  const skinFill = `url(#${skinId})`
+  const hairFill = `url(#${hairId})`
+  const shoulderFill = `url(#${shoulderId})`
 
   const thinking = mood === "thinking"
   const concerned = mood === "concerned"
@@ -63,6 +70,18 @@ export function HumanAvatar({
             <stop stopColor="#f8f3fa" />
             <stop offset="1" stopColor="#e3d3ea" />
           </linearGradient>
+          <linearGradient id={skinId} x1="0" y1="0" x2="0" y2="1">
+            <stop stopColor="#ab7859" />
+            <stop offset="1" stopColor="#895440" />
+          </linearGradient>
+          <linearGradient id={hairId} x1="0" y1="0" x2="0.8" y2="1">
+            <stop stopColor="#3b262b" />
+            <stop offset="1" stopColor="#211417" />
+          </linearGradient>
+          <linearGradient id={shoulderId} x1="0" y1="0" x2="1" y2="1">
+            <stop stopColor="#8a4aa3" />
+            <stop offset="1" stopColor="#603072" />
+          </linearGradient>
           <clipPath id={clipId}>
             <circle cx="32" cy="32" r="32" />
           </clipPath>
@@ -74,7 +93,15 @@ export function HumanAvatar({
           {/* Shoulders and collar */}
           <path
             d="M6 64 C8 52 19 45 32 45 C45 45 56 52 58 64 Z"
-            fill="#763d8e"
+            fill={shoulderFill}
+          />
+          <ellipse
+            cx="32"
+            cy="45.6"
+            rx="13"
+            ry="2.1"
+            fill="#3a2030"
+            opacity="0.16"
           />
           <path
             d="M26.5 45 L32 52 L37.5 45 L34 43.8 L32 47 L30 43.8 Z"
@@ -87,27 +114,43 @@ export function HumanAvatar({
             width="7.2"
             height="9"
             rx="3.4"
-            fill="#8a5a42"
+            fill={skinFill}
           />
 
           <g className="human-avatar__head">
             {/* Curly hair, back volume and side puffs */}
-            <ellipse cx="32" cy="27" rx="17.2" ry="17.5" fill="#2b1b1f" />
-            <circle cx="16.5" cy="27" r="6.2" fill="#2b1b1f" />
-            <circle cx="47.5" cy="27" r="6.2" fill="#2b1b1f" />
-            <circle cx="21" cy="16.5" r="5.4" fill="#2b1b1f" />
-            <circle cx="32" cy="12.8" r="5.8" fill="#2b1b1f" />
-            <circle cx="43" cy="16.5" r="5.4" fill="#2b1b1f" />
-            <circle cx="20" cy="18" r="2.1" fill="#3c282d" />
-            <circle cx="32" cy="13.6" r="2.2" fill="#3c282d" />
-            <circle cx="44" cy="18" r="2.1" fill="#3c282d" />
+            <ellipse cx="32" cy="27" rx="17.2" ry="17.5" fill={hairFill} />
+            <circle cx="16.5" cy="27" r="6.2" fill={hairFill} />
+            <circle cx="47.5" cy="27" r="6.2" fill={hairFill} />
+            <circle cx="21" cy="16.5" r="5.4" fill={hairFill} />
+            <circle cx="32" cy="12.8" r="5.8" fill={hairFill} />
+            <circle cx="43" cy="16.5" r="5.4" fill={hairFill} />
+            <circle cx="20" cy="18" r="2.1" fill="#4a3036" />
+            <circle cx="32" cy="13.6" r="2.2" fill="#4a3036" />
+            <circle cx="44" cy="18" r="2.1" fill="#4a3036" />
+            <path
+              d="M18.5 21 C21 13.5 30 9.5 39.5 13"
+              stroke="#56383f"
+              strokeWidth="1.3"
+              strokeLinecap="round"
+              fill="none"
+              opacity="0.85"
+            />
 
             {/* Face */}
-            <ellipse cx="32" cy="30" rx="12.6" ry="13.6" fill="#9a664b" />
-            <circle cx="19.4" cy="31" r="3" fill="#8a5a42" />
-            <circle cx="44.6" cy="31" r="3" fill="#8a5a42" />
+            <ellipse cx="32" cy="30" rx="12.6" ry="13.6" fill={skinFill} />
+            <circle cx="19.4" cy="31" r="3" fill="#8a5540" />
+            <circle cx="44.6" cy="31" r="3" fill="#8a5540" />
             <circle cx="18.9" cy="34.2" r="1.35" fill="#d9a441" />
             <circle cx="45.1" cy="34.2" r="1.35" fill="#d9a441" />
+            <ellipse
+              cx="26.5"
+              cy="24"
+              rx="4.2"
+              ry="2.6"
+              fill="#ffffff"
+              opacity="0.07"
+            />
 
             {/* Brows */}
             <path
@@ -130,8 +173,22 @@ export function HumanAvatar({
               <g className="human-avatar__pupils">
                 <ellipse cx="26.6" cy="29.4" rx="2.7" ry="1.9" fill="#ffffff" />
                 <circle cx="27" cy="29.5" r="1.2" fill="#2a1b1e" />
+                <circle
+                  cx="26.65"
+                  cy="29.15"
+                  r="0.36"
+                  fill="#ffffff"
+                  opacity="0.9"
+                />
                 <ellipse cx="37.4" cy="29.4" rx="2.7" ry="1.9" fill="#ffffff" />
                 <circle cx="37.8" cy="29.5" r="1.2" fill="#2a1b1e" />
+                <circle
+                  cx="37.45"
+                  cy="29.15"
+                  r="0.36"
+                  fill="#ffffff"
+                  opacity="0.9"
+                />
               </g>
             </g>
 

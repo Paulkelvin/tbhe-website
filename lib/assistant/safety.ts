@@ -3,9 +3,9 @@
 // resources are always shown, even if the model misbehaves or is unavailable.
 
 const CRISIS_PATTERNS = [
-  /\b(?:suicid(?:e|al)|kill (?:myself|himself|herself|themselves|my child|my son|my daughter)|self[-\s]?harm|overdose|wants? to die|doesn'?t want to live|end (?:my|his|her|their) life)\b/i,
-  /\b(?:child abuse|being abused|abused at home|physically abused|sexually abused|unsafe at home|in immediate danger|medical emergency|threatened to hurt|threatens? to (?:hurt|kill))\b/i,
-  /\b(?:this is an emergency|emergency right now|need help right now|call 911)\b/i,
+  /\b(?:suicid(?:e|al)|kill (?:myself|himself|herself|themselves|my child|my son|my daughter)|self[-\s]?harm|overdose|wants? to die|doesn'?t want to live|better off dead|no reason to live|end (?:my|his|her|their) life)\b/i,
+  /\b(?:child abuse|being abused|abused at home|abusive home|domestic violence|physically abused|sexually abused|unsafe at home|in immediate danger|medical emergency|threatened to hurt|threatens? to (?:hurt|kill)|(?:want|thinking about|planning) to hurt (?:myself|himself|herself|themselves))\b/i,
+  /\b(?:this is an emergency|emergency right now|need help right now|call 911|child (?:is )?(?:not safe|unsafe)|being hurt at home)\b/i,
 ]
 
 export const CRISIS_RESPONSE = `I'm really sorry you and your family are facing this. Your child's safety and well-being come first.

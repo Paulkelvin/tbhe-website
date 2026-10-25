@@ -146,39 +146,47 @@ export async function POST(request: Request) {
 
   const stream = new ReadableStream<Uint8Array>({
     async start(controller) {
+      function handleEvent(event: string) {
+        const dataLine = event
+          .split("\n")
+          .find((line) => line.startsWith("data:"))
+        if (!dataLine) return
+
+        const data = dataLine.slice(5).trim()
+        if (!data || data === "[DONE]") return
+
+        try {
+          const parsed = JSON.parse(data) as {
+            choices?: { delta?: { content?: string } }[]
+          }
+          const delta = parsed.choices?.[0]?.delta?.content
+          if (delta) {
+            sentAny = true
+            controller.enqueue(encoder.encode(delta))
+          }
+        } catch {
+          // A malformed event shouldn't tear down an otherwise good stream.
+        }
+      }
+
       try {
         while (true) {
           const { done, value } = await reader.read()
           if (done) break
 
-          buffer += decoder.decode(value, { stream: true })
+          // OpenAI separates events with \n\n, but some proxies use \r\n.
+          buffer = (buffer + decoder.decode(value, { stream: true })).replace(
+            /\r\n/g,
+            "\n"
+          )
           const events = buffer.split("\n\n")
           buffer = events.pop() ?? ""
 
-          for (const event of events) {
-            const dataLine = event
-              .split("\n")
-              .find((line) => line.startsWith("data:"))
-            if (!dataLine) continue
-
-            const data = dataLine.slice(5).trim()
-            if (!data || data === "[DONE]") continue
-
-            try {
-              const parsed = JSON.parse(data) as {
-                choices?: { delta?: { content?: string } }[]
-              }
-              const delta = parsed.choices?.[0]?.delta?.content
-              if (delta) {
-                sentAny = true
-                controller.enqueue(encoder.encode(delta))
-              }
-            } catch {
-              // A malformed event shouldn't tear down an otherwise good stream.
-            }
-          }
+          for (const event of events) handleEvent(event)
         }
 
+        // Process a final event that arrived without a trailing blank line.
+        if (buffer.trim()) handleEvent(buffer)
         if (!sentAny) controller.enqueue(encoder.encode(FALLBACK_REPLY))
         controller.close()
       } catch (error) {
@@ -188,7 +196,9 @@ export async function POST(request: Request) {
         }
         console.error("[assistant] stream failed:", error)
         try {
-          controller.enqueue(encoder.encode(FALLBACK_REPLY))
+          // If part of the answer already reached the visitor, keep it rather
+          // than appending an apology to a half-finished reply.
+          if (!sentAny) controller.enqueue(encoder.encode(FALLBACK_REPLY))
           controller.close()
         } catch {
           controller.error(error)
