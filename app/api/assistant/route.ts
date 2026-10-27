@@ -9,6 +9,7 @@ import {
   isRateLimited,
 } from "@/lib/assistant/rate-limit"
 import { CRISIS_RESPONSE, isCrisisMessage } from "@/lib/assistant/safety"
+import { getCoachingPlans } from "@/sanity/queries"
 
 export const runtime = "nodejs"
 export const maxDuration = 60
@@ -102,6 +103,8 @@ export async function POST(request: Request) {
     )
   }
 
+  const plans = await getCoachingPlans()
+
   let upstream: Response
   try {
     upstream = await fetch("https://api.openai.com/v1/chat/completions", {
@@ -113,7 +116,7 @@ export async function POST(request: Request) {
       body: JSON.stringify({
         model: ASSISTANT_MODEL,
         messages: [
-          { role: "system", content: buildSystemPrompt(page) },
+          { role: "system", content: buildSystemPrompt(plans, page) },
           ...messages,
         ],
         temperature: 0.5,

@@ -628,7 +628,7 @@ export function HumanAssistant() {
               {announcement}
             </p>
 
-            <header className="flex items-center gap-3 border-b border-hairline px-4 py-3">
+            <div className="flex items-center gap-3 border-b border-hairline px-4 py-3">
               <HumanAvatar size={44} mood={mood} />
               <div className="flex min-w-0 flex-1 items-baseline gap-2">
                 <h2 id="human-assistant-title" className="text-h3-alt text-ink">
@@ -659,7 +659,7 @@ export function HumanAssistant() {
               >
                 <X size={18} />
               </button>
-            </header>
+            </div>
 
             <div className="flex min-h-0 flex-1 flex-col">
               {view === "lead" ? (

@@ -5,6 +5,8 @@
 const CRISIS_PATTERNS = [
   /\b(?:suicid(?:e|al)|kill (?:myself|himself|herself|themselves|my child|my son|my daughter)|self[-\s]?harm|overdose|wants? to die|doesn'?t want to live|better off dead|no reason to live|end (?:my|his|her|their) life)\b/i,
   /\b(?:child abuse|being abused|abused at home|abusive home|domestic violence|physically abused|sexually abused|unsafe at home|in immediate danger|medical emergency|threatened to hurt|threatens? to (?:hurt|kill)|(?:want|thinking about|planning) to hurt (?:myself|himself|herself|themselves))\b/i,
+  // Self-harm and running-away wording that parents and teens commonly use.
+  /\b(?:cutting (?:myself|himself|herself|themselves)|(?:cuts?|cut) (?:myself|himself|herself|themselves)|hurt(?:ing)? (?:myself|himself|herself|themselves)|harm(?:ing)? (?:myself|himself|herself|themselves)|ending it all|end it all|take (?:my|his|her|their) (?:own )?life|taking (?:my|his|her|their) (?:own )?life|(?:don'?t|doesn'?t|do not|does not) want to (?:be here|be alive|live|exist)|not want to be here anymore|wish(?:es)? (?:i|he|she|they) (?:was|were|had) (?:never born|dead)|ran away|run(?:ning)? away from home|runaway|missing child|(?:can'?t|cannot) find (?:my|our) (?:child|son|daughter|kid)|(?:he|she|they) (?:is|are) (?:missing|gone))\b/i,
   /\b(?:this is an emergency|emergency right now|need help right now|call 911|child (?:is )?(?:not safe|unsafe)|being hurt at home)\b/i,
 ]
 

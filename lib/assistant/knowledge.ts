@@ -2,7 +2,22 @@
 // content and the client's training guide. Update this file — not the prompt
 // — when services, pricing, geography, or programs change.
 
-export const KNOWLEDGE = `
+import { formatUsd } from "@/lib/content"
+import type { CoachingPlan } from "@/sanity/queries"
+
+function planSummary(plans: CoachingPlan[]) {
+  return plans
+    .map((p) => `${p.name} (${formatUsd(p.priceCents)}${p.setupFeeCents ? ` plus a ${formatUsd(p.setupFeeCents)} setup fee` : ""})`)
+    .join(" and ")
+}
+
+// Prices come from the Executive Coaching Plans in the admin, so the assistant never quotes a stale number.
+export function buildKnowledge(plans: CoachingPlan[]) {
+  const published = planSummary(plans)
+  return KNOWLEDGE_TEMPLATE.replaceAll("{{PUBLISHED_PACKAGES}}", published)
+}
+
+const KNOWLEDGE_TEMPLATE = `
 ## Who you represent
 
 The Beautifully Human Educator (TBHE) is a leadership and professional-learning
@@ -36,8 +51,7 @@ master's, Notre Dame of Maryland. Mission 139 takes its name from Psalm 139:14.
 - A complimentary 45-minute discovery call, bookable on the calendar.
 
 Published coaching packages (as listed on the site; confirm current pricing
-before quoting): a 10-month Executive Coaching retainer ($10,000 plus a $175
-setup fee) and a 5-month session pack ($5,000 plus a $175 setup fee). School
+before quoting): {{PUBLISHED_PACKAGES}}. School
 and district engagements are scoped and quoted individually. Never invent a
 price, discount, or availability.
 
@@ -113,7 +127,7 @@ Adapt the wording naturally; don't recite these like a script.
 - **Can Mission 139 provide financial assistance?** There is a needs-based Financial Assistance for Access to Services program. Families can apply; every application is reviewed individually, and applying does not guarantee an award, amount, or timeline. Geographic coverage is confirmed case by case.
 - **Do you provide speaking engagements or workshops?** Yes — keynotes, staff development, parent workshops, and customized presentations, nationwide. There is no fixed topic list; the team tailors the session to the audience.
 - **Do you work with individual teachers and school leaders?** Yes. One-on-one executive coaching, instructional coaching, and leadership support are available, along with a complimentary discovery call.
-- **How much do your services cost?** The discovery call is complimentary. Executive Coaching is published at $10,000 for a 10-month retainer or $5,000 for a 5-month session pack, each plus a $175 setup fee. School and district work is quoted per engagement. The team can prepare a proposal for anything not published.
+- **How much do your services cost?** The discovery call is complimentary. Executive Coaching is published as {{PUBLISHED_PACKAGES}}. School and district work is quoted per engagement. The team can prepare a proposal for anything not published.
 - **Do you offer virtual services or work outside Maryland?** Yes. Coaching, professional development, consulting, and speaking are available nationwide, virtually or in person. Advocacy is in-person across the DMV, with virtual consultations nationwide where appropriate and subject to state rules.
 - **How can I schedule a consultation or get involved?** Book the complimentary discovery call on the calendar, send a note through Contact, use the "Talk to a person" form in this chat, or visit the Donate page to support Mission 139.
 - **Where can I learn more?** The [Resource Center](/resources) has white papers and guides; the [Blog](/blog) has current writing; the [Ecosystem page](/ecosystem) explains all three arms.

@@ -1,7 +1,8 @@
 import { ASSISTANT_EXPANSION, ASSISTANT_NAME } from "@/lib/assistant/paths"
-import { KNOWLEDGE } from "@/lib/assistant/knowledge"
+import { buildKnowledge } from "@/lib/assistant/knowledge"
+import type { CoachingPlan } from "@/sanity/queries"
 
-export function buildSystemPrompt(path?: string) {
+export function buildSystemPrompt(plans: CoachingPlan[], path?: string) {
   const pageLine = path
     ? `The visitor is currently on this page of the site: ${path}. If it is relevant, you may point them to related pages, but do not assume they have read anything on it.`
     : "The visitor is somewhere on the TBHE website."
@@ -56,5 +57,5 @@ If a message suggests immediate danger, self-harm, suicide, abuse, a child who i
 Say so plainly, then offer the Contact page or the team's email. Never fill a gap with a guess. If a question is outside TBHE or Mission 139, gently say that's outside what you can help with and offer to connect them with the team.
 
 ## Approved facts
-${KNOWLEDGE}`
+${buildKnowledge(plans)}`
 }
