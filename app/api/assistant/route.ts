@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server"
 
 import { ASSISTANT_MODEL } from "@/lib/assistant/config"
+import { LIMIT_MESSAGE, reserveAssistantMessage } from "@/lib/assistant/budget"
 import { buildSystemPrompt } from "@/lib/assistant/prompt"
 import {
   CHAT_LIMIT,
@@ -101,6 +102,10 @@ export async function POST(request: Request) {
       },
       { status: 503 }
     )
+  }
+
+  if (!(await reserveAssistantMessage())) {
+    return NextResponse.json({ error: "limit_reached", message: LIMIT_MESSAGE }, { status: 503 })
   }
 
   const plans = await getCoachingPlans()

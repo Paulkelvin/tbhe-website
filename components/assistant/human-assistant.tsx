@@ -274,7 +274,7 @@ export function HumanAssistant() {
           error?: string
           message?: string
         } | null
-        if (data?.error === "not_configured") setUnavailable(true)
+        if (data?.error === "not_configured" || data?.error === "limit_reached") setUnavailable(true)
         setError({
           code: data?.error ?? "error",
           message:
@@ -869,7 +869,7 @@ function ErrorNotice({
         <WarningCircle size={16} className="mt-0.5 shrink-0 text-error" />
         <div>
           <p>{error.message}</p>
-          {error.code === "not_configured" ? (
+          {error.code === "not_configured" || error.code === "limit_reached" ? (
             <p className="mt-1">
               Email{" "}
               <a
@@ -888,7 +888,7 @@ function ErrorNotice({
               .
             </p>
           ) : null}
-          {canRetry && error.code !== "not_configured" ? (
+          {canRetry && error.code !== "not_configured" && error.code !== "limit_reached" ? (
             <button
               type="button"
               onClick={onRetry}
